@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	if ((arq_coordenadas = fopen(nome_arq,"a")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
-/*Arquivo de Foco*/
+/*Arquivo de Peso*/
 	sprintf(nome_arq, "configuracao/matriz_w.txt");
 	if ((arq_matriz_w = fopen(nome_arq,"a")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
@@ -79,21 +79,29 @@ int main(int argc, char *argv[])
 
 /*Inicialização ou Entrada*/
 
-	if (GERA_WS_ALEATORIAMENTE)
+	if (GERA_WS_ALEATORIAMENTE){
+		printf("Gerando pesos aleatoriamente...");
 		cria_matriz_de_peso_w_aleatoriamente(); /* gera matriz de pesos */
+	}
 	else
 	{
 		int i,j;
 
 	/*Arquivo de Ws*/
-		sprintf(nome_arq, "configuracao/coordenadas_entrada.txt");
+		sprintf(nome_arq, "configuracao/matriz_w_entrada.txt");
 		if ((arq = fopen(nome_arq,"r")) == NULL)
 		{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
-
-		for (i=0; i < NUMERO_DE_EPISTRONS ;i++ )
-			for (j=0; j < NUMERO_DE_EPISTRONS ;j++ )
-					fscanf(arq, "%f", &W[i][j]);
+		printf("Lendo pesos da matriz de %d epistrons\n",NUMERO_DE_EPISTRONS);
+		for (i=0; i < NUMERO_DE_EPISTRONS ;i++ ){
+			for (j=0; j < NUMERO_DE_EPISTRONS ;j++ ){
+				float aux;
+				fscanf(arq, "%f", &aux);
+				printf("\tW(%d,%d)=%f",i,j,aux);
+				W[i][j] = aux;
+			}
+			printf("\n");
+		}
 		fclose(arq);
 	}
 
