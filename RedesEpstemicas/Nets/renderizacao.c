@@ -62,22 +62,28 @@ void gera_coordenadas_dos_epistrons_em_grade()
  */
 tipoCOORD  CALCULA_RESULTANTE_DO_EPISTRON(int a)
 {
-	int i;
+	printf("CalculaResultanteEpistron(%d)\n",a);
+	int i,conexoes=0;
 	tipoCOORD R;
 
 	R.X = 0;
 	R.Y = 0;
-
+	float zero = 0;
 	for (i=0;i<NUMERO_DE_EPISTRONS ;i++ )
-
-		if (	i != a	/*nao é ele mesmo*/	&& W[a][i] >= 0	/*tem conexão*/)
+	{
+		if (	i != a	/*nao é ele mesmo*/	&& W[a][i] > zero	/*tem conexão*/)
 		{
 			R.X += (POSICAO_DO_EPISTRON[i].X - POSICAO_DO_EPISTRON[a].X)* W[a][i];
 			R.Y += (POSICAO_DO_EPISTRON[i].Y - POSICAO_DO_EPISTRON[a].Y)* W[a][i];
+			conexoes++;
 		}
+	}
 	/*ao final, R : resultante, começando na origem. */
 
-return R;
+	printf("\tconexoes %d\n" , conexoes);
+	printf("\tR[%d].X=%lf\n\tR[%d].Y=%lf\n",a,R.X,a,R.Y);
+
+	return R;
 }
 
 
@@ -118,8 +124,8 @@ void CALCULA_NOVAS_POSICOES_DOS_EPISTRONS()
 		R.Y /= sqrt(	pow(R.X, 2) + pow(R.Y, 2) )	;
 	//*/
 	/*Diminui a resultante para quanto o Epistron vai andar*/
-		R.X *= CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
-		R.Y *= CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
+		//R.X *= CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
+		//R.Y *= CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
 
 	/*Anda*/
 		//POSICAO_DO_EPISTRON[i].X += R.X;
