@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 
 	fscanf(arq, "%d", &GERA_WS_ALEATORIAMENTE); /**/
 	fscanf(arq, "%d", &ATUALIZAR_WS_EM_MODO_COMPETITIVO); /**/
+	printf("ATUALIZAR_WS_EM_MODO_COMPETITIVO = %d\n",ATUALIZAR_WS_EM_MODO_COMPETITIVO);
 
 	fscanf(arq, "%d", &NORMALIZA_MATRIZ_W); /**/
 	fscanf(arq, "%d", &NORMALIZA_MATRIZ_W_A_CADA); /**/
@@ -191,7 +192,8 @@ void inicia_semente_para_numeros_pseudo_aleatorios()
 
 float numero_pseudo_aleatorio_positivo_menor_que(float max)
 	{
-	float x = rand()-1;
+	//float x = rand()-1;
+	float x = rand();
 	float y = RAND_MAX;
 
 	x/=y;	/*numero >=0, <1*/

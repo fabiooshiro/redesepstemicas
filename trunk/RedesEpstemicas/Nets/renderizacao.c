@@ -7,7 +7,7 @@
  ************************************************************************************************************************************
  ************************************************************************************************************************************
  */
-
+int debug_render = 0;
 /****************************************
  * GERA as coordenadas X e Y dos EPISTRONS, aleatoriamente
  ****************************************/
@@ -62,7 +62,7 @@ void gera_coordenadas_dos_epistrons_em_grade()
  */
 tipoCOORD  CALCULA_RESULTANTE_DO_EPISTRON(int a)
 {
-	printf("CalculaResultanteEpistron(%d)\n",a);
+	if(debug_render) printf("CalculaResultanteEpistron(%d)\n",a);
 	int i,conexoes=0;
 	tipoCOORD R;
 
@@ -80,8 +80,8 @@ tipoCOORD  CALCULA_RESULTANTE_DO_EPISTRON(int a)
 	}
 	/*ao final, R : resultante, começando na origem. */
 
-	printf("\tconexoes %d\n" , conexoes);
-	printf("\tR[%d].X=%lf\n\tR[%d].Y=%lf\n",a,R.X,a,R.Y);
+	if(debug_render) printf("\tconexoes %d\n" , conexoes);
+	if(debug_render) printf("\tR[%d].X=%lf\n\tR[%d].Y=%lf\n",a,R.X,a,R.Y);
 
 	return R;
 }
@@ -128,8 +128,8 @@ void CALCULA_NOVAS_POSICOES_DOS_EPISTRONS()
 		//R.Y *= CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
 
 	/*Anda*/
-		//POSICAO_DO_EPISTRON[i].X += R.X;
-		//POSICAO_DO_EPISTRON[i].Y += R.Y;
+		POSICAO_DO_EPISTRON[i].X += R.X * CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
+		POSICAO_DO_EPISTRON[i].Y += R.Y * CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE;
 
 	}
 
@@ -236,7 +236,21 @@ void CALCULA_RAIOS_DOS_EPISTRONS()
 			maior = TAMANHO_DO_RAIO_NO_GRAFICO[i];
 			//menor
 	}
+	/**
+	 * Correcao do raio
+	 */
+	float MAX_RAIO = 0.08;
+	float MIN_RAIO = 0.005;
+	for (i=0;i<NUMERO_DE_EPISTRONS ;i++ ){
+		float novoRaio = (TAMANHO_DO_RAIO_NO_GRAFICO[i] / maior) * MAX_RAIO;
+		if(novoRaio>MIN_RAIO){
+			TAMANHO_DO_RAIO_NO_GRAFICO[i] = novoRaio;
+		}else{
+			TAMANHO_DO_RAIO_NO_GRAFICO[i] = MIN_RAIO;
+		}
+	}
 
+	/*
 	for (i=0;i<NUMERO_DE_EPISTRONS ;i++ )
 	{
 
@@ -252,6 +266,7 @@ void CALCULA_RAIOS_DOS_EPISTRONS()
 
 
 	}
+	*/
 
 
 
