@@ -14,7 +14,7 @@
 void inicia_redes_neuronais()
 {
 	int k;
-	for (k=0;k< NUMERO_MAXIMO_DE_EPISTRONS  ;k++ )	
+	for (k=0;k< NUMERO_MAXIMO_DE_EPISTRONS  ;k++ )
 		REDE_NEURONAL[k] = cria_rede_neuronal_aleatoria();
 
 }
@@ -25,9 +25,9 @@ void inicia_redes_neuronais()
 TIPO_REDE_NEURONAL cria_rede_neuronal_aleatoria(	/*output_filename*/	)
 {
 	TIPO_REDE_NEURONAL rede;
-	
+
 	rede = net_allocate_l(NUMERO_DE_CAMADAS_DA_REDE_NEURONAL, NUMERO_DE_NEURONIOS_NA_CAMADA);
-	
+
 	net_use_bias (rede, 0); /*NÃO USAR BIAS*/
 
 	/*net_print (rede);//*/
@@ -55,8 +55,8 @@ float treina_rede_arg0_com_par_da_rede_arg1_arg2_vezes(int x, int y, double w)
 	t = 0;
 	if (w<1) quant=0;
 	else quant = (int)w;
-		
-	while ((t < quant) /*&& (total_error >= max_error)*/) 
+
+	while ((t < quant) /*&& (total_error >= max_error)*/)
 	{
 		net_compute (REDE_NEURONAL[x], tupla_y, output_x);
 
@@ -82,7 +82,7 @@ float treina_rede_arg0_com_par_da_rede_arg1_arg2_vezes(int x, int y, double w)
 /************************/
 /************************ normalizar?????????????????????????????????????????????????????????*/
 
-	//printf("erro %.10f ", erro);	
+	//printf("erro %.10f ", erro);
 
 	/*proteções*
 	if (erro >= 1000000000)
