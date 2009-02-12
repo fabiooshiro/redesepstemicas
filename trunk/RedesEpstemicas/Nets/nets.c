@@ -21,29 +21,29 @@ int main(int argc, char *argv[])
 
 /*Arquivo de Log*/
 	sprintf(nome_arq, "log.txt");
-	if ((arq_log = fopen(nome_arq,"w")) == NULL) 
+	if ((arq_log = fopen(nome_arq,"w")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 /*Arquivo de Foco*/
-	sprintf(nome_arq, "foco.txt");
-	if ((arq_foco = fopen(nome_arq,"a")) == NULL) 
+	sprintf(nome_arq, "configuracao/foco.txt");
+	if ((arq_foco = fopen(nome_arq,"a")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 /*Arquivo de Foco*/
-	sprintf(nome_arq, "coordenadas.txt");
-	if ((arq_coordenadas = fopen(nome_arq,"a")) == NULL) 
+	sprintf(nome_arq, "configuracao/coordenadas.txt");
+	if ((arq_coordenadas = fopen(nome_arq,"a")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 /*Arquivo de Foco*/
-	sprintf(nome_arq, "matriz_w.txt");
-	if ((arq_matriz_w = fopen(nome_arq,"a")) == NULL) 
+	sprintf(nome_arq, "configuracao/matriz_w.txt");
+	if ((arq_matriz_w = fopen(nome_arq,"a")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 /*Parâmetros*/
 
 /*Arquivo de Entrada*/
-	sprintf(nome_arq, "nets.txt");
-	if ((arq = fopen(nome_arq,"r")) == NULL) 
+	sprintf(nome_arq, "configuracao/nets.txt");
+	if ((arq = fopen(nome_arq,"r")) == NULL)
 	{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 	fscanf(arq, "%d", &NUMERO_DE_EPISTRONS);					/*número de espistrons*/
@@ -68,9 +68,9 @@ int main(int argc, char *argv[])
 	fscanf(arq, "%d", &ATUALIZAR_A_CONSTANTE_QUE_PONDERA_A_DISTANCIA_QUE_O_EPISTRON_CAMINHA_EM_DIRECAO_A_RESULTANTE_A_CADA); /**/
 
 	fscanf(arq, "%f", &MAX_RAIO_FOCO); /**/
-	fscanf(arq, "%f", &LIMITE_SUPERIOR_COORDENADA_DO_FOCO); /**/	
+	fscanf(arq, "%f", &LIMITE_SUPERIOR_COORDENADA_DO_FOCO); /**/
 	fscanf(arq, "%d", &GERA_FOCOS_ALEATORIAMENTE); /**/
-	
+
 	fscanf(arq, "%d", &GERAR_LOG_A_CADA); /**/
 	fscanf(arq, "%d", &EXPORTAR_PARA_IMAGEM_A_CADA); /**/
 
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 
 
 /*Inicialização ou Entrada*/
-	
+
 	if (GERA_WS_ALEATORIAMENTE)
 		cria_matriz_de_peso_w_aleatoriamente(); /* gera matriz de pesos */
 	else
@@ -86,10 +86,10 @@ int main(int argc, char *argv[])
 		int i,j;
 
 	/*Arquivo de Ws*/
-		sprintf(nome_arq, "coordenadas_entrada.txt");
-		if ((arq = fopen(nome_arq,"r")) == NULL) 
+		sprintf(nome_arq, "configuracao/coordenadas_entrada.txt");
+		if ((arq = fopen(nome_arq,"r")) == NULL)
 		{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
-				
+
 
 		for (i=0; i < NUMERO_DE_EPISTRONS ;i++ )
 			for (j=0; j < NUMERO_DE_EPISTRONS ;j++ )
@@ -97,22 +97,22 @@ int main(int argc, char *argv[])
 		fclose(arq);
 	}
 
-	if (GERA_COORDENADAS_ALEATORIAMENTE)	
+	if (GERA_COORDENADAS_ALEATORIAMENTE)
 		gera_coordenadas_dos_epistrons_aleatoriamente(); /* gera coordenadas */
 	else
 	{
 
 	/*Arquivo de Foco*/
-		sprintf(nome_arq, "coordenadas_entrada.txt");
-		if ((arq = fopen(nome_arq,"r")) == NULL) 
+		sprintf(nome_arq, "configuracao/coordenadas_entrada.txt");
+		if ((arq = fopen(nome_arq,"r")) == NULL)
 		{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 		int  k;
 
 		for (k=0 ;  k<NUMERO_DE_EPISTRONS ; k++ )
-		{	
+		{
 				fscanf(arq, "%f", &POSICAO_DO_EPISTRON[k].X );
-				fscanf(arq, "%f", &POSICAO_DO_EPISTRON[k].Y);	
+				fscanf(arq, "%f", &POSICAO_DO_EPISTRON[k].Y);
 		}
 		//printf("%.10f %.10f\n", POSICAO_DO_EPISTRON[k].X , POSICAO_DO_EPISTRON[k].Y);
 
@@ -120,14 +120,14 @@ int main(int argc, char *argv[])
 	}
 
 
-	if (GERA_FOCOS_ALEATORIAMENTE)	
+	if (GERA_FOCOS_ALEATORIAMENTE)
 		gera_focos_dos_agentes_aleatoriamente();
 	else
 	{
 				int i,j;
 			/*Arquivo de Foco*/
-				sprintf(nome_arq, "foco_entrada.txt");
-				if ((arq = fopen(nome_arq,"r")) == NULL) 
+				sprintf(nome_arq, "configuracao/foco_entrada.txt");
+				if ((arq = fopen(nome_arq,"r")) == NULL)
 				{	printf("Nao foi possivel abrir arquivo %s\n", nome_arq);	exit(0);	}
 
 			/*lê coordenadas_e raios de_todos_os_centroides_de_foco_aleatoriamente() */
@@ -140,8 +140,8 @@ int main(int argc, char *argv[])
 				}
 				fclose(arq);
 	}
-	
-	
+
+
 
 
 /*Inicialização*/
