@@ -16,9 +16,9 @@ void inicia_glut_opengl(int *argc, char *argv[])
 	glutInit			   (argc, argv);							/*inicia glut (para janela) */
 	glutInitDisplayMode	   (GLUT_DOUBLE | GLUT_RGB);				/*single ou float buffer single, tipo de cores rgb*/
 	glutInitWindowSize	   (LARGURA_DA_TELA, ALTURA_DA_TELA);		/*largura, altura, em pixels*/
-	glutInitWindowPosition (POSICAO_X_INICIAL_DA_JANELA, 
+	glutInitWindowPosition (POSICAO_X_INICIAL_DA_JANELA,
 							POSICAO_Y_INICIAL_DA_JANELA);			/*posição do extremo esquerdo superior*/
-	ID_DA_JANELA_PRINCIPAL = 
+	ID_DA_JANELA_PRINCIPAL =
 		glutCreateWindow   (NOME_DA_JANELA_PRINCIPAL);				/*cria janela(mas não mostra)*/
 
 	glClearColor	(1.0, 1.0, 1.0, 1.0);						/*cor que vai limpar a janela RGBA*/
@@ -41,18 +41,18 @@ void inicia_glut_opengl(int *argc, char *argv[])
 
 
 /****************************************
- * reshape: chamada quando a tela é redimensionada	
+ * reshape: chamada quando a tela é redimensionada
  ****************************************/
 void reshape (int w, int h)
 	{
-	LARGURA_DA_TELA = w;	
+	LARGURA_DA_TELA = w;
 	ALTURA_DA_TELA  = h;
 
 	printf("dimensão da janela alterada: %d x %d\n",w, h);
 
 
 	/*atualiza visao pra tela toda, extremos do ortho nos extremos da tela*/
-	glViewport (0, 0, LARGURA_DA_TELA, ALTURA_DA_TELA);	
+	glViewport (0, 0, LARGURA_DA_TELA, ALTURA_DA_TELA);
 
 	gluOrtho2D		(0.0, 1.0, 0.0, 1.0);     /* define limites de coordenadas x, y (ORTHO): infx, supx, infy, supy*/
 
@@ -64,14 +64,14 @@ void reshape (int w, int h)
 
 
 /****************************************
- * keyboard: chamada quando uma tecla é acionada	
+ * keyboard: chamada quando uma tecla é acionada
  ****************************************/
 void keyboard(unsigned char key, int x, int y)
-{  
-	switch (key) 
-	{ 
+{
+	switch (key)
+	{
 		case 27:  glFinish(); exit(0);  /*Esc*/
-	}	
+	}
 
 }
 
@@ -80,33 +80,33 @@ void keyboard(unsigned char key, int x, int y)
 
 
 /****************************************
- * mouse: chamada quando o mouse é acionado	
+ * mouse: chamada quando o mouse é acionado
  ****************************************/
 void mouse(int botao, int estado, int x, int y)
 {
-	switch(botao) 
+	switch(botao)
 	{
-		case GLUT_LEFT_BUTTON:	  
+		case GLUT_LEFT_BUTTON:
 			if (estado == GLUT_DOWN) {
 				PAUSADO = !PAUSADO;
 				printf("pausado = %d",PAUSADO );
 			}
-		case GLUT_MIDDLE_BUTTON:  if (estado == GLUT_DOWN) {  }		
+		case GLUT_MIDDLE_BUTTON:  if (estado == GLUT_DOWN) {  }
 		case GLUT_RIGHT_BUTTON:   if (estado == GLUT_DOWN) {  }
 	}
 	//printf("mouse x %d, y %d",x,y);
-	
+
 }
 
 
 
 /****************************************
- * * Exporta o buffer atual do opengl para um arquivo bmp 
+ * * Exporta o buffer atual do opengl para um arquivo bmp
  ****************************************/
 void EXPORTA_TELA_ATUAL_PARA_IMAGEM()
 {
 	char nome[20];
-	
+
 	sprintf(nome, "%d.bmp", contator_RODADAS_DO_ALGORITMO_DE_ATUALIZACAO_DA_REDE);
 
 	dumpBMP(nome, LARGURA_DA_TELA, ALTURA_DA_TELA);
@@ -121,18 +121,18 @@ int dumpBMP(char *szName, int width, int height)
 	FILE *fp;
 	BITMAPFILEHEADER hdr;
     BITMAPINFOHEADER bih;
-    
+
     fp = fopen(szName, "wb");
 
-    for (y = 0; y < height; y++) 
+    for (y = 0; y < height; y++)
 	{
         unsigned char mid, *p = pixels + y * nByteWidth;
 
         glReadPixels(0, y, width, 1, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *) p);
-        for (x = 0; x < width; x++) 
+        for (x = 0; x < width; x++)
 		{
             mid = p[0];
-            p[0] = p[2]; 
+            p[0] = p[2];
             p[2] = mid;
             p += 3;
         }
@@ -155,9 +155,9 @@ int dumpBMP(char *szName, int width, int height)
     hdr.bfType = 0x4d42;
     hdr.bfOffBits = sizeof(BITMAPFILEHEADER) + bih.biSize;
     hdr.bfSize = hdr.bfOffBits + nByteWidth * height;
-    hdr.bfReserved1 = 0; 
+    hdr.bfReserved1 = 0;
     hdr.bfReserved2 = 0;
-    
+
     // Write to file
     fwrite(&hdr, 1, sizeof(hdr), fp);
     fwrite(&bih, 1, sizeof(bih), fp);
