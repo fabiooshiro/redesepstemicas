@@ -1,0 +1,18 @@
+
+CC := gcc
+CFLAGS += -lglui -lglut32 -lglu32 -lopengl32 -I../lwneuralnet-0.8/source
+LIBS := -lm  ../lwneuralnet-0.8/source/liblwneuralnet.a /usr/i586-mingw32msvc/include
+
+executa: limpa compila
+	nets.exe
+
+compila: nets.c
+	$(CC) nets.c -o nets.exe $(CFLAGS) $(LIBS) 
+
+limpa:
+	rm *.o -f 
+	rm *.bak -f 
+	rm *.exe -f 
+	rm *.bmp -f 
+	rm *.stackdump -f 
+

@@ -1,0 +1,12 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=7C901010
+eax=00000020 ebx=00000045 ecx=7FFDF000 edx=00000020 esi=00000000 edi=0022C629
+ebp=0022C19C esp=0022C194 program=E:\samba\Nets\Nets\teste\a2.exe, pid 1228, thread main
+cs=001B ds=0023 es=0023 fs=003B gs=0000 ss=0023
+Stack trace:
+Frame     Function  Args
+0022C19C  7C901010  (00000000, 0022C629, 00000000, 00000045)
+0022C1D8  6948DB7F  (00000000, 694CF36C, 0022C210, 0022C629)
+0022CA14  69330D57  (013FB3F8, 69513E00, 0022CAB4, 00000001)
+07010FDE  69333CD0  (0000FFFF, 00000000, FFFF0000, FFFFFFFF)
+ 551063 [main] a2 1228 _cygtls::handle_exceptions: Exception: STATUS_ACCESS_VIOLATION
+ 567916 [main] a2 1228 _cygtls::handle_exceptions: Error while dumping state (probably corrupted stack)
