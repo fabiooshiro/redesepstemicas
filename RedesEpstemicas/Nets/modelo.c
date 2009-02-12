@@ -50,6 +50,7 @@ void atualiza_rede_epistemica(int passo)
 						/*Desconta delta nas outras conexões*/
 							if (ATUALIZAR_WS_EM_MODO_COMPETITIVO)
 							{
+								printf("Atualizando em modo competitivo\n");
 								for (k=0;k<NUMERO_DE_EPISTRONS ;k++ )
 									if (W[j][k]>=0 //tem conexão
 										&& k != EPISTRON_SORTEADO //não é o atual
