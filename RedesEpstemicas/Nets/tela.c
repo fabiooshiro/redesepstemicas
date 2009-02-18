@@ -109,10 +109,10 @@ void EXPORTA_TELA_ATUAL_PARA_IMAGEM()
 
 	sprintf(nome, "%d.bmp", contator_RODADAS_DO_ALGORITMO_DE_ATUALIZACAO_DA_REDE);
 
-	dumpBMP(nome, LARGURA_DA_TELA, ALTURA_DA_TELA);
+	//dumpBMP(nome, LARGURA_DA_TELA, ALTURA_DA_TELA);
 
 }
-
+/*
 int dumpBMP(char *szName, int width, int height)
 {
     int nByteWidth = (3 * width + 3) & ~3;
@@ -168,7 +168,7 @@ int dumpBMP(char *szName, int width, int height)
 
     return 0;
 }
-
+*/
 
 
 
