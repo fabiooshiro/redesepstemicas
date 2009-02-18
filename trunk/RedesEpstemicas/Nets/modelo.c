@@ -1,5 +1,16 @@
 
 
+void printW(){
+	int i, j;
+	printf("Matriz de pesos W\n");
+	for(i=0;i<NUMERO_DE_EPISTRONS;i++){
+		for(j=0;j<NUMERO_DE_EPISTRONS;j++){
+			printf("%f\t",W[i][j]);
+		}
+		printf("\n\n");
+	}
+}
+
 /*
  ************************************************************************************************************************************
  ************************************************************************************************************************************
@@ -98,7 +109,7 @@ void atualiza_rede_epistemica(int passo)
 
 	}/*próximo sorteado*/
 
-
+	printW();
 	glutPostRedisplay(); /*chama o display de novo*/
 	glutTimerFunc(TEMPO_DE_REFRESH_DA_FUNCAO_TIMER_EM_MSECS, atualiza_rede_epistemica, 1);
 
@@ -189,10 +200,16 @@ void normaliza_matriz_de_pesos()
 		for (j=0; j < NUMERO_DE_EPISTRONS ;j++ )
 				if (W[i][j] > norma && i!=j)
 					norma = W[i][j];
-
+	
+	//printf("norma = %f\n",norma);
 	for (i=0; i < NUMERO_DE_EPISTRONS ;i++ )
-		for (j=0; j < NUMERO_DE_EPISTRONS ;j++ )
-			W[i][j] /= norma;
+		for (j=0; j < NUMERO_DE_EPISTRONS ;j++ ){
+			float aux = W[i][j] / norma;
+			if(aux<=0.005 && W[i][j]>0.0){
+			}else{
+				W[i][j] /= norma;
+			}
+		}
 }
 
 /**/
