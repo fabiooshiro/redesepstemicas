@@ -35,7 +35,8 @@ GLUIDIR       = /usr
 # And also note the different library names for the glu, gl, and glut libraries
 # Define location of OpenGL and GLU libraries along with their lib names
 #GL_LIBS       = -L/lib -lglu32 -lopengl32 
-GL_LIBS       = -L/usr/lib -lSDL -lGL -lGLU -lglut
+#GL_LIBS       = -L/usr/lib -lSDL -lGL -lGLU -lglut
+GL_LIBS       = -L/usr/lib -lGL -lGLU -lglut
 
 # Define location of Glut libraries along with glut lib name
 GLUT_LIBS     = #-L/lib -lglut32
@@ -47,7 +48,8 @@ GLUI_LIBS     = #-L/lib -lglui
 XLIBDIR       = /usr/include
 
 # Define location of X Windows libraries,  and the X11 library names
-XLIBS         = -L/usr/X11R6/lib -lX11 -lXi #-lXmu
+#XLIBS         = -L/usr/X11R6/lib -lX11 -lXi #-lXmu
+XLIBS         = -L/usr/X11R6/lib -lX11 #-lXi -lXmu
 
 # Define the location of the destination directory for the executable file
 DEST	      = .
