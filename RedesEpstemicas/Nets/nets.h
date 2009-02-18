@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <time.h>
-#include <windows.h>
+//#include <windows.h>
 
 #include <GL/gl.h>   /* padrão do opengl */
 #include <GL/glu.h>  /* padrão do opengl */
@@ -12,7 +12,18 @@
 //#include <glui.h>  /* sistema de janelas (não padrão) em cima do glut */
 
 #include "lwneuralnet.h" /* Redes Neuronais */
-
+/*//windows adapter
+#ifndef DWORD
+#define WINAPI
+typedef unsigned long DWORD;
+typedef short WCHAR;
+typedef void * HANDLE;
+#define MAX_PATH PATH_MAX
+typedef unsigned char BYTE;
+typedef unsigned short WORD;
+typedef unsigned int BOOL;
+#endif
+*/
 /****************************************
  * Estado da aplicacao
  ****************************************/
