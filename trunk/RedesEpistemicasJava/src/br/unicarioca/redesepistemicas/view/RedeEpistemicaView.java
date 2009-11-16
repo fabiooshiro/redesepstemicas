@@ -20,6 +20,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 	private boolean run=true;
 	private BufferedImage bi = new BufferedImage(800,600,BufferedImage.TYPE_INT_ARGB);
 	private Graphics graphics = bi.getGraphics();
+	private int delay = 100;
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -30,7 +31,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 					try{
 						initDesenho();
 						desenharAgentes();
-						Thread.sleep(500);
+						Thread.sleep(delay);
 						atualizar();
 					}catch (Exception e) {
 						if(run) e.printStackTrace();
@@ -110,7 +111,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 		double dx = ex - rx;
 		double dy = ey - ry;
 		double hip = Math.sqrt(dx*dx + dy*dy);
-		double relacao = passo/hip;
+		double relacao = Math.min(passo/hip,1.0);
 		double mx = dx*relacao;
 		double my = dy*relacao;
 		if(0.1-diff>0){
@@ -118,15 +119,18 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 			receptor.setY(ry+(int)my);
 			graphics.setColor(Color.BLUE);
 		}else{
-			receptor.setX(rx-(int)mx);
-			receptor.setY(ry-(int)my);
+			//repulsao
+			if(hip<200){//max
+				receptor.setX(rx-(int)mx);
+				receptor.setY(ry-(int)my);
+			}
 			graphics.setColor(Color.RED);
 		}
 		
 		desenharAgente(receptor);
 		this.setIcon(new ImageIcon(bi));
 		try{
-			Thread.sleep(250);
+			Thread.sleep(delay);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -137,7 +141,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 		desenharAgente(emissor);
 		this.setIcon(new ImageIcon(bi));
 		try{
-			Thread.sleep(250);
+			Thread.sleep(delay);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
