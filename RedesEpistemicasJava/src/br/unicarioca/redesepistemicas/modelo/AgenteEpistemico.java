@@ -29,7 +29,7 @@ public class AgenteEpistemico {
 	/**
 	 * O maximo de diferenca para rejeitar o resultado
 	 */
-	private Double maxDiff = 0.1;
+	private Double maxDiff = 0.2;
 	
 	public AgenteEpistemico() {
 		int[] neuralNetworkStructure = new int[] { 3, 4, 2 };
@@ -117,17 +117,22 @@ public class AgenteEpistemico {
 		//neuralNetwork.setTrainingSet(trainingData.getTrainingSet());
 		neuralNetwork.setTrainingSet(trainingSet);
 		
-		neuralNetwork.train();
+		
 		
 		//guarda a informacao?
 		ParEpistemico parEpistemicoExistente = procurar(parEpistemicoInformado.getAntecedente());
 		if(parEpistemicoExistente==null){
 			logger.debug("Aprendendo " + parEpistemicoInformado);
 			parEpistemicoExistente = interpretar(parEpistemicoInformado);
-			crenca.add(parEpistemicoExistente);
-			return parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoInformado);
+			double diff = parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoInformado);
+			if(maxDiff>diff){
+				crenca.add(parEpistemicoExistente);
+				neuralNetwork.train();
+			}
+			return diff;
 		}else{
-			//ja existe, ver diferenca 
+			//ja existe, ver diferenca
+			neuralNetwork.train();
 			ParEpistemico parEpistemicoPessoalDepoisTreino = interpretar(parEpistemicoInformado);
 			logger.debug("evolucao depois treino = "+
 			parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoPessoalDepoisTreino)
