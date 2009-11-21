@@ -3,6 +3,8 @@ package br.unicarioca.redesepistemicas.view;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,7 +17,7 @@ public class ControlePanel extends JPanel{
 	private JButton pause;
 	private JButton play;
 	private JButton reiniciar;
-	private RedeEpistemicaView redeEpistemicaView;
+	private List<ControladoListener> listControladoListener = new ArrayList<ControladoListener>();
 	private JSlider slider;
 	public ControlePanel() {
 		this.setLayout(new FlowLayout());
@@ -31,29 +33,36 @@ public class ControlePanel extends JPanel{
 		this.add(slider);
 		reiniciar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				redeEpistemicaView.reiniciar();
+				for(ControladoListener controladoListener:listControladoListener)
+					controladoListener.reiniciar();
 			}
 		});
 		pause.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				redeEpistemicaView.pause();
+				for(ControladoListener controladoListener:listControladoListener)
+					controladoListener.pause();
 			}
 		});
 		play.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				redeEpistemicaView.continuar();
+				for(ControladoListener controladoListener:listControladoListener)
+					controladoListener.continuar();
 			}
 		});
 		slider.addChangeListener(new ChangeListener(){
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				redeEpistemicaView.setVelocidade(slider.getMaximum() - slider.getValue());				
+				for(ControladoListener controladoListener:listControladoListener)
+					controladoListener.setVelocidade(slider.getMaximum() - slider.getValue());				
 			}
 			
 		});
 	}
-	public void setControlado(RedeEpistemicaView redeEpistemicaView) {
-		this.redeEpistemicaView = redeEpistemicaView;
+	public void addControlado(ControladoListener controladoListener) {
+		listControladoListener.add(controladoListener);
+	}
+	public JButton getReiniciar() {
+		return reiniciar;
 	}
 }
