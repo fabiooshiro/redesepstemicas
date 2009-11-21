@@ -27,14 +27,8 @@ public class AgenteEpistemico {
 	private int raio;
 	private int numberEvaluations = 100;
 	private String nome;
+	private static long id=0;
 	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	/**
 	 * O maximo de diferenca para rejeitar o resultado
 	 */
@@ -47,6 +41,16 @@ public class AgenteEpistemico {
 		neuralNetwork = new NeuralNetwork(neuralNetworkStructure);
 		
 		gerarPar();
+		//gera um nome padrao
+		setNome("A" + (id++));
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	/**
@@ -203,5 +207,13 @@ public class AgenteEpistemico {
 	}
 	public void setRaio(int raio) {
 		this.raio = raio;
+	}
+	
+	/**
+	 * retorna o this.nome
+	 */
+	@Override
+	public String toString() {
+		return nome;
 	}
 }

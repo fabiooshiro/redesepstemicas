@@ -3,17 +3,19 @@ package br.unicarioca.redesepistemicas.view;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-public class AgenteListPanel extends JPanel implements MouseListener{
+import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
+import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
+
+public class AgenteListPanel extends JPanel implements MouseListener,CicloVidaAgenteListener{
 	private static final long serialVersionUID = 1L;
 
 	private JList list;
-	DefaultListModel listModel;
+	private DefaultListModel listModel;
 	public AgenteListPanel() {
 		this.setLayout(new BorderLayout());
 		listModel = new DefaultListModel();
@@ -36,5 +38,12 @@ public class AgenteListPanel extends JPanel implements MouseListener{
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
+	}
+	@Override
+	public void criado(AgenteEpistemico agente) {
+		listModel.addElement(agente);
+	}
+	public void reiniciar() {
+		listModel.clear();
 	}
 }

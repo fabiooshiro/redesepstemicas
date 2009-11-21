@@ -9,6 +9,13 @@ public class RedeEpistemica {
 	private static Logger logger = Logger.getLogger(RedeEpistemica.class);
 	private List<AgenteEpistemico> listAgenteEpistemico = new ArrayList<AgenteEpistemico>();
 	private ComunicacaoListener comunicacaoListener = null;
+	private CicloVidaAgenteListener cicloVidaAgenteListener;
+	public void setCicloVidaAgenteListener(CicloVidaAgenteListener cicloVidaAgenteListener) {
+		this.cicloVidaAgenteListener = cicloVidaAgenteListener;
+	}
+	public CicloVidaAgenteListener getCicloVidaAgenteListener() {
+		return cicloVidaAgenteListener;
+	}
 	public void setComunicacaoListener(ComunicacaoListener comunicacaoListener) {
 		this.comunicacaoListener = comunicacaoListener;
 	}
@@ -48,7 +55,9 @@ public class RedeEpistemica {
 			agenteNovo.conhecer(agenteEpistemico, 1.0);
 		}
 		listAgenteEpistemico.add(agenteNovo);
-		
+		if(cicloVidaAgenteListener!=null){
+			cicloVidaAgenteListener.criado(agenteNovo);
+		}
 		return agenteNovo;
 	}
 }
