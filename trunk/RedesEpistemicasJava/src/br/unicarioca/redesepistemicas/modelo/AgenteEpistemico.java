@@ -26,6 +26,15 @@ public class AgenteEpistemico {
 	private int x,y;
 	private int raio;
 	private int numberEvaluations = 100;
+	private String nome;
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	/**
 	 * O maximo de diferenca para rejeitar o resultado
 	 */
@@ -128,7 +137,7 @@ public class AgenteEpistemico {
 			if(maxDiff>diff){
 				crenca.add(parEpistemicoExistente);
 				neuralNetwork.train();
-			}
+			}//else recusa a aprender
 			return diff;
 		}else{
 			//ja existe, ver diferenca

@@ -13,6 +13,9 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.ComunicacaoListener;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
+/**
+ * Extends JButton
+ */
 public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 	private static final long serialVersionUID = 1L;
 	private RedeEpistemica redeEpistemica;
@@ -21,6 +24,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 	private BufferedImage bi = new BufferedImage(800,600,BufferedImage.TYPE_INT_ARGB);
 	private Graphics graphics = bi.getGraphics();
 	private int delay = 100;
+	private boolean pause = false;
+	private boolean paused = false;
+	
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -29,10 +35,16 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 			public void run() {
 				while(run){
 					try{
-						initDesenho();
-						desenharAgentes();
-						Thread.sleep(delay);
-						atualizar();
+						if(!pause){
+							paused = false;
+							initDesenho();
+							desenharAgentes();
+							Thread.sleep(delay);
+							atualizar();
+						}else{
+							paused = true;
+							Thread.sleep(delay);
+						}
 					}catch (Exception e) {
 						if(run) e.printStackTrace();
 					}
@@ -44,6 +56,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 
 			public void mouseClicked(MouseEvent e) {
 				addAgente(e.getX(),e.getY());
+				
 			}
 
 			public void mouseEntered(MouseEvent e) {
@@ -63,12 +76,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 	private void atualizar(){
 		//pede para fazer uma etapa
 		redeEpistemica.fazUmaEtapa();
-		
-		desenharAgentes();
 	}
 	private void initDesenho(){
 		graphics.setColor(Color.WHITE);
-		graphics.fillRect(0, 0, 800,600);
+		graphics.fillRect(0, 0, this.getWidth(),this.getHeight());
 	}
 	private void desenharAgentes(){
 		graphics.setColor(Color.BLACK);
@@ -81,7 +92,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 		graphics.drawOval(agente.getX()-agente.getRaio(), agente.getY()-agente.getRaio(), agente.getRaio()*2,agente.getRaio()*2);
 	}
 	public void addAgente(int x, int y){
-		redeEpistemica.criarAgente(x,y);
+		desenharAgente(redeEpistemica.criarAgente(x,y));
 	}
 	public void setRedeEpistemica(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
@@ -121,6 +132,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 		}else{
 			//repulsao
 			if(hip<200){//max
+				if(mx+my<1.0){
+					mx=5.0;
+				}
 				receptor.setX(rx-(int)mx);
 				receptor.setY(ry-(int)my);
 			}
@@ -146,5 +160,19 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener{
 			e.printStackTrace();
 		}
 	}
-	
+	public void pause() {
+		pause = true;
+	}
+	public void continuar() {
+		pause = false;
+	}
+	public void setVelocidade(int value) {
+		delay = value;
+	}
+	public void reiniciar() {
+		pause = true;
+		while(!paused)try{Thread.sleep(10);}catch(Exception e){};
+		this.redeEpistemica.getListAgenteEpistemico().clear();
+		pause = false;
+	}
 }
