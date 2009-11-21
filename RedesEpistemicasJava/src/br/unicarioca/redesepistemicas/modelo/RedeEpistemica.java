@@ -37,7 +37,7 @@ public class RedeEpistemica {
 			}
 		}
 	}
-	public void criarAgente(int x, int y) {
+	public AgenteEpistemico criarAgente(int x, int y) {
 		AgenteEpistemico agenteNovo = new AgenteEpistemico();
 		agenteNovo.setX(x);
 		agenteNovo.setY(y);
@@ -49,5 +49,6 @@ public class RedeEpistemica {
 		}
 		listAgenteEpistemico.add(agenteNovo);
 		
+		return agenteNovo;
 	}
 }
