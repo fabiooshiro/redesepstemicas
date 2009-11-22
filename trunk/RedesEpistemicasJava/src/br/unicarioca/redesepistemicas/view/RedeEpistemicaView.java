@@ -2,6 +2,8 @@ package br.unicarioca.redesepistemicas.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
+import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.ComunicacaoListener;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
@@ -28,12 +31,17 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private boolean run = true;
 	private BufferedImage bi = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
 	private Graphics graphics = bi.getGraphics();
-	private int delay = 100;
+	private int delay = 0;
 	private boolean pause = false;
 	private boolean paused = false;
-	private float escala = 1.0f;
+	private float escala = 0.25f;
 	private int arrastarX = 0;
 	private int arrastarY = 0;
+	private boolean reiniciarBi = false;
+	private AgenteEpistemicoFactory agenteEpistemicoFactory;
+	private int startDragX = 0;
+	private int startDragY = 0;
+	private int distanciaMaxRepulsao;
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -62,6 +70,29 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		t.start();
 		this.addMouseListener(this);
 		this.addMouseWheelListener(this);
+		this.addComponentListener(new ComponentListener() {
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+
+			}
+
+			@Override
+			public void componentResized(ComponentEvent e) {
+				reiniciarBi = true;
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+
+			}
+
+		});
 	}
 
 	private void atualizar() {
@@ -70,6 +101,11 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	}
 
 	private void initDesenho() {
+		if (reiniciarBi) {
+			bi = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			graphics = bi.getGraphics();
+			reiniciarBi = false;
+		}
 		graphics.setColor(Color.WHITE);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
@@ -90,15 +126,25 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * 
 	 * @param agente
 	 */
-	private void desenharAgente(AgenteEpistemico agente) {
+	private AgenteEpistemico desenharAgente(AgenteEpistemico agente) {
 		float x = (agente.getX() - agente.getRaio()) * escala;
 		float y = (agente.getY() - agente.getRaio()) * escala;
 		int dim = Math.round(agente.getRaio() * 2 * escala);
-		graphics.drawOval(arrastarX+Math.round(x), arrastarY+Math.round(y), dim, dim);
+		graphics.drawOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+		return agente;
 	}
 
-	public void addAgente(int x, int y) {
-		desenharAgente(redeEpistemica.criarAgente(Math.round((x-arrastarX)/escala), Math.round((y-arrastarY)/escala)));
+	/**
+	 * Coloca o agente na posicao X e Y
+	 * @param agente 
+	 * @param x coordenada x
+	 * @param y coordenada y
+	 * @return agenteNovo
+	 */
+	public AgenteEpistemico addAgente(AgenteEpistemico agente, int x, int y) {
+		agente.setX(Math.round((x - arrastarX) / escala));
+		agente.setY(Math.round((y - arrastarY) / escala));
+		return desenharAgente(agente);
 	}
 
 	public void setRedeEpistemica(RedeEpistemica redeEpistemica) {
@@ -122,8 +168,8 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		int ey = emissor.getY();
 		int rx = receptor.getX();
 		int ry = receptor.getY();
-		graphics.setColor(Color.BLUE);
-		graphics.drawLine(arrastarX+Math.round(ex*escala),arrastarY+ Math.round(ey*escala),arrastarX+ Math.round(rx*escala), arrastarY+Math.round(ry*escala));
+		// graphics.setColor(Color.BLUE);
+
 		// andar
 		double ref = 0.5;
 		int passoMax = 10;
@@ -140,16 +186,28 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			graphics.setColor(Color.BLUE);
 		} else {
 			// repulsao
-			if (hip < 200) {// max
+			if (hip < distanciaMaxRepulsao) {// max
 				if (mx + my < 1.0) {
-					mx = 5.0;
+					if (Math.random() < .5){
+						if (Math.random() < .5)
+							mx = 5.0;
+						else
+							mx = -5.0;
+					}else{
+						if (Math.random() < .5)
+							my = 5.0;
+						else
+							my = -5.0;
+					}
 				}
+				mx*=.7f;
+				my*=.7f;
 				receptor.setX(rx - (int) mx);
 				receptor.setY(ry - (int) my);
 			}
 			graphics.setColor(Color.RED);
 		}
-
+		graphics.drawLine(arrastarX + Math.round(ex * escala), arrastarY + Math.round(ey * escala), arrastarX + Math.round(rx * escala), arrastarY + Math.round(ry * escala));
 		desenharAgente(receptor);
 		this.setIcon(new ImageIcon(bi));
 		try {
@@ -201,19 +259,19 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		int notches = e.getWheelRotation();
 		if (notches < 0) {
 			message = "Mouse wheel moved UP " + -notches + " notch(es)";
-			escala*=1.2f;
+			escala *= 1.2f;
 		} else {
 			message = "Mouse wheel moved DOWN " + notches + " notch(es)";
-			
-			escala*=0.8f;
+
+			escala *= 0.8f;
 		}
 		logger.debug(message);
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		addAgente(e.getX(), e.getY());
+		addAgente(agenteEpistemicoFactory.criarAgente(),e.getX(), e.getY());
 	}
 
 	@Override
@@ -224,24 +282,30 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	public void mouseExited(MouseEvent e) {
 	}
 
-	int startX=0;
-	int startY=0;
+	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(e.getButton()==MouseEvent.BUTTON3){
-			startX = e.getX();
-			startY = e.getY();
+		if (e.getButton() == MouseEvent.BUTTON3) {
+			startDragX = e.getX();
+			startDragY = e.getY();
 		}
 	}
 
-	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(e.getButton()==MouseEvent.BUTTON3){
-			arrastarX += e.getX()-startX;
-			arrastarY += e.getY()-startY;
+		if (e.getButton() == MouseEvent.BUTTON3) {
+			arrastarX += e.getX() - startDragX;
+			arrastarY += e.getY() - startDragY;
 			initDesenho();
 			desenharAgentes();
 		}
+	}
+	public void setAgenteEpistemicoFactory(AgenteEpistemicoFactory agenteEpistemicoFactory) {
+		this.agenteEpistemicoFactory = agenteEpistemicoFactory;
+	}
+
+	public void setDistanciaMaximaRepulsao(int distanciaMaxRepulsao) {
+		this.distanciaMaxRepulsao = distanciaMaxRepulsao;
 	}
 }

@@ -16,22 +16,23 @@ public class ControlePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JButton pause;
 	private JButton play;
-	private JButton reiniciar;
+	private JButton zerar;
 	private List<ControladoListener> listControladoListener = new ArrayList<ControladoListener>();
 	private JSlider slider;
 	public ControlePanel() {
 		this.setLayout(new FlowLayout());
-		reiniciar = new JButton("Reiniciar");
+		zerar = new JButton("Zerar");
 		pause = new JButton("Pause");
 		play = new JButton("Play");
 		
 		slider = new JSlider();
-		
-		this.add(reiniciar);
+		slider.setValue(100);
+		slider.setName("Vel.");
+		this.add(zerar);
 		this.add(pause);
 		this.add(play);
 		this.add(slider);
-		reiniciar.addActionListener(new ActionListener(){
+		zerar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				for(ControladoListener controladoListener:listControladoListener)
 					controladoListener.reiniciar();
@@ -62,7 +63,7 @@ public class ControlePanel extends JPanel{
 	public void addControlado(ControladoListener controladoListener) {
 		listControladoListener.add(controladoListener);
 	}
-	public JButton getReiniciar() {
-		return reiniciar;
+	public JButton getZerar() {
+		return zerar;
 	}
 }

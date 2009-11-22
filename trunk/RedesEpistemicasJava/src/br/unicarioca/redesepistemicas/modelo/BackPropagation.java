@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import org.apache.log4j.Logger;
+
 import com.rmit.neuralnetwork.NeuralNetwork;
 import com.rmit.neuralnetwork.activation.Activation;
 import com.rmit.neuralnetwork.node.Connection;
@@ -18,7 +20,7 @@ import com.rmit.neuralnetwork.trainingdata.TrainingSet;
  *
  */
 public class BackPropagation extends Training {
-
+	private static Logger logger = Logger.getLogger(BackPropagation.class);
 	private double learningRate;
 	private double momentum;
 	
@@ -103,7 +105,7 @@ public class BackPropagation extends Training {
 			errors.add(errorBest);		
 		}		
 		
-		System.out.println("BACKPROP " + errorBest);
+		logger.debug("BACKPROP " + errorBest);
 		
 		return errors;
 	}
