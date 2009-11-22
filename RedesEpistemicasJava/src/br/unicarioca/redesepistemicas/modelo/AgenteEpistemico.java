@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.rmit.neuralnetwork.NeuralNetwork;
-import com.rmit.neuralnetwork.training.ParticleSwarmOptimization;
 import com.rmit.neuralnetwork.training.Training;
 import com.rmit.neuralnetwork.trainingdata.TrainingExample;
 import com.rmit.neuralnetwork.trainingdata.TrainingSet;
@@ -14,9 +13,6 @@ import com.rmit.neuralnetwork.trainingdata.TrainingSet;
 /**
  * Um agente epistêmico é um construto capaz de gerar, comunicar e representar
  * pares epistêmicos.
- * 
- * @author fabio
- * 
  */
 public class AgenteEpistemico {
 	private static Logger logger = Logger.getLogger(AgenteEpistemico.class);
@@ -27,8 +23,12 @@ public class AgenteEpistemico {
 	private int raio;
 	private int numberEvaluations = 100;
 	private String nome;
-	private static long id=0;
-	
+	private static long lastId=0;
+	private long id;
+	private int qtdParComunicado=0;
+	private int criarNovoEm = 10;
+	private boolean somenteUltimaTeoria = true;
+	private int morrerEmXpublicacoes = 100; 
 	/**
 	 * O maximo de diferenca para rejeitar o resultado
 	 */
@@ -42,7 +42,24 @@ public class AgenteEpistemico {
 		
 		gerarPar();
 		//gera um nome padrao
-		setNome("A" + (id++));
+		id = lastId++;
+		setNome("A" + id);
+	}
+	
+	public int getCriarNovoEm() {
+		return criarNovoEm;
+	}
+	
+	public void setCriarNovoEm(int criarNovoEm) {
+		this.criarNovoEm = criarNovoEm;
+	}
+	
+	public Double getMaxDiff() {
+		return maxDiff;
+	}
+	
+	public void setMaxDiff(Double maxDiff) {
+		this.maxDiff = maxDiff;
 	}
 	
 	public String getNome() {
@@ -54,38 +71,70 @@ public class AgenteEpistemico {
 	}
 	
 	/**
+	 * Sorteia um novo espaço X,Y e Z e gera um par
+	 * @return novo par
+	 */
+	private ParEpistemico criarNovoPar(){
+		ParEpistemico parEpistemico;
+		parEpistemico = new ParEpistemicoDiffHip();
+		Antecedente antecedente = new Antecedente();
+		antecedente.setX(Math.random());
+		antecedente.setY(Math.random());
+		antecedente.setZ(Math.random());
+		parEpistemico.setAntecedente(antecedente);
+		Consequente consequente = new Consequente();
+		consequente.setX(Math.random());
+		consequente.setY(Math.random());
+		parEpistemico.setConsequente(consequente);
+		Aresta aresta = new Aresta();
+		aresta.setAgenteEpistemico(null);
+		aresta.setPeso(50.0);
+		receberComunicado(parEpistemico, aresta);
+		//atualizar o consequente
+		consequente = new Consequente(neuralNetwork.getOutputs());
+		parEpistemico.setConsequente(consequente);
+		return parEpistemico;
+	}
+	
+	/**
 	 * Gera um par aleatorio,
 	 * ou pega um par aleatorio do conhecimento
 	 */
 	public ParEpistemico gerarPar(){
+		qtdParComunicado++;
+		
+		ParEpistemico parEpistemico;
 		if(crenca.size()==0){
-			ParEpistemico parEpistemico = new ParEpistemico();
-			Antecedente antecedente = new Antecedente();
-			antecedente.setX(Math.random());
-			antecedente.setY(Math.random());
-			antecedente.setZ(Math.random());
-			parEpistemico.setAntecedente(antecedente);
-			Consequente consequente = new Consequente();
-			consequente.setX(Math.random());
-			consequente.setY(Math.random());
-			parEpistemico.setConsequente(consequente);
-			Aresta aresta = new Aresta();
-			aresta.setAgenteEpistemico(null);
-			aresta.setPeso(50.0);
-			receberComunicado(parEpistemico, aresta);
-			//atualizar o consequente
-			consequente = new Consequente(neuralNetwork.getOutputs());
-			parEpistemico.setConsequente(consequente);
-			return parEpistemico;
+			//iniciar
+			parEpistemico = criarNovoPar();
+			treinar(parEpistemico,500);
+			parEpistemico = interpretar(parEpistemico);
+			crenca.add(parEpistemico);
+		}else if(qtdParComunicado%criarNovoEm==0){
+			//Nova teoria
+			parEpistemico = criarNovoPar();
+			treinar(parEpistemico,500);
+			parEpistemico = interpretar(parEpistemico);
+			crenca.add(parEpistemico);
+		}else if(somenteUltimaTeoria){
+			parEpistemico = crenca.get(crenca.size()-1);
 		}else{
 			int indice = (int)((crenca.size())*Math.random());
 			logger.debug("crenca " + indice);
-			return crenca.get(indice);
+			parEpistemico = crenca.get(indice);
 		}
+		
+		
+		return parEpistemico;
 	}
 	
+	/**
+	 * Somente interpreta
+	 * @param parEpistemico
+	 * @return ParEpistemico
+	 */
 	public ParEpistemico interpretar(ParEpistemico parEpistemico){
-		ParEpistemico retorno = new ParEpistemico();
+		ParEpistemico retorno = new ParEpistemicoDiffHip();
 		retorno.setAntecedente(parEpistemico.getAntecedente());
 		neuralNetwork.setInputs(getInputs(parEpistemico));
 		Consequente consequente = new Consequente(neuralNetwork.getOutputs());
@@ -100,7 +149,7 @@ public class AgenteEpistemico {
 		in.add(parEpistemico.getAntecedente().getZ());
 		return in;
 	}
-	public Double receberComunicado(ParEpistemico parEpistemicoInformado,Aresta aresta){
+	private void treinar(ParEpistemico parEpistemicoInformado,int qtd){
 		ArrayList<TrainingExample> listTraining = new ArrayList<TrainingExample>();
 		
 		TrainingExample te = new TrainingExample();
@@ -118,7 +167,7 @@ public class AgenteEpistemico {
 		int numberParticles = 20; 
 		double learningFactor = 1.49618; 
 		double inertialWeight = 0.7298; 
-		int qtd = (int)(numberEvaluations * aresta.getPeso());
+		
 		logger.debug("qtd = " + qtd);
 		// create a instance of a training method
 		//Training training = new ParticleSwarmOptimization(numberEvaluations, errorTolerance, learningFactor, inertialWeight, numberParticles);
@@ -130,6 +179,9 @@ public class AgenteEpistemico {
 		//neuralNetwork.setTrainingSet(trainingData.getTrainingSet());
 		neuralNetwork.setTrainingSet(trainingSet);
 		
+		neuralNetwork.train();
+	}
+	public Double receberComunicado(ParEpistemico parEpistemicoInformado,Aresta aresta){
 		
 		
 		//guarda a informacao?
@@ -139,8 +191,9 @@ public class AgenteEpistemico {
 			parEpistemicoExistente = interpretar(parEpistemicoInformado);
 			double diff = parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoInformado);
 			if(maxDiff>diff){
-				crenca.add(parEpistemicoExistente);
-				neuralNetwork.train();
+				//crenca.add(parEpistemicoExistente);
+				int qtd = (int)(numberEvaluations * aresta.getPeso());
+				treinar(parEpistemicoInformado,qtd);
 			}//else recusa a aprender
 			return diff;
 		}else{
@@ -214,6 +267,42 @@ public class AgenteEpistemico {
 	 */
 	@Override
 	public String toString() {
-		return nome;
+		return nome + " ["+qtdParComunicado+"]";
 	}
+
+	public void morrer() {
+		for(Aresta aresta:arestas){
+			aresta.getAgenteEpistemico().removerAgente(this);
+		}
+	}
+
+	private void removerAgente(AgenteEpistemico agenteEpistemico) {
+		Aresta aresta = new Aresta();
+		aresta.setAgenteEpistemico(agenteEpistemico);
+		arestas.remove(aresta);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		AgenteEpistemico a = (AgenteEpistemico)obj;
+		return a.id==this.id;
+	}
+	public int getQtdParComunicado() {
+		return qtdParComunicado;
+	}
+	public int getMorrerEmXpublicacoes() {
+		return morrerEmXpublicacoes;
+	}
+	/**
+	 * zero para imortal
+	 * @param morrerEmXpublicacoes
+	 */
+	public void setMorrerEmXpublicacoes(int morrerEmXpublicacoes) {
+		this.morrerEmXpublicacoes = morrerEmXpublicacoes;
+	}
+	
+	public void setSomenteUltimaTeoria(boolean somenteUltimaTeoria) {
+		this.somenteUltimaTeoria = somenteUltimaTeoria;
+	}
+
+	
 }

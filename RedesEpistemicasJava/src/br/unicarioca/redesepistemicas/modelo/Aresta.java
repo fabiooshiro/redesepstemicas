@@ -27,5 +27,13 @@ public class Aresta {
 	public void setAgenteEpistemico(AgenteEpistemico agenteEpistemico) {
 		this.agenteEpistemico = agenteEpistemico;
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		Aresta a = (Aresta)obj;
+		if(this.getAgenteEpistemico().equals(a.getAgenteEpistemico())){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
