@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -20,7 +21,8 @@ public class ConfiguracoesPanel extends JPanel {
 	private JTextField txtMaxDiff;
 	private JLabel lblMorrerEmXpublicacoes;
 	private JTextField txtMorrerEmXpublicacoes;
-
+	private JSpinner spnPassoMax;
+	private JLabel lblPassoMax;
 	private JLabel lblDistanciaMaxRepulsao;
 	private JTextField txtDistanciaMaxRepulsao;
 	private JLabel lblCriarNovoEm;
@@ -46,9 +48,11 @@ public class ConfiguracoesPanel extends JPanel {
 
 		lblSomenteUltimaTeoria = new JLabel("Somente último:");
 		lblSomenteUltimaTeoria.setToolTipText("Publica somente o último par gerado");
-
+		lblSomenteUltimaTeoria.setHorizontalAlignment(SwingConstants.RIGHT);
+		
 		lblCriarNovoEm = new JLabel("Criar novo em:");
 		lblCriarNovoEm.setToolTipText("Cria um novo par ao comunicar a cada X vezes");
+		lblCriarNovoEm.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtCriarNovoEm = new JTextField("3");
 
 		chkSomenteUltimaTeoria = new JCheckBox();
@@ -60,6 +64,12 @@ public class ConfiguracoesPanel extends JPanel {
 		lblDistanciaMaxRepulsao.setToolTipText("Limite de distância para a repulsão");
 		txtDistanciaMaxRepulsao = new JTextField("1000");
 
+		spnPassoMax = new JSpinner();
+		spnPassoMax.setValue(15);
+		lblPassoMax = new JLabel("Passo Agente:");
+		lblPassoMax.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		//layout
 		this.setLayout(new BorderLayout());
 		JPanel tabela = new JPanel(new GridLayout(0, 2));
 		tabela.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -75,6 +85,8 @@ public class ConfiguracoesPanel extends JPanel {
 		tabela.add(txtDistanciaMaxRepulsao);
 		tabela.add(lblCriarNovoEm);
 		tabela.add(txtCriarNovoEm);
+		tabela.add(lblPassoMax);
+		tabela.add(spnPassoMax);
 		
 		JPanel sul = new JPanel(new FlowLayout());
 		sul.add(btnOk);
@@ -108,5 +120,8 @@ public class ConfiguracoesPanel extends JPanel {
 
 	public JTextField getTxtCriarNovoEm() {
 		return txtCriarNovoEm;
+	}
+	public JSpinner getSpnPassoMax() {
+		return spnPassoMax;
 	}
 }

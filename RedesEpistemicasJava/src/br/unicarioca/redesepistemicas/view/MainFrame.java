@@ -9,6 +9,8 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
@@ -49,9 +51,28 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 				novo();
 			}
 		});
+		menuPrincipal.getVerLinhasVermelhas().setSelected(redeEpistemicaView.isVerLinhasVermelhas());
+		menuPrincipal.getVerLinhasVermelhas().addChangeListener(new ChangeListener(){
+			public void stateChanged(ChangeEvent e) {
+				redeEpistemicaView.setVerLinhasVermelhas(menuPrincipal.getVerLinhasVermelhas().isSelected());
+			}
+		});
+		menuPrincipal.getVerLinhasAzuis().setSelected(redeEpistemicaView.isVerLinhasAzuis());
+		menuPrincipal.getVerLinhasAzuis().addChangeListener(new ChangeListener(){
+			public void stateChanged(ChangeEvent e) {
+				redeEpistemicaView.setVerLinhasAzuis(menuPrincipal.getVerLinhasAzuis().isSelected());
+			}
+		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				novo();
+			}
+		});
+		configuracoesPanel.getSpnPassoMax().addChangeListener(new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				int passoMax = Integer.valueOf(configuracoesPanel.getSpnPassoMax().getValue().toString());
+				redeEpistemicaView.setPassoMax(passoMax);
 			}
 		});
 		
