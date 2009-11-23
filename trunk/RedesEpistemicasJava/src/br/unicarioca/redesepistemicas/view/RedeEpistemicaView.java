@@ -42,6 +42,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private int startDragX = 0;
 	private int startDragY = 0;
 	private int distanciaMaxRepulsao;
+	private int passoMax = 15;
+	private boolean verLinhasVermelhas = true;
+	private boolean verLinhasAzuis = true;
+	
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -136,9 +140,12 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 
 	/**
 	 * Coloca o agente na posicao X e Y
-	 * @param agente 
-	 * @param x coordenada x
-	 * @param y coordenada y
+	 * 
+	 * @param agente
+	 * @param x
+	 *            coordenada x
+	 * @param y
+	 *            coordenada y
 	 * @return agenteNovo
 	 */
 	public AgenteEpistemico addAgente(AgenteEpistemico agente, int x, int y) {
@@ -171,8 +178,8 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		// graphics.setColor(Color.BLUE);
 
 		// andar
-		double ref = 0.5;
-		int passoMax = 10;
+		double ref = 1.0;
+
 		double passo = (ref - diff) * passoMax;
 		double dx = ex - rx;
 		double dy = ey - ry;
@@ -180,34 +187,39 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		double relacao = Math.min(passo / hip, 1.0);
 		double mx = dx * relacao;
 		double my = dy * relacao;
-		if (0.1 - diff > 0) {
+		if (receptor.getMaxDiff() - diff > 0) {
 			receptor.setX(rx + (int) mx);
 			receptor.setY(ry + (int) my);
 			graphics.setColor(Color.BLUE);
+			if(verLinhasAzuis){
+				graphics.drawLine(arrastarX + Math.round(ex * escala), arrastarY + Math.round(ey * escala), arrastarX + Math.round(rx * escala), arrastarY + Math.round(ry * escala));
+			}
 		} else {
 			// repulsao
 			if (hip < distanciaMaxRepulsao) {// max
 				if (mx + my < 1.0) {
-					if (Math.random() < .5){
+					if (Math.random() < .5) {
 						if (Math.random() < .5)
 							mx = 5.0;
 						else
 							mx = -5.0;
-					}else{
+					} else {
 						if (Math.random() < .5)
 							my = 5.0;
 						else
 							my = -5.0;
 					}
 				}
-				mx*=.7f;
-				my*=.7f;
+				mx *= .5f;
+				my *= .5f;
 				receptor.setX(rx - (int) mx);
 				receptor.setY(ry - (int) my);
 			}
 			graphics.setColor(Color.RED);
+			if (verLinhasVermelhas) {
+				graphics.drawLine(arrastarX + Math.round(ex * escala), arrastarY + Math.round(ey * escala), arrastarX + Math.round(rx * escala), arrastarY + Math.round(ry * escala));
+			}
 		}
-		graphics.drawLine(arrastarX + Math.round(ex * escala), arrastarY + Math.round(ey * escala), arrastarX + Math.round(rx * escala), arrastarY + Math.round(ry * escala));
 		desenharAgente(receptor);
 		this.setIcon(new ImageIcon(bi));
 		try {
@@ -271,7 +283,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		addAgente(agenteEpistemicoFactory.criarAgente(),e.getX(), e.getY());
+		addAgente(agenteEpistemicoFactory.criarAgente(), e.getX(), e.getY());
 	}
 
 	@Override
@@ -281,8 +293,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
-
-	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -301,11 +311,29 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			desenharAgentes();
 		}
 	}
+
 	public void setAgenteEpistemicoFactory(AgenteEpistemicoFactory agenteEpistemicoFactory) {
 		this.agenteEpistemicoFactory = agenteEpistemicoFactory;
 	}
 
 	public void setDistanciaMaximaRepulsao(int distanciaMaxRepulsao) {
 		this.distanciaMaxRepulsao = distanciaMaxRepulsao;
+	}
+
+	public void setPassoMax(int passoMax) {
+		this.passoMax = passoMax;
+	}
+
+	public void setVerLinhasVermelhas(boolean mostrarLinhasVermelhas) {
+		this.verLinhasVermelhas = mostrarLinhasVermelhas;
+	}
+	public boolean isVerLinhasVermelhas(){
+		return verLinhasVermelhas;
+	}
+	public void setVerLinhasAzuis(boolean verLinhasAzuis) {
+		this.verLinhasAzuis = verLinhasAzuis;
+	}
+	public boolean isVerLinhasAzuis() {
+		return verLinhasAzuis;
 	}
 }
