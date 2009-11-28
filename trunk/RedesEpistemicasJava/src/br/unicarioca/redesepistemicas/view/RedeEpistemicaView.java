@@ -45,10 +45,11 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private int passoMax = 15;
 	private boolean verLinhasVermelhas = true;
 	private boolean verLinhasAzuis = true;
-	
+	private int algoritimoRepulsao = 2;
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
+		
 		t = new Thread() {
 			@Override
 			public void run() {
@@ -196,24 +197,33 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			}
 		} else {
 			// repulsao
-			if (hip < distanciaMaxRepulsao) {// max
-				if (mx + my < 1.0) {
-					if (Math.random() < .5) {
-						if (Math.random() < .5)
-							mx = 5.0;
-						else
-							mx = -5.0;
-					} else {
-						if (Math.random() < .5)
-							my = 5.0;
-						else
-							my = -5.0;
+			if(algoritimoRepulsao==1){
+				if (hip < distanciaMaxRepulsao) {// max
+					if (mx + my < 1.0) {
+						if (Math.random() < .5) {
+							if (Math.random() < .5)
+								mx = 5.0;
+							else
+								mx = -5.0;
+						} else {
+							if (Math.random() < .5)
+								my = 5.0;
+							else
+								my = -5.0;
+						}
 					}
+					mx *= .5f;
+					my *= .5f;
+					receptor.setX(rx - (int) mx);
+					receptor.setY(ry - (int) my);
 				}
-				mx *= .5f;
-				my *= .5f;
-				receptor.setX(rx - (int) mx);
-				receptor.setY(ry - (int) my);
+			}else{
+				if (hip < distanciaMaxRepulsao) {
+					mx *= hip/distanciaMaxRepulsao;
+					my *= hip/distanciaMaxRepulsao;
+					receptor.setX(rx - (int) mx);
+					receptor.setY(ry - (int) my);
+				}
 			}
 			graphics.setColor(Color.RED);
 			if (verLinhasVermelhas) {
@@ -278,7 +288,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			escala *= 0.8f;
 		}
 		logger.debug(message);
-
+		if(pause){
+			initDesenho();
+			desenharAgentes();
+		}
 	}
 
 	@Override
