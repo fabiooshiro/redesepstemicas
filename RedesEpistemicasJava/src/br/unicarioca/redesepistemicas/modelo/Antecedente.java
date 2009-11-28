@@ -4,6 +4,7 @@ public class Antecedente {
 	private Double x;
 	private Double y;
 	private Double z;
+	
 	/**
 	 * @return the x
 	 */
