@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import org.apache.log4j.Logger;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.ComunicacaoListener;
+import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 /**
@@ -130,15 +132,33 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * Desenha um agente com a cor corrente
 	 * 
 	 * @param agente
+	 * @param color 
 	 */
-	private AgenteEpistemico desenharAgente(AgenteEpistemico agente) {
+	private AgenteEpistemico desenharAgente(AgenteEpistemico agente, boolean fill) {
 		float x = (agente.getX() - agente.getRaio()) * escala;
 		float y = (agente.getY() - agente.getRaio()) * escala;
 		int dim = Math.round(agente.getRaio() * 2 * escala);
-		graphics.drawOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+		if(fill){
+			graphics.fillOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+		}else if(agente.getColor()!=null){
+			Color old = graphics.getColor();
+			graphics.setColor(agente.getColor());
+			graphics.fillOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+			graphics.setColor(old);
+		}else{
+			graphics.drawOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+		}
 		return agente;
 	}
-
+	/**
+	 * Desenha um agente com a cor corrente
+	 * 
+	 * @param agente
+	 * @param color 
+	 */
+	private AgenteEpistemico desenharAgente(AgenteEpistemico agente) {
+		return desenharAgente(agente,false);
+	}
 	/**
 	 * Coloca o agente na posicao X e Y
 	 * 
@@ -200,13 +220,13 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			if(algoritimoRepulsao==1){
 				if (hip < distanciaMaxRepulsao) {// max
 					if (mx + my < 1.0) {
-						if (Math.random() < .5) {
-							if (Math.random() < .5)
+						if (NumeroAleatorio.gerarNumero() < .5) {
+							if (NumeroAleatorio.gerarNumero() < .5)
 								mx = 5.0;
 							else
 								mx = -5.0;
 						} else {
-							if (Math.random() < .5)
+							if (NumeroAleatorio.gerarNumero() < .5)
 								my = 5.0;
 							else
 								my = -5.0;
@@ -348,5 +368,28 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	}
 	public boolean isVerLinhasAzuis() {
 		return verLinhasAzuis;
+	}
+
+	public void selecionarAgentes(List<AgenteEpistemico> agentes) {
+		if(pause){
+			initDesenho();
+			desenharAgentes();
+			graphics.setColor(new Color(55,55,255));
+			for(AgenteEpistemico agente:agentes){
+				agente.setColor(new Color(55,55,255));
+				desenharAgente(agente,true);
+			}
+			this.setIcon(new ImageIcon(bi));
+		}else{
+			List<AgenteEpistemico> listAgentes=redeEpistemica.getListAgenteEpistemico();
+			for(AgenteEpistemico agente:listAgentes)
+				agente.setColor(null);
+			for(AgenteEpistemico agente:agentes)
+				agente.setColor(new Color(55,55,255));
+		}
+	}
+
+	public boolean isPaused() {
+		return paused;
 	}
 }
