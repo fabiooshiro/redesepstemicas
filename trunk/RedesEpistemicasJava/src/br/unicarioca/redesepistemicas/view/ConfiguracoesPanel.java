@@ -33,10 +33,11 @@ public class ConfiguracoesPanel extends JPanel {
 
 	public ConfiguracoesPanel() {
 
-		lblQtdAgentes = new JLabel("Qtd Agentes:");
+		lblQtdAgentes = new JLabel("Qtd. Agentes:");
 		lblQtdAgentes.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		lblMaxDiff = new JLabel("Max Diff:");
+		lblMaxDiff.setToolTipText("Tolerância");
 		lblMaxDiff.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		txtQtdAgentes = new JTextField("1000");
@@ -44,6 +45,7 @@ public class ConfiguracoesPanel extends JPanel {
 
 		lblMorrerEmXpublicacoes = new JLabel("Morrer em:");
 		lblMorrerEmXpublicacoes.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblMorrerEmXpublicacoes.setToolTipText("Morre ao comunicar X vezes");
 		txtMorrerEmXpublicacoes = new JTextField("10");
 
 		lblSomenteUltimaTeoria = new JLabel("Somente último:");
@@ -53,7 +55,7 @@ public class ConfiguracoesPanel extends JPanel {
 		lblCriarNovoEm = new JLabel("Criar novo em:");
 		lblCriarNovoEm.setToolTipText("Cria um novo par ao comunicar a cada X vezes");
 		lblCriarNovoEm.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtCriarNovoEm = new JTextField("3");
+		txtCriarNovoEm = new JTextField("1");
 
 		chkSomenteUltimaTeoria = new JCheckBox();
 		chkSomenteUltimaTeoria.setSelected(true);

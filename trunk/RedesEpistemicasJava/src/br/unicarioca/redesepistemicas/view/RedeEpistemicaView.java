@@ -371,6 +371,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	}
 
 	public void selecionarAgentes(List<AgenteEpistemico> agentes) {
+		List<AgenteEpistemico> listAgentes=redeEpistemica.getListAgenteEpistemico();
+		for(AgenteEpistemico agente:listAgentes)
+			agente.setColor(null);
 		if(pause){
 			initDesenho();
 			desenharAgentes();
@@ -381,9 +384,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			}
 			this.setIcon(new ImageIcon(bi));
 		}else{
-			List<AgenteEpistemico> listAgentes=redeEpistemica.getListAgenteEpistemico();
-			for(AgenteEpistemico agente:listAgentes)
-				agente.setColor(null);
 			for(AgenteEpistemico agente:agentes)
 				agente.setColor(new Color(55,55,255));
 		}

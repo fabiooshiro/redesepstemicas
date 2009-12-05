@@ -17,7 +17,7 @@ import com.rmit.neuralnetwork.trainingdata.TrainingSet;
  */
 public class AgenteEpistemico{
 	private static Logger logger = Logger.getLogger(AgenteEpistemico.class);
-	private List<ParEpistemico> crenca = new ArrayList<ParEpistemico>();
+	private List<ParEpistemico> crencas = new ArrayList<ParEpistemico>();
 	private List<Aresta> arestas = new ArrayList<Aresta>();  
 	private NeuralNetwork neuralNetwork;
 	private int x,y;
@@ -49,7 +49,7 @@ public class AgenteEpistemico{
 		// create new neural network with the defined structure
 		neuralNetwork = new NeuralNetwork(neuralNetworkStructure);
 		
-		gerarPar();
+		//gerarPar();
 		//gera um nome padrao
 		id = lastId++;
 		setNome("A" + id);
@@ -130,24 +130,24 @@ public class AgenteEpistemico{
 		qtdParComunicado++;
 		
 		ParEpistemico parEpistemico;
-		if(crenca.size()==0){
+		if(crencas.size()==0){
 			//iniciar
 			parEpistemico = criarNovoPar();
 			treinar(parEpistemico,500);
 			parEpistemico = interpretar(parEpistemico);
-			crenca.add(parEpistemico);
+			crencas.add(parEpistemico);
 		}else if(qtdParComunicado%criarNovoEm==0){
 			//Nova teoria
 			parEpistemico = criarNovoPar();
 			treinar(parEpistemico,500);
 			parEpistemico = interpretar(parEpistemico);
-			crenca.add(parEpistemico);
+			crencas.add(parEpistemico);
 		}else if(somenteUltimaTeoria){
-			parEpistemico = crenca.get(crenca.size()-1);
+			parEpistemico = crencas.get(crencas.size()-1);
 		}else{
-			int indice = (int)((crenca.size())*NumeroAleatorio.gerarNumero());
+			int indice = (int)((crencas.size())*NumeroAleatorio.gerarNumero());
 			logger.debug("crenca " + indice);
-			parEpistemico = crenca.get(indice);
+			parEpistemico = crencas.get(indice);
 		}
 		
 		
@@ -155,7 +155,8 @@ public class AgenteEpistemico{
 	}
 	
 	/**
-	 * Somente interpreta
+	 * Somente interpreta e retorna um novo par de
+	 * acordo com a sua visao
 	 * @param parEpistemico
 	 * @return ParEpistemico
 	 */
@@ -247,7 +248,7 @@ public class AgenteEpistemico{
 	 * @return ParEpistemico
 	 */
 	private ParEpistemico procurar(Antecedente antecedente){
-		for(ParEpistemico parEpistemico:crenca){
+		for(ParEpistemico parEpistemico:crencas){
 			if(parEpistemico.getAntecedente().equals(antecedente)){
 				return parEpistemico;
 			}
@@ -335,5 +336,8 @@ public class AgenteEpistemico{
 	
 	public void setSomenteUltimaTeoria(boolean somenteUltimaTeoria) {
 		this.somenteUltimaTeoria = somenteUltimaTeoria;
+	}
+	public List<ParEpistemico> getCrencas() {
+		return crencas;
 	}	
 }
