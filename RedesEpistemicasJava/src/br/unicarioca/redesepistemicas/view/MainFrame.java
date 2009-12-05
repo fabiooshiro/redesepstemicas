@@ -3,20 +3,26 @@ package br.unicarioca.redesepistemicas.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
+import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 public class MainFrame extends JFrame implements WindowListener, CicloVidaAgenteListener,AgenteEpistemicoFactory{
@@ -29,6 +35,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 	private MenuPrincipal menuPrincipal;
 	private ConfiguracoesPanel configuracoesPanel = null;
 	public MainFrame() {
+		this.setTitle("IndraNet 1.0 – Simulador de Redes Epistêmicas");
 		//instancias
 		redeEpistemica = new RedeEpistemica();
 		controlePanel = new ControlePanel();
@@ -75,7 +82,36 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 				redeEpistemicaView.setPassoMax(passoMax);
 			}
 		});
-		
+		agenteListPanel.addKeyListener(new KeyListener(){
+			public void keyPressed(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				logger.debug("keyPressed");
+				if(e.getKeyCode()==KeyEvent.VK_DELETE){
+					boolean paused = redeEpistemicaView.isPaused();
+					if(!paused){
+						redeEpistemicaView.pause();
+						//espera pausar
+						while(!redeEpistemicaView.isPaused()){
+							try{Thread.sleep(100);}catch(Exception e2){}
+						}
+					}
+					
+					List<AgenteEpistemico> agentes = agenteListPanel.getSelecionados();
+					logger.debug("Matando "+agentes.size());
+					for(AgenteEpistemico agente:agentes){
+						redeEpistemica.matarAgente(agente);
+					}
+					if(!paused) redeEpistemicaView.continuar();
+				}
+			}
+			public void keyTyped(KeyEvent e) {}
+		});
+		agenteListPanel.addListSelectionListener(new ListSelectionListener(){
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				redeEpistemicaView.selecionarAgentes(agenteListPanel.getSelecionados());
+			}
+		});
 		//layout
 		this.setJMenuBar(menuPrincipal);
 		JPanel rightPanel = new JPanel(new BorderLayout());
@@ -95,20 +131,11 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(800,600);
 		this.setVisible(true);
-		Thread t = new Thread(){
-			public void run() {
-				while(isVisible()){
-					try{
-						Thread.sleep(1000);
-					}catch(Exception e){}
-					agenteListPanel.refresh();
-				}
-			}
-		};
-		t.start();
+		
 	}
 	
 	public void novo(){
+		NumeroAleatorio.restart();
 		agenteListPanel.reiniciar();
 		redeEpistemicaView.pause();
 		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
@@ -128,6 +155,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 	@Override
 	public void windowClosing(WindowEvent e) {
 		redeEpistemicaView.finalizar();
+		System.exit(0);
 	}
 
 	@Override
@@ -170,8 +198,8 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		int w = redeEpistemicaView.getWidth();
 		int h = redeEpistemicaView.getHeight();
 		logger.debug("chkSomenteUltimaTeoria = " + chkSomenteUltimaTeoria);
-		int x = (int)(w*Math.random());
-		int y = (int)(h*Math.random());
+		int x = (int)(w*NumeroAleatorio.gerarNumero());
+		int y = (int)(h*NumeroAleatorio.gerarNumero());
 		
 		AgenteEpistemico agente = new AgenteEpistemico();
 		redeEpistemica.inserirAgente(agente);

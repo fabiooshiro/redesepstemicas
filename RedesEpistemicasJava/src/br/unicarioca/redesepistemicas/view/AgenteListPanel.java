@@ -1,69 +1,110 @@
 package br.unicarioca.redesepistemicas.view;
 
 import java.awt.BorderLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
+import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 
-public class AgenteListPanel extends JPanel implements MouseListener,CicloVidaAgenteListener{
+public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(AgenteListPanel.class);
 	private JList list;
 	private DefaultListModel listModel;
 	private JLabel lblAgentes;
+
+	private ArrayList<AgenteEpistemico> listAgentes = new ArrayList<AgenteEpistemico>();
+
 	public AgenteListPanel() {
 		this.setLayout(new BorderLayout());
 		lblAgentes = new JLabel("Agentes:         ");
 		listModel = new DefaultListModel();
 		list = new JList(listModel);
-		this.add(lblAgentes,BorderLayout.NORTH);
-		this.add(list,BorderLayout.CENTER);
-		this.addMouseListener(this);
-		list.addMouseListener(this);
+		this.add(lblAgentes, BorderLayout.NORTH);
+		this.add(list, BorderLayout.CENTER);
+		Thread t = new Thread() {
+			public void run() {
+				while (isVisible()) {
+					try {
+						Thread.sleep(5000);
+						refresh();
+					} catch (Exception e) {
+					}
+
+				}
+			}
+		};
+		t.start();
+	}
+
+	public synchronized void refresh() {
+		logger.debug("Calculando " + listModel.getSize());
+		int tot = listModel.getSize() - 1;
+		for (int j = tot; j >0; j--) {
+			for (int i = 0; i < j; i++) {
+				AgenteEpistemico a = (AgenteEpistemico)listModel.get(i);
+				AgenteEpistemico b = (AgenteEpistemico)listModel.get(i+1);
+				if(a.getReputacao()<b.getReputacao()){
+					listModel.set(i, b);
+					listModel.set(i+1, a);
+				}
+			}
+		}
+		logger.debug("Calculado " + listAgentes.size());
+		
+		//list.revalidate();
+		//list.repaint();
+	}
+
+	@Override
+	public synchronized void addKeyListener(KeyListener l) {
+		list.addKeyListener(l);
 	}
 	
-	public void refresh(){
-		list.revalidate();
-		list.repaint();
-	}
-	@Override
-	public void mouseClicked(MouseEvent e) {
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void addListSelectionListener(ListSelectionListener l){
+		list.addListSelectionListener(l);
 	}
 	@Override
 	public void criado(AgenteEpistemico agente) {
+
+
+		boolean ok = listAgentes.add(agente);
+		if (!ok)
+			logger.error("Ja existe agente " + agente.getId());
 		listModel.addElement(agente);
 	}
+
 	@Override
 	public void morto(AgenteEpistemico agente) {
+		listAgentes.remove(agente);
 		listModel.removeElement(agente);
 	}
+
 	public void reiniciar() {
 		listModel.clear();
+		listAgentes.clear();
 	}
 
-	
+	public List<AgenteEpistemico> getSelecionados(){
+		int[] arr = list.getSelectedIndices();
+		List<AgenteEpistemico> res = new ArrayList<AgenteEpistemico>();
+		for(int i=0;i<arr.length;i++){
+			res.add((AgenteEpistemico)listModel.get(arr[i]));
+		}
+		return res;
+	}
+
+
+
 }

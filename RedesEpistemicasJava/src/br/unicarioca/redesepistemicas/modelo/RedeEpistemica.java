@@ -30,11 +30,14 @@ public class RedeEpistemica {
 	
 	public void fazUmaEtapa(){
 		if(listAgenteEpistemico.size()>1){
-			int agente = (int)((double)listAgenteEpistemico.size()*Math.random());
+			int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
 			logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
 			AgenteEpistemico agenteEpistemico = listAgenteEpistemico.get(agente);
-			if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>agenteEpistemico.getMorrerEmXpublicacoes()){
+			if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>=agenteEpistemico.getMorrerEmXpublicacoes()){
 				matarAgente(agenteEpistemico);
+				if(agenteEpistemicoFactory!=null){
+					agenteEpistemicoFactory.criarAgente();
+				}
 			}else{
 				ParEpistemico parEpistemico = agenteEpistemico.gerarPar();
 				if(comunicacaoListener!=null) comunicacaoListener.comunicadorEscolhido(agenteEpistemico);
@@ -42,7 +45,7 @@ public class RedeEpistemica {
 				for(Aresta aresta:agenteEpistemico.getArestas()){
 					AgenteEpistemico receptor = aresta.getAgenteEpistemico();
 					Double peso = aresta.getPeso();
-					Double diff = receptor.receberComunicado(parEpistemico, aresta);
+					Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEpistemico);
 					logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
 					
 					if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEpistemico, receptor, peso,diff);
@@ -50,6 +53,10 @@ public class RedeEpistemica {
 			}
 		}
 	}
+	/**
+	 * Inicio da morte
+	 * @param agente
+	 */
 	public void matarAgente(AgenteEpistemico agente){
 		//retirar ele da lista
 		if(cicloVidaAgenteListener!=null){
@@ -57,9 +64,7 @@ public class RedeEpistemica {
 		}
 		listAgenteEpistemico.remove(agente);
 		agente.morrer();
-		if(agenteEpistemicoFactory!=null){
-			agenteEpistemicoFactory.criarAgente();
-		}
+		
 	}
 	public AgenteEpistemico inserirAgente(AgenteEpistemico agenteNovo) {
 		

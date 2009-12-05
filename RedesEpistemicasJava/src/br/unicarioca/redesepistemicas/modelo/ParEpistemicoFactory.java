@@ -7,7 +7,7 @@ package br.unicarioca.redesepistemicas.modelo;
 public class ParEpistemicoFactory {
 	public static void main(String[] args) {
 		for(int i=0;i<100;i++){
-			double x=Math.random(),y=Math.random(),z=Math.random(),r=Math.random();
+			double x=NumeroAleatorio.gerarNumero(),y=NumeroAleatorio.gerarNumero(),z=NumeroAleatorio.gerarNumero(),r=NumeroAleatorio.gerarNumero();
 			for(int k=0;k<100;k++){
 				double[][] a = criarPontoEmEsfera(x,y,z,r);
 				double dist = distancia(x, y, z, a[0][0], a[0][1], a[0][2]);
@@ -46,9 +46,9 @@ public class ParEpistemicoFactory {
 	}
 
 	private static double[][] criarPontoEmEsfera(double x, double y, double z, double raio){
-		double nX = 0, nY = 0, nZ = Math.random() * raio;
-		double radX = Math.toRadians(360.0 * Math.random());
-		double radY = Math.toRadians(360.0 * Math.random());
+		double nX = 0, nY = 0, nZ = NumeroAleatorio.gerarNumero() * raio;
+		double radX = Math.toRadians(360.0 * NumeroAleatorio.gerarNumero());
+		double radY = Math.toRadians(360.0 * NumeroAleatorio.gerarNumero());
 		double[][] a = {{ nX, nY, nZ, 1.0 }};
 		double[][] mX =	
 			{
