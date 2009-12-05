@@ -43,6 +43,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		agenteListPanel = new AgenteListPanel();
 		menuPrincipal = new MenuPrincipal();
 		configuracoesPanel = new ConfiguracoesPanel();
+		new AgenteListMouseMenu(agenteListPanel.getJList());
 		//configuracoes
 		controlePanel.addControlado(redeEpistemicaView);
 		redeEpistemica.setCicloVidaAgenteListener(this);

@@ -33,7 +33,7 @@ public class RedeEpistemica {
 			int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
 			logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
 			AgenteEpistemico agenteEpistemico = listAgenteEpistemico.get(agente);
-			if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>=agenteEpistemico.getMorrerEmXpublicacoes()){
+			if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>agenteEpistemico.getMorrerEmXpublicacoes()){
 				matarAgente(agenteEpistemico);
 				if(agenteEpistemicoFactory!=null){
 					agenteEpistemicoFactory.criarAgente();

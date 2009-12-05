@@ -20,7 +20,7 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(AgenteListPanel.class);
-	private JList list;
+	private JList jList;
 	private DefaultListModel listModel;
 	private JLabel lblAgentes;
 
@@ -30,9 +30,9 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 		this.setLayout(new BorderLayout());
 		lblAgentes = new JLabel("Agentes:         ");
 		listModel = new DefaultListModel();
-		list = new JList(listModel);
+		jList = new JList(listModel);
 		this.add(lblAgentes, BorderLayout.NORTH);
-		this.add(list, BorderLayout.CENTER);
+		this.add(jList, BorderLayout.CENTER);
 		Thread t = new Thread() {
 			public void run() {
 				while (isVisible()) {
@@ -69,11 +69,11 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 
 	@Override
 	public synchronized void addKeyListener(KeyListener l) {
-		list.addKeyListener(l);
+		jList.addKeyListener(l);
 	}
 	
 	public void addListSelectionListener(ListSelectionListener l){
-		list.addListSelectionListener(l);
+		jList.addListSelectionListener(l);
 	}
 	@Override
 	public void criado(AgenteEpistemico agente) {
@@ -97,12 +97,16 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 	}
 
 	public List<AgenteEpistemico> getSelecionados(){
-		int[] arr = list.getSelectedIndices();
+		int[] arr = jList.getSelectedIndices();
 		List<AgenteEpistemico> res = new ArrayList<AgenteEpistemico>();
 		for(int i=0;i<arr.length;i++){
 			res.add((AgenteEpistemico)listModel.get(arr[i]));
 		}
 		return res;
+	}
+
+	public JList getJList() {
+		return jList;
 	}
 
 
