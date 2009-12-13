@@ -106,7 +106,6 @@ public class BackPropagation extends Training {
 		}		
 		
 		logger.debug("BACKPROP " + errorBest);
-		
 		return errors;
 	}
 

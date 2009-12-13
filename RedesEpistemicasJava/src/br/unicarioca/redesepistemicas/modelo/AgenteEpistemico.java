@@ -48,6 +48,7 @@ public class AgenteEpistemico{
 
 		// create new neural network with the defined structure
 		neuralNetwork = new NeuralNetwork(neuralNetworkStructure);
+		neuralNetwork.initWeights();
 		
 		//gerarPar();
 		//gera um nome padrao
@@ -176,7 +177,52 @@ public class AgenteEpistemico{
 		in.add(parEpistemico.getAntecedente().getZ());
 		return in;
 	}
-	private void treinar(ParEpistemico parEpistemicoInformado,int qtd){
+	
+	/**
+	 * Treina mas nao adiciona nas crencas
+	 * @param pares
+	 * @param qtd
+	 */
+	public void treinar(List<ParEpistemico> pares, int qtd) {
+		ArrayList<TrainingExample> listTraining = new ArrayList<TrainingExample>();
+		for(ParEpistemico parEpistemicoInformado:pares){
+			TrainingExample te = new TrainingExample();
+			ArrayList<Double> in = getInputs(parEpistemicoInformado);
+			ArrayList<Double> out = new ArrayList<Double>();
+			out.add(parEpistemicoInformado.getConsequente().getX());
+			out.add(parEpistemicoInformado.getConsequente().getY());
+			te.setInputs(in);
+			te.setOutputs(out);
+			listTraining.add(te);
+		}
+		double errorTolerance = 0.0; 
+		
+		// pso specific settings
+		int numberParticles = 20; 
+		double learningFactor = 1.49618; 
+		double inertialWeight = 0.7298; 
+		
+		logger.debug("qtd = " + qtd);
+		// create a instance of a training method
+		//Training training = new ParticleSwarmOptimization(numberEvaluations, errorTolerance, learningFactor, inertialWeight, numberParticles);
+		Training training = new BackPropagation(qtd,errorTolerance);
+		
+		// set the training method and set for the neural network to use
+		neuralNetwork.setTraining(training);
+		TrainingSet trainingSet = new TrainingSet("MyT",listTraining);
+		//neuralNetwork.setTrainingSet(trainingData.getTrainingSet());
+		neuralNetwork.setTrainingSet(trainingSet);
+		
+		neuralNetwork.train();
+		
+	}	
+	
+	/**
+	 * Treina mas nao adiciona nas crencas
+	 * @param parEpistemicoInformado
+	 * @param qtd
+	 */
+	public void treinar(ParEpistemico parEpistemicoInformado,int qtd){
 		ArrayList<TrainingExample> listTraining = new ArrayList<TrainingExample>();
 		
 		TrainingExample te = new TrainingExample();
@@ -339,5 +385,18 @@ public class AgenteEpistemico{
 	}
 	public List<ParEpistemico> getCrencas() {
 		return crencas;
-	}	
+	}
+	/**
+	 * Adiciona se nao existir
+	 * @param pares
+	 */
+	public void addCrencas(List<ParEpistemico> pares) {
+		for(ParEpistemico par:pares){
+			ParEpistemico procurado = procurar(par.getAntecedente());
+			if(procurado==null){
+				crencas.add(par);
+			}
+		}
+	}
+	
 }
