@@ -13,6 +13,7 @@ public class MenuPrincipal extends JMenuBar{
 	private static final long serialVersionUID = 1L;
 	private JMenu arquivo;
 	private JMenu visualizar;
+	private JMenu treinar;
 	private JCheckBoxMenuItem verLinhasVermelhas;
 	private JCheckBoxMenuItem verLinhasAzuis;
 	private JMenuItem salvar;
@@ -20,6 +21,7 @@ public class MenuPrincipal extends JMenuBar{
 	private JMenuItem novo;
 	private JMenuItem zoomMais;
 	private JMenuItem zoomMenos;
+	private JMenuItem treinametoPrevio;
 	public MenuPrincipal() {
 		arquivo = new JMenu("Arquivo");
 		salvar = new JMenuItem("Salvar");
@@ -31,6 +33,10 @@ public class MenuPrincipal extends JMenuBar{
 		verLinhasAzuis = new JCheckBoxMenuItem("Ver Linhas Azuis");
 		zoomMais = new JMenuItem("Zoom +");
 		zoomMenos = new JMenuItem("Zoom -");
+		
+		treinar = new JMenu("Treinamento");
+		treinametoPrevio = new JMenuItem("Treinamento Prévio");
+		
 		
 		salvar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK ));
 		abrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_DOWN_MASK ));
@@ -48,6 +54,9 @@ public class MenuPrincipal extends JMenuBar{
 		visualizar.add(verLinhasAzuis);
 		visualizar.add(zoomMais);
 		visualizar.add(zoomMenos);
+		
+		this.add(treinar);
+		treinar.add(treinametoPrevio);
 	}
 	public JMenuItem getNovo() {
 		return novo;
@@ -63,5 +72,8 @@ public class MenuPrincipal extends JMenuBar{
 	}
 	public JMenuItem getZoomMenos() {
 		return zoomMenos;
+	}
+	public JMenuItem getTreinamentoPrevio() {
+		return treinametoPrevio;
 	}
 }

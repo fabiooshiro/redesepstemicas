@@ -10,10 +10,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class ConfiguracoesPanel extends JPanel {
+public class ConfiguracoesPanel extends JTabbedPane {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblQtdAgentes;
 	private JTextField txtQtdAgentes;
@@ -29,9 +30,14 @@ public class ConfiguracoesPanel extends JPanel {
 	private JTextField txtCriarNovoEm;
 	private JLabel lblSomenteUltimaTeoria;
 	private JCheckBox chkSomenteUltimaTeoria;
+	
+	private JLabel lblPesoAleatorio;
+	private JCheckBox chkPesoAleatorio;
+	
 	private JButton btnOk;
 
 	public ConfiguracoesPanel() {
+		
 
 		lblQtdAgentes = new JLabel("Qtd. Agentes:");
 		lblQtdAgentes.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -71,31 +77,67 @@ public class ConfiguracoesPanel extends JPanel {
 		lblPassoMax = new JLabel("Passo Agente:");
 		lblPassoMax.setHorizontalAlignment(SwingConstants.RIGHT);
 		
+		lblPesoAleatorio = new JLabel("Peso aleatório:");
+		chkPesoAleatorio = new JCheckBox();
+		chkPesoAleatorio.setSelected(true);
+		
 		//layout
-		this.setLayout(new BorderLayout());
+		this.addTab("Rede E.",criarPainelConfRede());
+		this.addTab("Agente E.",criarPainelConfAgente());
+		this.addTab("View",criarPainelConfView());
+	}
+	private JPanel criarPainelConfRede(){
+		JPanel retorno = new JPanel();
+		retorno.setLayout(new BorderLayout());
 		JPanel tabela = new JPanel(new GridLayout(0, 2));
 		tabela.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tabela.add(lblQtdAgentes);
 		tabela.add(txtQtdAgentes);
+		
+		JPanel sul = new JPanel(new FlowLayout());
+		sul.add(btnOk);
+		retorno.add(tabela, BorderLayout.CENTER);
+		retorno.add(sul, BorderLayout.SOUTH);
+		
+		JPanel retornoLayout = new JPanel();
+		retornoLayout.add(retorno, BorderLayout.NORTH);
+		retornoLayout.add(new JPanel(),BorderLayout.CENTER);
+		return retornoLayout;
+	}
+	private JPanel criarPainelConfView(){
+		JPanel retorno = new JPanel();
+		retorno.setLayout(new BorderLayout());
+		JPanel tabela = new JPanel(new GridLayout(0, 2));
+		tabela.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tabela.add(lblDistanciaMaxRepulsao);
+		tabela.add(txtDistanciaMaxRepulsao);
+		tabela.add(lblPassoMax);
+		tabela.add(spnPassoMax);
+		retorno.add(tabela, BorderLayout.NORTH);
+		retorno.add(new JPanel(),BorderLayout.CENTER);
+		return retorno;
+	}
+	private JPanel criarPainelConfAgente(){
+		JPanel retorno = new JPanel();
+		retorno.setLayout(new BorderLayout());
+		JPanel tabela = new JPanel(new GridLayout(0, 2));
+		tabela.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tabela.add(lblMaxDiff);
 		tabela.add(txtMaxDiff);
 		tabela.add(lblMorrerEmXpublicacoes);
 		tabela.add(txtMorrerEmXpublicacoes);
 		tabela.add(lblSomenteUltimaTeoria);
 		tabela.add(chkSomenteUltimaTeoria);
-		tabela.add(lblDistanciaMaxRepulsao);
-		tabela.add(txtDistanciaMaxRepulsao);
 		tabela.add(lblCriarNovoEm);
 		tabela.add(txtCriarNovoEm);
-		tabela.add(lblPassoMax);
-		tabela.add(spnPassoMax);
+		tabela.add(lblPesoAleatorio);
+		tabela.add(chkPesoAleatorio);
 		
-		JPanel sul = new JPanel(new FlowLayout());
-		sul.add(btnOk);
-		this.add(tabela, BorderLayout.CENTER);
-		this.add(sul, BorderLayout.SOUTH);
+		retorno.add(tabela, BorderLayout.NORTH);
+		retorno.add(new JPanel(),BorderLayout.CENTER);
+		return retorno;
 	}
-
+	
 	public JButton getBtnOk() {
 		return btnOk;
 	}
@@ -125,5 +167,8 @@ public class ConfiguracoesPanel extends JPanel {
 	}
 	public JSpinner getSpnPassoMax() {
 		return spnPassoMax;
+	}
+	public JCheckBox getChkPesoAleatorio() {
+		return chkPesoAleatorio;
 	}
 }

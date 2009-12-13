@@ -36,5 +36,13 @@ public class Consequente {
 	public void setY(Double y) {
 		this.y = y;
 	}
+
+	public void add(Object valueAt) {
+		if(x==null){
+			x = Double.valueOf(valueAt.toString());
+		}else{
+			y = Double.valueOf(valueAt.toString());
+		}
+	}
 	
 }

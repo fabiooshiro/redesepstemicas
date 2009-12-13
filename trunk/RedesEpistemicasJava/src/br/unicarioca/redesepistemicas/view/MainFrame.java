@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
+import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
@@ -45,6 +46,8 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		configuracoesPanel = new ConfiguracoesPanel();
 		new AgenteListMouseMenu(agenteListPanel.getJList());
 		//configuracoes
+		CrencaTreinarView crencaTreinarView = CrencaTreinarView.getInstance();
+		crencaTreinarView.setAgenteListPanel(agenteListPanel);
 		controlePanel.addControlado(redeEpistemicaView);
 		redeEpistemica.setCicloVidaAgenteListener(this);
 		redeEpistemica.setAgenteEpistemicoFactory(this);
@@ -79,6 +82,11 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		menuPrincipal.getZoomMenos().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				redeEpistemicaView.zoomMenos();
+			}
+		});
+		menuPrincipal.getTreinamentoPrevio().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				treinar();
 			}
 		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
@@ -145,6 +153,13 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		
 	}
 	
+	public void treinar(){
+		JFrame jFrame = new JFrame("Treinamento Prévio");
+		jFrame.setLayout(new BorderLayout());
+		jFrame.add(CrencaTreinarView.getInstance());
+		jFrame.pack();
+		jFrame.setVisible(true);
+	}
 	public void novo(){
 		NumeroAleatorio.restart();
 		agenteListPanel.reiniciar();
@@ -204,6 +219,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		int morrerEm = Integer.valueOf(configuracoesPanel.getTxtMorrerEmXpublicacoes().getText());
 		double maxDiff = Double.valueOf(configuracoesPanel.getTxtMaxDiff().getText());
 		boolean chkSomenteUltimaTeoria = configuracoesPanel.getChkSomenteUltimaTeoria().isSelected();
+		boolean pesoAleatorio = configuracoesPanel.getChkPesoAleatorio().isSelected();
 		int distanciaMaxRepulsao = Integer.valueOf(configuracoesPanel.getTxtDistanciaMaxRepulsao().getText());
 		int criarNovoEm = Integer.valueOf(configuracoesPanel.getTxtCriarNovoEm().getText());
 		int w = redeEpistemicaView.getWidth();
@@ -215,7 +231,12 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		AgenteEpistemico agente = new AgenteEpistemico();
 		redeEpistemica.inserirAgente(agente);
 		redeEpistemicaView.addAgente(agente, x, y);
-		
+		if(pesoAleatorio){
+			List<Aresta> arestas = agente.getArestas();
+			for(Aresta aresta:arestas){
+				aresta.setPeso(NumeroAleatorio.gerarNumero());
+			}
+		}
 		agente.setMaxDiff(maxDiff);
 		agente.setMorrerEmXpublicacoes(morrerEm);
 		agente.setSomenteUltimaTeoria(chkSomenteUltimaTeoria);
