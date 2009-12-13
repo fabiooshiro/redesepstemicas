@@ -301,11 +301,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		int notches = e.getWheelRotation();
 		if (notches < 0) {
 			message = "Mouse wheel moved UP " + -notches + " notch(es)";
-			escala *= 1.2f;
+			zoomMais();
 		} else {
 			message = "Mouse wheel moved DOWN " + notches + " notch(es)";
-
-			escala *= 0.8f;
+			zoomMenos();
 		}
 		logger.debug(message);
 		if(pause){
@@ -313,7 +312,12 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			desenharAgentes();
 		}
 	}
-
+	public void zoomMais(){
+		escala *= 1.2f;
+	}
+	public void zoomMenos(){
+		escala *= 0.8f;
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		addAgente(agenteEpistemicoFactory.criarAgente(), e.getX(), e.getY());

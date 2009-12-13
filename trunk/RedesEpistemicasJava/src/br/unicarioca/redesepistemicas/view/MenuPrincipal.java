@@ -18,6 +18,8 @@ public class MenuPrincipal extends JMenuBar{
 	private JMenuItem salvar;
 	private JMenuItem abrir;
 	private JMenuItem novo;
+	private JMenuItem zoomMais;
+	private JMenuItem zoomMenos;
 	public MenuPrincipal() {
 		arquivo = new JMenu("Arquivo");
 		salvar = new JMenuItem("Salvar");
@@ -27,10 +29,14 @@ public class MenuPrincipal extends JMenuBar{
 		visualizar = new JMenu("Visualizar");
 		verLinhasVermelhas = new JCheckBoxMenuItem("Ver Linhas Vermelhas");
 		verLinhasAzuis = new JCheckBoxMenuItem("Ver Linhas Azuis");
+		zoomMais = new JMenuItem("Zoom +");
+		zoomMenos = new JMenuItem("Zoom -");
 		
 		salvar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK ));
 		abrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_DOWN_MASK ));
 		novo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_DOWN_MASK));
+		zoomMais.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,InputEvent.CTRL_DOWN_MASK ));
+		zoomMenos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,InputEvent.CTRL_DOWN_MASK ));
 		
 		this.add(arquivo);
 		arquivo.add(salvar);
@@ -40,6 +46,8 @@ public class MenuPrincipal extends JMenuBar{
 		this.add(visualizar);
 		visualizar.add(verLinhasVermelhas);
 		visualizar.add(verLinhasAzuis);
+		visualizar.add(zoomMais);
+		visualizar.add(zoomMenos);
 	}
 	public JMenuItem getNovo() {
 		return novo;
@@ -49,5 +57,11 @@ public class MenuPrincipal extends JMenuBar{
 	}
 	public JCheckBoxMenuItem getVerLinhasAzuis() {
 		return verLinhasAzuis;
+	}
+	public JMenuItem getZoomMais() {
+		return zoomMais;
+	}
+	public JMenuItem getZoomMenos() {
+		return zoomMenos;
 	}
 }

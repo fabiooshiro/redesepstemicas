@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 	private MenuPrincipal menuPrincipal;
 	private ConfiguracoesPanel configuracoesPanel = null;
 	public MainFrame() {
-		this.setTitle("IndraNet 1.0 – Simulador de Redes Epistêmicas");
+		this.setTitle("IndraNet 1.0 - Simulador de Redes Epistêmicas");
 		//instancias
 		redeEpistemica = new RedeEpistemica();
 		controlePanel = new ControlePanel();
@@ -69,6 +69,16 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		menuPrincipal.getVerLinhasAzuis().addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
 				redeEpistemicaView.setVerLinhasAzuis(menuPrincipal.getVerLinhasAzuis().isSelected());
+			}
+		});
+		menuPrincipal.getZoomMais().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				redeEpistemicaView.zoomMais();
+			}
+		});
+		menuPrincipal.getZoomMenos().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				redeEpistemicaView.zoomMenos();
 			}
 		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
