@@ -16,6 +16,7 @@ public class MenuPrincipal extends JMenuBar{
 	private JMenu treinar;
 	private JCheckBoxMenuItem verLinhasVermelhas;
 	private JCheckBoxMenuItem verLinhasAzuis;
+	private JCheckBoxMenuItem verPesosDoSelecionado;
 	private JMenuItem salvar;
 	private JMenuItem abrir;
 	private JMenuItem novo;
@@ -31,6 +32,7 @@ public class MenuPrincipal extends JMenuBar{
 		visualizar = new JMenu("Visualizar");
 		verLinhasVermelhas = new JCheckBoxMenuItem("Ver Linhas Vermelhas");
 		verLinhasAzuis = new JCheckBoxMenuItem("Ver Linhas Azuis");
+		verPesosDoSelecionado = new JCheckBoxMenuItem("Ver Pesos do(s) Selecionado(s)");
 		zoomMais = new JMenuItem("Zoom +");
 		zoomMenos = new JMenuItem("Zoom -");
 		
@@ -52,6 +54,7 @@ public class MenuPrincipal extends JMenuBar{
 		this.add(visualizar);
 		visualizar.add(verLinhasVermelhas);
 		visualizar.add(verLinhasAzuis);
+		visualizar.add(verPesosDoSelecionado);
 		visualizar.add(zoomMais);
 		visualizar.add(zoomMenos);
 		
@@ -75,5 +78,8 @@ public class MenuPrincipal extends JMenuBar{
 	}
 	public JMenuItem getTreinamentoPrevio() {
 		return treinametoPrevio;
+	}
+	public JCheckBoxMenuItem getVerPesosDoSelecionado() {
+		return verPesosDoSelecionado;
 	}
 }

@@ -21,7 +21,6 @@ import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
-import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
@@ -52,6 +51,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		redeEpistemica.setCicloVidaAgenteListener(this);
 		redeEpistemica.setAgenteEpistemicoFactory(this);
 		redeEpistemicaView.setAgenteEpistemicoFactory(this);
+		redeEpistemicaView.setAgenteListPanel(agenteListPanel);
 		controlePanel.getZerar().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				agenteListPanel.reiniciar();
@@ -87,6 +87,11 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		menuPrincipal.getTreinamentoPrevio().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				treinar();
+			}
+		});
+		menuPrincipal.getVerPesosDoSelecionado().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				redeEpistemicaView.setVerPesosDoSelecionado(menuPrincipal.getVerPesosDoSelecionado().isSelected());
 			}
 		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
@@ -229,14 +234,8 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		int y = (int)(h*NumeroAleatorio.gerarNumero());
 		
 		AgenteEpistemico agente = new AgenteEpistemico();
-		redeEpistemica.inserirAgente(agente);
+		redeEpistemica.inserirAgente(agente,pesoAleatorio);
 		redeEpistemicaView.addAgente(agente, x, y);
-		if(pesoAleatorio){
-			List<Aresta> arestas = agente.getArestas();
-			for(Aresta aresta:arestas){
-				aresta.setPeso(NumeroAleatorio.gerarNumero());
-			}
-		}
 		agente.setMaxDiff(maxDiff);
 		agente.setMorrerEmXpublicacoes(morrerEm);
 		agente.setSomenteUltimaTeoria(chkSomenteUltimaTeoria);
