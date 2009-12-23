@@ -109,6 +109,8 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 		return jList;
 	}
 
-
+	public int indexOf(AgenteEpistemico agente) {
+		return listModel.indexOf(agente);
+	}
 
 }

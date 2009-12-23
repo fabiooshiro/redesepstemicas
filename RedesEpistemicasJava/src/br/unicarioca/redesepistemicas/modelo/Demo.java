@@ -27,9 +27,7 @@ import java.util.ArrayList;
 
 import com.rmit.neuralnetwork.NeuralNetwork;
 import com.rmit.neuralnetwork.training.BackPropagation;
-import com.rmit.neuralnetwork.training.ParticleSwarmOptimization;
 import com.rmit.neuralnetwork.training.Training;
-import com.rmit.neuralnetwork.trainingdata.DataLoader;
 import com.rmit.neuralnetwork.trainingdata.TrainingExample;
 import com.rmit.neuralnetwork.trainingdata.TrainingSet;
 

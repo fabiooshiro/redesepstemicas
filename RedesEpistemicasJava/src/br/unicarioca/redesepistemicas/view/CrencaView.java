@@ -17,8 +17,6 @@ import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 /**
  * Visualiza a Crenca
- * @author fabio
- *
  */
 public class CrencaView extends JPanel{
 	private static final long serialVersionUID = 1L;

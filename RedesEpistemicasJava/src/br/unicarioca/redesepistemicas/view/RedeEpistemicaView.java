@@ -2,6 +2,7 @@ package br.unicarioca.redesepistemicas.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -9,8 +10,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -18,6 +23,7 @@ import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
+import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.ComunicacaoListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
@@ -47,7 +53,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private int passoMax = 15;
 	private boolean verLinhasVermelhas = true;
 	private boolean verLinhasAzuis = true;
+	private boolean verPesosDoSelecionado = false;
 	private int algoritimoRepulsao = 2;
+	private AgenteListPanel agenteListPanel;
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -61,11 +69,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 							paused = false;
 							initDesenho();
 							desenharAgentes();
-							Thread.sleep(delay);
 							atualizar();
 						} else {
 							paused = true;
-							Thread.sleep(delay);
+							Thread.sleep(84);
 						}
 					} catch (Exception e) {
 						if (run)
@@ -78,28 +85,14 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		this.addMouseListener(this);
 		this.addMouseWheelListener(this);
 		this.addComponentListener(new ComponentListener() {
-
-			@Override
-			public void componentHidden(ComponentEvent e) {
-
-			}
-
-			@Override
-			public void componentMoved(ComponentEvent e) {
-
-			}
-
-			@Override
+			public void componentHidden(ComponentEvent e) {}
+			public void componentMoved(ComponentEvent e) {}
 			public void componentResized(ComponentEvent e) {
 				reiniciarBi = true;
 			}
-
-			@Override
-			public void componentShown(ComponentEvent e) {
-
-			}
-
+			public void componentShown(ComponentEvent e) {}
 		});
+		
 	}
 
 	private void atualizar() {
@@ -122,12 +115,27 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 */
 	private void desenharAgentes() {
 		graphics.setColor(Color.BLACK);
-		for (AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()) {
-			desenharAgente(agente);
+		synchronized (redeEpistemica.getListAgenteEpistemico()) {
+			logger.debug("desenharAgentes()");
+			for (AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()) {
+				desenharAgente(agente);
+			}
 		}
+		drawSelection();
+		
 		this.setIcon(new ImageIcon(bi));
 	}
 
+	@Override
+	public void setIcon(Icon defaultIcon) {
+		try {
+			super.setIcon(defaultIcon);
+			Thread.sleep(delay);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+	}
 	/**
 	 * Desenha um agente com a cor corrente
 	 * 
@@ -145,11 +153,13 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			graphics.setColor(agente.getColor());
 			graphics.fillOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
 			graphics.setColor(old);
+			desenharArestasComPesos(agente);
 		}else{
 			graphics.drawOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
 		}
 		return agente;
 	}
+	
 	/**
 	 * Desenha um agente com a cor corrente
 	 * 
@@ -159,6 +169,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private AgenteEpistemico desenharAgente(AgenteEpistemico agente) {
 		return desenharAgente(agente,false);
 	}
+	
 	/**
 	 * Coloca o agente na posicao X e Y
 	 * 
@@ -189,7 +200,15 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		// thread do loop infinito
 		t.interrupt();
 	}
-
+	
+	private void drawString(String string, int x, int y) {
+		graphics.drawString(string,arrastarX + Math.round(x * escala), arrastarY + Math.round(y * escala));
+	}
+	
+	private void drawLine(int x,int y, int x2, int y2){
+		graphics.drawLine(arrastarX + Math.round(x * escala), arrastarY + Math.round(y * escala), arrastarX + Math.round(x2 * escala), arrastarY + Math.round(y2 * escala));
+	}
+	
 	public void depoisDeComunicar(AgenteEpistemico emissor, AgenteEpistemico receptor, Double peso, Double diff) {
 
 		int ex = emissor.getX();
@@ -213,7 +232,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			receptor.setY(ry + (int) my);
 			graphics.setColor(Color.BLUE);
 			if(verLinhasAzuis){
-				graphics.drawLine(arrastarX + Math.round(ex * escala), arrastarY + Math.round(ey * escala), arrastarX + Math.round(rx * escala), arrastarY + Math.round(ry * escala));
+				drawLine(ex,ey,rx,ry);
 			}
 		} else {
 			// repulsao
@@ -247,16 +266,11 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			}
 			graphics.setColor(Color.RED);
 			if (verLinhasVermelhas) {
-				graphics.drawLine(arrastarX + Math.round(ex * escala), arrastarY + Math.round(ey * escala), arrastarX + Math.round(rx * escala), arrastarY + Math.round(ry * escala));
+				drawLine(ex,ey,rx,ry);
 			}
 		}
 		desenharAgente(receptor);
 		this.setIcon(new ImageIcon(bi));
-		try {
-			Thread.sleep(delay);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -264,11 +278,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		graphics.setColor(Color.GREEN);
 		desenharAgente(emissor);
 		this.setIcon(new ImageIcon(bi));
-		try {
-			Thread.sleep(delay);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void pause() {
@@ -299,12 +308,31 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		String message;
 		int notches = e.getWheelRotation();
+		//TODO manter o mouse no centro
 		if (notches < 0) {
 			message = "Mouse wheel moved UP " + -notches + " notch(es)";
+			float escalaAnt = escala;
 			zoomMais();
+			int x = e.getX();
+			x = Math.round((x - arrastarX) / escalaAnt);
+			x = arrastarX + Math.round(x * escala);
+			arrastarX += e.getX() - x;
+			int y = e.getY();
+			y = Math.round((y - arrastarY) / escalaAnt);
+			y = arrastarY + Math.round(y * escala);
+			arrastarY += e.getY() - y;
 		} else {
 			message = "Mouse wheel moved DOWN " + notches + " notch(es)";
+			float escalaAnt = escala;
 			zoomMenos();
+			int x = e.getX();
+			x = Math.round((x - arrastarX) / escalaAnt);
+			x = arrastarX + Math.round(x * escala);
+			arrastarX += e.getX() - x;
+			int y = e.getY();
+			y = Math.round((y - arrastarY) / escalaAnt);
+			y = arrastarY + Math.round(y * escala);
+			arrastarY += e.getY() - y;
 		}
 		logger.debug(message);
 		if(pause){
@@ -331,11 +359,15 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	public void mouseExited(MouseEvent e) {
 	}
 
+	private Point startSelection = null;
+	private Point endSelection = null;
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			startDragX = e.getX();
 			startDragY = e.getY();
+		}else if(e.getButton()== MouseEvent.BUTTON1){
+			startSelection = e.getPoint();
 		}
 	}
 
@@ -346,9 +378,66 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			arrastarY += e.getY() - startDragY;
 			initDesenho();
 			desenharAgentes();
+		}else if(e.getButton()== MouseEvent.BUTTON1){
+			endSelection = e.getPoint();
+			initDesenho();
+			desenharAgentes();
+			int x=0,y=0,x2=0,y2=0;
+			if(startSelection!=null && endSelection!=null){
+				
+				x2 = Math.max(startSelection.x, endSelection.x);
+				y2 = Math.max(startSelection.y, endSelection.y);
+				x = Math.min(startSelection.x, endSelection.x);
+				y = Math.min(startSelection.y, endSelection.y);
+				x = Math.round((x - arrastarX) / escala);
+				y = Math.round((y - arrastarY) / escala);
+				x2 = Math.round((x2 - arrastarX) / escala);
+				y2 = Math.round((y2 - arrastarY) / escala);
+			}
+			synchronized (redeEpistemica.getListAgenteEpistemico()) {
+				logger.debug("desenharAgentes()");
+				List<Integer> listaSelecionados = new ArrayList<Integer>();
+				for (AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()) {
+					desenharAgente(agente);
+					boolean selecionado = false;
+					logger.debug(x + "< (ax="+agente.getX() + ")<"+x2);
+					if(x<agente.getX() && agente.getX()<x2){
+						if(y<agente.getY() && agente.getY()<y2){
+							agente.setColor(new Color(55,55,255));
+							selecionado = true;
+							logger.debug("Selecionando " + agente.getNome());
+							int ic=agenteListPanel.indexOf(agente);
+							if(ic!=-1){
+								listaSelecionados.add(ic);
+							}
+						}
+					}
+					if(!selecionado){
+						logger.debug("Nao selecionado " + agente.getNome());
+					}
+				}
+				if(agenteListPanel!=null){
+					int[] arr = new int[listaSelecionados.size()];
+					for(int i=0;i<listaSelecionados.size();i++)arr[i]=listaSelecionados.get(i);
+					agenteListPanel.getJList().setSelectedIndices(arr);
+				}
+			}
+			drawSelection();
 		}
 	}
 
+	private void drawSelection(){
+		logger.debug("drawSelection()");
+		if(startSelection == null || endSelection==null) return;
+		int width = Math.abs(startSelection.x-endSelection.x);
+		int height = Math.abs(startSelection.y-endSelection.y);
+		if(width<1) return;
+		int x = Math.min(startSelection.x, endSelection.x);
+		int y = Math.min(startSelection.y, endSelection.y);
+		graphics.setColor(Color.GRAY);
+		graphics.drawRect(x, y, width, height);
+	}
+	
 	public void setAgenteEpistemicoFactory(AgenteEpistemicoFactory agenteEpistemicoFactory) {
 		this.agenteEpistemicoFactory = agenteEpistemicoFactory;
 	}
@@ -364,12 +453,15 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	public void setVerLinhasVermelhas(boolean mostrarLinhasVermelhas) {
 		this.verLinhasVermelhas = mostrarLinhasVermelhas;
 	}
+	
 	public boolean isVerLinhasVermelhas(){
 		return verLinhasVermelhas;
 	}
+	
 	public void setVerLinhasAzuis(boolean verLinhasAzuis) {
 		this.verLinhasAzuis = verLinhasAzuis;
 	}
+	
 	public boolean isVerLinhasAzuis() {
 		return verLinhasAzuis;
 	}
@@ -385,6 +477,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			for(AgenteEpistemico agente:agentes){
 				agente.setColor(new Color(55,55,255));
 				desenharAgente(agente,true);
+				desenharArestasComPesos(agente);
 			}
 			this.setIcon(new ImageIcon(bi));
 		}else{
@@ -393,7 +486,29 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		}
 	}
 
+	private void desenharArestasComPesos(AgenteEpistemico agente){
+		if(verPesosDoSelecionado){
+			synchronized (agente.getArestas()) {
+				for(Aresta aresta:agente.getArestas()){
+					//achar o meio
+					int x = (agente.getX() - aresta.getAgenteEpistemico().getX())/2;
+					int y = (agente.getY()-aresta.getAgenteEpistemico().getY())/2;
+					drawString(aresta.getPeso().toString(), aresta.getAgenteEpistemico().getX()+x, aresta.getAgenteEpistemico().getY()+y);
+					drawLine(agente.getX(),agente.getY(),aresta.getAgenteEpistemico().getX(),aresta.getAgenteEpistemico().getY());
+				}
+			}
+		}
+	}
+
 	public boolean isPaused() {
 		return paused;
+	}
+	
+	public void setVerPesosDoSelecionado(boolean verPesosDoSelecionado) {
+		this.verPesosDoSelecionado = verPesosDoSelecionado;
+	}
+	
+	public void setAgenteListPanel(AgenteListPanel agenteListPanel) {
+		this.agenteListPanel = agenteListPanel;
 	}
 }

@@ -29,26 +29,29 @@ public class RedeEpistemica {
 	}
 	
 	public void fazUmaEtapa(){
-		if(listAgenteEpistemico.size()>1){
-			int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
-			logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
-			AgenteEpistemico agenteEpistemico = listAgenteEpistemico.get(agente);
-			if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>agenteEpistemico.getMorrerEmXpublicacoes()){
-				matarAgente(agenteEpistemico);
-				if(agenteEpistemicoFactory!=null){
-					agenteEpistemicoFactory.criarAgente();
-				}
-			}else{
-				ParEpistemico parEpistemico = agenteEpistemico.gerarPar();
-				if(comunicacaoListener!=null) comunicacaoListener.comunicadorEscolhido(agenteEpistemico);
-				
-				for(Aresta aresta:agenteEpistemico.getArestas()){
-					AgenteEpistemico receptor = aresta.getAgenteEpistemico();
-					Double peso = aresta.getPeso();
-					Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEpistemico);
-					logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
-					
-					if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEpistemico, receptor, peso,diff);
+		synchronized (listAgenteEpistemico) {
+			if(listAgenteEpistemico.size()>1){
+				int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
+				logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
+				AgenteEpistemico agenteEpistemico = listAgenteEpistemico.get(agente);
+				if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>agenteEpistemico.getMorrerEmXpublicacoes()){
+					matarAgente(agenteEpistemico);
+					if(agenteEpistemicoFactory!=null){
+						agenteEpistemicoFactory.criarAgente();
+					}
+				}else{
+					ParEpistemico parEpistemico = agenteEpistemico.gerarPar();
+					if(comunicacaoListener!=null) comunicacaoListener.comunicadorEscolhido(agenteEpistemico);
+					synchronized (agenteEpistemico.getArestas()) {
+						for(Aresta aresta:agenteEpistemico.getArestas()){
+							AgenteEpistemico receptor = aresta.getAgenteEpistemico();
+							Double peso = aresta.getPeso();
+							Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEpistemico);
+							logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
+							
+							if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEpistemico, receptor, peso,diff);
+						}
+					}
 				}
 			}
 		}
@@ -66,15 +69,25 @@ public class RedeEpistemica {
 		agente.morrer();
 		
 	}
-	public AgenteEpistemico inserirAgente(AgenteEpistemico agenteNovo) {
+	public AgenteEpistemico inserirAgente(AgenteEpistemico agenteNovo,boolean pesoAleatorio) {
 		
 		agenteNovo.setRaio(50);
 		//apresentar a todos
-		for(AgenteEpistemico agenteEpistemico:listAgenteEpistemico){
-			agenteEpistemico.conhecer(agenteNovo,1.0);
-			agenteNovo.conhecer(agenteEpistemico, 1.0);
+		
+		if(pesoAleatorio){
+			for(AgenteEpistemico agenteEpistemico:listAgenteEpistemico){
+				agenteEpistemico.conhecer(agenteNovo, NumeroAleatorio.gerarNumero());
+				agenteNovo.conhecer(agenteEpistemico, NumeroAleatorio.gerarNumero());
+			}
+		}else{
+			for(AgenteEpistemico agenteEpistemico:listAgenteEpistemico){
+				agenteEpistemico.conhecer(agenteNovo, 1.0);
+				agenteNovo.conhecer(agenteEpistemico, 1.0);
+			}
 		}
-		listAgenteEpistemico.add(agenteNovo);
+		synchronized (listAgenteEpistemico) {
+			listAgenteEpistemico.add(agenteNovo);
+		}
 		if(cicloVidaAgenteListener!=null){
 			cicloVidaAgenteListener.criado(agenteNovo);
 		}

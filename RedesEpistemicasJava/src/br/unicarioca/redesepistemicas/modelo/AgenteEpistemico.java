@@ -110,16 +110,20 @@ public class AgenteEpistemico{
 		parEpistemico.setConsequente(consequente);
 		return parEpistemico;
 	}
+	
 	public double getReputacao(){
 		if(reputacao==null){
 			double res = 0;
-			for(Aresta aresta:arestas){
-				res+=aresta.getPeso();
+			synchronized (arestas) {
+				for(Aresta aresta:arestas){
+					res+=aresta.getPeso();
+				}
 			}
 			reputacao=res;
 		}
 		return reputacao;
 	}
+	
 	public void addReputacao(double x){
 		reputacao = getReputacao()+x;
 	}
@@ -309,6 +313,7 @@ public class AgenteEpistemico{
 	public void setArestas(List<Aresta> arestas) {
 		this.arestas = arestas;
 	}
+	
 	public int getX() {
 		return x;
 	}
@@ -331,7 +336,10 @@ public class AgenteEpistemico{
 		Aresta aresta = new Aresta();
 		aresta.setAgenteEpistemico(agenteNovo);
 		aresta.setPeso(peso);
-		arestas.add(aresta);
+		synchronized (arestas) {
+			arestas.add(aresta);
+		}
+		reputacao = null;
 	}
 
 	public int getRaio() {
@@ -346,7 +354,12 @@ public class AgenteEpistemico{
 	 */
 	@Override
 	public String toString() {
-		return nome + " ["+qtdParComunicado+"] " + Math.round(getReputacao()*10)/10.0;
+		if(color!=null){
+			return nome + " ["+qtdParComunicado+"] " + Math.round(getReputacao()*10)/10.0 + "*";	
+		}else{
+			return nome + " ["+qtdParComunicado+"] " + Math.round(getReputacao()*10)/10.0;
+		}
+		
 	}
 
 	public void morrer() {
@@ -362,6 +375,7 @@ public class AgenteEpistemico{
 	}
 	@Override
 	public boolean equals(Object obj) {
+		if(obj==null) return false;
 		AgenteEpistemico a = (AgenteEpistemico)obj;
 		logger.debug("a.id==this.id " + (a.id==this.id));
 		return a.id==this.id;
