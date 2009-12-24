@@ -32,6 +32,13 @@ public class AgenteEpistemico{
 	private int morrerEmXpublicacoes = 100; 
 	private Double reputacao = null;
 	private Color color;
+	private double vontadeDePublicar=1.0;
+	public double getVontadeDePublicar() {
+		return vontadeDePublicar;
+	}
+	public void setVontadeDePublicar(double vontadeDePublicar) {
+		this.vontadeDePublicar = vontadeDePublicar;
+	}
 	public Color getColor() {
 		return color;
 	}
@@ -411,6 +418,13 @@ public class AgenteEpistemico{
 				crencas.add(par);
 			}
 		}
+	}
+	/**
+	 * Verifica se o agente quer publicar
+	 * @return true caso queira publicar
+	 */
+	public boolean querPublicar() {
+		return NumeroAleatorio.gerarNumero()<vontadeDePublicar;
 	}
 	
 }
