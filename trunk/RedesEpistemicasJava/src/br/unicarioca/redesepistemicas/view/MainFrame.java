@@ -232,8 +232,9 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		logger.debug("chkSomenteUltimaTeoria = " + chkSomenteUltimaTeoria);
 		int x = (int)(w*NumeroAleatorio.gerarNumero());
 		int y = (int)(h*NumeroAleatorio.gerarNumero());
-		
+		double freq = Double.valueOf(configuracoesPanel.getTxtFrequencia().getText());
 		AgenteEpistemico agente = new AgenteEpistemico();
+		agente.setVontadeDePublicar(freq);
 		redeEpistemica.inserirAgente(agente,pesoAleatorio);
 		redeEpistemicaView.addAgente(agente, x, y);
 		agente.setMaxDiff(maxDiff);

@@ -10,9 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.swing.Icon;
@@ -70,6 +68,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 							initDesenho();
 							desenharAgentes();
 							atualizar();
+							Thread.sleep(delay);
 						} else {
 							paused = true;
 							Thread.sleep(84);
@@ -126,16 +125,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		this.setIcon(new ImageIcon(bi));
 	}
 
-	@Override
-	public void setIcon(Icon defaultIcon) {
-		try {
-			super.setIcon(defaultIcon);
-			Thread.sleep(delay);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(0);
-		}
-	}
 	/**
 	 * Desenha um agente com a cor corrente
 	 * 
@@ -308,7 +297,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		String message;
 		int notches = e.getWheelRotation();
-		//TODO manter o mouse no centro
 		if (notches < 0) {
 			message = "Mouse wheel moved UP " + -notches + " notch(es)";
 			float escalaAnt = escala;

@@ -31,9 +31,21 @@ public class RedeEpistemica {
 	public void fazUmaEtapa(){
 		synchronized (listAgenteEpistemico) {
 			if(listAgenteEpistemico.size()>1){
-				int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
-				logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
-				AgenteEpistemico agenteEpistemico = listAgenteEpistemico.get(agente);
+				AgenteEpistemico agenteEpistemico;
+				int tentativa=0;
+				while(true){
+					int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
+					logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
+					agenteEpistemico = listAgenteEpistemico.get(agente);
+					//ver se ele quer publicar
+					if(agenteEpistemico.querPublicar()){
+						break;
+					}
+					if(tentativa>100){
+						return;
+					}
+					tentativa++;
+				}
 				if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>agenteEpistemico.getMorrerEmXpublicacoes()){
 					matarAgente(agenteEpistemico);
 					if(agenteEpistemicoFactory!=null){

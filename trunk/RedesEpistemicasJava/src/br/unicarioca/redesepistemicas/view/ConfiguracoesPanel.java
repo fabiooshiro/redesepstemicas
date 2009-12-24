@@ -30,6 +30,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JTextField txtCriarNovoEm;
 	private JLabel lblSomenteUltimaTeoria;
 	private JCheckBox chkSomenteUltimaTeoria;
+	private JLabel lblFrequencia;
+	private JTextField txtFrequencia;
 	
 	private JLabel lblPesoAleatorio;
 	private JCheckBox chkPesoAleatorio;
@@ -47,7 +49,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblMaxDiff.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		txtQtdAgentes = new JTextField("1000");
-		txtMaxDiff = new JTextField("0.05");
+		txtMaxDiff = new JTextField("2.0");
 
 		lblMorrerEmXpublicacoes = new JLabel("Morrer em:");
 		lblMorrerEmXpublicacoes.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -78,14 +80,20 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblPassoMax.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		lblPesoAleatorio = new JLabel("Peso aleatório:");
+		lblPesoAleatorio.setHorizontalAlignment(SwingConstants.RIGHT);
 		chkPesoAleatorio = new JCheckBox();
-		chkPesoAleatorio.setSelected(true);
+		chkPesoAleatorio.setSelected(false);
+		
+		lblFrequencia = new JLabel("Freq.:");
+		lblFrequencia.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtFrequencia = new JTextField("0.1");
 		
 		//layout
 		this.addTab("Rede E.",criarPainelConfRede());
 		this.addTab("Agente E.",criarPainelConfAgente());
 		this.addTab("View",criarPainelConfView());
 	}
+	
 	private JPanel criarPainelConfRede(){
 		JPanel retorno = new JPanel();
 		retorno.setLayout(new BorderLayout());
@@ -132,7 +140,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		tabela.add(txtCriarNovoEm);
 		tabela.add(lblPesoAleatorio);
 		tabela.add(chkPesoAleatorio);
-		
+		tabela.add(lblFrequencia);
+		tabela.add(txtFrequencia);
 		retorno.add(tabela, BorderLayout.NORTH);
 		retorno.add(new JPanel(),BorderLayout.CENTER);
 		return retorno;
@@ -170,5 +179,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	}
 	public JCheckBox getChkPesoAleatorio() {
 		return chkPesoAleatorio;
+	}
+	public JTextField getTxtFrequencia() {
+		return txtFrequencia;
 	}
 }
