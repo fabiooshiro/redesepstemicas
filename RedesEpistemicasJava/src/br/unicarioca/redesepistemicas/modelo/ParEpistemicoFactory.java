@@ -19,6 +19,16 @@ public class ParEpistemicoFactory {
 			}
 		}
 	}
+	
+	/**
+	 * Cria um par epistemico dentro de uma esfera
+	 * @param foco
+	 * @return ParEpistemico
+	 */
+	public static ParEpistemico criar(Foco foco) {
+		return criar(foco.getX(),foco.getY(),foco.getZ(),foco.getRaio());
+	}
+	
 	/**
 	 * Cria um par epistemico dentro de uma esfera
 	 * 
@@ -35,14 +45,24 @@ public class ParEpistemicoFactory {
 	public static ParEpistemico criar(double x, double y, double z, double raio) {
 		double[][] a = criarPontoEmEsfera(x, y, z, raio);
 		Antecedente antecedente = new Antecedente();
-		antecedente.setX(a[0][0]);
-		antecedente.setY(a[0][1]);
-		antecedente.setZ(a[0][2]);
+		
+		antecedente.setX(normaliza(a[0][0]));
+		antecedente.setY(normaliza(a[0][1]));
+		antecedente.setZ(normaliza(a[0][2]));
 		ParEpistemico parEpistemico = new ParEpistemicoDiffHip();
 		parEpistemico.setAntecedente(antecedente);
 		Consequente consequente = new Consequente();
 		parEpistemico.setConsequente(consequente);
 		return parEpistemico;
+	}
+	
+	/**
+	 * Garante que o numero esta entre 0 e 1
+	 * @param a numero qualquer
+	 * @return valor entre 0 e 1
+	 */
+	private static double normaliza(double a){
+		return Math.min(1, Math.max(0, a));
 	}
 
 	private static double[][] criarPontoEmEsfera(double x, double y, double z, double raio){
@@ -98,4 +118,5 @@ public class ParEpistemicoFactory {
 		}
 		return mat3;
 	}
+	
 }
