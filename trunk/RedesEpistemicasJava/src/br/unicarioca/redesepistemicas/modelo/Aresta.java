@@ -2,7 +2,14 @@ package br.unicarioca.redesepistemicas.modelo;
 
 public class Aresta {
 	private Double peso;
-	private AgenteEpistemico agenteEpistemico;
+	private AgenteEpistemico receptor;
+	private AgenteEpistemico emissor;
+	public AgenteEpistemico getEmissor() {
+		return emissor;
+	}
+	public void setEmissor(AgenteEpistemico emissor) {
+		this.emissor = emissor;
+	}
 	/**
 	 * @return the peso
 	 */
@@ -16,21 +23,21 @@ public class Aresta {
 		this.peso = peso;
 	}
 	/**
-	 * @return the agenteEpistemico
+	 * @return receptor
 	 */
-	public AgenteEpistemico getAgenteEpistemico() {
-		return agenteEpistemico;
+	public AgenteEpistemico getReceptor() {
+		return receptor;
 	}
 	/**
-	 * @param agenteEpistemico the agenteEpistemico to set
+	 * @param receptor the agenteEpistemico to set
 	 */
-	public void setAgenteEpistemico(AgenteEpistemico agenteEpistemico) {
-		this.agenteEpistemico = agenteEpistemico;
+	public void setReceptor(AgenteEpistemico receptor) {
+		this.receptor = receptor;
 	}
 	@Override
 	public boolean equals(Object obj) {
 		Aresta a = (Aresta)obj;
-		if(this.getAgenteEpistemico().equals(a.getAgenteEpistemico())){
+		if(this.getReceptor().equals(a.getReceptor())){
 			return true;
 		}else{
 			return false;

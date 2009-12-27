@@ -51,6 +51,10 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 	public synchronized void refresh() {
 		logger.debug("Calculando " + listModel.getSize());
 		int tot = listModel.getSize() - 1;
+		for(int j=0;j<tot;j++){
+			AgenteEpistemico a = (AgenteEpistemico)listModel.get(j);
+			a.setReputacao(null);
+		}
 		for (int j = tot; j >0; j--) {
 			for (int i = 0; i < j; i++) {
 				AgenteEpistemico a = (AgenteEpistemico)listModel.get(i);

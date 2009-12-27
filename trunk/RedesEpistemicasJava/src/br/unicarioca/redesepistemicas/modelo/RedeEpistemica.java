@@ -11,6 +11,8 @@ public class RedeEpistemica {
 	private ComunicacaoListener comunicacaoListener = null;
 	private CicloVidaAgenteListener cicloVidaAgenteListener;
 	private AgenteEpistemicoFactory agenteEpistemicoFactory;
+	private boolean ligado = false;
+	private Thread t;
 	public void setCicloVidaAgenteListener(CicloVidaAgenteListener cicloVidaAgenteListener) {
 		this.cicloVidaAgenteListener = cicloVidaAgenteListener;
 	}
@@ -31,14 +33,14 @@ public class RedeEpistemica {
 	public void fazUmaEtapa(){
 		synchronized (listAgenteEpistemico) {
 			if(listAgenteEpistemico.size()>1){
-				AgenteEpistemico agenteEpistemico;
+				AgenteEpistemico agenteEmissor;
 				int tentativa=0;
 				while(true){
 					int agente = (int)((double)listAgenteEpistemico.size()*NumeroAleatorio.gerarNumero());
 					logger.debug("agente = "  + (agente+1) + " de " + listAgenteEpistemico.size());
-					agenteEpistemico = listAgenteEpistemico.get(agente);
+					agenteEmissor = listAgenteEpistemico.get(agente);
 					//ver se ele quer publicar
-					if(agenteEpistemico.querPublicar()){
+					if(agenteEmissor.querPublicar()){
 						break;
 					}
 					if(tentativa>100){
@@ -46,23 +48,21 @@ public class RedeEpistemica {
 					}
 					tentativa++;
 				}
-				if(agenteEpistemico.getMorrerEmXpublicacoes()!=0 && agenteEpistemico.getQtdParComunicado()>agenteEpistemico.getMorrerEmXpublicacoes()){
-					matarAgente(agenteEpistemico);
+				if(agenteEmissor.getMorrerEmXpublicacoes()!=0 && agenteEmissor.getQtdParComunicado()>agenteEmissor.getMorrerEmXpublicacoes()){
+					matarAgente(agenteEmissor);
 					if(agenteEpistemicoFactory!=null){
 						agenteEpistemicoFactory.criarAgente();
 					}
 				}else{
-					ParEpistemico parEpistemico = agenteEpistemico.gerarPar();
-					if(comunicacaoListener!=null) comunicacaoListener.comunicadorEscolhido(agenteEpistemico);
-					synchronized (agenteEpistemico.getArestas()) {
-						for(Aresta aresta:agenteEpistemico.getArestas()){
-							AgenteEpistemico receptor = aresta.getAgenteEpistemico();
-							Double peso = aresta.getPeso();
-							Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEpistemico);
-							logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
-							
-							if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEpistemico, receptor, peso,diff);
-						}
+					ParEpistemico parEpistemico = agenteEmissor.gerarPar();
+					if(comunicacaoListener!=null) comunicacaoListener.comunicadorEscolhido(agenteEmissor);
+					for(int i=0;i<agenteEmissor.getArestas().size();i++){
+						Aresta aresta = agenteEmissor.getArestas().get(i);
+						AgenteEpistemico receptor = aresta.getReceptor();
+						Double peso = aresta.getPeso();
+						Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEmissor);
+						logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
+						if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso,diff);
 					}
 				}
 			}
@@ -112,5 +112,26 @@ public class RedeEpistemica {
 	 */
 	public void setAgenteEpistemicoFactory(AgenteEpistemicoFactory agenteEpistemicoFactory) {
 		this.agenteEpistemicoFactory = agenteEpistemicoFactory;
+	}
+	public void ligarLoop(boolean b) {
+		if(true)return;
+		ligado = b;
+		if(t==null){
+			t = new Thread(){
+				@Override
+				public void run() {
+					while(true){
+						if(ligado){
+							try{
+								fazUmaEtapa();
+							}catch(Exception e){
+								
+							}
+						}
+					}
+				}
+			};
+			t.start();
+		}
 	}
 }

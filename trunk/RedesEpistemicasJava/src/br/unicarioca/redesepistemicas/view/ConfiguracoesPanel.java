@@ -86,7 +86,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		
 		lblFrequencia = new JLabel("Freq.:");
 		lblFrequencia.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtFrequencia = new JTextField("0.1");
+		txtFrequencia = new JTextField("1.0");
 		
 		//layout
 		this.addTab("Rede E.",criarPainelConfRede());
