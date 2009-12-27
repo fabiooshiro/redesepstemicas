@@ -18,7 +18,8 @@ import com.rmit.neuralnetwork.trainingdata.TrainingSet;
 public class AgenteEpistemico{
 	private static Logger logger = Logger.getLogger(AgenteEpistemico.class);
 	private List<ParEpistemico> crencas = new ArrayList<ParEpistemico>();
-	private List<Aresta> arestas = new ArrayList<Aresta>();  
+	private List<Aresta> arestasSaida = new ArrayList<Aresta>();
+	private List<Aresta> arestasEntrada = new ArrayList<Aresta>();
 	private NeuralNetwork neuralNetwork;
 	private int x,y;
 	private int raio;
@@ -33,6 +34,14 @@ public class AgenteEpistemico{
 	private Double reputacao = null;
 	private Color color;
 	private double vontadeDePublicar=1.0;
+	private Foco foco;
+	private double maxAtencao = 100;
+	public Foco getFoco() {
+		return foco;
+	}
+	public void setFoco(Foco foco) {
+		this.foco = foco;
+	}
 	public double getVontadeDePublicar() {
 		return vontadeDePublicar;
 	}
@@ -56,7 +65,7 @@ public class AgenteEpistemico{
 		// create new neural network with the defined structure
 		neuralNetwork = new NeuralNetwork(neuralNetworkStructure);
 		neuralNetwork.initWeights();
-		
+		foco = FocoFactory.criarFoco();
 		//gerarPar();
 		//gera um nome padrao
 		id = lastId++;
@@ -93,26 +102,15 @@ public class AgenteEpistemico{
 	}
 	
 	/**
-	 * Sorteia um novo espaço X,Y e Z e gera um par
+	 * Sorteia um novo espaço X,Y e Z e gera um par,
+	 * delegado para ParEpistemicoFactory
 	 * @return novo par
 	 */
 	private ParEpistemico criarNovoPar(){
 		ParEpistemico parEpistemico;
-		parEpistemico = new ParEpistemicoDiffHip();
-		Antecedente antecedente = new Antecedente();
-		antecedente.setX(NumeroAleatorio.gerarNumero());
-		antecedente.setY(NumeroAleatorio.gerarNumero());
-		antecedente.setZ(NumeroAleatorio.gerarNumero());
-		parEpistemico.setAntecedente(antecedente);
-		Consequente consequente = new Consequente();
-		consequente.setX(NumeroAleatorio.gerarNumero());
-		consequente.setY(NumeroAleatorio.gerarNumero());
-		parEpistemico.setConsequente(consequente);
-		Aresta aresta = new Aresta();
-		aresta.setAgenteEpistemico(null);
-		aresta.setPeso(50.0);
-		//receberComunicado(parEpistemico, aresta);
+		parEpistemico = ParEpistemicoFactory.criar(foco);
 		//atualizar o consequente
+		Consequente consequente = new Consequente();
 		consequente = new Consequente(neuralNetwork.getOutputs());
 		parEpistemico.setConsequente(consequente);
 		return parEpistemico;
@@ -121,8 +119,8 @@ public class AgenteEpistemico{
 	public double getReputacao(){
 		if(reputacao==null){
 			double res = 0;
-			synchronized (arestas) {
-				for(Aresta aresta:arestas){
+			synchronized (arestasSaida) {
+				for(Aresta aresta:arestasSaida){
 					res+=aresta.getPeso();
 				}
 			}
@@ -130,7 +128,9 @@ public class AgenteEpistemico{
 		}
 		return reputacao;
 	}
-	
+	public void setReputacao(Double d){
+		reputacao = d;
+	}
 	public void addReputacao(double x){
 		reputacao = getReputacao()+x;
 	}
@@ -265,19 +265,17 @@ public class AgenteEpistemico{
 		
 		neuralNetwork.train();
 	}
-	public Double receberComunicado(ParEpistemico parEpistemicoInformado,Aresta aresta, AgenteEpistemico agenteEpistemico){
+	public Double receberComunicado(ParEpistemico parEpistemicoInformado,Aresta aresta, AgenteEpistemico emissor){
 		double peso = aresta.getPeso();
-		double diff;
+		double deltaErro;
 		//guarda a informacao?
 		ParEpistemico parEpistemicoExistente = procurar(parEpistemicoInformado.getAntecedente());
 		if(parEpistemicoExistente==null){
 			logger.debug("Aprendendo " + parEpistemicoInformado);
 			parEpistemicoExistente = interpretar(parEpistemicoInformado);
-			diff = parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoInformado);
-			if(maxDiff>diff){
-				//crenca.add(parEpistemicoExistente);
-				int qtd = (int)(numberEvaluations * peso);
-				treinar(parEpistemicoInformado,qtd);
+			deltaErro = parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoInformado);
+			if(maxDiff>deltaErro){
+				treinar(parEpistemicoInformado,(int)(numberEvaluations * peso * deltaErro));
 			}//else recusa a aprender
 			
 		}else{
@@ -289,16 +287,34 @@ public class AgenteEpistemico{
 			);
 			parEpistemicoExistente.setConsequente(parEpistemicoPessoalDepoisTreino.getConsequente());
 			
-			diff = parEpistemicoPessoalDepoisTreino.calcularDiferencaConsequente(parEpistemicoInformado);
+			deltaErro = parEpistemicoPessoalDepoisTreino.calcularDiferencaConsequente(parEpistemicoInformado);
 		}
-		if(agenteEpistemico!=null){
-			double delta = 0.2 * (1.0/(diff+1.0)) * peso; /*regra de Hebb*/
+		if(emissor!=null){
+			double delta = 0.2 * (1.0/(deltaErro+1.0)) * peso; /*regra de Hebb*/
 			aresta.setPeso(peso + delta);
-			agenteEpistemico.addReputacao(delta);
+			emissor.addReputacao(delta);
+			//retirar o delta dos outros agentes
+			retirarDelta(delta,emissor,peso);
 		}
-		return diff;
+		return deltaErro;
 	}
 	
+	private void retirarDelta(double delta,AgenteEpistemico emissor,double pesoEmissor) {
+		if(true)return;
+		double relacao = delta/(maxAtencao-pesoEmissor);
+		double retirado = 0;
+		for(Aresta aresta:arestasEntrada){
+			if(!aresta.getEmissor().equals(emissor)){
+				double peso = aresta.getPeso(); 
+				double retirar = peso*relacao;
+				retirado+=retirar;
+				aresta.setPeso(peso-retirar);
+			}
+		}
+		if(retirado!=delta){
+			//throw new RuntimeException("Erro de precisao?"+(delta-retirado));
+		}
+	}
 	/**
 	 * Procura dentro da crenca
 	 * @param antecedente
@@ -314,11 +330,11 @@ public class AgenteEpistemico{
 	}
 	
 	public List<Aresta> getArestas() {
-		return arestas;
+		return arestasSaida;
 	}
 	
 	public void setArestas(List<Aresta> arestas) {
-		this.arestas = arestas;
+		this.arestasSaida = arestas;
 	}
 	
 	public int getX() {
@@ -341,10 +357,12 @@ public class AgenteEpistemico{
 	 */
 	public void conhecer(AgenteEpistemico agenteNovo, double peso) {
 		Aresta aresta = new Aresta();
-		aresta.setAgenteEpistemico(agenteNovo);
+		aresta.setEmissor(this);
+		aresta.setReceptor(agenteNovo);
 		aresta.setPeso(peso);
-		synchronized (arestas) {
-			arestas.add(aresta);
+		synchronized (arestasSaida) {
+			arestasSaida.add(aresta);
+			agenteNovo.arestasEntrada.add(aresta);
 		}
 		reputacao = null;
 	}
@@ -370,15 +388,15 @@ public class AgenteEpistemico{
 	}
 
 	public void morrer() {
-		for(Aresta aresta:arestas){
-			aresta.getAgenteEpistemico().removerAgente(this);
+		for(Aresta aresta:arestasSaida){
+			aresta.getReceptor().removerAgente(this);
 		}
 	}
 
 	private void removerAgente(AgenteEpistemico agenteEpistemico) {
 		Aresta aresta = new Aresta();
-		aresta.setAgenteEpistemico(agenteEpistemico);
-		arestas.remove(aresta);
+		aresta.setReceptor(agenteEpistemico);
+		arestasSaida.remove(aresta);
 	}
 	@Override
 	public boolean equals(Object obj) {
