@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -54,6 +53,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private boolean verPesosDoSelecionado = false;
 	private int algoritimoRepulsao = 2;
 	private AgenteListPanel agenteListPanel;
+	private int ordenarAgentesEmNEtapas = 10;
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -101,15 +101,20 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * redeEpistemica.fazUmaEtapa();
 	 */
 	private void atualizar() {
+		if(redeEpistemica.getEtapa()%ordenarAgentesEmNEtapas==0 && agenteListPanel!=null){
+			agenteListPanel.refresh();
+		}
 		// pede para fazer uma etapa
 		redeEpistemica.fazUmaEtapa();
 	}
 
 	private void initDesenho() {
 		if (reiniciarBi) {
-			bi = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
-			graphics = bi.getGraphics();
-			reiniciarBi = false;
+			try{
+				bi = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+				graphics = bi.getGraphics();
+			}catch(Exception e){}
+				reiniciarBi = false;
 		}
 		graphics.setColor(Color.WHITE);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -460,6 +465,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		return verLinhasAzuis;
 	}
 
+	/**
+	 * Chamado quando existe um evento vindo do ListSelectionListener
+	 * @param agentes
+	 */
 	public void selecionarAgentes(List<AgenteEpistemico> agentes) {
 		List<AgenteEpistemico> listAgentes=redeEpistemica.getListAgenteEpistemico();
 		for(AgenteEpistemico agente:listAgentes)

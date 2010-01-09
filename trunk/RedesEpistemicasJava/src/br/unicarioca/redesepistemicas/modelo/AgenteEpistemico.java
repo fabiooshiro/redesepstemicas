@@ -1,8 +1,11 @@
 package br.unicarioca.redesepistemicas.modelo;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 
@@ -18,6 +21,10 @@ import com.rmit.neuralnetwork.trainingdata.TrainingSet;
 public class AgenteEpistemico{
 	private static Logger logger = Logger.getLogger(AgenteEpistemico.class);
 	private List<ParEpistemico> crencas = new ArrayList<ParEpistemico>();
+	/**
+	 * Arestas que saem deste agente para outros<br>
+	 * arestas usadas para falar
+	 */
 	private List<Aresta> arestasSaida = new ArrayList<Aresta>();
 	private List<Aresta> arestasEntrada = new ArrayList<Aresta>();
 	private NeuralNetwork neuralNetwork;
@@ -31,11 +38,19 @@ public class AgenteEpistemico{
 	private int criarNovoEm = 10;
 	private boolean somenteUltimaTeoria = true;
 	private int morrerEmXpublicacoes = 100; 
-	private Double reputacao = null;
+	private Double pesoReputacao = null;
 	private Color color;
 	private double vontadeDePublicar=1.0;
 	private Foco foco;
 	private double maxAtencao = 100;
+	private RedeEpistemica redeEpistemica;
+	
+	public RedeEpistemica getRedeEpistemica() {
+		return redeEpistemica;
+	}
+	public void setRedeEpistemica(RedeEpistemica redeEpistemica) {
+		this.redeEpistemica = redeEpistemica;
+	}
 	public Foco getFoco() {
 		return foco;
 	}
@@ -116,24 +131,46 @@ public class AgenteEpistemico{
 		return parEpistemico;
 	}
 	
-	public double getReputacao(){
-		if(reputacao==null){
+	/**
+	 * Se for nulo, calcula o valor de todas as arestas de saida.<br>
+	 * Se nao, retorna o valor já calculado
+	 * 
+	 * @return valor somado de todas as arestas
+	 */
+	public double getPesoReputacao(){
+		if(pesoReputacao==null){
 			double res = 0;
 			synchronized (arestasSaida) {
 				for(Aresta aresta:arestasSaida){
 					res+=aresta.getPeso();
 				}
 			}
-			reputacao=res;
+			pesoReputacao=res;
 		}
-		return reputacao;
+		return pesoReputacao;
 	}
-	public void setReputacao(Double d){
-		reputacao = d;
+	
+	/**
+	 * Usado para:<br>
+	 * 1 - zerar, ou seja, colocar null
+	 * quando null o peso é todo recalculado
+	 * <br>
+	 * 2 - Normalizar o peso em {@link RedeEpistemica#normalizarPesos()}
+	 * @param pesoReputacao
+	 */
+	public void setPesoReputacao(Double pesoReputacao){
+		this.pesoReputacao = pesoReputacao;
 	}
-	public void addReputacao(double x){
-		reputacao = getReputacao()+x;
+	
+	/**
+	 * Usado para comodidade<br>
+	 * pesoReputacao = getPesoTotal()+x;
+	 * @param x valor a ser adicionado
+	 */
+	public void addPesoReputacao(double x){
+		pesoReputacao = getPesoReputacao()+x;
 	}
+	
 	/**
 	 * Gera um par aleatorio,
 	 * ou pega um par aleatorio do conhecimento
@@ -292,15 +329,29 @@ public class AgenteEpistemico{
 		if(emissor!=null){
 			double delta = 0.2 * (1.0/(deltaErro+1.0)) * peso; /*regra de Hebb*/
 			aresta.setPeso(peso + delta);
-			emissor.addReputacao(delta);
+			emissor.addPesoReputacao(delta);
 			//retirar o delta dos outros agentes
-			retirarDelta(delta,emissor,peso);
+			//retirarDelta(delta,emissor,peso);
+			distribuirAtencao();
 		}
 		return deltaErro;
 	}
-	
+	private void distribuirAtencao(){
+		//recuperar o maximo
+		double max = arestasEntrada.get(0).getPeso();
+		double total = 0;
+		for(Aresta aresta:arestasEntrada){
+			max = Math.max(aresta.getPeso(), max);
+			total +=aresta.getPeso();
+		}
+		for(Aresta aresta:arestasEntrada){
+			double peso = aresta.getPeso()/total;
+			peso = peso*maxAtencao;
+			aresta.setPeso(peso);
+		}
+	}
 	private void retirarDelta(double delta,AgenteEpistemico emissor,double pesoEmissor) {
-		if(true)return;
+		if(redeEpistemica.isNormalizarPesos()) return;
 		double relacao = delta/(maxAtencao-pesoEmissor);
 		double retirado = 0;
 		for(Aresta aresta:arestasEntrada){
@@ -329,6 +380,10 @@ public class AgenteEpistemico{
 		return null;
 	}
 	
+	/**
+	 * Arestas para comunicar
+	 * @return Arestas de Saida de fala
+	 */
 	public List<Aresta> getArestas() {
 		return arestasSaida;
 	}
@@ -364,7 +419,7 @@ public class AgenteEpistemico{
 			arestasSaida.add(aresta);
 			agenteNovo.arestasEntrada.add(aresta);
 		}
-		reputacao = null;
+		pesoReputacao = null;
 	}
 
 	public int getRaio() {
@@ -374,17 +429,17 @@ public class AgenteEpistemico{
 		this.raio = raio;
 	}
 	
+	private static DecimalFormat decimalFormat = new DecimalFormat("#,##0.000", new DecimalFormatSymbols (new Locale ("pt", "BR")));
 	/**
 	 * retorna o this.nome
 	 */
 	@Override
 	public String toString() {
 		if(color!=null){
-			return nome + " ["+qtdParComunicado+"] " + Math.round(getReputacao()*10)/10.0 + "*";	
+			return nome + " ["+qtdParComunicado+"] " + getPesoReputacao()+ "*";	
 		}else{
-			return nome + " ["+qtdParComunicado+"] " + Math.round(getReputacao()*10)/10.0;
+			return nome + " ["+qtdParComunicado+"] " + getPesoReputacao();
 		}
-		
 	}
 
 	public void morrer() {
@@ -398,6 +453,7 @@ public class AgenteEpistemico{
 		aresta.setReceptor(agenteEpistemico);
 		arestasSaida.remove(aresta);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj==null) return false;

@@ -9,9 +9,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -22,18 +25,21 @@ import org.apache.log4j.Logger;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
+import br.unicarioca.redesepistemicas.modelo.InfoListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
-public class MainFrame extends JFrame implements WindowListener, CicloVidaAgenteListener,AgenteEpistemicoFactory{
+public class MainFrame extends JFrame implements InfoListener,WindowListener, CicloVidaAgenteListener,AgenteEpistemicoFactory{
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(MainFrame.class);
+	private static MainFrame instance;
 	private RedeEpistemicaView redeEpistemicaView;
 	private RedeEpistemica redeEpistemica;
 	private AgenteListPanel agenteListPanel;
 	private ControlePanel controlePanel;
 	private MenuPrincipal menuPrincipal;
 	private ConfiguracoesPanel configuracoesPanel = null;
+	private JLabel sysInfo = new JLabel("Redes Epistêmicas");
 	public MainFrame() {
 		this.setTitle("IndraNet 1.0 - Simulador de Redes Epistêmicas");
 		//instancias
@@ -52,6 +58,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		redeEpistemica.setAgenteEpistemicoFactory(this);
 		redeEpistemicaView.setAgenteEpistemicoFactory(this);
 		redeEpistemicaView.setAgenteListPanel(agenteListPanel);
+		agenteListPanel.setRedeEpistemica(redeEpistemica);
 		controlePanel.getZerar().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				agenteListPanel.reiniciar();
@@ -144,7 +151,7 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		
 		this.setLayout(new BorderLayout());
 		rightPanel.add(redeEpistemicaView,BorderLayout.CENTER);
-		rightPanel.add(controlePanel,BorderLayout.SOUTH);
+		rightPanel.add(controlePanel,BorderLayout.NORTH);
 		
 		final JScrollPane scrollPane = new JScrollPane(agenteListPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
@@ -152,10 +159,13 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		this.addWindowListener(this);
 		this.add(leftPanel,BorderLayout.WEST);
 		this.add(rightPanel, BorderLayout.CENTER);
+		sysInfo.setBorder(BorderFactory.createEmptyBorder(3, 3,3, 3));
+		sysInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+		this.add(sysInfo,BorderLayout.SOUTH);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(800,600);
 		this.setVisible(true);
-		
+		instance = this;
 	}
 	
 	public void treinar(){
@@ -243,5 +253,14 @@ public class MainFrame extends JFrame implements WindowListener, CicloVidaAgente
 		agente.setCriarNovoEm(criarNovoEm);
 		redeEpistemicaView.setDistanciaMaximaRepulsao(distanciaMaxRepulsao);
 		return agente;
+	}
+
+	@Override
+	public void info(String info) {
+		sysInfo.setText(info);		
+	}
+
+	public static MainFrame getLastInstance() {
+		return instance;
 	}
 }
