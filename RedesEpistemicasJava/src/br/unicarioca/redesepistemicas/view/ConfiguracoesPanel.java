@@ -32,6 +32,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JCheckBox chkSomenteUltimaTeoria;
 	private JLabel lblFrequencia;
 	private JTextField txtFrequencia;
+	private JLabel lblSnapShot;
+	private JTextField txtSnapShot;
 	
 	private JLabel lblPesoAleatorio;
 	private JCheckBox chkPesoAleatorio;
@@ -40,6 +42,11 @@ public class ConfiguracoesPanel extends JTabbedPane {
 
 	public ConfiguracoesPanel() {
 		
+		lblSnapShot = new JLabel("PrintScreen:");
+		lblSnapShot.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSnapShot.setToolTipText("Print a cada x publicações");
+		
+		txtSnapShot = new JTextField("10");
 
 		lblQtdAgentes = new JLabel("Qtd. Agentes:");
 		lblQtdAgentes.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -101,6 +108,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		tabela.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tabela.add(lblQtdAgentes);
 		tabela.add(txtQtdAgentes);
+		tabela.add(lblSnapShot);
+		tabela.add(txtSnapShot);
 		
 		JPanel sul = new JPanel(new FlowLayout());
 		sul.add(btnOk);

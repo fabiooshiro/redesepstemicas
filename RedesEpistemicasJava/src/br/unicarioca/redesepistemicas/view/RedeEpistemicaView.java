@@ -18,6 +18,7 @@ import javax.swing.JButton;
 
 import org.apache.log4j.Logger;
 
+import br.unicarioca.redesepistemicas.bo.SalvarSnapShoot;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.Aresta;
@@ -70,6 +71,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 							atualizar();
 							logger.debug("Atualizando imagem delay " + delay*10);
 							setIcon(new ImageIcon(bi));
+							
 							//30 is a magic number, just to not flick the image
 							Thread.sleep((delay*10)+30);
 						} else {
@@ -101,11 +103,15 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * redeEpistemica.fazUmaEtapa();
 	 */
 	private void atualizar() {
-		if(redeEpistemica.getEtapa()%ordenarAgentesEmNEtapas==0 && agenteListPanel!=null){
+		int etapa = redeEpistemica.getEtapa();
+		if(etapa%ordenarAgentesEmNEtapas==0 && agenteListPanel!=null){
 			agenteListPanel.refresh();
 		}
 		// pede para fazer uma etapa
 		redeEpistemica.fazUmaEtapa();
+		
+		//salvar o estado do programa
+		SalvarSnapShoot.salvar(bi, etapa);
 	}
 
 	private void initDesenho() {
