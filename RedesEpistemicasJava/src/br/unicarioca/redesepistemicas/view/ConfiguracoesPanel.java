@@ -55,7 +55,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblMaxDiff.setToolTipText("Tolerância");
 		lblMaxDiff.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		txtQtdAgentes = new JTextField("1000");
+		txtQtdAgentes = new JTextField("500");
 		txtMaxDiff = new JTextField("2.0");
 
 		lblMorrerEmXpublicacoes = new JLabel("Morrer em:");
@@ -191,5 +191,225 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	}
 	public JTextField getTxtFrequencia() {
 		return txtFrequencia;
+	}
+	public JTextField getTxtSnapShot() {
+		return txtSnapShot;
+	}
+
+	/**
+	 * @return the lblQtdAgentes
+	 */
+	public JLabel getLblQtdAgentes() {
+		return lblQtdAgentes;
+	}
+
+	/**
+	 * @param lblQtdAgentes the lblQtdAgentes to set
+	 */
+	public void setLblQtdAgentes(JLabel lblQtdAgentes) {
+		this.lblQtdAgentes = lblQtdAgentes;
+	}
+
+	/**
+	 * @return the lblMaxDiff
+	 */
+	public JLabel getLblMaxDiff() {
+		return lblMaxDiff;
+	}
+
+	/**
+	 * @param lblMaxDiff the lblMaxDiff to set
+	 */
+	public void setLblMaxDiff(JLabel lblMaxDiff) {
+		this.lblMaxDiff = lblMaxDiff;
+	}
+
+	/**
+	 * @return the lblMorrerEmXpublicacoes
+	 */
+	public JLabel getLblMorrerEmXpublicacoes() {
+		return lblMorrerEmXpublicacoes;
+	}
+
+	/**
+	 * @param lblMorrerEmXpublicacoes the lblMorrerEmXpublicacoes to set
+	 */
+	public void setLblMorrerEmXpublicacoes(JLabel lblMorrerEmXpublicacoes) {
+		this.lblMorrerEmXpublicacoes = lblMorrerEmXpublicacoes;
+	}
+
+	/**
+	 * @return the lblPassoMax
+	 */
+	public JLabel getLblPassoMax() {
+		return lblPassoMax;
+	}
+
+	/**
+	 * @param lblPassoMax the lblPassoMax to set
+	 */
+	public void setLblPassoMax(JLabel lblPassoMax) {
+		this.lblPassoMax = lblPassoMax;
+	}
+
+	/**
+	 * @return the lblDistanciaMaxRepulsao
+	 */
+	public JLabel getLblDistanciaMaxRepulsao() {
+		return lblDistanciaMaxRepulsao;
+	}
+
+	/**
+	 * @param lblDistanciaMaxRepulsao the lblDistanciaMaxRepulsao to set
+	 */
+	public void setLblDistanciaMaxRepulsao(JLabel lblDistanciaMaxRepulsao) {
+		this.lblDistanciaMaxRepulsao = lblDistanciaMaxRepulsao;
+	}
+
+	/**
+	 * @return the lblCriarNovoEm
+	 */
+	public JLabel getLblCriarNovoEm() {
+		return lblCriarNovoEm;
+	}
+
+	/**
+	 * @param lblCriarNovoEm the lblCriarNovoEm to set
+	 */
+	public void setLblCriarNovoEm(JLabel lblCriarNovoEm) {
+		this.lblCriarNovoEm = lblCriarNovoEm;
+	}
+
+	/**
+	 * @return the lblSomenteUltimaTeoria
+	 */
+	public JLabel getLblSomenteUltimaTeoria() {
+		return lblSomenteUltimaTeoria;
+	}
+
+	/**
+	 * @param lblSomenteUltimaTeoria the lblSomenteUltimaTeoria to set
+	 */
+	public void setLblSomenteUltimaTeoria(JLabel lblSomenteUltimaTeoria) {
+		this.lblSomenteUltimaTeoria = lblSomenteUltimaTeoria;
+	}
+
+	/**
+	 * @return the lblFrequencia
+	 */
+	public JLabel getLblFrequencia() {
+		return lblFrequencia;
+	}
+
+	/**
+	 * @param lblFrequencia the lblFrequencia to set
+	 */
+	public void setLblFrequencia(JLabel lblFrequencia) {
+		this.lblFrequencia = lblFrequencia;
+	}
+
+	/**
+	 * @return the lblSnapShot
+	 */
+	public JLabel getLblSnapShot() {
+		return lblSnapShot;
+	}
+
+	/**
+	 * @param lblSnapShot the lblSnapShot to set
+	 */
+	public void setLblSnapShot(JLabel lblSnapShot) {
+		this.lblSnapShot = lblSnapShot;
+	}
+
+	/**
+	 * @return the lblPesoAleatorio
+	 */
+	public JLabel getLblPesoAleatorio() {
+		return lblPesoAleatorio;
+	}
+
+	/**
+	 * @param lblPesoAleatorio the lblPesoAleatorio to set
+	 */
+	public void setLblPesoAleatorio(JLabel lblPesoAleatorio) {
+		this.lblPesoAleatorio = lblPesoAleatorio;
+	}
+
+	/**
+	 * @param txtQtdAgentes the txtQtdAgentes to set
+	 */
+	public void setTxtQtdAgentes(JTextField txtQtdAgentes) {
+		this.txtQtdAgentes = txtQtdAgentes;
+	}
+
+	/**
+	 * @param txtMaxDiff the txtMaxDiff to set
+	 */
+	public void setTxtMaxDiff(JTextField txtMaxDiff) {
+		this.txtMaxDiff = txtMaxDiff;
+	}
+
+	/**
+	 * @param txtMorrerEmXpublicacoes the txtMorrerEmXpublicacoes to set
+	 */
+	public void setTxtMorrerEmXpublicacoes(JTextField txtMorrerEmXpublicacoes) {
+		this.txtMorrerEmXpublicacoes = txtMorrerEmXpublicacoes;
+	}
+
+	/**
+	 * @param spnPassoMax the spnPassoMax to set
+	 */
+	public void setSpnPassoMax(JSpinner spnPassoMax) {
+		this.spnPassoMax = spnPassoMax;
+	}
+
+	/**
+	 * @param txtDistanciaMaxRepulsao the txtDistanciaMaxRepulsao to set
+	 */
+	public void setTxtDistanciaMaxRepulsao(JTextField txtDistanciaMaxRepulsao) {
+		this.txtDistanciaMaxRepulsao = txtDistanciaMaxRepulsao;
+	}
+
+	/**
+	 * @param txtCriarNovoEm the txtCriarNovoEm to set
+	 */
+	public void setTxtCriarNovoEm(JTextField txtCriarNovoEm) {
+		this.txtCriarNovoEm = txtCriarNovoEm;
+	}
+
+	/**
+	 * @param chkSomenteUltimaTeoria the chkSomenteUltimaTeoria to set
+	 */
+	public void setChkSomenteUltimaTeoria(JCheckBox chkSomenteUltimaTeoria) {
+		this.chkSomenteUltimaTeoria = chkSomenteUltimaTeoria;
+	}
+
+	/**
+	 * @param txtFrequencia the txtFrequencia to set
+	 */
+	public void setTxtFrequencia(JTextField txtFrequencia) {
+		this.txtFrequencia = txtFrequencia;
+	}
+
+	/**
+	 * @param txtSnapShot the txtSnapShot to set
+	 */
+	public void setTxtSnapShot(JTextField txtSnapShot) {
+		this.txtSnapShot = txtSnapShot;
+	}
+
+	/**
+	 * @param chkPesoAleatorio the chkPesoAleatorio to set
+	 */
+	public void setChkPesoAleatorio(JCheckBox chkPesoAleatorio) {
+		this.chkPesoAleatorio = chkPesoAleatorio;
+	}
+
+	/**
+	 * @param btnOk the btnOk to set
+	 */
+	public void setBtnOk(JButton btnOk) {
+		this.btnOk = btnOk;
 	}
 }

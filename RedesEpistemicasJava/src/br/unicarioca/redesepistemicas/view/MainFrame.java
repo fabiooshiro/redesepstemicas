@@ -22,6 +22,7 @@ import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
+import br.unicarioca.redesepistemicas.bo.SalvarSnapShoot;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
@@ -51,6 +52,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		configuracoesPanel = new ConfiguracoesPanel();
 		new AgenteListMouseMenu(agenteListPanel.getJList());
 		//configuracoes
+		SalvarSnapShoot.getInstance().setConfiguracoesPanel(configuracoesPanel);
 		CrencaTreinarView crencaTreinarView = CrencaTreinarView.getInstance();
 		crencaTreinarView.setAgenteListPanel(agenteListPanel);
 		controlePanel.addControlado(redeEpistemicaView);
@@ -175,10 +177,15 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		jFrame.pack();
 		jFrame.setVisible(true);
 	}
+	
+	/**
+	 * Nova simulacao
+	 */
 	public void novo(){
 		NumeroAleatorio.restart();
 		agenteListPanel.reiniciar();
 		redeEpistemicaView.pause();
+		redeEpistemicaView.setSnapshot(Integer.valueOf(configuracoesPanel.getTxtSnapShot().getText()));
 		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
 		for(int i=0;i<qtd;i++){
 			criarAgente();
