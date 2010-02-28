@@ -55,6 +55,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private int algoritimoRepulsao = 2;
 	private AgenteListPanel agenteListPanel;
 	private int ordenarAgentesEmNEtapas = 10;
+	private int snapshot = 1000;
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -103,15 +104,19 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * redeEpistemica.fazUmaEtapa();
 	 */
 	private void atualizar() {
-		int etapa = redeEpistemica.getEtapa();
-		if(etapa%ordenarAgentesEmNEtapas==0 && agenteListPanel!=null){
-			agenteListPanel.refresh();
+		if(redeEpistemica.getListAgenteEpistemico().size()!=0){
+			int etapa = redeEpistemica.getEtapa();
+			if(etapa%ordenarAgentesEmNEtapas==0 && agenteListPanel!=null){
+				agenteListPanel.refresh();
+			}
+			// pede para fazer uma etapa
+			redeEpistemica.fazUmaEtapa();
+			
+			if(etapa%snapshot==0){
+				//salvar o estado do programa
+				SalvarSnapShoot.getInstance().salvar(bi, etapa);
+			}
 		}
-		// pede para fazer uma etapa
-		redeEpistemica.fazUmaEtapa();
-		
-		//salvar o estado do programa
-		SalvarSnapShoot.salvar(bi, etapa);
 	}
 
 	private void initDesenho() {
@@ -519,5 +524,11 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	
 	public void setAgenteListPanel(AgenteListPanel agenteListPanel) {
 		this.agenteListPanel = agenteListPanel;
+	}
+	public int getSnapshot() {
+		return snapshot;
+	}
+	public void setSnapshot(int snapshot) {
+		this.snapshot = snapshot;
 	}
 }
