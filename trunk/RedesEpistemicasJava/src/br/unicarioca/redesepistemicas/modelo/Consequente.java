@@ -2,6 +2,9 @@ package br.unicarioca.redesepistemicas.modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Consequente do par epistemico 
+ */
 public class Consequente {
 	private Double x;
 	private Double y;

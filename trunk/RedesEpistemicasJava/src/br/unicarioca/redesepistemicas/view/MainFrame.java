@@ -22,14 +22,17 @@ import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
+import br.unicarioca.redesepistemicas.bo.InfoListener;
 import br.unicarioca.redesepistemicas.bo.SalvarSnapShoot;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
-import br.unicarioca.redesepistemicas.modelo.InfoListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
+/**
+ * Janela principal do sistema
+ */
 public class MainFrame extends JFrame implements InfoListener,WindowListener, CicloVidaAgenteListener,AgenteEpistemicoFactory{
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(MainFrame.class);
@@ -236,8 +239,12 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		agenteListPanel.morto(agente);
 	}
 
+	/**
+	 * Cria um agente de acordo com as configuracoes
+	 */
 	@Override
 	public AgenteEpistemico criarAgente() {
+		//TODO talvez devesse existir um factory implementado em outro local
 		int morrerEm = Integer.valueOf(configuracoesPanel.getTxtMorrerEmXpublicacoes().getText());
 		double maxDiff = Double.valueOf(configuracoesPanel.getTxtMaxDiff().getText());
 		boolean chkSomenteUltimaTeoria = configuracoesPanel.getChkSomenteUltimaTeoria().isSelected();

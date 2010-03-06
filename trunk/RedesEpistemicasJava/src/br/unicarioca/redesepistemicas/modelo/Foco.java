@@ -1,5 +1,9 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+/**
+ * Foco do agente epistemico
+ *
+ */
 public class Foco {
 	private Double x,y,z,raio;
 

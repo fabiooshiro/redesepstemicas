@@ -13,9 +13,9 @@ import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
+import br.unicarioca.redesepistemicas.bo.InfoListener;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
-import br.unicarioca.redesepistemicas.modelo.InfoListener;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {

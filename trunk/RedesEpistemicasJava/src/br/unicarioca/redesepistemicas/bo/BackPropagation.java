@@ -1,4 +1,4 @@
-package br.unicarioca.redesepistemicas.modelo;
+package br.unicarioca.redesepistemicas.bo;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,5 +1,8 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+/**
+ * Aresta de relacao entre um agente emissor e um receptor
+ */
 public class Aresta {
 	private Double peso;
 	private AgenteEpistemico receptor;

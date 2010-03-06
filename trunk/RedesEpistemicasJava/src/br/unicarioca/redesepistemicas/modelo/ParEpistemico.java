@@ -1,6 +1,8 @@
 package br.unicarioca.redesepistemicas.modelo;
 
-
+/**
+ * Representa um par epistemico composto por um antecedente e um consequente
+ */
 public class ParEpistemico {
 	protected Antecedente antecedente;
 	protected Consequente consequente;
@@ -30,6 +32,12 @@ public class ParEpistemico {
 	public void setConsequente(Consequente consequente) {
 		this.consequente = consequente;
 	}
+	
+	/**
+	 * Calcula a diferenca
+	 * @param par Par a ser confrontado
+	 * @return diferenca
+	 */
 	public Double calcularDiferencaConsequente(ParEpistemico par) {
 		Double diff = 0.0;
 		Consequente con = par.getConsequente();
