@@ -37,6 +37,11 @@ public class SalvarSnapShoot {
 		return instance;
 	}
 	
+	/**
+	 * Salva um screenshot
+	 * @param bi
+	 * @param n
+	 */
 	public void salvar(BufferedImage bi,long n) {
 		try {
 			snapshotN++;

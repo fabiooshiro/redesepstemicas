@@ -9,6 +9,8 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 
+import br.unicarioca.redesepistemicas.bo.BackPropagation;
+
 import com.rmit.neuralnetwork.NeuralNetwork;
 import com.rmit.neuralnetwork.training.Training;
 import com.rmit.neuralnetwork.trainingdata.TrainingExample;

@@ -1,5 +1,8 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+/**
+ * Antecedente do par epistemico
+ */
 public class Antecedente {
 	private Double x;
 	private Double y;

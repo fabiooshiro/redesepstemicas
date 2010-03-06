@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Representa a rede epistemica, possui a lista dos N agentes da rede.<br>
+ * Guarda configuracoes da rede, o numero de etapas que o algoritmo executou e o proprio algoritmo.<br>
+ */
 public class RedeEpistemica {
 	private static Logger logger = Logger.getLogger(RedeEpistemica.class);
 	private List<AgenteEpistemico> listAgenteEpistemico = new ArrayList<AgenteEpistemico>();
@@ -15,15 +19,36 @@ public class RedeEpistemica {
 	private boolean ligado = false;
 	private Thread t;
 	private int etapa;
+	
+	/**
+	 * Listener de ciclo de vida de um agente<br>
+	 * que recebe eventos de quando o agente &eacute; criado ou morto
+	 * @param cicloVidaAgenteListener CicloVidaAgenteListener
+	 */
 	public void setCicloVidaAgenteListener(CicloVidaAgenteListener cicloVidaAgenteListener) {
 		this.cicloVidaAgenteListener = cicloVidaAgenteListener;
 	}
+	
+	/**
+	 * Listener de ciclo de vida de um agente
+	 * @return CicloVidaAgenteListener
+	 */
 	public CicloVidaAgenteListener getCicloVidaAgenteListener() {
 		return cicloVidaAgenteListener;
 	}
+	
+	/**
+	 * Listener de comunicacao
+	 * @param comunicacaoListener ComunicacaoListener
+	 */
 	public void setComunicacaoListener(ComunicacaoListener comunicacaoListener) {
 		this.comunicacaoListener = comunicacaoListener;
 	}
+	
+	/**
+	 * Lista de agentes
+	 * @return List AgenteEpistemico
+	 */
 	public List<AgenteEpistemico> getListAgenteEpistemico() {
 		return listAgenteEpistemico;
 	}
@@ -32,6 +57,12 @@ public class RedeEpistemica {
 		this.listAgenteEpistemico = listAgenteEpistemico;
 	}
 	
+	/**
+	 * Faz um passo do algoritmo que consiste em sortear um agente. <br>
+	 * Verificar se ele deseja publicar.<br>
+	 * pedir ao agente que gere o par a ser publicado.<br>
+	 * transmitir o par para todos os outros agentes.<br>
+	 */
 	public void fazUmaEtapa(){
 		synchronized (listAgenteEpistemico) {
 			if(listAgenteEpistemico.size()>1){
@@ -174,12 +205,27 @@ public class RedeEpistemica {
 			t.start();
 		}
 	}
+	
+	/**
+	 * Flag para saber se normalizamos ou nao os pesos
+	 * @param normalizarPesos
+	 */
 	public void setNormalizarPesos(boolean normalizarPesos) {
 		this.normalizarPesos = normalizarPesos;
 	}
+	
+	/**
+	 * Flag para saber se normalizamos ou nao os pesos
+	 * @return boolean
+	 */
 	public boolean isNormalizarPesos() {
 		return normalizarPesos;
 	}
+	
+	/**
+	 * Retorna quantas vezes o algoritmo foi executado
+	 * @return int
+	 */
 	public int getEtapa() {
 		return etapa;
 	}

@@ -5,6 +5,9 @@ import org.apache.log4j.spi.LoggingEvent;
 
 import br.unicarioca.redesepistemicas.view.MainFrame;
 
+/**
+ * Responsavel por desviar os INFO para a interface do usuario
+ */
 public class Log4jAppender extends AppenderSkeleton{
 
 	@Override
@@ -16,7 +19,7 @@ public class Log4jAppender extends AppenderSkeleton{
 			message = this.layout.format(event);
 		}
 		//Enviar a mensagem para o MainFrame
-		MainFrame mf = MainFrame.getLastInstance();
+		InfoListener mf = MainFrame.getLastInstance();
 		if(mf!=null){
 			mf.info(message);
 		}
@@ -24,7 +27,6 @@ public class Log4jAppender extends AppenderSkeleton{
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
 		
 	}
 
