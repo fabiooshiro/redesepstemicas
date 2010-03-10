@@ -24,7 +24,12 @@ public class SalvarSnapShoot {
 	private boolean pastasVerificadas = false;
 	private static SalvarSnapShoot instance;
 	private static int snapshotN=0;
+	private static int snapshotManN=0;
 	private ConfiguracoesPanel configuracoesPanel;
+	
+	{
+		criaIndex();
+	}
 	
 	private SalvarSnapShoot(){
 		pastasVerificadas = false;
@@ -46,19 +51,24 @@ public class SalvarSnapShoot {
 		try {
 			snapshotN++;
 			if(!pastasVerificadas){
-				File dir = new File("screenshots");
+				File dir = new File("screenshots/automatica");
 				if(!dir.exists())dir.mkdir();
-				dir = new File("screenshots/imagens");
+				dir = new File("screenshots/automatica/imagens");
 				if(!dir.exists())dir.mkdir();
 			}
 			//salva o png
-			ImageIO.write(bi, "png", new File("screenshots/imagens/f"+snapshotN+".png"));
+			ImageIO.write(bi, "png", new File("screenshots/automatica/imagens/f"+snapshotN+".png"));
 			//salvar o html
 			StringBuilder html=new StringBuilder();
 			String configuracao = criarHtmlConf();
 			html.append("<html><head><title>RedeEpistemica</title></head><body>");
 			html.append("<div id=\"nav\">");
-			html.append("<a href=\"p").append(snapshotN-1).append(".html\">Anterior</a> - ");
+						
+			if (snapshotN > 1)
+				html.append("<a href=\"p").append(snapshotN-1).append(".html\">Anterior</a> - ");
+			else
+				html.append("Anterior - ");
+			
 			html.append("<a href=\"p").append(snapshotN+1).append(".html\">Pr&oacute;xima</a>");
 			html.append("</div>");
 			html.append("<img src=\"imagens/f").append(snapshotN).append(".png\">");
@@ -67,7 +77,46 @@ public class SalvarSnapShoot {
 			html.append(configuracao);
 			html.append("</div>");
 			html.append("</body></html>");
-			FileUtils.writeStringToFile(new File("screenshots/p"+snapshotN+".html"), html.toString(), "iso-8859-1");
+			FileUtils.writeStringToFile(new File("screenshots/automatica/p"+snapshotN+".html"), html.toString(), "iso-8859-1");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void salvar(BufferedImage bi) {
+		try {
+			snapshotManN++;
+			if(!pastasVerificadas){
+				File dir = new File("screenshots/manual");
+				if(!dir.exists())dir.mkdir();
+				dir = new File("screenshots/manual/imagens");
+				if(!dir.exists())dir.mkdir();
+			}
+			//salva o png
+			ImageIO.write(bi, "png", new File("screenshots/manual/imagens/m"+snapshotManN+".png"));
+			//salvar o html
+			StringBuilder html=new StringBuilder();
+			String configuracao = criarHtmlConf();
+			html.append("<html><head><title>RedeEpistemica</title></head><body>");
+			html.append("<div id=\"nav\">");
+			
+			if (snapshotManN > 1)
+				html.append("<a href=\"p").append(snapshotManN-1).append(".html\">Anterior</a> - ");
+			else
+				html.append("Anterior - ");
+			
+			
+			html.append("<a href=\"p").append(snapshotManN+1).append(".html\">Pr&oacute;xima</a>");
+			html.append("</div>");
+			html.append("<img src=\"imagens/m").append(snapshotManN).append(".png\">");
+			html.append("<div id=\"conf\">");
+			//html.append("Passo: ").append(n).append("<br />");
+			html.append(configuracao);
+			html.append("</div>");
+			html.append("</body></html>");
+			FileUtils.writeStringToFile(new File("screenshots/manual/p"+snapshotManN+".html"), html.toString(), "iso-8859-1");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -109,6 +158,32 @@ public class SalvarSnapShoot {
 			}
 		}
 		return retorno.toString();
+	}
+	
+	private void criaIndex(){
+		try{
+			File dir = new File("screenshots");
+			if(!dir.exists())dir.mkdir();
+						
+			//salvar o html
+			StringBuilder html=new StringBuilder();
+			
+			html.append("<html><head><title>RedeEpistemica - ScreenShots</title></head><body>");
+			html.append("<div id=\"nav\">");
+			html.append("<h3>Screenshots</h3>");
+			html.append("<ul>");
+			html.append("<li /><a href=\"automatica/p1.html\">Screenshots Automáticas</a>");
+			html.append("<li /><a href=\"manual/p1.html\">Screenshots Manual</a>");
+			html.append("</ul>");
+			html.append("</div>");
+			html.append("</body></html>");
+			FileUtils.writeStringToFile(new File("screenshots/index.html"), html.toString(), "iso-8859-1");		
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public ConfiguracoesPanel getConfiguracoesPanel() {
