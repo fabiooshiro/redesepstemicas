@@ -531,4 +531,8 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	public void setSnapshot(int snapshot) {
 		this.snapshot = snapshot;
 	}
+	
+	public BufferedImage getCurrentScreen(){
+		return bi;
+	}
 }
