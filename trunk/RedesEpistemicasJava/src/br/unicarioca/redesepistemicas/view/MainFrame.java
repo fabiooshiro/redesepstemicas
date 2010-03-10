@@ -48,8 +48,8 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		this.setTitle("IndraNet 1.0 - Simulador de Redes Epistêmicas");
 		//instancias
 		redeEpistemica = new RedeEpistemica();
-		controlePanel = new ControlePanel();
 		redeEpistemicaView = new RedeEpistemicaView(redeEpistemica);
+		controlePanel = new ControlePanel(redeEpistemicaView);
 		agenteListPanel = new AgenteListPanel();
 		menuPrincipal = new MenuPrincipal();
 		configuracoesPanel = new ConfiguracoesPanel();
