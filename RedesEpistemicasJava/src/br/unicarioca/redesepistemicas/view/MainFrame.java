@@ -49,7 +49,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		//instancias
 		redeEpistemica = new RedeEpistemica();
 		redeEpistemicaView = new RedeEpistemicaView(redeEpistemica);
-		controlePanel = new ControlePanel(redeEpistemicaView);
+		controlePanel = new ControlePanel();
 		agenteListPanel = new AgenteListPanel();
 		menuPrincipal = new MenuPrincipal();
 		configuracoesPanel = new ConfiguracoesPanel();
@@ -58,17 +58,14 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		SalvarSnapShoot.getInstance().setConfiguracoesPanel(configuracoesPanel);
 		CrencaTreinarView crencaTreinarView = CrencaTreinarView.getInstance();
 		crencaTreinarView.setAgenteListPanel(agenteListPanel);
-		controlePanel.addControlado(redeEpistemicaView);
 		redeEpistemica.setCicloVidaAgenteListener(this);
 		redeEpistemica.setAgenteEpistemicoFactory(this);
 		redeEpistemicaView.setAgenteEpistemicoFactory(this);
 		redeEpistemicaView.setAgenteListPanel(agenteListPanel);
 		agenteListPanel.setRedeEpistemica(redeEpistemica);
-		controlePanel.getZerar().addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				agenteListPanel.reiniciar();
-			}
-		});
+		controlePanel.addControlado(redeEpistemicaView);
+		controlePanel.addControlado(agenteListPanel);
+		
 		menuPrincipal.getNovo().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				novo();
@@ -126,10 +123,6 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 					boolean paused = redeEpistemicaView.isPaused();
 					if(!paused){
 						redeEpistemicaView.pause();
-						//espera pausar
-						while(!redeEpistemicaView.isPaused()){
-							try{Thread.sleep(100);}catch(Exception e2){}
-						}
 					}
 					
 					List<AgenteEpistemico> agentes = agenteListPanel.getSelecionados();

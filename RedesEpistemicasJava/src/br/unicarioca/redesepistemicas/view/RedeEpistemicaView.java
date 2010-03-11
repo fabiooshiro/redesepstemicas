@@ -289,9 +289,19 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		//this.setIcon(new ImageIcon(bi));
 	}
 
+	/**
+	 * Metodo agora sincrono,
+	 * ao sair dele garante que pausou.
+	 */
 	public void pause() {
 		pause = true;
 		redeEpistemica.ligarLoop(false);
+		//espera pausar
+		while (!paused)
+			try {
+				Thread.sleep(10);
+			} catch (Exception e) {}
+		;
 	}
 
 	public void continuar() {
@@ -305,12 +315,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 
 	public void reiniciar() {
 		pause = true;
-		while (!paused)
-			try {
-				Thread.sleep(10);
-			} catch (Exception e) {
-			}
-		;
+		
 		this.redeEpistemica.getListAgenteEpistemico().clear();
 		pause = false;
 	}
@@ -534,5 +539,17 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	
 	public BufferedImage getCurrentScreen(){
 		return bi;
+	}
+
+	/**
+	 * Gera uma foto do momento
+	 */
+	public void criarFotografia() {
+		if(bi!=null){
+			boolean estavaPausado = pause;
+			if(!estavaPausado) pause();
+			SalvarSnapShoot.getInstance().salvar(bi);
+			if(!estavaPausado) continuar();
+		}
 	}
 }

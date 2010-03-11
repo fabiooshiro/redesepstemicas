@@ -18,7 +18,7 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
-public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
+public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener, ControladoListener {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(AgenteListPanel.class);
@@ -102,10 +102,7 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 		listModel.removeElement(agente);
 	}
 
-	public void reiniciar() {
-		listModel.clear();
-		listAgentes.clear();
-	}
+	
 
 	public List<AgenteEpistemico> getSelecionados(){
 		int[] arr = jList.getSelectedIndices();
@@ -125,6 +122,35 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener {
 	}
 	public void setRedeEpistemica(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
+	}
+
+	public void reiniciar() {
+		listModel.clear();
+		listAgentes.clear();
+	}
+	
+	@Override
+	public void continuar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void criarFotografia() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVelocidade(int i) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
