@@ -23,6 +23,13 @@ import com.rmit.neuralnetwork.trainingdata.TrainingSet;
 public class AgenteEpistemico{
 	private static Logger logger = Logger.getLogger(AgenteEpistemico.class);
 	private List<ParEpistemico> crencas = new ArrayList<ParEpistemico>();
+	
+	/**
+	 * O sistema ficou muito lento ao formatar no toString()
+	 * fica aqui para documentar o problema
+	 */
+	private static DecimalFormat decimalFormat = new DecimalFormat("#,##0.000", new DecimalFormatSymbols (new Locale ("pt", "BR")));
+	
 	/**
 	 * Arestas que saem deste agente para outros<br>
 	 * arestas usadas para falar
@@ -47,30 +54,70 @@ public class AgenteEpistemico{
 	private double maxAtencao = 100;
 	private RedeEpistemica redeEpistemica;
 	
+	/**
+	 * Rede
+	 * @return rede a qual este agente pertence
+	 */
 	public RedeEpistemica getRedeEpistemica() {
 		return redeEpistemica;
 	}
+	
+	/**
+	 * Atribui a rede
+	 * @param redeEpistemica rede a qual este agente pertence
+	 */
 	public void setRedeEpistemica(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 	}
+	
+	/**
+	 * Foco
+	 * @return foco do agente
+	 */
 	public Foco getFoco() {
 		return foco;
 	}
+	
+	/**
+	 * Foco
+	 * @param foco do agente
+	 */
 	public void setFoco(Foco foco) {
 		this.foco = foco;
 	}
+	
+	/**
+	 * Representa a vontade de publicar alguma coisa	
+	 * @return Double normalmente de 0 a 1
+	 */
 	public double getVontadeDePublicar() {
 		return vontadeDePublicar;
 	}
+	
+	/**
+	 * Representa a vontade de publicar alguma coisa	
+	 * @param vontadeDePublicar normalmente de 0 a 1
+	 */
 	public void setVontadeDePublicar(double vontadeDePublicar) {
 		this.vontadeDePublicar = vontadeDePublicar;
 	}
+	
+	/**
+	 * Cor para desenhar o agente
+	 * @return Color
+	 */
 	public Color getColor() {
 		return color;
 	}
+	
+	/**
+	 * Cor para desenhar o agente
+	 * @param color cor para o desenho na interface do usu&aacute;rio
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
+	
 	/**
 	 * O maximo de diferenca para rejeitar o resultado
 	 */
@@ -88,32 +135,71 @@ public class AgenteEpistemico{
 		id = lastId++;
 		setNome("A" + id);
 	}
+	
+	/**
+	 * Identificador do agente
+	 * @return Long
+	 */
 	public long getId() {
 		return id;
 	}
+	
+	/**
+	 * Identificador do agente
+	 * @param id Long
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	/**
+	 * De quanto em quanto tempo publica um novo par para publicar<br>
+	 * coloque 1 para publicar um novo par epistemico sempre.
+	 * @return int
+	 */
 	public int getCriarNovoEm() {
 		return criarNovoEm;
 	}
 	
+	/**
+	 * De quanto em quanto tempo publica um novo par para publicar<br>
+	 * coloque 1 para publicar um novo par epistemico sempre.
+	 * @param criarNovoEm
+	 */
 	public void setCriarNovoEm(int criarNovoEm) {
 		this.criarNovoEm = criarNovoEm;
 	}
 	
+	/**
+	 * M&aacute;ximo de diferen&ccedil;a de um consequente para o outro
+	 * para que este agente aceite o resultado durante o receberComunicado e fa&ccedil;a um treinamento.
+	 * @return Double
+	 */
 	public Double getMaxDiff() {
 		return maxDiff;
 	}
 	
+	/**
+	 * M&aacute;ximo de diferen&ccedil;a de um consequente para o outro
+	 * para que este agente aceite o resultado durante o receberComunicado e fa&ccedil;a um treinamento.
+	 * @param maxDiff Double
+	 */
 	public void setMaxDiff(Double maxDiff) {
 		this.maxDiff = maxDiff;
 	}
 	
+	/**
+	 * Nome deste agente
+	 * @return nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 	
+	/**
+	 * 
+	 * @param nome nome
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -304,6 +390,14 @@ public class AgenteEpistemico{
 		
 		neuralNetwork.train();
 	}
+	
+	/**
+	 * Recebe um comunicado, uma publica&ccedil;&atilde;o
+	 * @param parEpistemicoInformado par informado
+	 * @param aresta relacao com o emissor
+	 * @param emissor Agente emissor, publicador
+	 * @return Double deltaErro
+	 */
 	public Double receberComunicado(ParEpistemico parEpistemicoInformado,Aresta aresta, AgenteEpistemico emissor){
 		double peso = aresta.getPeso();
 		double deltaErro;
@@ -390,6 +484,10 @@ public class AgenteEpistemico{
 		return arestasSaida;
 	}
 	
+	/**
+	 * Arestas para comunicar
+	 * @param arestas Arestas
+	 */
 	public void setArestas(List<Aresta> arestas) {
 		this.arestasSaida = arestas;
 	}
@@ -431,7 +529,7 @@ public class AgenteEpistemico{
 		this.raio = raio;
 	}
 	
-	private static DecimalFormat decimalFormat = new DecimalFormat("#,##0.000", new DecimalFormatSymbols (new Locale ("pt", "BR")));
+	
 	/**
 	 * retorna o this.nome
 	 */
@@ -444,12 +542,21 @@ public class AgenteEpistemico{
 		}
 	}
 
+	/**
+	 * Usado para matar o agente.
+	 * Pede para todos que possui aresta que
+	 * remova ele
+	 */
 	public void morrer() {
 		for(Aresta aresta:arestasSaida){
 			aresta.getReceptor().removerAgente(this);
 		}
 	}
 
+	/**
+	 * Remove o agente informado das arestas de saida
+	 * @param agenteEpistemico Agente
+	 */
 	private void removerAgente(AgenteEpistemico agenteEpistemico) {
 		Aresta aresta = new Aresta();
 		aresta.setReceptor(agenteEpistemico);
@@ -463,12 +570,24 @@ public class AgenteEpistemico{
 		logger.debug("a.id==this.id " + (a.id==this.id));
 		return a.id==this.id;
 	}
+	
+	/**
+	 * Quantidade de pares publicados
+	 * @return int
+	 */
 	public int getQtdParComunicado() {
 		return qtdParComunicado;
 	}
+	
+	/**
+	 * Configura um n&uacute;mero para que depois de publicar esta quantidade,
+	 * o agente morra
+	 * @return int
+	 */
 	public int getMorrerEmXpublicacoes() {
 		return morrerEmXpublicacoes;
 	}
+	
 	/**
 	 * zero para imortal
 	 * @param morrerEmXpublicacoes
@@ -477,12 +596,22 @@ public class AgenteEpistemico{
 		this.morrerEmXpublicacoes = morrerEmXpublicacoes;
 	}
 	
+	/**
+	 * true publicar&aacute; somente a ultima teoria criada
+	 * @param somenteUltimaTeoria boolean
+	 */
 	public void setSomenteUltimaTeoria(boolean somenteUltimaTeoria) {
 		this.somenteUltimaTeoria = somenteUltimaTeoria;
 	}
+	
+	/**
+	 * Cren&ccedil;as deste agente
+	 * @return lista de pares epistemicos
+	 */
 	public List<ParEpistemico> getCrencas() {
 		return crencas;
 	}
+	
 	/**
 	 * Adiciona se nao existir
 	 * @param pares
@@ -495,6 +624,7 @@ public class AgenteEpistemico{
 			}
 		}
 	}
+	
 	/**
 	 * Verifica se o agente quer publicar
 	 * @return true caso queira publicar
