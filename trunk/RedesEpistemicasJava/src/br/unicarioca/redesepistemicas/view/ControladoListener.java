@@ -10,4 +10,6 @@ public interface ControladoListener {
 
 	void setVelocidade(int i);
 
+	void criarFotografia();
+
 }
