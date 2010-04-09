@@ -37,6 +37,17 @@ public class Rottweiler extends SeleneseTestCase {
 			selenium.open(linkProfile.getUrl());
 			selenium.waitForPageToLoad("30000");
 			Thread.sleep(5000);
+			/*
+			 * Lista de amigos primeira pagina
+			 * /Main#FriendsList?uid=188435169541448637&rl=fpc
+			 */
+			/*
+			 * Pagina de recados
+			 * http://www.orkut.com.br/Main#Scrapbook?rl=lo&uid=12235031985893526985
+			 */
+			/*
+			 * Comunidades
+			 */
 		}
 		
 	}
