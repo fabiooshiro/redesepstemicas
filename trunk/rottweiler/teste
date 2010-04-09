@@ -1,0 +1,16 @@
+package com.example.tests;
+
+import com.thoughtworks.selenium.*;
+import java.util.regex.Pattern;
+
+public class teste extends SeleneseTestCase {
+	public void setUp() throws Exception {
+		setUp("http://www.orkut.com.br/", "*chrome");
+	}
+	public void testTeste() throws Exception {
+		selenium.open("/Main#Home");
+		selenium.selectFrame("orkutFrame");
+		selenium.click("link=Amigos");
+		selenium.waitForPageToLoad("30000");
+	}
+}
