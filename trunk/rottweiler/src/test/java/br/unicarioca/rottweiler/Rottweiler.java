@@ -45,6 +45,9 @@ public class Rottweiler extends SeleneseTestCase {
 			 * Pagina de recados
 			 * http://www.orkut.com.br/Main#Scrapbook?rl=lo&uid=12235031985893526985
 			 */
+			selenium.open("/Main#Scrapbook?rl=lo&uid="+linkProfile.getUid());
+			selenium.waitForPageToLoad("30000");
+			Thread.sleep(5000);
 			/*
 			 * Comunidades
 			 */
