@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.thoughtworks.selenium.SeleneseTestCase;
 
-public class Rottweiler extends SeleneseTestCase {
+public class RottweilerTest extends SeleneseTestCase {
 	public static void main(String[] args) {
 		try {
-			Rottweiler rott = new Rottweiler();
+			RottweilerTest rott = new RottweilerTest();
 			rott.setUp();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,6 +41,9 @@ public class Rottweiler extends SeleneseTestCase {
 			 * Lista de amigos primeira pagina
 			 * /Main#FriendsList?uid=188435169541448637&rl=fpc
 			 */
+			selenium.open("/Main#FriendsList?uid="+linkProfile.getUid()+"&rl=fpc");
+			selenium.waitForPageToLoad("30000");
+			Thread.sleep(5000);
 			/*
 			 * Pagina de recados
 			 * http://www.orkut.com.br/Main#Scrapbook?rl=lo&uid=12235031985893526985
@@ -50,8 +53,11 @@ public class Rottweiler extends SeleneseTestCase {
 			Thread.sleep(5000);
 			/*
 			 * Comunidades
+			 * http://www.orkut.com.br/Main#ProfileC?uid=188435169541448637&rl=cpc
 			 */
+			selenium.open("/Main#ProfileC?uid="+linkProfile.getUid()+"&rl=cpc");
+			selenium.waitForPageToLoad("30000");
+			Thread.sleep(5000);
 		}
-		
 	}
 }
