@@ -2,6 +2,7 @@ package br.unicarioca.rottweiler;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,9 @@ public class Scrap implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name="de")
 	private Profile from;
+	@Column(name="para")
 	private Profile to;
 	private String conteudo;
 
