@@ -54,7 +54,9 @@ public class RottweilerTest extends SeleneseTestCase {
 			System.out.println();
 			Profile profile = new Profile();
 			profile.setUid(linkProfile.getUid());
+			em.getTransaction().begin();
 			em.persist(profile);
+			em.getTransaction().commit();
 			
 			selenium.open(linkProfile.getUrl());
 			selenium.waitForPageToLoad("30000");
