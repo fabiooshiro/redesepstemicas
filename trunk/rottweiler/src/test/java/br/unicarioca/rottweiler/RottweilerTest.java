@@ -5,13 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.thoughtworks.selenium.SeleneseTestCase;
 
 public class RottweilerTest extends SeleneseTestCase {
-
-	EntityManager em;
+	private static Logger logger = Logger.getLogger(RottweilerTest.class);
+	private EntityManager em;
 	public void setUp() throws Exception {
 		
 		// open/read the application context file
@@ -35,7 +36,7 @@ public class RottweilerTest extends SeleneseTestCase {
 			try{
 				selenium.selectFrame("orkutFrame");
 			}catch(Exception e){
-				System.out.println(e.getMessage());
+				System.out.print(".");
 			}
 			try{
 				selenium.click("link=Amigos");
@@ -43,7 +44,7 @@ public class RottweilerTest extends SeleneseTestCase {
 				ok = true;
 				Thread.sleep(1000);
 			}catch(Exception e){
-				System.out.println(e.getMessage());
+				System.out.print(".");
 			}
 		}
 		List<LinkProfile> listLinkProfile=LinkProfile.findAll(selenium.getHtmlSource());
@@ -54,9 +55,16 @@ public class RottweilerTest extends SeleneseTestCase {
 			System.out.println();
 			Profile profile = new Profile();
 			profile.setUid(linkProfile.getUid());
-			em.getTransaction().begin();
-			em.persist(profile);
-			em.getTransaction().commit();
+			
+			List profiles = em.createQuery("Select o From Profile o where o.uid=?").setParameter(1, profile.getUid()).getResultList();
+			if(profiles.size()==0){//salva se nao existir
+				em.getTransaction().begin();
+				em.persist(profile);
+				em.getTransaction().commit();
+				logger.debug("Salvo "+profile.getUid());
+			}else{
+				logger.debug("Ja existe "+profile.getUid());
+			}
 			
 			selenium.open(linkProfile.getUrl());
 			selenium.waitForPageToLoad("30000");
@@ -69,7 +77,7 @@ public class RottweilerTest extends SeleneseTestCase {
 			selenium.waitForPageToLoad("30000");
 			Thread.sleep(5000);
 			/*
-			 * Pagina de recados
+			 * Pagina de recados, pegar as datas
 			 * http://www.orkut.com.br/Main#Scrapbook?rl=lo&uid=12235031985893526985
 			 */
 			selenium.open("/Main#Scrapbook?rl=lo&uid="+linkProfile.getUid());
