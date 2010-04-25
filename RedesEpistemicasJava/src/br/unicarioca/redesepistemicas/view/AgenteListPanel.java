@@ -17,6 +17,7 @@ import br.unicarioca.redesepistemicas.bo.InfoListener;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
+import br.unicarioca.redesepistemicas.bo.QuickSort;
 
 public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener, ControladoListener {
 	private static final long serialVersionUID = 1L;
@@ -62,6 +63,8 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener, 
 				a.setPesoReputacao(null);
 			}
 		}
+		
+		/*
 		for (int j = tot; j >0; j--) {
 			for (int i = 0; i < j; i++) {
 				AgenteEpistemico a = (AgenteEpistemico)listModel.get(i);
@@ -71,7 +74,8 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener, 
 					listModel.set(i+1, a);
 				}
 			}
-		}
+		}*/
+		QuickSort.sort(listModel);
 		logger.debug("Calculado " + listAgentes.size());
 		
 		//list.revalidate();
