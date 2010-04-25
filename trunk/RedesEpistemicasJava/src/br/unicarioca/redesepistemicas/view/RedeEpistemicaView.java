@@ -1,7 +1,9 @@
 package br.unicarioca.redesepistemicas.view;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 import org.apache.log4j.Logger;
 
@@ -29,7 +30,7 @@ import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 /**
  * Extends JButton
  */
-public class RedeEpistemicaView extends JButton implements ComunicacaoListener, ControladoListener, MouseWheelListener, MouseListener {
+public class RedeEpistemicaView extends Canvas implements ComunicacaoListener, ControladoListener, MouseWheelListener, MouseListener {
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(RedeEpistemicaView.class);
 	private RedeEpistemica redeEpistemica;
@@ -71,10 +72,11 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 							desenharAgentes();
 							atualizar();
 							logger.debug("Atualizando imagem delay " + delay*10);
-							setIcon(new ImageIcon(bi));
+							//setIcon(new ImageIcon(bi));
+							desenha(bi);
 							
 							//30 is a magic number, just to not flick the image
-							Thread.sleep((delay*10)+30);
+							//Thread.sleep((delay*10)+30);
 						} else {
 							paused = true;
 							Thread.sleep(84);
@@ -98,6 +100,13 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			public void componentShown(ComponentEvent e) {}
 		});
 		
+	}
+	
+	private void desenha(Image img){
+		Graphics g = this.getGraphics();
+		
+		if(g != null)
+			g.drawImage(img, 0,0,this);
 	}
 
 	/**
@@ -498,7 +507,8 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 				desenharAgente(agente,true);
 				desenharArestasComPesos(agente);
 			}
-			this.setIcon(new ImageIcon(bi));
+			//this.setIcon(new ImageIcon(bi));
+			desenha(bi);
 		}else{
 			for(AgenteEpistemico agente:agentes)
 				agente.setColor(new Color(55,55,255));
