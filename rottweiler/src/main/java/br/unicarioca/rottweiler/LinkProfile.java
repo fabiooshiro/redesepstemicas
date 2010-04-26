@@ -26,7 +26,7 @@ public class LinkProfile {
 		ArrayList<LinkProfile> retorno = new ArrayList<LinkProfile>();
 		// <a href="/Main#Profile?uid=3471199689122026441">*.* Edwarf Sloft
 		// *.*</a>
-		Pattern pat = Pattern.compile("<a href=\"(/Main#Profile\\?uid=([0-9]*))\">(.*?)</a>");
+		Pattern pat = Pattern.compile("<a\\s+href=\"(/Main#Profile\\?uid=([0-9]*))\">(.*?)</a>");
 
 		Matcher mat = pat.matcher(html);
 		while(mat.find()){

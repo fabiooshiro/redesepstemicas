@@ -21,9 +21,10 @@ public class ProfileComunidade implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	private Integer aderiu;
 	private Profile profile;
 	private Comunidade comunidade;
-	private Date dataAdesao;
+	private Date dataHora;
 	public Profile getProfile() {
 		return profile;
 	}
@@ -36,10 +37,38 @@ public class ProfileComunidade implements Serializable{
 	public void setComunidade(Comunidade comunidade) {
 		this.comunidade = comunidade;
 	}
-	public Date getDataAdesao() {
-		return dataAdesao;
+	
+	/**
+	 * 
+	 * @return data do scan
+	 */
+	public Date getDataHora() {
+		return dataHora;
 	}
-	public void setDataAdesao(Date dataAdesao) {
-		this.dataAdesao = dataAdesao;
+	
+	/**
+	 * 
+	 * @param dataHora data do scan
+	 */
+	public void setDataHora(Date dataHora) {
+		this.dataHora = dataHora;
+	}
+	
+	/**
+	 * 1 aderiu
+	 * 0 fora
+	 * @param aderiu
+	 */
+	public void setAderiu(Integer aderiu) {
+		this.aderiu = aderiu;
+	}
+	
+	/**
+	 * 1 aderiu
+	 * 0 fora
+	 * @param aderiu
+	 */
+	public Integer getAderiu() {
+		return aderiu;
 	}
 }
