@@ -1,6 +1,7 @@
 package br.unicarioca.rottweiler;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,9 @@ public class Scrap implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	private Date dataHora;
+	
 	@Column(name="de")
 	private Profile from;
 	@Column(name="para")
@@ -49,5 +52,13 @@ public class Scrap implements Serializable {
 
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
+	}
+	
+	public Date getDataHora() {
+		return dataHora;
+	}
+	
+	public void setDataHora(Date dataHora) {
+		this.dataHora = dataHora;
 	}
 }
