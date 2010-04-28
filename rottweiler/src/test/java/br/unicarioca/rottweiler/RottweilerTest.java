@@ -19,6 +19,8 @@ public class RottweilerTest extends SeleneseTestCase {
 	 * Maximo de profiles para visitar
 	 */
 	private final static int MAX_PROFILE=100;
+	private int totalValido=0;
+	private int totalInvalido=0;
 	/**
 	 * dataHora do scan
 	 */
@@ -85,17 +87,22 @@ public class RottweilerTest extends SeleneseTestCase {
 		profile = selecionarNaoScaneado();
 		while(profile!=null){
 			salvarAmigos(profile);
-			Thread.sleep(5000);
+			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
 			
 			salvarRecados(profile);
-			Thread.sleep(5000);
+			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
 			
 			salvarComunidades(profile);
-			Thread.sleep(5000);
+			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
+			
 			profile = selecionarNaoScaneado();
 		}
 	}
 
+	/**
+	 * Seleciona um profile nao scaneado
+	 * @return null caso nao exista
+	 */
 	private Profile selecionarNaoScaneado() {
 		try{
 			em.getTransaction().begin();
@@ -122,6 +129,7 @@ public class RottweilerTest extends SeleneseTestCase {
 	private void salvarComunidades(Profile profile) {
 		selenium.open("/Main#ProfileC?uid="+profile.getUid()+"&rl=cpc");
 		selenium.waitForPageToLoad("30000");
+		selenium.selectFrame("orkutFrame");
 	}
 
 	/**
@@ -129,8 +137,28 @@ public class RottweilerTest extends SeleneseTestCase {
 	 * http://www.orkut.com.br/Main#Scrapbook?rl=lo&uid=12235031985893526985
 	 */
 	private void salvarRecados(Profile profile) {
+		//se houver as mensagens abaixo ignorar usuario
+		//Você só pode ver os recados que enviou para
+		//nenhum recado seu
 		selenium.open("/Main#Scrapbook?rl=lo&uid="+profile.getUid());
 		selenium.waitForPageToLoad("30000");
+		selenium.selectFrame("orkutFrame");
+		if(selenium.isTextPresent("nenhum recado seu")){
+			em.getTransaction().begin();
+			em.refresh(profile);
+			profile.setInvalido("nenhum recado seu");
+			em.getTransaction().commit();
+			totalInvalido++;
+		}else if(selenium.isTextPresent("Você só pode ver os recados que enviou para")){
+			em.getTransaction().begin();
+			em.refresh(profile);
+			profile.setInvalido("Você só pode ver os recados que enviou para");
+			em.getTransaction().commit();
+			totalInvalido++;
+		}else{
+			totalValido++;
+		}
+		logger.info("valido vs invalido " + totalValido + " x " + totalInvalido);
 	}
 	
 	/**
