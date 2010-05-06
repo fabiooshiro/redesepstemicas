@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -77,8 +78,13 @@ public class RottweilerTest extends SeleneseTestCase {
 				System.out.print(".");
 			}
 		}
+		System.out.println();
+		delay(1000);
 		//pegar a primeira lista de amigos e colocar no banco
 		List<LinkProfile> listLinkProfile=LinkProfile.findAll(selenium.getHtmlSource());
+		if(listLinkProfile.size()==0){
+			throw new RuntimeException("Voce esta sem amigos???");
+		}
 		Profile profile=null;
 		for (LinkProfile linkProfile : listLinkProfile) {
 			profile = new Profile();
@@ -104,6 +110,13 @@ public class RottweilerTest extends SeleneseTestCase {
 		}
 	}
 
+	private Profile refresh(Profile profile){
+		try{
+			return (Profile)em.createQuery("Select o from Profile o where o.uid=?").setParameter(1, profile.getUid()).getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+	}
 	/**
 	 * Seleciona um profile nao scaneado
 	 * @return null caso nao exista
@@ -135,8 +148,16 @@ public class RottweilerTest extends SeleneseTestCase {
 		selenium.open("/Main#ProfileC?uid="+profile.getUid()+"&rl=cpc");
 		selenium.waitForPageToLoad("30000");
 		selenium.selectFrame("orkutFrame");
+		delay(1000);
 	}
 
+	private void delay(long tempo){
+		try{
+			Thread.sleep(tempo);
+		}catch(Exception e){
+			
+		}
+	}
 	/**
 	 * Pagina de recados, pegar as datas
 	 * http://www.orkut.com.br/Main#Scrapbook?rl=lo&uid=12235031985893526985
@@ -147,7 +168,13 @@ public class RottweilerTest extends SeleneseTestCase {
 		//nenhum recado seu
 		selenium.open("/Main#Scrapbook?rl=lo&uid="+profile.getUid());
 		selenium.waitForPageToLoad("30000");
-		selenium.selectFrame("orkutFrame");
+		delay(1000);
+		try{
+			selenium.selectFrame("orkutFrame");
+		}catch(Exception e){
+			//e.printStackTrace(); no problem
+		}
+		delay(2000);
 		if(selenium.isTextPresent("nenhum recado seu")){
 			em.getTransaction().begin();
 			em.refresh(profile);
@@ -162,10 +189,26 @@ public class RottweilerTest extends SeleneseTestCase {
 			totalInvalido++;
 		}else{
 			totalValido++;
+			//vamos entao pegar os scraps
+			String codHtml = selenium.getHtmlSource();
+			List<Scrap> scraps = ScrapHtml.findAll(codHtml);
+			logger.debug("Scraps encontrados = " + scraps.size());
+			for(Scrap scrap:scraps){
+				Profile from = refresh(scrap.getFrom());
+				if(from==null){
+					from = scrap.getFrom();
+					em.getTransaction().begin();
+					em.persist(from);
+					em.getTransaction().commit();
+				}
+				scrap.setFrom(from);
+				scrap.setTo(profile);
+				em.getTransaction().begin();
+				em.persist(scrap);
+				em.getTransaction().commit();
+			}
 		}
 		logger.info("valido vs invalido " + totalValido + " x " + totalInvalido);
-		
-		
 	}
 	
 	/**
@@ -176,14 +219,25 @@ public class RottweilerTest extends SeleneseTestCase {
 		selenium.open("/Main#FriendsList?uid="+profile.getUid()+"&rl=fpc");
 		selenium.waitForPageToLoad("30000");
 		{//Salvar os amigos
-			selenium.selectFrame("orkutFrame");
-			List<LinkProfile> linksAmigos = LinkProfile.findAll(selenium.getHtmlSource());
-			logger.debug("salvando "+linksAmigos.size()+" amigos de "+profile.getUid());
+			List<LinkProfile> linksAmigos;
+			do{
+				selenium.selectFrame("orkutFrame");
+				delay(1000);
+				linksAmigos = LinkProfile.findAll(selenium.getHtmlSource());
+				logger.debug("salvando "+linksAmigos.size()+" amigos de "+profile.getNome()+" "+profile.getUid());
+				//if(linksAmigos.size()==0){
+					//int res = JOptionPane.showConfirmDialog(null, "Zero amigos. Continuar?");
+					//if(res==JOptionPane.CANCEL_OPTION){
+					//	return;
+					//}
+				//}
+			}while(linksAmigos.size()==0);
 			//String src = selenium.getHtmlSource();
 			//System.out.println(src);
 			for (LinkProfile lnProfile : linksAmigos) {
 				Profile prof = new Profile();
 				prof.setUid(lnProfile.getUid());
+				prof.setNome(lnProfile.getNome());
 				salvarOuAtualizar(prof);
 			}
 		}

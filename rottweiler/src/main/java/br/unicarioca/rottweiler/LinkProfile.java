@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Responsavel por extrair os links de profiles
+ * @author Fabio Issamu Oshiro
+ */
 public class LinkProfile {
 	private final static Pattern pat = Pattern.compile("<a\\s+href=\"(/Main#Profile\\?uid=([0-9]*))\">(.*?)</a>");
 	private String nome;

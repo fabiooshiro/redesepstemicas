@@ -9,6 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Representa a relacao entre Profile e Comunidade
+ * @author Fabio Issamu Oshiro
+ *
+ */
 @Entity
 public class ProfileComunidade implements Serializable{
 	private static final long serialVersionUID = 1L;

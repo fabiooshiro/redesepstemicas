@@ -8,7 +8,11 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 import junit.framework.TestCase;
-
+/**
+ * 
+ * @author Fabio Issamu Oshiro
+ *
+ */
 public class ScrapHtmlTest extends TestCase{
 
 	private String format(Date date){
