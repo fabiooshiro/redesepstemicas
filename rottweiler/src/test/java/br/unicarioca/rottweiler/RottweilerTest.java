@@ -12,6 +12,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.thoughtworks.selenium.SeleneseTestCase;
 
+/**
+ * Classe de teste apenas por comodidade para subir o selenium
+ * @author Fabio Issamu Oshiro, Leandro Freire
+ *
+ */
 public class RottweilerTest extends SeleneseTestCase {
 	private static Logger logger = Logger.getLogger(RottweilerTest.class);
 	private EntityManager em;
@@ -159,6 +164,8 @@ public class RottweilerTest extends SeleneseTestCase {
 			totalValido++;
 		}
 		logger.info("valido vs invalido " + totalValido + " x " + totalInvalido);
+		
+		
 	}
 	
 	/**
