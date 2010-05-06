@@ -8,9 +8,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * Responsavel por extrair os objetos scraps do HTML
  * @author Fabio Issamu Oshiro
- *
  */
 public class ScrapHtml {
 	private static final Logger logger = Logger.getLogger(ScrapHtml.class);
@@ -74,6 +73,7 @@ public class ScrapHtml {
 			Scrap scrap = new Scrap();
 			Profile profile = new Profile();
 			profile.setUid(link.getUid());
+			profile.setNome(link.getNome());
 			scrap.setFrom(profile);
 			try{
 				scrap.setDataHora(parseDate(scrapHtml));

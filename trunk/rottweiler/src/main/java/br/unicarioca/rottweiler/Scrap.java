@@ -3,16 +3,17 @@ package br.unicarioca.rottweiler;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
- * 
+ * Representa um Scrap
  * @author Fabio Issamu Oshiro, Leandro Freire
- *
  */
 @Entity
 public class Scrap implements Serializable {
@@ -29,10 +30,14 @@ public class Scrap implements Serializable {
 	
 	private Date dataHora;
 	
-	@Column(name="de")
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="de")
 	private Profile from;
-	@Column(name="para")
+	
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="para")
 	private Profile to;
+	
 	private String conteudo;
 
 	public Profile getFrom() {
