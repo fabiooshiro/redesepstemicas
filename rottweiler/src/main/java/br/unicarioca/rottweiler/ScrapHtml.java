@@ -35,7 +35,7 @@ public class ScrapHtml {
 		// 21:54 (0 minutos atrás)
 		// 10:36 (11 horas atrás)
 		// 4 mai (1 dia atrás)
-		int ini = codHtml.indexOf("<span class=\"rfdte\">");
+		int ini = codHtml.indexOf(INI_DATE);
 		if(ini!=-1){
 			ini+=INI_DATE.length();
 			int fim =  codHtml.indexOf(END_DATE,ini);
