@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Representa a relacao entre Profile e Comunidade
@@ -27,9 +29,16 @@ public class ProfileComunidade implements Serializable{
 		this.id = id;
 	}
 	private Integer aderiu;
+	
+	@ManyToOne
+	@JoinColumn(name="profile_id")
 	private Profile profile;
+	
+	@ManyToOne
+	@JoinColumn(name="comunidade_id")
 	private Comunidade comunidade;
 	private Date dataHora;
+	
 	public Profile getProfile() {
 		return profile;
 	}

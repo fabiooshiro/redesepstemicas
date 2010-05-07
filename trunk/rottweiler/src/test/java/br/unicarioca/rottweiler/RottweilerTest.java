@@ -147,8 +147,36 @@ public class RottweilerTest extends SeleneseTestCase {
 	private void salvarComunidades(Profile profile) {
 		selenium.open("/Main#ProfileC?uid="+profile.getUid()+"&rl=cpc");
 		selenium.waitForPageToLoad("30000");
-		selenium.selectFrame("orkutFrame");
 		delay(1000);
+		try{
+			selenium.selectFrame("orkutFrame");
+		}catch(Exception e){
+			//e.printStackTrace(); no problem
+		}
+		delay(2000);
+		String codHtml = selenium.getHtmlSource();
+		List<Comunidade> comunidades = ComunidadeHtml.findAll(codHtml);
+		logger.debug(comunidades.size() + " comunidades encontradas de " + profile.getNome());
+		for(Comunidade comunidade:comunidades){
+			//verificar se nao existe
+			List<Comunidade> found = em.createQuery("Select o From Comunidade o where o.cid=?").setParameter(1, comunidade.getCid()).getResultList();
+			if(found.size()==0){
+				em.getTransaction().begin();
+				em.persist(comunidade);
+				em.getTransaction().commit();
+			}else if(found.size()==1){
+				comunidade = found.get(0);
+			}else{
+				throw new RuntimeException("Comunidade id " + comunidade.getCid() + " duplicada, " + found.size()+" encontrada com o mesmo id");
+			}
+			ProfileComunidade profileComunidade = new ProfileComunidade();
+			profileComunidade.setComunidade(comunidade);
+			profileComunidade.setProfile(profile);
+			em.getTransaction().begin();
+			em.persist(profileComunidade);
+			em.getTransaction().commit();
+		}
+		//TODO navegar nas outras paginas
 	}
 
 	private void delay(long tempo){
@@ -192,7 +220,7 @@ public class RottweilerTest extends SeleneseTestCase {
 			//vamos entao pegar os scraps
 			String codHtml = selenium.getHtmlSource();
 			List<Scrap> scraps = ScrapHtml.findAll(codHtml);
-			logger.debug("Scraps encontrados = " + scraps.size());
+			logger.debug(scraps.size() + " scraps encontrados de " + profile.getNome());
 			for(Scrap scrap:scraps){
 				Profile from = refresh(scrap.getFrom());
 				if(from==null){
@@ -207,6 +235,7 @@ public class RottweilerTest extends SeleneseTestCase {
 				em.persist(scrap);
 				em.getTransaction().commit();
 			}
+			//TODO navegar nas outras paginas
 		}
 		logger.info("valido vs invalido " + totalValido + " x " + totalInvalido);
 	}
@@ -221,8 +250,10 @@ public class RottweilerTest extends SeleneseTestCase {
 		{//Salvar os amigos
 			List<LinkProfile> linksAmigos;
 			do{
-				selenium.selectFrame("orkutFrame");
-				delay(1000);
+				try{
+					selenium.selectFrame("orkutFrame");
+					delay(1000);
+				}catch(Exception e){}
 				linksAmigos = LinkProfile.findAll(selenium.getHtmlSource());
 				logger.debug("salvando "+linksAmigos.size()+" amigos de "+profile.getNome()+" "+profile.getUid());
 				//if(linksAmigos.size()==0){
