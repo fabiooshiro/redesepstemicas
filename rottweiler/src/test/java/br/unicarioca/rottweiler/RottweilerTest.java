@@ -145,6 +145,8 @@ public class RottweilerTest extends SeleneseTestCase {
 	 * http://www.orkut.com.br/Main#ProfileC?uid=188435169541448637&rl=cpc
 	 */
 	private void salvarComunidades(Profile profile) {
+		int totalComunidades = 0;
+		int pagina = 1;
 		selenium.open("/Main#ProfileC?uid="+profile.getUid()+"&rl=cpc");
 		selenium.waitForPageToLoad("30000");
 		delay(1000);
@@ -153,30 +155,44 @@ public class RottweilerTest extends SeleneseTestCase {
 		}catch(Exception e){
 			//e.printStackTrace(); no problem
 		}
-		delay(2000);
-		String codHtml = selenium.getHtmlSource();
-		List<Comunidade> comunidades = ComunidadeHtml.findAll(codHtml);
-		logger.debug(comunidades.size() + " comunidades encontradas de " + profile.getNome());
-		for(Comunidade comunidade:comunidades){
-			//verificar se nao existe
-			List<Comunidade> found = em.createQuery("Select o From Comunidade o where o.cid=?").setParameter(1, comunidade.getCid()).getResultList();
-			if(found.size()==0){
-				em.getTransaction().begin();
-				em.persist(comunidade);
-				em.getTransaction().commit();
-			}else if(found.size()==1){
-				comunidade = found.get(0);
-			}else{
-				throw new RuntimeException("Comunidade id " + comunidade.getCid() + " duplicada, " + found.size()+" encontrada com o mesmo id");
+		while(true){
+			try{
+				logger.debug("Comunidade Pagina = " + pagina);
+				delay(2000);
+				String codHtml = selenium.getHtmlSource();
+				List<Comunidade> comunidades = ComunidadeHtml.findAll(codHtml);
+				logger.debug(comunidades.size() + " comunidades encontradas de " + profile.getNome());
+				for(Comunidade comunidade:comunidades){
+					//verificar se nao existe
+					List<Comunidade> found = em.createQuery("Select o From Comunidade o where o.cid=?").setParameter(1, comunidade.getCid()).getResultList();
+					if(found.size()==0){
+						em.getTransaction().begin();
+						em.persist(comunidade);
+						em.getTransaction().commit();
+					}else if(found.size()==1){
+						comunidade = found.get(0);
+					}else{
+						logger.error("Comunidade duplicada " + comunidade.getCid());
+						throw new RuntimeException("Comunidade id " + comunidade.getCid() + " duplicada, " + found.size()+" encontrada com o mesmo id");
+					}
+					ProfileComunidade profileComunidade = new ProfileComunidade();
+					profileComunidade.setComunidade(comunidade);
+					profileComunidade.setProfile(profile);
+					em.getTransaction().begin();
+					em.persist(profileComunidade);
+					em.getTransaction().commit();
+					totalComunidades++;
+				}
+				selenium.click("link=>");
+				selenium.waitForPageToLoad("30000");
+				pagina++;
+			}catch(Exception e){
+				logger.error("link?");
+				break;
 			}
-			ProfileComunidade profileComunidade = new ProfileComunidade();
-			profileComunidade.setComunidade(comunidade);
-			profileComunidade.setProfile(profile);
-			em.getTransaction().begin();
-			em.persist(profileComunidade);
-			em.getTransaction().commit();
 		}
-		//TODO navegar nas outras paginas
+		logger.info("comunidades = " + totalComunidades);
+		///JOptionPane.showMessageDialog(null,"TotalComunidades = " + totalComunidades);
 	}
 
 	private void delay(long tempo){
