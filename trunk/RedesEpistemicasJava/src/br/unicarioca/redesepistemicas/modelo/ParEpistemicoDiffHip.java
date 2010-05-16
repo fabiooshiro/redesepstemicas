@@ -6,7 +6,7 @@ package br.unicarioca.redesepistemicas.modelo;
 public class ParEpistemicoDiffHip extends ParEpistemico{
 	
 	/**
-	 * Calcula a diferenca achando o valor da hipotenusa
+	 * Calcula a diferen&ccedil;a achando o valor da hipotenusa
 	 * @param par Par para verificar a distancia
 	 * @return Double diferenca
 	 */
