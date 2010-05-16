@@ -56,7 +56,7 @@ public class ComunidadeHtml {
 		for (int i = 1; i < comunidadesHtml.length; i++) {
 			int fim = comunidadesHtml[i].indexOf(END_COMUNIDADE);
 			String comunidadeHtml = comunidadesHtml[i].substring(0,fim);
-			logger.debug(comunidadeHtml);
+			//logger.debug(comunidadeHtml);
 			Comunidade comunidade = parseHtml(comunidadeHtml);
 			retorno.add(comunidade);
 		}
