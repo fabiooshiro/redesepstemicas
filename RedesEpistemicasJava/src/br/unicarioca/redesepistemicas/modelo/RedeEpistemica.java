@@ -1,5 +1,6 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,17 @@ public class RedeEpistemica {
 	private AgenteEpistemicoFactory agenteEpistemicoFactory;
 	private boolean normalizarPesos = false;
 	private boolean ligado = false;
+	private Experimento experimento;
 	private Thread t;
 	private int etapa;
+	
+	public Experimento getExperimento() {
+		return experimento;
+	}
+	
+	public void setExperimento(Experimento experimento) {
+		this.experimento = experimento;
+	}
 	
 	/**
 	 * Listener de ciclo de vida de um agente<br>
@@ -97,9 +107,20 @@ public class RedeEpistemica {
 						if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso,diff);
 					}
 					normalizarPesos();
+					//lance do experimento de cores
+					if(experimento!=null){
+						ParEpistemico crenca = experimento.getCrenca();
+						for(AgenteEpistemico agente: listAgenteEpistemico){
+							ParEpistemico opiniao = agente.interpretar(crenca);
+							double diff = opiniao.calcularDiferencaConsequente(crenca);
+							if(diff<0.6){//Criar variavel para 0.6
+								agente.setColor(Color.ORANGE);//criar variavel para cor
+							}
+						}
+					}
 					etapa++;
 				}
-			}
+			}//fim do if(listAgenteEpistemico.size()>1){
 		}
 	}
 	
