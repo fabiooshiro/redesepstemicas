@@ -233,25 +233,40 @@ public class RottweilerTest extends SeleneseTestCase {
 			totalInvalido++;
 		}else{
 			totalValido++;
+			int pagina=0;
+			int qtdScrap=0;
 			//vamos entao pegar os scraps
-			String codHtml = selenium.getHtmlSource();
-			List<Scrap> scraps = ScrapHtml.findAll(codHtml);
-			logger.debug(scraps.size() + " scraps encontrados de " + profile.getNome());
-			for(Scrap scrap:scraps){
-				Profile from = refresh(scrap.getFrom());
-				if(from==null){
-					from = scrap.getFrom();
-					em.getTransaction().begin();
-					em.persist(from);
-					em.getTransaction().commit();
+			while(true){
+				try{
+					pagina++;
+					logger.info("Scrap pagina " + pagina);
+					String codHtml = selenium.getHtmlSource();
+					List<Scrap> scraps = ScrapHtml.findAll(codHtml);
+					logger.debug(scraps.size() + " scraps encontrados de " + profile.getNome());
+					for(Scrap scrap:scraps){
+						qtdScrap++;
+						Profile from = refresh(scrap.getFrom());
+						if(from==null){
+							from = scrap.getFrom();
+							em.getTransaction().begin();
+							em.persist(from);
+							em.getTransaction().commit();
+						}
+						scrap.setFrom(from);
+						scrap.setTo(profile);
+						em.getTransaction().begin();
+						em.persist(scrap);
+						em.getTransaction().commit();
+					}
+					//navegar nas outras paginas
+					selenium.click("link=próxima >");
+					selenium.waitForPageToLoad("30000");
+					delay(2000);
+				}catch(Exception e){
+					break;
 				}
-				scrap.setFrom(from);
-				scrap.setTo(profile);
-				em.getTransaction().begin();
-				em.persist(scrap);
-				em.getTransaction().commit();
-			}
-			//TODO navegar nas outras paginas
+			}//fim do while(true)
+			JOptionPane.showMessageDialog(null,"Total de Scraps " + qtdScrap);
 		}
 		logger.info("valido vs invalido " + totalValido + " x " + totalInvalido);
 	}
