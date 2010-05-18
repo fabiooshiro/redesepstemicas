@@ -285,7 +285,10 @@ public class GraphView extends JPanel {
 		haroldo.setString(GraphLib.LABEL, "Haroldo");
 		Node clemilson = g.addNode();
 		clemilson.setString(GraphLib.LABEL, "Clemilson");
-		
+		Node leandro = g.addNode();
+		leandro.setString(GraphLib.LABEL, "Leandro");
+		addEdge(g, fabio, "150", leandro);
+		addEdge(g, leandro, "150", fabio);
 		addEdge(g, fabio, "150", haroldo);
 		addEdge(g, haroldo, "15",fabio);
 		addEdge(g, haroldo, "33",clemilson);
