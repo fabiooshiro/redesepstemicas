@@ -15,7 +15,17 @@ public class Profile implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String uid;
+	/**
+	 * Necessario para realizar a busca em largura
+	 */
+	private Integer ordem;
 	
+	public Integer getOrdem() {
+		return ordem;
+	}
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
+	}
 	private String nome;
 	public String getNome() {
 		return nome;
