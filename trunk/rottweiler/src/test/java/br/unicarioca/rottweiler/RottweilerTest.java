@@ -28,6 +28,10 @@ public class RottweilerTest extends SeleneseTestCase {
 	private int totalValido=0;
 	private int totalInvalido=0;
 	/**
+	 * Total de dias dos scraps
+	 */
+	private int diasScraps=15;
+	/**
 	 * dataHora do scan
 	 */
 	private Date dataHora = new Date();
@@ -42,17 +46,32 @@ public class RottweilerTest extends SeleneseTestCase {
 	    setUp("http://www.orkut.com.br/", "*chrome");
 	}
 	
+	private Integer lastOrdemProfile=null;
+	
 	@SuppressWarnings("unchecked")
-	private void salvarOuAtualizar(Profile profile){
-		List<Profile> profiles = em.createQuery("Select o From Profile o where o.uid=?").setParameter(1, profile.getUid()).getResultList();
+	private void salvarSeNaoExistir(Profile profile){
+		List<Profile> profiles;
+		//lastOrdemProfile 
+		if(lastOrdemProfile==null){
+			profiles = em.createQuery("Select o From Profile o order by o.ordem desc").setMaxResults(1).getResultList();
+			if(profiles.size()==0){
+				lastOrdemProfile = 1;
+			}else{
+				lastOrdemProfile = profiles.get(0).getOrdem();
+			}
+		}
+		profiles = em.createQuery("Select o From Profile o where o.uid=?").setParameter(1, profile.getUid()).getResultList();
 		if(profiles.size()==0){//salva se nao existir
 			em.getTransaction().begin();
+			profile.setOrdem(lastOrdemProfile);
 			em.persist(profile);
+			lastOrdemProfile++;
 			em.getTransaction().commit();
 			logger.debug("Profile salvo "+profile.getUid());
 		}else{
 			logger.debug("Profile ja existe "+profile.getUid());
 		}
+		
 	}
 	
 	public void testTeste() throws Exception {
@@ -89,7 +108,7 @@ public class RottweilerTest extends SeleneseTestCase {
 		for (LinkProfile linkProfile : listLinkProfile) {
 			profile = new Profile();
 			profile.setUid(linkProfile.getUid());
-			salvarOuAtualizar(profile);
+			salvarSeNaoExistir(profile);
 		}
 		
 		/*
@@ -102,10 +121,10 @@ public class RottweilerTest extends SeleneseTestCase {
 			
 			salvarRecados(profile);
 			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
-			
-			salvarComunidades(profile);
-			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
-			
+			if(profile.getInvalido()!=null){
+				salvarComunidades(profile);
+				Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
+			}
 			profile = selecionarNaoScaneado();
 		}
 	}
@@ -124,7 +143,7 @@ public class RottweilerTest extends SeleneseTestCase {
 	private Profile selecionarNaoScaneado() {
 		try{
 			em.getTransaction().begin();
-			Profile profile = (Profile)em.createQuery("Select o from Profile o where o.dataHora <> ? or o.dataHora is null").setParameter(1, dataHora).setMaxResults(1).getSingleResult();
+			Profile profile = (Profile)em.createQuery("Select o from Profile o where o.dataHora <> ? or o.dataHora is null order by o.ordem").setParameter(1, dataHora).setMaxResults(1).getSingleResult();
 			profile.setDataHora(dataHora);//atualizar a hora do scan
 			em.flush();
 			em.getTransaction().commit();
@@ -236,7 +255,10 @@ public class RottweilerTest extends SeleneseTestCase {
 			int pagina=0;
 			int qtdScrap=0;
 			//vamos entao pegar os scraps
-			while(true){
+			//calcular a data limit para o scrap
+			long timeOut = new Date().getTime()-(diasScraps*24*60*60*1000);
+			boolean run=true;
+			while(run){
 				try{
 					pagina++;
 					logger.info("Scrap pagina " + pagina);
@@ -244,29 +266,42 @@ public class RottweilerTest extends SeleneseTestCase {
 					List<Scrap> scraps = ScrapHtml.findAll(codHtml);
 					logger.debug(scraps.size() + " scraps encontrados de " + profile.getNome());
 					for(Scrap scrap:scraps){
-						qtdScrap++;
-						Profile from = refresh(scrap.getFrom());
-						if(from==null){
-							from = scrap.getFrom();
+						long scrapTime = scrap.getDataHora().getTime();
+						if(scrapTime<timeOut){
+							//nao pegamos mais os scraps antigos
+							logger.info("Scrap : recados antigos foram ignorados de " + profile.getNome());
+							run = false;
+						}else{
+							qtdScrap++;
+							Profile from = refresh(scrap.getFrom());
+							if(from==null){
+								from = scrap.getFrom();
+								salvarSeNaoExistir(from);
+							}
+							scrap.setFrom(from);
+							scrap.setTo(profile);
+							logger.debug("scrap numero " + qtdScrap);
 							em.getTransaction().begin();
-							em.persist(from);
+							em.persist(scrap);
 							em.getTransaction().commit();
 						}
-						scrap.setFrom(from);
-						scrap.setTo(profile);
-						em.getTransaction().begin();
-						em.persist(scrap);
-						em.getTransaction().commit();
 					}
 					//navegar nas outras paginas
-					selenium.click("link=próxima >");
-					selenium.waitForPageToLoad("30000");
-					delay(2000);
+					if(run){
+						logger.debug("Indo para a proxima pagina de recados de " + profile.getNome());
+						selenium.click("link=próxima >");
+						selenium.waitForPageToLoad("30000");
+						delay(2000);
+					}else{
+						logger.debug("parando de pegar scraps...");
+						break;
+					}
 				}catch(Exception e){
 					break;
 				}
 			}//fim do while(true)
-			JOptionPane.showMessageDialog(null,"Total de Scraps " + qtdScrap);
+			logger.info("Total de Scraps " + qtdScrap);
+			//JOptionPane.showMessageDialog(null,"Total de Scraps " + qtdScrap);
 		}
 		logger.info("valido vs invalido " + totalValido + " x " + totalInvalido);
 	}
@@ -300,7 +335,7 @@ public class RottweilerTest extends SeleneseTestCase {
 				Profile prof = new Profile();
 				prof.setUid(lnProfile.getUid());
 				prof.setNome(lnProfile.getNome());
-				salvarOuAtualizar(prof);
+				salvarSeNaoExistir(prof);
 			}
 		}
 	}
