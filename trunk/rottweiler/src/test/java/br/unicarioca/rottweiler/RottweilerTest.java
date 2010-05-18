@@ -2,6 +2,8 @@ package br.unicarioca.rottweiler;
 
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,6 +53,13 @@ public class RottweilerTest extends SeleneseTestCase {
 	@SuppressWarnings("unchecked")
 	private void salvarSeNaoExistir(Profile profile){
 		List<Profile> profiles;
+		//verificar se possui o nome
+		if(profile.getNome()==null){
+			String nome = getNomeProfile(profile.getUid());
+			logger.debug("resgatando o nome " + profile.getUid() + " = " + nome);
+			profile.setNome(nome);
+		}
+		
 		//lastOrdemProfile 
 		if(lastOrdemProfile==null){
 			profiles = em.createQuery("Select o From Profile o order by o.ordem desc").setMaxResults(1).getResultList();
@@ -58,6 +67,9 @@ public class RottweilerTest extends SeleneseTestCase {
 				lastOrdemProfile = 1;
 			}else{
 				lastOrdemProfile = profiles.get(0).getOrdem();
+				if(lastOrdemProfile==null){
+					lastOrdemProfile = 1;
+				}
 			}
 		}
 		profiles = em.createQuery("Select o From Profile o where o.uid=?").setParameter(1, profile.getUid()).getResultList();
@@ -214,6 +226,27 @@ public class RottweilerTest extends SeleneseTestCase {
 		///JOptionPane.showMessageDialog(null,"TotalComunidades = " + totalComunidades);
 	}
 
+	//TODO para resgatar o nome quando estiver null
+	private String getNomeProfile(String uid){
+		selenium.open("http://www.orkut.com.br/Main#Profile?uid="+uid);
+		selenium.waitForPageToLoad("30000");
+		delay(1000);
+		try{
+			selenium.selectFrame("orkutFrame");
+		}catch(Exception e){
+			//e.printStackTrace(); no problem
+		}
+		delay(2000);
+		Pattern pat = Pattern.compile("<h1 id=\"title\">([^<]*)<",Pattern.DOTALL);
+		Matcher mat = pat.matcher(selenium.getHtmlSource());
+		if(mat.find()){
+			return mat.group(1);
+		}else{
+			logger.warn("Nao foi possivel recuperar o nome de " + uid);
+			return null;
+		}
+	}
+	
 	private void delay(long tempo){
 		try{
 			Thread.sleep(tempo);
