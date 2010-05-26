@@ -15,10 +15,32 @@ public class Profile implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String uid;
+	
+	/**
+	 * 1 ou 0
+	 */
+	private Integer valido;
 	/**
 	 * Necessario para realizar a busca em largura
 	 */
 	private Integer ordem;
+	
+	/**
+	 * 1 ou 0
+	 * @return 1 ou 0
+	 */
+	public Integer getValido() {
+		return valido==null?0:valido;
+	}
+	
+	/**
+	 * Deve ser atribuido somente no final do scan, quando
+	 * se sabe se existem scraps publicos
+	 * @param valido 1 ou 0
+	 */
+	public void setValido(Integer valido) {
+		this.valido = valido;
+	}
 	
 	public Integer getOrdem() {
 		return ordem;
@@ -72,6 +94,9 @@ public class Profile implements Serializable{
 	 * @param invalido motivo
 	 */
 	public void setInvalido(String invalido) {
+		if(invalido!=null){
+			setValido(0);
+		}
 		this.invalido = invalido;
 	}
 }

@@ -1,5 +1,6 @@
 package br.unicarioca.rottweiler;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,6 +23,7 @@ import com.thoughtworks.selenium.SeleneseTestCase;
  */
 public class RottweilerTest extends SeleneseTestCase {
 	private static Logger logger = Logger.getLogger(RottweilerTest.class);
+	private EntityManagerFactory emf;
 	private EntityManager em;
 	/**
 	 * Maximo de profiles para visitar
@@ -43,23 +45,20 @@ public class RottweilerTest extends SeleneseTestCase {
 	    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("./META-INF/spring/applicationContext.xml");
 
 	    // instantiate our spring dao object from the application context
-	    EntityManagerFactory emf = (EntityManagerFactory)ctx.getBean("entityManagerFactory");
+	    emf = (EntityManagerFactory)ctx.getBean("entityManagerFactory");
 	    em = emf.createEntityManager();
 	    setUp("http://www.orkut.com.br/", "*chrome");
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    dataHora = sdf.parse("2010-05-25 19:25:16");
 	}
 	
 	private Integer lastOrdemProfile=null;
 	
 	@SuppressWarnings("unchecked")
 	private void salvarSeNaoExistir(Profile profile){
-		List<Profile> profiles;
-		//verificar se possui o nome
-		if(profile.getNome()==null){
-			String nome = getNomeProfile(profile.getUid());
-			logger.debug("resgatando o nome " + profile.getUid() + " = " + nome);
-			profile.setNome(nome);
-		}
 		
+		
+		List<Profile> profiles;
 		//lastOrdemProfile 
 		if(lastOrdemProfile==null){
 			profiles = em.createQuery("Select o From Profile o order by o.ordem desc").setMaxResults(1).getResultList();
@@ -74,6 +73,12 @@ public class RottweilerTest extends SeleneseTestCase {
 		}
 		profiles = em.createQuery("Select o From Profile o where o.uid=?").setParameter(1, profile.getUid()).getResultList();
 		if(profiles.size()==0){//salva se nao existir
+			//verificar se possui o nome
+			if(profile.getNome()==null){
+				String nome = getNomeProfile(profile.getUid());
+				logger.debug("resgatando o nome " + profile.getUid() + " = " + nome);
+				profile.setNome(nome);
+			}
 			em.getTransaction().begin();
 			profile.setOrdem(lastOrdemProfile);
 			em.persist(profile);
@@ -81,7 +86,10 @@ public class RottweilerTest extends SeleneseTestCase {
 			em.getTransaction().commit();
 			logger.debug("Profile salvo "+profile.getUid());
 		}else{
-			logger.debug("Profile ja existe "+profile.getUid());
+			if(profile.getNome()==null){
+				profile.setNome(profiles.get(0).getNome());
+			}
+			logger.debug("Profile ja existe "+profile.getUid() + " nome = '" + profile.getNome() + "'");
 		}
 		
 	}
@@ -133,12 +141,28 @@ public class RottweilerTest extends SeleneseTestCase {
 			
 			salvarRecados(profile);
 			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
-			if(profile.getInvalido()!=null){
+			if(profile.getInvalido()==null){// se for valido
 				salvarComunidades(profile);
 				Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
+				em.getTransaction().begin();
+				em.createQuery("Update Profile o Set o.valido=1 where o.uid=?").setParameter(1, profile.getUid()).executeUpdate();
+				em.flush();//nao consegue quando o Scrap.from nao esta salvo
+				em.getTransaction().commit();
 			}
+			em.close();
+			em = emf.createEntityManager();
+			
 			profile = selecionarNaoScaneado();
+			//verificar antes se ja temos o total MAX_PROFILE
+			//se houver o total pulamos o salvamento dos demais
+			long total = (Long)em.createQuery("Select count(o) From Profile o where o.valido=1)").getSingleResult();
+			logger.debug("Total de profiles validos no banco = " + total);
+			if(total>=MAX_PROFILE){
+				logger.info("Nao visitando o "+profile.getNome()+", pois ja existe o numero "+MAX_PROFILE+" de profiles validos no banco.");
+				break;
+			}
 		}
+		logger.info("FINALIZOU!!!!");
 	}
 
 	private Profile refresh(Profile profile){
@@ -209,6 +233,8 @@ public class RottweilerTest extends SeleneseTestCase {
 					ProfileComunidade profileComunidade = new ProfileComunidade();
 					profileComunidade.setComunidade(comunidade);
 					profileComunidade.setProfile(profile);
+					profileComunidade.setDataHora(dataHora);
+					profileComunidade.setAderiu(1);
 					em.getTransaction().begin();
 					em.persist(profileComunidade);
 					em.getTransaction().commit();
@@ -361,6 +387,7 @@ public class RottweilerTest extends SeleneseTestCase {
 					//	return;
 					//}
 				//}
+				//selenium.isTextPresent("");
 			}while(linksAmigos.size()==0);
 			//String src = selenium.getHtmlSource();
 			//System.out.println(src);
