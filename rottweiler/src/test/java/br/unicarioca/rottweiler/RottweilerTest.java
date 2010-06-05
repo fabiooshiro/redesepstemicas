@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,12 +33,13 @@ public class RottweilerTest extends SeleneseTestCase {
 	/**
 	 * Total de dias dos scraps
 	 */
-	private int diasScraps=15;
+	private int diasScraps=30;
 	/**
 	 * dataHora do scan
 	 */
 	private Date dataHora = new Date();
-	
+	private Date scrapsDepoisDe;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public void setUp() throws Exception {
 		// open/read the application context file
 	    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("./META-INF/spring/applicationContext.xml");
@@ -48,8 +48,9 @@ public class RottweilerTest extends SeleneseTestCase {
 	    emf = (EntityManagerFactory)ctx.getBean("entityManagerFactory");
 	    em = emf.createEntityManager();
 	    setUp("http://www.orkut.com.br/", "*chrome");
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	    dataHora = sdf.parse("2010-05-25 19:25:16");
+	    
+	    dataHora = sdf.parse("2010-06-05 03:57:16");
+	    scrapsDepoisDe = sdf.parse("2010-05-05 03:57:16");
 	}
 	
 	private Integer lastOrdemProfile=null;
@@ -136,9 +137,6 @@ public class RottweilerTest extends SeleneseTestCase {
 		 */
 		profile = selecionarNaoScaneado();
 		while(profile!=null){
-			salvarAmigos(profile);
-			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
-			
 			salvarRecados(profile);
 			Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
 			if(profile.getInvalido()==null){// se for valido
@@ -148,6 +146,9 @@ public class RottweilerTest extends SeleneseTestCase {
 				em.createQuery("Update Profile o Set o.valido=1 where o.uid=?").setParameter(1, profile.getUid()).executeUpdate();
 				em.flush();//nao consegue quando o Scrap.from nao esta salvo
 				em.getTransaction().commit();
+				
+				salvarAmigos(profile);
+				Thread.sleep(3000+(int)(Math.random()*2000));//wait some time
 			}
 			em.close();
 			em = emf.createEntityManager();
@@ -315,7 +316,8 @@ public class RottweilerTest extends SeleneseTestCase {
 			int qtdScrap=0;
 			//vamos entao pegar os scraps
 			//calcular a data limit para o scrap
-			long timeOut = new Date().getTime()-(diasScraps*24*60*60*1000);
+			long timeOut = scrapsDepoisDe.getTime();
+			logger.info("timeOut = " + sdf.format(new Date(timeOut)));
 			boolean run=true;
 			while(run){
 				try{
@@ -328,7 +330,7 @@ public class RottweilerTest extends SeleneseTestCase {
 						long scrapTime = scrap.getDataHora().getTime();
 						if(scrapTime<timeOut){
 							//nao pegamos mais os scraps antigos
-							logger.info("Scrap : recados antigos foram ignorados de " + profile.getNome());
+							logger.info("Scrap "+ sdf.format(scrap.getDataHora()) +": recados antigos foram ignorados de " + profile.getNome());
 							run = false;
 						}else{
 							qtdScrap++;
