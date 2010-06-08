@@ -33,7 +33,19 @@ public class CrencaView extends JPanel{
 		defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("Crença");
 		defaultTableModel.addColumn("Cor");
-		popularTabela(crencas.iterator());
+		if (crencas != null)
+			popularTabela(crencas.iterator());
+		
+		jTable = new JTable(defaultTableModel);
+				
+		this.setLayout(new BorderLayout());
+		//JPanel sul = new JPanel(new FlowLayout());
+		//sul.add(btnAtualizar);
+		
+		this.add(new JScrollPane(jTable),BorderLayout.CENTER);
+		//this.add(sul,BorderLayout.SOUTH);
+		defaultTableModel.addRow(new Object[] {
+				"Teste",new JColorChooser(Color.RED).getUI()});
 		
 	}
 	
