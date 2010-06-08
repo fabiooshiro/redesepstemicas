@@ -20,7 +20,7 @@ public class QuickSort {
         AgenteEpistemico pivot = (AgenteEpistemico) array.get(index);
         swap(array, index, end);
         for (int i = index = begin; i < end; ++i) {
-            if (((Double)((AgenteEpistemico)array.get(i)).getPesoReputacao()).compareTo(pivot.getPesoReputacao()) <= 0) {
+            if (((Double)((AgenteEpistemico)array.get(i)).getPesoReputacao()).compareTo(pivot.getPesoReputacao()) >= 0) {
                 swap(array, index++, i);
             }
         }
