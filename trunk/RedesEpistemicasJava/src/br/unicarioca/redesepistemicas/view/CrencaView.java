@@ -1,12 +1,16 @@
 package br.unicarioca.redesepistemicas.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,6 +28,15 @@ public class CrencaView extends JPanel{
 	private DefaultTableModel defaultTableModel;
 	private JButton btnAtualizar;
 	private AgenteEpistemico agente;
+	
+	public CrencaView(Set<ParEpistemico> crencas){
+		defaultTableModel = new DefaultTableModel();
+		defaultTableModel.addColumn("Crença");
+		defaultTableModel.addColumn("Cor");
+		popularTabela(crencas.iterator());
+		
+	}
+	
 	public CrencaView(AgenteEpistemico agente) {
 		this.agente = agente;
 		btnAtualizar = new JButton("Atualizar");
@@ -65,6 +78,17 @@ public class CrencaView extends JPanel{
 					parR.getConsequente().getY()
 			});
 		}
+	}
+	
+	private void popularTabela(Iterator<ParEpistemico> it){
+		while(it.hasNext()){
+			defaultTableModel.addRow(new Object[]{
+					it.next().toString(),
+					new JColorChooser(Color.WHITE)
+			});
+					
+		}
+		
 	}
 	private void atualizar(){
 		int r = defaultTableModel.getRowCount();
