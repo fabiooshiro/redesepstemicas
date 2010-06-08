@@ -7,7 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -28,6 +30,7 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
+import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 /**
@@ -101,6 +104,18 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		menuPrincipal.getVerPesosDoSelecionado().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				redeEpistemicaView.setVerPesosDoSelecionado(menuPrincipal.getVerPesosDoSelecionado().isSelected());
+			}
+		});
+		menuPrincipal.getColorir().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				JFrame jFrame = new JFrame("Crenças ");
+				jFrame.setLayout(new BorderLayout());
+				List<AgenteEpistemico> agentes = redeEpistemica.getListAgenteEpistemico();
+				Set<ParEpistemico> crencas = null;
+				
+				jFrame.add(new CrencaView(crencas));
+				jFrame.pack();
+				jFrame.setVisible(true);
 			}
 		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
