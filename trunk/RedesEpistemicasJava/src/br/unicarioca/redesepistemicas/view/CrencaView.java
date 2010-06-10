@@ -44,17 +44,11 @@ public class CrencaView extends JPanel{
 		
 	public CrencaView(Set<ParEpistemico> crencas){
 		crencaTableModel = new CrencaTableModel();
-		
-		if (crencas != null)
-			popularTabela(crencas.iterator());
-		
 		jTable = new JTable(crencaTableModel);
-			
-		crencaTableModel.setData(new Object[][]{{"nome crença",new Color(33,23,54),new Boolean(false)}});
 		jTable.getColumnModel().getColumn(1).setCellRenderer(new ColorCellRenderer());
 		jTable.getColumnModel().getColumn(1).setCellEditor(new ColorCellEditor());
-		
 		this.setLayout(new BorderLayout());
+		popularTabela(crencas);
 		this.add(new JScrollPane(jTable),BorderLayout.CENTER);
 			
 	}
@@ -102,12 +96,10 @@ public class CrencaView extends JPanel{
 		}
 	}
 	
-	private void popularTabela(Iterator<ParEpistemico> it){
+	private void popularTabela(Set<ParEpistemico> crencas){
+		Iterator<ParEpistemico> it = crencas.iterator();
 		while(it.hasNext()){
-			defaultTableModel.addRow(new Object[]{
-					it.next().toString(),
-					new JColorChooser(Color.WHITE)
-			});
+			crencaTableModel.setData(new Object[][]{{"nome crença",new Color(33,23,54),new Boolean(false)}});
 					
 		}
 		
