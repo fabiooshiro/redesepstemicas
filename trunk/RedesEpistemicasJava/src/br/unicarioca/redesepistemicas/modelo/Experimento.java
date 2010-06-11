@@ -1,22 +1,39 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Modelo de experimento, com variaveis definidas 
  */
 public class Experimento {
 	private AgenteEpistemico pivo;
-	private ParEpistemico crenca;
+	private Map<ParEpistemico,Color> crencas;
+	
+	
+	public Experimento(){
+		crencas = new HashMap<ParEpistemico,Color>();
+	}
+	
 	public AgenteEpistemico getPivo() {
 		return pivo;
 	}
 	public void setPivo(AgenteEpistemico pivo) {
 		this.pivo = pivo;
 	}
-	public ParEpistemico getCrenca() {
-		return crenca;
+		
+	public void addCrenca(ParEpistemico crenca, Color cor){
+		crencas.put(crenca, cor);
 	}
-	public void setCrenca(ParEpistemico crenca) {
-		this.crenca = crenca;
+	
+	public Set<ParEpistemico> getSetCrencas(){
+		return crencas.keySet();
+	}
+	
+	public Color getColor(ParEpistemico crenca){
+		return crencas.get(crenca);
 	}
 	
 }
