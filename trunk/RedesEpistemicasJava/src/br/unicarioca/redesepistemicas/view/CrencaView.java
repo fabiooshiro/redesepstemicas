@@ -6,7 +6,6 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventObject;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -20,15 +19,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.Border;
-import javax.swing.event.CellEditorListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
+import br.unicarioca.redesepistemicas.modelo.Experimento;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 /**
@@ -41,16 +37,47 @@ public class CrencaView extends JPanel{
 	private CrencaTableModel crencaTableModel;
 	private JButton btnAtualizar;
 	private AgenteEpistemico agente;
+	private JButton btnMonitorarCrencas;
+	private Experimento experimento;
+	
 		
 	public CrencaView(Set<ParEpistemico> crencas){
+		//crencaTableModel = new CrencaTableModel();
 		crencaTableModel = new CrencaTableModel();
 		jTable = new JTable(crencaTableModel);
 		jTable.getColumnModel().getColumn(1).setCellRenderer(new ColorCellRenderer());
 		jTable.getColumnModel().getColumn(1).setCellEditor(new ColorCellEditor());
+		jTable.getColumnModel().getColumn(0).setMinWidth(300);
+		jTable.getColumnModel().getColumn(1).setMaxWidth(30);
+		jTable.getColumnModel().getColumn(2).setMaxWidth(20);
+		btnMonitorarCrencas = new JButton("Monitorar");
+		
+		
+		btnMonitorarCrencas.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				monitora();
+			}
+		});
+		
+		
+		JPanel sul = new JPanel(new FlowLayout());
+		sul.add(btnMonitorarCrencas);
+		
 		this.setLayout(new BorderLayout());
 		popularTabela(crencas);
+		this.add(sul, BorderLayout.SOUTH);
 		this.add(new JScrollPane(jTable),BorderLayout.CENTER);
+		
 			
+	}
+	
+	public Experimento getExperimento(){
+		return experimento;
+	}
+	
+	public void setExperimento(Experimento experimento){
+		this.experimento = experimento;
 	}
 	
 	public CrencaView(AgenteEpistemico agente) {
@@ -82,6 +109,17 @@ public class CrencaView extends JPanel{
 		this.add(new JScrollPane(jTable),BorderLayout.CENTER);
 		this.add(sul,BorderLayout.SOUTH);
 	}
+	
+	private void monitora(){
+		experimento = new Experimento();
+		for(int row= 0; row < jTable.getRowCount(); row++){
+			if((Boolean) jTable.getValueAt(row, 2)){
+				experimento.addCrenca((ParEpistemico) jTable.getValueAt(row, 0), (Color) jTable.getValueAt(row, 1));
+			}
+		}
+		
+	}
+	
 	private void popularTabela(){
 		List<ParEpistemico> pares = agente.getCrencas();
 		for(ParEpistemico par:pares){
@@ -97,11 +135,15 @@ public class CrencaView extends JPanel{
 	}
 	
 	private void popularTabela(Set<ParEpistemico> crencas){
+		if(crencas == null) return;
 		Iterator<ParEpistemico> it = crencas.iterator();
+		Object[][] data = new Object[crencas.size()][];
+		int index = 0;
 		while(it.hasNext()){
-			crencaTableModel.setData(new Object[][]{{"nome crença",new Color(33,23,54),new Boolean(false)}});
-					
+			data[index] = new Object[]{it.next(),new Color(33,23,54),new Boolean(false)}; 
+			index++;
 		}
+		crencaTableModel.setData(data);
 		
 	}
 	private void atualizar(){

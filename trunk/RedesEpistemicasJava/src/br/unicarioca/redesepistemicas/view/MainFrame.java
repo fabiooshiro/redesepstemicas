@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -47,6 +47,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	private MenuPrincipal menuPrincipal;
 	private ConfiguracoesPanel configuracoesPanel = null;
 	private JLabel sysInfo = new JLabel("Redes Epistêmicas");
+	private CrencaView crencaView;
 	public MainFrame() {
 		this.setTitle("IndraNet 1.0 - Simulador de Redes Epistêmicas");
 		//instancias
@@ -111,9 +112,17 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 				JFrame jFrame = new JFrame("Crenças ");
 				jFrame.setLayout(new BorderLayout());
 				List<AgenteEpistemico> agentes = redeEpistemica.getListAgenteEpistemico();
-				Set<ParEpistemico> crencas = null;
+				Set<ParEpistemico> crencas = new HashSet<ParEpistemico>();
 				
-				jFrame.add(new CrencaView(crencas));
+				for(AgenteEpistemico agente : agentes){
+					List<ParEpistemico> crencaS = agente.getCrencas();
+					for(ParEpistemico crenca : crencaS){
+						crencas.add(crenca);
+					}
+				}
+				crencaView = new CrencaView(crencas);
+				redeEpistemica.setExperimento(crencaView.getExperimento());
+				jFrame.add(crencaView);
 				jFrame.pack();
 				jFrame.setVisible(true);
 			}
