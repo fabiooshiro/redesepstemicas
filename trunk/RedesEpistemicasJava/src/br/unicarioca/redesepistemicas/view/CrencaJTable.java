@@ -22,33 +22,61 @@ import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 public class CrencaJTable extends JTable{
 	private static final long serialVersionUID = 1L;
 	private static ParEpistemico parModelo;
+	private static final int PAR_COLUMN=1;
+	private static final int COLOR_COLUMN=0;
 	private static Logger logger = Logger.getLogger(CrencaJTable.class);
 	private static int shiftCol2Right = 2;
 	private CrencaTableModel crencaTableModel;
 	public CrencaJTable(ParEpistemico parModelo) {
 		crencaTableModel = new CrencaTableModel(parModelo); 
 		this.setModel(crencaTableModel);
-		this.getColumnModel().getColumn(0).setCellRenderer(new ColorCellRenderer());
-		this.getColumnModel().getColumn(0).setCellEditor(new ColorCellEditor());
-		this.getColumnModel().getColumn(0).setMaxWidth(20);//cor
-		this.getColumnModel().getColumn(1).setMaxWidth(30);//nome
+		this.getColumnModel().getColumn(COLOR_COLUMN).setCellRenderer(new ColorCellRenderer());
+		this.getColumnModel().getColumn(COLOR_COLUMN).setCellEditor(new ColorCellEditor());
+		this.getColumnModel().getColumn(COLOR_COLUMN).setMaxWidth(20);//cor
+		this.getColumnModel().getColumn(PAR_COLUMN).setMinWidth(200);//nome
 		//this.getColumnModel().getColumn(2).setMaxWidth(20);//checkbox?
 	}
 	
+	public ParEpistemico getParInRow(int row) {
+		Object obj = crencaTableModel.getValueAt(row,PAR_COLUMN);
+		return (ParEpistemico)obj;
+	}
+	
+	public boolean isChecked(int row) {
+		return true;
+	}
+	
+	public Color getColorInRow(int row) {
+		Object obj = crencaTableModel.getValueAt(row,COLOR_COLUMN);
+		if(obj==null || !(obj instanceof Color)) return Color.BLACK;
+		return (Color)obj;
+	}
+	
+	/**
+	 * Remove todos os caras
+	 */
+	public void clear() {
+		int r = crencaTableModel.getRowCount();
+		for(int i=0;i<r;i++){
+			crencaTableModel.removeRow(0);
+		}
+	}
+	
 	public void addRow(ParEpistemico parR, Color color, Boolean boolean1) {
-		Object obs[] = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
-		logger.info("Criando uma linha com "+obs.length+" colunas");
+		Object objects[] = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
+		logger.info("Criando uma linha com "+objects.length+" colunas");
 		int j=0;
-		obs[0]=color;
-		for(int i = shiftCol2Right;i<obs.length;i++){
+		objects[COLOR_COLUMN]=color;
+		objects[PAR_COLUMN]=parR;
+		for(int i = shiftCol2Right;i<objects.length;i++){
 			if(i<parR.getSizeAntecedente()+shiftCol2Right){
-				obs[i] = parR.getDoubleAntecedentes().get(j); 
+				objects[i] = parR.getDoubleAntecedentes().get(j); 
 			}else{
-				obs[i] = parR.getDoubleConsequentes().get(shiftCol2Right+1+j-obs.length); 
+				objects[i] = parR.getDoubleConsequentes().get(shiftCol2Right+1+j-objects.length); 
 			}
 			j++;
 		}
-		crencaTableModel.addRow(obs);
+		crencaTableModel.addRow(objects);
 	}
 	
 	public void addRow(ParEpistemico parR) {
@@ -162,7 +190,5 @@ public class CrencaJTable extends JTable{
 	    }
 
 	}
-	
-	
 	
 }

@@ -26,7 +26,6 @@ public class CrencaView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(CrencaView.class);
 	private CrencaJTable jTable;
-	private CrencaTableModel defaultTableModel;
 	private JButton btnAtualizar;
 	private AgenteEpistemico agente;
 	private JButton btnMonitorarCrencas;
@@ -40,7 +39,7 @@ public class CrencaView extends JPanel{
 		btnMonitorarCrencas.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				monitora();
+				monitorar();
 			}
 		});
 		
@@ -82,11 +81,11 @@ public class CrencaView extends JPanel{
 		this.add(sul,BorderLayout.SOUTH);
 	}
 	
-	private void monitora(){
+	private void monitorar(){//troquei para o infinitivo, sou meio chato :-)
 		experimento = new Experimento();
 		for(int row= 0; row < jTable.getRowCount(); row++){
-			if((Boolean) jTable.getValueAt(row, 2)){
-				experimento.addCrenca((ParEpistemico) jTable.getValueAt(row, 0), (Color) jTable.getValueAt(row, 1));
+			if(jTable.isChecked(row)){
+				experimento.addCrenca(jTable.getParInRow(row),jTable.getColorInRow(row));
 			}
 		}
 	}
@@ -106,11 +105,9 @@ public class CrencaView extends JPanel{
 			jTable.addRow(it.next(),new Color(33,23,54),new Boolean(false));
 		}
 	}
+	
 	private void atualizar(){
-		int r = defaultTableModel.getRowCount();
-		for(int i=0;i<r;i++){
-			defaultTableModel.removeRow(0);
-		}
+		jTable.clear();
 		popularTabela();
 	}
 }
