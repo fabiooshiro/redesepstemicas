@@ -1,55 +1,23 @@
 package br.unicarioca.redesepistemicas.view;
 
+import javax.swing.table.DefaultTableModel;
 
-import javax.swing.table.AbstractTableModel;
+import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
-
-public class CrencaTableModel extends AbstractTableModel {
-	
-	private String[] columnName = {"Crença","Cor","Monitora"};
-	private Object[][] data;
-	
-
-	@Override
-	public int getColumnCount() {
-		return columnName.length;
+public class CrencaTableModel extends DefaultTableModel {
+	private static final long serialVersionUID = 1L;
+    public CrencaTableModel(ParEpistemico parModelo) {
+    	int i;
+		this.addColumn("Cor");
+		this.addColumn("Nome");
+		for (i = 0; i < parModelo.getSizeAntecedente(); i++) {
+			this.addColumn("A" + i);
+		}
+		for (i = 0; i < parModelo.getSizeConsequente(); i++) {
+			this.addColumn("C" + i);
+		}
 	}
-
-	@Override
-	public int getRowCount() {
-		return data.length;
-	}
-
-	@Override
-	public Object getValueAt(int arg0, int arg1) {
-		return data[arg0][arg1];
-	}
-	
-	public Class getColumnClass(int c) {
-        return getValueAt(0, c).getClass();
+	public boolean isCellEditable(int row, int col) {
+    	return true;
     }
-	
-    public boolean isCellEditable(int row, int col) {
-        if (col > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public void setValueAt(Object value, int row, int col) {
-        data[row][col] = value;
-        fireTableCellUpdated(row, col);
-    }
-    
-    public void setData(Object[][] data){
-    	this.data = data;
-    }
-      
-    public String getColumnName(int col) {
-        return columnName[col];
-    }
-
-
-
 }

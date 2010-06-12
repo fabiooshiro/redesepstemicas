@@ -1,50 +1,15 @@
 package br.unicarioca.redesepistemicas.modelo;
 
-/**
- * Representa um par epistemico composto por um antecedente e um consequente
- */
-public class ParEpistemico {
-	protected Antecedente antecedente;
-	protected Consequente consequente;
-	public ParEpistemico() {
-	}
-	/**
-	 * @return the antecedente
-	 */
-	public Antecedente getAntecedente() {
-		return antecedente;
-	}
-	/**
-	 * @param antecedente the antecedente to set
-	 */
-	public void setAntecedente(Antecedente antecedente) {
-		this.antecedente = antecedente;
-	}
-	/**
-	 * @return the consequente
-	 */
-	public Consequente getConsequente() {
-		return consequente;
-	}
-	/**
-	 * @param consequente the consequente to set
-	 */
-	public void setConsequente(Consequente consequente) {
-		this.consequente = consequente;
-	}
-	
-	/**
-	 * Calcula a diferenca
-	 * @param par Par a ser confrontado
-	 * @return diferenca
-	 */
-	public Double calcularDiferencaConsequente(ParEpistemico par) {
-		Double diff = 0.0;
-		Consequente con = par.getConsequente();
-		
-		diff+=Math.abs(consequente.getX()-con.getX());		
-		diff+=Math.abs(consequente.getY()-con.getY());
-		return diff;
-	}
-	
+import java.util.ArrayList;
+
+public interface ParEpistemico extends Cloneable{
+	public void addAntecedente(Double d);
+	public void addConsequente(Double d);
+	public Double calcularDiferencaConsequente(ParEpistemico par);
+	public int getSizeAntecedente();
+	public int getSizeConsequente();
+	public Object clone() throws CloneNotSupportedException;
+	public boolean antecedenteEquals(ParEpistemico antecedente);
+	public ArrayList<Double> getDoubleAntecedentes();
+	public ArrayList<Double> getDoubleConsequentes();
 }

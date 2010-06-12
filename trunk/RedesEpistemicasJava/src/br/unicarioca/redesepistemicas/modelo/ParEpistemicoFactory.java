@@ -1,7 +1,8 @@
 package br.unicarioca.redesepistemicas.modelo;
+
 /**
- * Classe responsave por criar os pares epistemicos
- * @author fabio
+ * Classe responsavel por criar os pares epistemicos
+ * @author Fabio Issamu Oshiro
  *
  */
 public class ParEpistemicoFactory {
@@ -25,7 +26,7 @@ public class ParEpistemicoFactory {
 	 * @param foco
 	 * @return ParEpistemico
 	 */
-	public static ParEpistemico criar(Foco foco) {
+	public static ParEpistemico3x2 criar(Foco foco) {
 		return criar(foco.getX(),foco.getY(),foco.getZ(),foco.getRaio());
 	}
 	
@@ -42,14 +43,14 @@ public class ParEpistemicoFactory {
 	 *            medida
 	 * @return ParEpistemico
 	 */
-	public static ParEpistemico criar(double x, double y, double z, double raio) {
+	public static ParEpistemico3x2 criar(double x, double y, double z, double raio) {
 		double[][] a = criarPontoEmEsfera(x, y, z, raio);
 		Antecedente antecedente = new Antecedente();
 		
 		antecedente.setX(normaliza(a[0][0]));
 		antecedente.setY(normaliza(a[0][1]));
 		antecedente.setZ(normaliza(a[0][2]));
-		ParEpistemico parEpistemico = new ParEpistemicoDiffHip();
+		ParEpistemico3x2 parEpistemico = new ParEpistemicoDiffHip();
 		parEpistemico.setAntecedente(antecedente);
 		Consequente consequente = new Consequente();
 		parEpistemico.setConsequente(consequente);
@@ -117,6 +118,16 @@ public class ParEpistemicoFactory {
 			}
 		}
 		return mat3;
+	}
+
+	public static ParEpistemico criar(int antecedente, int consequente) {
+		ParEpistemicoOrkut par = new ParEpistemicoOrkut();
+		par.setSizeAntecedente(antecedente);
+		for(int i=0;i<antecedente;i++){
+			par.addAntecedente(Math.random());
+		}
+		par.setSizeConsequente(consequente);
+		return par;
 	}
 	
 }

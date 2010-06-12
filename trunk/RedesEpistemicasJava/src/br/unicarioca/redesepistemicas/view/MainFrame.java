@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -31,6 +32,7 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
+import br.unicarioca.redesepistemicas.modelo.ParEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 /**
@@ -47,10 +49,12 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	private MenuPrincipal menuPrincipal;
 	private ConfiguracoesPanel configuracoesPanel = null;
 	private JLabel sysInfo = new JLabel("Redes Epistêmicas");
+	public static ParEpistemico parModelo = ParEpistemicoFactory.criar(5,1);
 	private CrencaView crencaView;
 	public MainFrame() {
 		this.setTitle("IndraNet 1.0 - Simulador de Redes Epistêmicas");
 		//instancias
+		CrencaJTable.setParModelo(parModelo);
 		redeEpistemica = new RedeEpistemica();
 		redeEpistemicaView = new RedeEpistemicaView(redeEpistemica);
 		controlePanel = new ControlePanel();
@@ -62,6 +66,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		SalvarSnapShoot.getInstance().setConfiguracoesPanel(configuracoesPanel);
 		CrencaTreinarView crencaTreinarView = CrencaTreinarView.getInstance();
 		crencaTreinarView.setAgenteListPanel(agenteListPanel);
+		
 		redeEpistemica.setCicloVidaAgenteListener(this);
 		redeEpistemica.setAgenteEpistemicoFactory(this);
 		redeEpistemicaView.setAgenteEpistemicoFactory(this);
@@ -107,24 +112,28 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 				redeEpistemicaView.setVerPesosDoSelecionado(menuPrincipal.getVerPesosDoSelecionado().isSelected());
 			}
 		});
+
 		menuPrincipal.getColorir().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				JFrame jFrame = new JFrame("Crenças ");
-				jFrame.setLayout(new BorderLayout());
 				List<AgenteEpistemico> agentes = redeEpistemica.getListAgenteEpistemico();
 				Set<ParEpistemico> crencas = new HashSet<ParEpistemico>();
-				
 				for(AgenteEpistemico agente : agentes){
 					List<ParEpistemico> crencaS = agente.getCrencas();
 					for(ParEpistemico crenca : crencaS){
 						crencas.add(crenca);
 					}
 				}
-				crencaView = new CrencaView(crencas);
-				redeEpistemica.setExperimento(crencaView.getExperimento());
-				jFrame.add(crencaView);
-				jFrame.pack();
-				jFrame.setVisible(true);
+				if(crencas.size()==0){
+					JOptionPane.showMessageDialog(MainFrame.this, "Nenhuma crença");
+				}else{
+					JFrame jFrame = new JFrame("Crenças ");
+					jFrame.setLayout(new BorderLayout());
+					crencaView = new CrencaView(crencas);
+					redeEpistemica.setExperimento(crencaView.getExperimento());
+					jFrame.add(crencaView);
+					jFrame.pack();
+					jFrame.setVisible(true);
+				}
 			}
 		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){

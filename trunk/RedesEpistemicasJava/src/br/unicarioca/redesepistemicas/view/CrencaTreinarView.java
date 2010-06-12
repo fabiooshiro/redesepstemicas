@@ -1,6 +1,7 @@
 package br.unicarioca.redesepistemicas.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,28 +12,35 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
-import br.unicarioca.redesepistemicas.modelo.Antecedente;
-import br.unicarioca.redesepistemicas.modelo.Consequente;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 public class CrencaTreinarView extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JTable jTable;
-	private DefaultTableModel defaultTableModel;
+	private static final Logger logger = Logger.getLogger(CrencaTreinarView.class);
+	static class Holder {
+		static CrencaTreinarView instance = new CrencaTreinarView();
+	}
+	public static CrencaTreinarView getInstance() {
+		return Holder.instance;
+	}
+	
+	private CrencaJTable jTable;
+	private CrencaTableModel defaultTableModel;
 	private JButton btnNovaCrenca;
 	private JButton btnTreinarSelecionados;
 	private JTextField txtQtdTreino;
 	private JLabel lblQtdTreino;
-	private static CrencaTreinarView instance;
 	private AgenteListPanel agenteListPanel;
-
+	
 	public void setAgenteListPanel(AgenteListPanel agenteListPanel) {
 		this.agenteListPanel = agenteListPanel;
 	}
@@ -42,14 +50,7 @@ public class CrencaTreinarView extends JPanel {
 		txtQtdTreino = new JTextField("1000");
 		lblQtdTreino = new JLabel("Qtd. Treino: ");
 		btnTreinarSelecionados = new JButton("Treinar Selecionados");
-		defaultTableModel = new DefaultTableModel();
-		defaultTableModel.addColumn("Ax");
-		defaultTableModel.addColumn("Ay");
-		defaultTableModel.addColumn("Az");
-		defaultTableModel.addColumn("Cx");
-		defaultTableModel.addColumn("Cy");
-
-		jTable = new JTable(defaultTableModel);
+		jTable = new CrencaJTable(MainFrame.parModelo);
 
 		jTable.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
@@ -93,15 +94,10 @@ public class CrencaTreinarView extends JPanel {
 		this.add(new JScrollPane(jTable), BorderLayout.CENTER);
 	}
 
-	public static CrencaTreinarView getInstance() {
-		if (instance == null) {
-			instance = new CrencaTreinarView();
-		}
-		return instance;
-	}
+	
 
 	private void criarNovaLinha() {
-		defaultTableModel.addRow(new Object[] { Math.random(), Math.random(), Math.random(), Math.random(), Math.random() });
+		jTable.addRow();
 	}
 
 	private void treinarAgentesSelecionados() {
@@ -116,23 +112,30 @@ public class CrencaTreinarView extends JPanel {
 
 	private List<ParEpistemico> getParesEpistemicos() {
 		List<ParEpistemico> retorno = new ArrayList<ParEpistemico>();
-		int linhas = defaultTableModel.getRowCount();
-		int colunas = defaultTableModel.getColumnCount();
-		for (int i = 0; i < linhas; i++) {
-			ParEpistemico par = new ParEpistemico();
-			Antecedente antecedente = new Antecedente();
-			Consequente consequente = new Consequente();
-			for (int j = 0; j < colunas; j++) {
-				if (j < 3) {
-					antecedente.add(defaultTableModel.getValueAt(i, j));
-				} else {
-					consequente.add(defaultTableModel.getValueAt(i, j));
+		try {
+			int linhas = defaultTableModel.getRowCount();
+			int colunas = defaultTableModel.getColumnCount();
+			int shiftCol2Right = 1;
+			for (int i = 0; i < linhas; i++) {
+				ParEpistemico par = (ParEpistemico) CrencaJTable.getParModelo().clone();
+				for (int j = shiftCol2Right; j < colunas; j++) {
+					if (j < CrencaJTable.getParModelo().getSizeAntecedente()+shiftCol2Right) {
+						par.addAntecedente(Double
+								.parseDouble((defaultTableModel
+										.getValueAt(i, j).toString())));
+					} else {
+						par.addConsequente(Double
+								.parseDouble((defaultTableModel
+										.getValueAt(i, j).toString())));
+					}
 				}
+				retorno.add(par);
 			}
-			par.setAntecedente(antecedente);
-			par.setConsequente(consequente);
-			retorno.add(par);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this,"Erro ao gerar pares: " + e.getMessage());
 		}
 		return retorno;
 	}
+
 }
