@@ -124,8 +124,8 @@ public class AgenteEpistemico{
 	private Double maxDiff = 0.2;
 	
 	public AgenteEpistemico() {
-		int[] neuralNetworkStructure = new int[] { 3, 4, 2 };
-
+		//int[] neuralNetworkStructure = new int[] { 3, 4, 2 };
+		int[] neuralNetworkStructure = new int[] { 5, 4, 1 };
 		// create new neural network with the defined structure
 		neuralNetwork = new NeuralNetwork(neuralNetworkStructure);
 		neuralNetwork.initWeights();
@@ -211,11 +211,17 @@ public class AgenteEpistemico{
 	 */
 	private ParEpistemico criarNovoPar(){
 		ParEpistemico parEpistemico;
-		parEpistemico = ParEpistemicoFactory.criar(foco);
-		//atualizar o consequente
-		Consequente consequente = new Consequente();
-		consequente = new Consequente(neuralNetwork.getOutputs());
-		parEpistemico.setConsequente(consequente);
+		if(false){
+			ParEpistemico3x2 parEpistemico2 = ParEpistemicoFactory.criar(foco);
+			//atualizar o consequente
+			Consequente consequente = new Consequente();
+			consequente = new Consequente(neuralNetwork.getOutputs());
+			parEpistemico2.setConsequente(consequente);
+			return parEpistemico2;
+		}else{
+			parEpistemico = ParEpistemicoFactory.criar(5,1);
+			parEpistemico = interpretar(parEpistemico);
+		}
 		return parEpistemico;
 	}
 	
@@ -298,15 +304,23 @@ public class AgenteEpistemico{
 	 * @return ParEpistemico
 	 */
 	public ParEpistemico interpretar(ParEpistemico parEpistemico){
-		ParEpistemico retorno = new ParEpistemicoDiffHip();
-		retorno.setAntecedente(parEpistemico.getAntecedente());
-		neuralNetwork.setInputs(getInputs(parEpistemico));
-		Consequente consequente = new Consequente(neuralNetwork.getOutputs());
-		retorno.setConsequente(consequente);
+		ParEpistemico retorno = null;
+		try {
+			retorno = (ParEpistemico)parEpistemico.clone();
+			for(int i=0;i<parEpistemico.getSizeAntecedente();i++){
+				retorno.addAntecedente(parEpistemico.getDoubleAntecedentes().get(i));
+			}
+			neuralNetwork.setInputs(parEpistemico.getDoubleAntecedentes());
+			for(int i=0;i<parEpistemico.getSizeConsequente();i++){
+				retorno.addConsequente(neuralNetwork.getOutputs().get(i));
+			}
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		return retorno;
 	}
 	
-	private ArrayList<Double> getInputs(ParEpistemico parEpistemico){
+	private ArrayList<Double> getInputs(ParEpistemico3x2 parEpistemico){
 		ArrayList<Double> in = new ArrayList<Double>();
 		in.add(parEpistemico.getAntecedente().getX());
 		in.add(parEpistemico.getAntecedente().getY());
@@ -323,10 +337,14 @@ public class AgenteEpistemico{
 		ArrayList<TrainingExample> listTraining = new ArrayList<TrainingExample>();
 		for(ParEpistemico parEpistemicoInformado:pares){
 			TrainingExample te = new TrainingExample();
-			ArrayList<Double> in = getInputs(parEpistemicoInformado);
-			ArrayList<Double> out = new ArrayList<Double>();
-			out.add(parEpistemicoInformado.getConsequente().getX());
-			out.add(parEpistemicoInformado.getConsequente().getY());
+			ArrayList<Double> in = parEpistemicoInformado.getDoubleAntecedentes();
+			ArrayList<Double> out = parEpistemicoInformado.getDoubleConsequentes();
+			if(out.size()!=parEpistemicoInformado.getSizeConsequente()){
+				throw new RuntimeException("Out errado!");
+			}
+			if(in.size()!=parEpistemicoInformado.getSizeAntecedente()){
+				throw new RuntimeException("In errado!");
+			}
 			te.setInputs(in);
 			te.setOutputs(out);
 			listTraining.add(te);
@@ -359,36 +377,9 @@ public class AgenteEpistemico{
 	 * @param qtd
 	 */
 	public void treinar(ParEpistemico parEpistemicoInformado,int qtd){
-		ArrayList<TrainingExample> listTraining = new ArrayList<TrainingExample>();
-		
-		TrainingExample te = new TrainingExample();
-		ArrayList<Double> in = getInputs(parEpistemicoInformado);
-		ArrayList<Double> out = new ArrayList<Double>();
-		out.add(parEpistemicoInformado.getConsequente().getX());
-		out.add(parEpistemicoInformado.getConsequente().getY());
-		te.setInputs(in);
-		te.setOutputs(out);
-		listTraining.add(te);
-		
-		double errorTolerance = 0.2; 
-		
-		// pso specific settings
-		int numberParticles = 20; 
-		double learningFactor = 1.49618; 
-		double inertialWeight = 0.7298; 
-		
-		logger.debug("qtd = " + qtd);
-		// create a instance of a training method
-		//Training training = new ParticleSwarmOptimization(numberEvaluations, errorTolerance, learningFactor, inertialWeight, numberParticles);
-		Training training = new BackPropagation(qtd,errorTolerance);
-		
-		// set the training method and set for the neural network to use
-		neuralNetwork.setTraining(training);
-		TrainingSet trainingSet = new TrainingSet("MyT",listTraining);
-		//neuralNetwork.setTrainingSet(trainingData.getTrainingSet());
-		neuralNetwork.setTrainingSet(trainingSet);
-		
-		neuralNetwork.train();
+		List<ParEpistemico> pares = new ArrayList<ParEpistemico>();
+		pares.add(parEpistemicoInformado);
+		treinar(pares, qtd);
 	}
 	
 	/**
@@ -402,7 +393,7 @@ public class AgenteEpistemico{
 		double peso = aresta.getPeso();
 		double deltaErro;
 		//guarda a informacao?
-		ParEpistemico parEpistemicoExistente = procurar(parEpistemicoInformado.getAntecedente());
+		ParEpistemico parEpistemicoExistente = procurar(parEpistemicoInformado);
 		if(parEpistemicoExistente==null){
 			logger.debug("Aprendendo " + parEpistemicoInformado);
 			parEpistemicoExistente = interpretar(parEpistemicoInformado);
@@ -418,7 +409,9 @@ public class AgenteEpistemico{
 			logger.debug("evolucao depois treino = "+
 			parEpistemicoExistente.calcularDiferencaConsequente(parEpistemicoPessoalDepoisTreino)
 			);
-			parEpistemicoExistente.setConsequente(parEpistemicoPessoalDepoisTreino.getConsequente());
+			for(int i=0;i<parEpistemicoPessoalDepoisTreino.getSizeConsequente();i++){
+				parEpistemicoExistente.addConsequente(parEpistemicoPessoalDepoisTreino.getDoubleConsequentes().get(i));
+			}
 			
 			deltaErro = parEpistemicoPessoalDepoisTreino.calcularDiferencaConsequente(parEpistemicoInformado);
 		}
@@ -464,12 +457,12 @@ public class AgenteEpistemico{
 	}
 	/**
 	 * Procura dentro da crenca
-	 * @param antecedente
+	 * @param parAntecedente
 	 * @return ParEpistemico
 	 */
-	private ParEpistemico procurar(Antecedente antecedente){
+	private ParEpistemico procurar(ParEpistemico parAntecedente){
 		for(ParEpistemico parEpistemico:crencas){
-			if(parEpistemico.getAntecedente().equals(antecedente)){
+			if(parEpistemico.antecedenteEquals(parAntecedente)){
 				return parEpistemico;
 			}
 		}
@@ -618,7 +611,7 @@ public class AgenteEpistemico{
 	 */
 	public void addCrencas(List<ParEpistemico> pares) {
 		for(ParEpistemico par:pares){
-			ParEpistemico procurado = procurar(par.getAntecedente());
+			ParEpistemico procurado = procurar(par);
 			if(procurado==null){
 				crencas.add(par);
 			}

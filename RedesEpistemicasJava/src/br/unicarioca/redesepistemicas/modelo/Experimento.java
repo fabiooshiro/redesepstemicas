@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class Experimento {
 	private AgenteEpistemico pivo;
+	private ParEpistemico crenca;
+	private double maxDiff=0.3;
 	private Map<ParEpistemico,Color> crencas;
 	
 	
@@ -35,5 +37,10 @@ public class Experimento {
 	public Color getColor(ParEpistemico crenca){
 		return crencas.get(crenca);
 	}
-	
+	public double getMaxDiff() {
+		return maxDiff;
+	}
+	public void setMaxDiff(double maxDiff) {
+		this.maxDiff = maxDiff;
+	}
 }
