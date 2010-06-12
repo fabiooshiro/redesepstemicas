@@ -94,8 +94,6 @@ public class CrencaTreinarView extends JPanel {
 		this.add(new JScrollPane(jTable), BorderLayout.CENTER);
 	}
 
-	
-
 	private void criarNovaLinha() {
 		jTable.addRow();
 	}
