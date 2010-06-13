@@ -109,31 +109,7 @@ public class CrencaTreinarView extends JPanel {
 	}
 
 	private List<ParEpistemico> getParesEpistemicos() {
-		List<ParEpistemico> retorno = new ArrayList<ParEpistemico>();
-		try {
-			int linhas = defaultTableModel.getRowCount();
-			int colunas = defaultTableModel.getColumnCount();
-			int shiftCol2Right = 1;
-			for (int i = 0; i < linhas; i++) {
-				ParEpistemico par = (ParEpistemico) CrencaJTable.getParModelo().clone();
-				for (int j = shiftCol2Right; j < colunas; j++) {
-					if (j < CrencaJTable.getParModelo().getSizeAntecedente()+shiftCol2Right) {
-						par.addAntecedente(Double
-								.parseDouble((defaultTableModel
-										.getValueAt(i, j).toString())));
-					} else {
-						par.addConsequente(Double
-								.parseDouble((defaultTableModel
-										.getValueAt(i, j).toString())));
-					}
-				}
-				retorno.add(par);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(this,"Erro ao gerar pares: " + e.getMessage());
-		}
-		return retorno;
+		return jTable.getPares();
 	}
 
 }

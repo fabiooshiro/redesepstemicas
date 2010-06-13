@@ -41,9 +41,17 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JLabel lblPesoAleatorio;
 	private JCheckBox chkPesoAleatorio;
 	
+	private JLabel lblDistribuicaoAleatoria;
+	
+
+	private JCheckBox chkDistribuicaoAleatoria;
+	
 	private JButton btnOk;
 
 	public ConfiguracoesPanel() {
+		
+		lblDistribuicaoAleatoria = new JLabel("Distr. Aleatória");
+		chkDistribuicaoAleatoria = new JCheckBox();
 		
 		lblSnapShot = new JLabel("PrintScreen:");
 		lblSnapShot.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -135,6 +143,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		tabela.add(txtDistanciaMaxRepulsao);
 		tabela.add(lblPassoMax);
 		tabela.add(spnPassoMax);
+		tabela.add(lblDistribuicaoAleatoria);
+		tabela.add(chkDistribuicaoAleatoria);
 		retorno.add(tabela, BorderLayout.NORTH);
 		retorno.add(new JPanel(),BorderLayout.CENTER);
 		return retorno;
@@ -416,5 +426,22 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	 */
 	public void setBtnOk(JButton btnOk) {
 		this.btnOk = btnOk;
+	}
+
+
+	public JCheckBox getChkDistribuicaoAleatoria() {
+		return chkDistribuicaoAleatoria;
+	}
+
+	public void setChkDistribuicaoAleatoria(JCheckBox chkDistribuicaoAleatoria) {
+		this.chkDistribuicaoAleatoria = chkDistribuicaoAleatoria;
+	}
+	
+	public JLabel getLblDistribuicaoAleatoria() {
+		return lblDistribuicaoAleatoria;
+	}
+
+	public void setLblDistribuicaoAleatoria(JLabel lblDistribuicaoAleatoria) {
+		this.lblDistribuicaoAleatoria = lblDistribuicaoAleatoria;
 	}
 }

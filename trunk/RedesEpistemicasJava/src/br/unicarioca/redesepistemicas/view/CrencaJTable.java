@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.BorderFactory;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -42,6 +45,33 @@ public class CrencaJTable extends JTable{
 		return (ParEpistemico)obj;
 	}
 	
+	public List<ParEpistemico> getPares() {
+		List<ParEpistemico> retorno = new ArrayList<ParEpistemico>();
+		try {
+			
+			int linhas = crencaTableModel.getRowCount();
+			int colunas = crencaTableModel.getColumnCount();
+			for (int i = 0; i < linhas; i++) {
+				ParEpistemico par = (ParEpistemico) CrencaJTable.getParModelo().clone();
+				for (int j = shiftCol2Right; j < colunas; j++) {
+					if (j < CrencaJTable.getParModelo().getSizeAntecedente()+shiftCol2Right) {
+						par.addAntecedente(Double
+								.parseDouble((crencaTableModel
+										.getValueAt(i, j).toString())));
+					} else {
+						par.addConsequente(Double
+								.parseDouble((crencaTableModel
+										.getValueAt(i, j).toString())));
+					}
+				}
+				retorno.add(par);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this,"Erro ao gerar pares: " + e.getMessage());
+		}
+		return retorno;
+	}
 	public boolean isChecked(int row) {
 		return true;
 	}
@@ -190,5 +220,6 @@ public class CrencaJTable extends JTable{
 	    }
 
 	}
+	
 	
 }
