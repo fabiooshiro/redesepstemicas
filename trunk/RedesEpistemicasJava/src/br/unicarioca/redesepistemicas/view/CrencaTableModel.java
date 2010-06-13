@@ -8,6 +8,7 @@ public class CrencaTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = 1L;
     public CrencaTableModel(ParEpistemico parModelo) {
     	int i;
+    	this.addColumn("M");
 		this.addColumn("Cor");
 		this.addColumn("Nome");
 		for (i = 0; i < parModelo.getSizeAntecedente(); i++) {
@@ -20,4 +21,7 @@ public class CrencaTableModel extends DefaultTableModel {
 	public boolean isCellEditable(int row, int col) {
     	return true;
     }
+	
+	
+		
 }
