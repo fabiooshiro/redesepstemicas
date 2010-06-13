@@ -290,7 +290,12 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		}else{
 			//TODO criar distribuicao organizada
 			double d = Math.sqrt(qtd);
-			//int linhas = new Double(Math.floor(d)).to;
+			int linhas = (int)Math.floor(d);
+			int colunas = (int)Math.ceil(d);
+			int col = i%linhas;
+			int lin = i/colunas;
+			x = col * (w/colunas);
+			y = lin * (w/linhas);
 		}
 		double freq = Double.valueOf(configuracoesPanel.getTxtFrequencia().getText());
 		AgenteEpistemico agente = new AgenteEpistemico();
