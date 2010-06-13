@@ -1,5 +1,6 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ public class ParEpistemicoOrkut implements ParEpistemico{
 	private ArrayList<Double> consequente = new ArrayList<Double>();
 	private int sizeAntecedente;
 	private int sizeConsequente;
+	private Color cor;
+	private String nome;
 	
 	public ArrayList<Double> getAntecedente() {
 		return antecedente;
@@ -95,6 +98,19 @@ public class ParEpistemicoOrkut implements ParEpistemico{
 			o.consequente.add(d);//manual copy, may addAll
 		}
 		return o;
+	}
+	
+	public Color getCor() {
+		return cor;
+	}
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 }
