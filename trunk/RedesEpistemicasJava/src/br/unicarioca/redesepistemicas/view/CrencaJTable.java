@@ -237,7 +237,6 @@ public class CrencaJTable extends JTable{
 	}
 	
 	public Class getColumnClass(int c) {
-
 		return getValueAt(0, c).getClass();
     }	
 	

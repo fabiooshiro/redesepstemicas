@@ -3,14 +3,19 @@ package br.unicarioca.redesepistemicas.view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
 public class ConfiguracoesPanel extends JTabbedPane {
@@ -21,7 +26,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JTextField txtMaxDiff;
 	private JLabel lblMorrerEmXpublicacoes;
 	private JTextField txtMorrerEmXpublicacoes;
-	private JTextField spnPassoMax;
+	private JSpinner spnPassoMax;
 	private JLabel lblPassoMax;
 	private JLabel lblDistanciaMaxRepulsao;
 	private JTextField txtDistanciaMaxRepulsao;
@@ -43,6 +48,16 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	
 	private JButton btnOk;
 
+	private void writeObject(ObjectOutputStream out) throws IOException{
+		out.defaultWriteObject();
+	}
+	
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+		in.defaultReadObject();
+		spnPassoMax.setModel(new SpinnerNumberModel());
+		System.out.println("spnPassoMax.getValue() = " + spnPassoMax.getValue());
+	}
+	
 	public ConfiguracoesPanel() {
 		
 		lblDistribuicaoAleatoria = new JLabel("Distr. Aleatória");
@@ -88,7 +103,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblDistanciaMaxRepulsao.setToolTipText("Limite de distância para a repulsão");
 		txtDistanciaMaxRepulsao = new JTextField("1000");
 
-		spnPassoMax = new JTextField("15");
+		spnPassoMax = new JSpinner();
+		spnPassoMax.setValue(15);
 		lblPassoMax = new JLabel("Passo Agente:");
 		lblPassoMax.setHorizontalAlignment(SwingConstants.RIGHT);
 		
@@ -193,7 +209,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	public JTextField getTxtCriarNovoEm() {
 		return txtCriarNovoEm;
 	}
-	public JTextField getSpnPassoMax() {
+	public JSpinner getSpnPassoMax() {
 		return spnPassoMax;
 	}
 	public JCheckBox getChkPesoAleatorio() {
@@ -370,7 +386,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	/**
 	 * @param spnPassoMax the spnPassoMax to set
 	 */
-	public void setSpnPassoMax(JTextField spnPassoMax) {
+	public void setSpnPassoMax(JSpinner spnPassoMax) {
 		this.spnPassoMax = spnPassoMax;
 	}
 

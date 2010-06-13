@@ -7,6 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +29,7 @@ import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
+import br.unicarioca.redesepistemicas.bo.GenericDao;
 import br.unicarioca.redesepistemicas.bo.InfoListener;
 import br.unicarioca.redesepistemicas.bo.SalvarSnapShoot;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
@@ -47,6 +52,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	private AgenteListPanel agenteListPanel;
 	private ControlePanel controlePanel;
 	private MenuPrincipal menuPrincipal;
+	private GenericDao<ConfiguracoesPanel> configuracoesPanelDao= new GenericDao<ConfiguracoesPanel>();
 	private ConfiguracoesPanel configuracoesPanel = null;
 	private JLabel sysInfo = new JLabel("Redes Epistêmicas");
 	public static ParEpistemico parModelo = ParEpistemicoFactory.criar(5,1);
@@ -60,7 +66,10 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		controlePanel = new ControlePanel();
 		agenteListPanel = new AgenteListPanel();
 		menuPrincipal = new MenuPrincipal();
-		configuracoesPanel = new ConfiguracoesPanel();
+		configuracoesPanel = configuracoesPanelDao.getLast(ConfiguracoesPanel.class);
+		if(configuracoesPanel==null){
+			configuracoesPanel = new ConfiguracoesPanel();
+		}
 		new AgenteListMouseMenu(agenteListPanel.getJList());
 		//configuracoes
 		SalvarSnapShoot.getInstance().setConfiguracoesPanel(configuracoesPanel);
@@ -74,7 +83,15 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		agenteListPanel.setRedeEpistemica(redeEpistemica);
 		controlePanel.addControlado(redeEpistemicaView);
 		controlePanel.addControlado(agenteListPanel);
-		
+		menuPrincipal.getSalvar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				try{
+					configuracoesPanelDao.salvar(configuracoesPanel, "Nome");
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(MainFrame.this,"Erro ao salvar configurações: " + e.getMessage());
+				}
+			}
+		});
 		menuPrincipal.getNovo().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				novo();
@@ -145,6 +162,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				int passoMax = Integer.valueOf(configuracoesPanel.getSpnPassoMax().getValue().toString());
+				logger.info("Passo Máximo = " + passoMax);
 				redeEpistemicaView.setPassoMax(passoMax);
 			}
 		});
