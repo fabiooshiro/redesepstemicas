@@ -25,10 +25,11 @@ import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 public class CrencaJTable extends JTable{
 	private static final long serialVersionUID = 1L;
 	private static ParEpistemico parModelo;
-	private static final int PAR_COLUMN=1;
-	private static final int COLOR_COLUMN=0;
+	private static final int PAR_COLUMN=2;
+	private static final int COLOR_COLUMN=1;
+	private static final int MONITORA_COLUMN=0;
 	private static Logger logger = Logger.getLogger(CrencaJTable.class);
-	private static int shiftCol2Right = 2;
+	private static int shiftCol2Right = 3;
 	private CrencaTableModel crencaTableModel;
 	public CrencaJTable(ParEpistemico parModelo) {
 		crencaTableModel = new CrencaTableModel(parModelo); 
@@ -37,7 +38,7 @@ public class CrencaJTable extends JTable{
 		this.getColumnModel().getColumn(COLOR_COLUMN).setCellEditor(new ColorCellEditor());
 		this.getColumnModel().getColumn(COLOR_COLUMN).setMaxWidth(20);//cor
 		this.getColumnModel().getColumn(PAR_COLUMN).setMinWidth(200);//nome
-		//this.getColumnModel().getColumn(2).setMaxWidth(20);//checkbox?
+		this.getColumnModel().getColumn(MONITORA_COLUMN).setMaxWidth(20);//checkbox?
 	}
 	
 	public ParEpistemico getParInRow(int row) {
@@ -96,6 +97,7 @@ public class CrencaJTable extends JTable{
 		Object objects[] = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
 		logger.info("Criando uma linha com "+objects.length+" colunas");
 		int j=0;
+		objects[MONITORA_COLUMN] = boolean1;
 		objects[COLOR_COLUMN]=color;
 		objects[PAR_COLUMN]=parR;
 		for(int i = shiftCol2Right;i<objects.length;i++){
@@ -130,7 +132,9 @@ public class CrencaJTable extends JTable{
 	
 	public void addRow() {
 		Object obj[] = new Object[CrencaJTable.getParModelo().getSizeAntecedente()+CrencaJTable.getParModelo().getSizeConsequente()+shiftCol2Right];
-		obj[0] = new Color(33,23,54);
+		obj[0] = new Boolean(false);
+		obj[1] = new Color(33,23,54);
+		obj[2] = "";
 		logger.info("Criando linha com " + obj.length + " colunas");
 		for (int i = shiftCol2Right; i < obj.length; i++) {
 			obj[i] = Math.random();
@@ -226,6 +230,9 @@ public class CrencaJTable extends JTable{
 
 	}
 	
-	
+	public Class getColumnClass(int c) {
+System.out.println(c);
+		return getValueAt(0, c).getClass();
+    }	
 	
 }
