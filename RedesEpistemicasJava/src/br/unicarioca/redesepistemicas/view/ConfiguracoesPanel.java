@@ -18,6 +18,13 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+/**
+ * TODO criar a configuração interna da rede<br>
+ * se quisermos 5 neuronios na entrada 3 na camada intermediária e 1 na saída<br>
+ * colocaremos no campo o seguinte: 5,3,1
+ * @author Fabio Issamu Oshiro, Leandro Freire
+ *
+ */
 public class ConfiguracoesPanel extends JTabbedPane {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblQtdAgentes;
