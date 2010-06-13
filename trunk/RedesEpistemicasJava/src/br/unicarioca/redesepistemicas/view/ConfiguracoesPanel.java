@@ -55,7 +55,6 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
 		in.defaultReadObject();
 		spnPassoMax.setModel(new SpinnerNumberModel());
-		System.out.println("spnPassoMax.getValue() = " + spnPassoMax.getValue());
 	}
 	
 	public ConfiguracoesPanel() {
