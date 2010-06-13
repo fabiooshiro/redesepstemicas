@@ -271,17 +271,27 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	@Override
 	public AgenteEpistemico criarAgente() {
 		//TODO talvez devesse existir um factory implementado em outro local
+		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
 		int morrerEm = Integer.valueOf(configuracoesPanel.getTxtMorrerEmXpublicacoes().getText());
 		double maxDiff = Double.valueOf(configuracoesPanel.getTxtMaxDiff().getText());
 		boolean chkSomenteUltimaTeoria = configuracoesPanel.getChkSomenteUltimaTeoria().isSelected();
 		boolean pesoAleatorio = configuracoesPanel.getChkPesoAleatorio().isSelected();
+		boolean distribuicaoAleatoria = configuracoesPanel.getChkDistribuicaoAleatoria().isSelected();
 		int distanciaMaxRepulsao = Integer.valueOf(configuracoesPanel.getTxtDistanciaMaxRepulsao().getText());
 		int criarNovoEm = Integer.valueOf(configuracoesPanel.getTxtCriarNovoEm().getText());
 		int w = redeEpistemicaView.getWidth();
 		int h = redeEpistemicaView.getHeight();
+		int i = redeEpistemica.getListAgenteEpistemico().size()-1;
 		logger.debug("chkSomenteUltimaTeoria = " + chkSomenteUltimaTeoria);
-		int x = (int)(w*NumeroAleatorio.gerarNumero());
-		int y = (int)(h*NumeroAleatorio.gerarNumero());
+		int x = 0,y = 0;
+		if(distribuicaoAleatoria){
+			x = (int)(w*NumeroAleatorio.gerarNumero());
+			y = (int)(h*NumeroAleatorio.gerarNumero());
+		}else{
+			//TODO criar distribuicao organizada
+			double d = Math.sqrt(qtd);
+			//int linhas = new Double(Math.floor(d)).to;
+		}
 		double freq = Double.valueOf(configuracoesPanel.getTxtFrequencia().getText());
 		AgenteEpistemico agente = new AgenteEpistemico();
 		agente.setVontadeDePublicar(freq);
