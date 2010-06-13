@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -22,7 +21,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JTextField txtMaxDiff;
 	private JLabel lblMorrerEmXpublicacoes;
 	private JTextField txtMorrerEmXpublicacoes;
-	private JSpinner spnPassoMax;
+	private JTextField spnPassoMax;
 	private JLabel lblPassoMax;
 	private JLabel lblDistanciaMaxRepulsao;
 	private JTextField txtDistanciaMaxRepulsao;
@@ -89,8 +88,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblDistanciaMaxRepulsao.setToolTipText("Limite de distância para a repulsão");
 		txtDistanciaMaxRepulsao = new JTextField("1000");
 
-		spnPassoMax = new JSpinner();
-		spnPassoMax.setValue(15);
+		spnPassoMax = new JTextField("15");
 		lblPassoMax = new JLabel("Passo Agente:");
 		lblPassoMax.setHorizontalAlignment(SwingConstants.RIGHT);
 		
@@ -195,7 +193,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	public JTextField getTxtCriarNovoEm() {
 		return txtCriarNovoEm;
 	}
-	public JSpinner getSpnPassoMax() {
+	public JTextField getSpnPassoMax() {
 		return spnPassoMax;
 	}
 	public JCheckBox getChkPesoAleatorio() {
@@ -372,7 +370,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	/**
 	 * @param spnPassoMax the spnPassoMax to set
 	 */
-	public void setSpnPassoMax(JSpinner spnPassoMax) {
+	public void setSpnPassoMax(JTextField spnPassoMax) {
 		this.spnPassoMax = spnPassoMax;
 	}
 
