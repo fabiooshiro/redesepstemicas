@@ -123,6 +123,11 @@ public class CrencaJTable extends JTable{
 		}
 		crencaTableModel.addRow(obs);
 	}
+	
+	public void removeRow(int row) {
+		crencaTableModel.removeRow(row);
+	}
+	
 	public void addRow() {
 		Object obj[] = new Object[CrencaJTable.getParModelo().getSizeAntecedente()+CrencaJTable.getParModelo().getSizeConsequente()+shiftCol2Right];
 		obj[0] = new Color(33,23,54);
@@ -220,6 +225,7 @@ public class CrencaJTable extends JTable{
 	    }
 
 	}
+	
 	
 	
 }

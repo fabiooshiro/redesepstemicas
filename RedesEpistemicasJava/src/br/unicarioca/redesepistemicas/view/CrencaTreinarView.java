@@ -34,7 +34,6 @@ public class CrencaTreinarView extends JPanel {
 	}
 	
 	private CrencaJTable jTable;
-	private CrencaTableModel defaultTableModel;
 	private JButton btnNovaCrenca;
 	private JButton btnTreinarSelecionados;
 	private JTextField txtQtdTreino;
@@ -56,7 +55,7 @@ public class CrencaTreinarView extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				int row = jTable.getSelectedRow();
 				if (e.getKeyCode() == KeyEvent.VK_DELETE && row > -1) {
-					defaultTableModel.removeRow(row);
+					jTable.removeRow(row);
 				}
 			}
 
