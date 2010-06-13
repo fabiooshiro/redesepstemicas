@@ -50,8 +50,10 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JCheckBox chkPesoAleatorio;
 	
 	private JLabel lblDistribuicaoAleatoria;
-
 	private JCheckBox chkDistribuicaoAleatoria;
+
+	private JLabel lblEstruturaRede;
+	private JTextField txtEstruturaRede;
 	
 	private JButton btnOk;
 
@@ -66,7 +68,10 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	
 	public ConfiguracoesPanel() {
 		
-		lblDistribuicaoAleatoria = new JLabel("Distr. Aleatória");
+		lblEstruturaRede = new JLabel("Estrutura da Rede");
+		txtEstruturaRede = new JTextField("5,3,1");
+		
+		lblDistribuicaoAleatoria = new JLabel("Distr. Aleatória:");
 		chkDistribuicaoAleatoria = new JCheckBox();
 		chkDistribuicaoAleatoria.setSelected(true);
 		
@@ -130,6 +135,16 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		
 	}
 	
+	public int[] getEstruturaRede(){
+		//Configurar a rede neural
+		String arr[] = getTxtEstruturaRede().getText().split(",");
+		int estruturaRede[] = new int[arr.length]; 
+		for(int i=0;i<arr.length;i++){
+			estruturaRede[i] = Integer.parseInt(arr[i]);
+		}
+		return estruturaRede;
+	}
+	
 		
 	private JPanel criarPainelConfRede(){
 		JPanel retorno = new JPanel();
@@ -151,6 +166,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		retornoLayout.add(new JPanel(),BorderLayout.CENTER);
 		return retornoLayout;
 	}
+	
 	private JPanel criarPainelConfView(){
 		JPanel retorno = new JPanel();
 		retorno.setLayout(new BorderLayout());
@@ -461,4 +477,21 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	public void setLblDistribuicaoAleatoria(JLabel lblDistribuicaoAleatoria) {
 		this.lblDistribuicaoAleatoria = lblDistribuicaoAleatoria;
 	}
+	
+	public JLabel getLblEstruturaRede() {
+		return lblEstruturaRede;
+	}
+
+	public void setLblEstruturaRede(JLabel lblEstruturaRede) {
+		this.lblEstruturaRede = lblEstruturaRede;
+	}
+
+	public JTextField getTxtEstruturaRede() {
+		return txtEstruturaRede;
+	}
+
+	public void setTxtEstruturaRede(JTextField txtEstruturaRede) {
+		this.txtEstruturaRede = txtEstruturaRede;
+	}
+	
 }

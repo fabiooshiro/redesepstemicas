@@ -24,14 +24,15 @@ import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 public class CrencaJTable extends JTable{
 	private static final long serialVersionUID = 1L;
-	private static ParEpistemico parModelo;
 	private static final int PAR_COLUMN=2;
 	private static final int COLOR_COLUMN=1;
 	private static final int MONITORA_COLUMN=0;
 	private static Logger logger = Logger.getLogger(CrencaJTable.class);
 	private static int shiftCol2Right = 3;
 	private CrencaTableModel crencaTableModel;
+	private ParEpistemico parModelo;
 	public CrencaJTable(ParEpistemico parModelo) {
+		this.parModelo = parModelo;
 		crencaTableModel = new CrencaTableModel(parModelo); 
 		this.setModel(crencaTableModel);
 		this.getColumnModel().getColumn(COLOR_COLUMN).setCellRenderer(new ColorCellRenderer());
@@ -58,9 +59,9 @@ public class CrencaJTable extends JTable{
 			int linhas = crencaTableModel.getRowCount();
 			int colunas = crencaTableModel.getColumnCount();
 			for (int i = 0; i < linhas; i++) {
-				ParEpistemico par = (ParEpistemico) CrencaJTable.getParModelo().clone();
+				ParEpistemico par = (ParEpistemico) parModelo.clone();
 				for (int j = shiftCol2Right; j < colunas; j++) {
-					if (j < CrencaJTable.getParModelo().getSizeAntecedente()+shiftCol2Right) {
+					if (j < parModelo.getSizeAntecedente()+shiftCol2Right) {
 						par.addAntecedente(Double
 								.parseDouble((crencaTableModel
 										.getValueAt(i, j).toString())));
@@ -137,7 +138,7 @@ public class CrencaJTable extends JTable{
 	}
 	
 	public void addRow() {
-		Object obj[] = new Object[CrencaJTable.getParModelo().getSizeAntecedente()+CrencaJTable.getParModelo().getSizeConsequente()+shiftCol2Right];
+		Object obj[] = new Object[parModelo.getSizeAntecedente()+parModelo.getSizeConsequente()+shiftCol2Right];
 		obj[0] = new Boolean(false);
 		obj[1] = new Color(33,23,54);
 		obj[2] = "";
@@ -146,13 +147,6 @@ public class CrencaJTable extends JTable{
 			obj[i] = Math.random();
 		}		
 		crencaTableModel.addRow(obj);
-	}
-	public static void setParModelo(ParEpistemico parModelo) {
-		CrencaJTable.parModelo = parModelo;
-	}
-	
-	public static ParEpistemico getParModelo() {
-		return parModelo;
 	}
 	
 	class ColorCellRenderer extends JLabel implements TableCellRenderer{

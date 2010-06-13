@@ -7,10 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,7 +56,6 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	public MainFrame() {
 		this.setTitle("IndraNet 1.0 - Simulador de Redes Epistêmicas");
 		//instancias
-		CrencaJTable.setParModelo(parModelo);
 		redeEpistemica = new RedeEpistemica();
 		redeEpistemicaView = new RedeEpistemicaView(redeEpistemica);
 		controlePanel = new ControlePanel();
@@ -233,6 +228,8 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		agenteListPanel.reiniciar();
 		redeEpistemicaView.pause();
 		redeEpistemicaView.setSnapshot(Integer.valueOf(configuracoesPanel.getTxtSnapShot().getText()));
+		
+		
 		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
 		for(int i=0;i<qtd;i++){
 			criarAgente();
