@@ -281,7 +281,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		int criarNovoEm = Integer.valueOf(configuracoesPanel.getTxtCriarNovoEm().getText());
 		int w = redeEpistemicaView.getWidth();
 		int h = redeEpistemicaView.getHeight();
-		int i = redeEpistemica.getListAgenteEpistemico().size()-1;
+		int i = redeEpistemica.getListAgenteEpistemico().size();
 		logger.debug("chkSomenteUltimaTeoria = " + chkSomenteUltimaTeoria);
 		int x = 0,y = 0;
 		if(distribuicaoAleatoria){
