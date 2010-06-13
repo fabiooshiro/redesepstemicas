@@ -114,11 +114,11 @@ public class RedeEpistemica {
 						
 						for(AgenteEpistemico agente: listAgenteEpistemico){
 							while(crencas.hasNext()){
-								ParEpistemico c = (ParEpistemico) crencas.next();
+								ParEpistemicoOrkut c = (ParEpistemicoOrkut) crencas.next();
 								ParEpistemico opiniao = agente.interpretar(c);
 								double diff = opiniao.calcularDiferencaConsequente(c);
 								if(diff <= 0.6){//Criar variavel para 0.6
-									agente.setColor(experimento.getColor(c));//criar variavel para cor
+									agente.setColor(c.getCor());//criar variavel para cor
 								}
 							}
 						}

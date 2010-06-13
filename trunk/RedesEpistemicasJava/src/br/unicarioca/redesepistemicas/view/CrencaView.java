@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.Experimento;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
+import br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut;
 
 /**
  * Visualiza a Crenca
@@ -32,6 +33,7 @@ public class CrencaView extends JPanel{
 	private Experimento experimento;
 		
 	public CrencaView(Set<ParEpistemico> crencas){
+		experimento = new Experimento();
 		jTable = new CrencaJTable(crencas.iterator().next());
 		
 		btnMonitorarCrencas = new JButton("Monitorar");
@@ -82,10 +84,13 @@ public class CrencaView extends JPanel{
 	}
 	
 	private void monitorar(){//troquei para o infinitivo, sou meio chato :-)
-		experimento = new Experimento();
+		
 		for(int row= 0; row < jTable.getRowCount(); row++){
 			if(jTable.isChecked(row)){
-				experimento.addCrenca(jTable.getParInRow(row),jTable.getColorInRow(row));
+				ParEpistemicoOrkut par =(ParEpistemicoOrkut) jTable.getParInRow(row);
+				par.setNome(jTable.getNomeInRow(row));
+				par.setCor(jTable.getColorInRow(row));
+				experimento.addCrenca(par);
 			}
 		}
 	}

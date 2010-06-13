@@ -41,6 +41,11 @@ public class CrencaJTable extends JTable{
 		this.getColumnModel().getColumn(MONITORA_COLUMN).setMaxWidth(20);//checkbox?
 	}
 	
+	public String getNomeInRow(int row) {
+		Object obj = crencaTableModel.getValueAt(row,PAR_COLUMN);
+		return obj.toString();
+	}
+	
 	public ParEpistemico getParInRow(int row) {
 		Object obj = crencaTableModel.getValueAt(row,PAR_COLUMN);
 		return (ParEpistemico)obj;
@@ -231,7 +236,7 @@ public class CrencaJTable extends JTable{
 	}
 	
 	public Class getColumnClass(int c) {
-System.out.println(c);
+
 		return getValueAt(0, c).getClass();
     }	
 	

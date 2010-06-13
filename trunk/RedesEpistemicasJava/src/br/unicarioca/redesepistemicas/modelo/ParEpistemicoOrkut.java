@@ -10,7 +10,7 @@ public class ParEpistemicoOrkut implements ParEpistemico{
 	private int sizeAntecedente;
 	private int sizeConsequente;
 	private Color cor;
-	private String nome;
+	private String nome = "";
 	
 	public ArrayList<Double> getAntecedente() {
 		return antecedente;
@@ -112,5 +112,10 @@ public class ParEpistemicoOrkut implements ParEpistemico{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public String toString(){
+		return nome;
+	}
+	
+	
 	
 }
