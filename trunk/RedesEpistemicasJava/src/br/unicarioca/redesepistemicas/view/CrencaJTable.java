@@ -79,7 +79,8 @@ public class CrencaJTable extends JTable{
 		return retorno;
 	}
 	public boolean isChecked(int row) {
-		return true;
+		
+		return (Boolean) crencaTableModel.getValueAt(row,MONITORA_COLUMN);
 	}
 	
 	public Color getColorInRow(int row) {

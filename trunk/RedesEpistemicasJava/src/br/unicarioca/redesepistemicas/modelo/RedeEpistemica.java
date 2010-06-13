@@ -1,9 +1,9 @@
 package br.unicarioca.redesepistemicas.modelo;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -110,15 +110,14 @@ public class RedeEpistemica {
 					normalizarPesos();
 					//lance do experimento de cores
 					if(experimento!=null){
-						Iterator crencas = experimento.getSetCrencas().iterator();
-						
+						Set<ParEpistemicoOrkut> p = experimento.getSetCrencas();
+						Object[] crencas = p.toArray();
 						for(AgenteEpistemico agente: listAgenteEpistemico){
-							while(crencas.hasNext()){
-								ParEpistemicoOrkut c = (ParEpistemicoOrkut) crencas.next();
-								ParEpistemico opiniao = agente.interpretar(c);
-								double diff = opiniao.calcularDiferencaConsequente(c);
-								if(diff <= 0.6){//Criar variavel para 0.6
-									agente.setColor(c.getCor());//criar variavel para cor
+							for(int i = 0;i < crencas.length;i++){
+								ParEpistemicoOrkut opiniao = (ParEpistemicoOrkut) agente.interpretar((ParEpistemicoOrkut)crencas[i]);
+								double diff = opiniao.calcularDiferencaConsequente((ParEpistemicoOrkut)crencas[i]);
+								if(diff <= 0.02){//Criar variavel para 0.6
+									agente.setColor(((ParEpistemicoOrkut) crencas[i]).getCor());//criar variavel para cor
 								}
 							}
 						}
