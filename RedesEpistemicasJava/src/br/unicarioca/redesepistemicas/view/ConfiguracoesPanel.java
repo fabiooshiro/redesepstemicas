@@ -39,7 +39,6 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JCheckBox chkPesoAleatorio;
 	
 	private JLabel lblDistribuicaoAleatoria;
-	
 
 	private JCheckBox chkDistribuicaoAleatoria;
 	
@@ -49,6 +48,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		
 		lblDistribuicaoAleatoria = new JLabel("Distr. Aleatória");
 		chkDistribuicaoAleatoria = new JCheckBox();
+		chkDistribuicaoAleatoria.setSelected(true);
 		
 		lblSnapShot = new JLabel("PrintScreen:");
 		lblSnapShot.setHorizontalAlignment(SwingConstants.RIGHT);
