@@ -1,8 +1,7 @@
 package br.unicarioca.redesepistemicas.modelo;
 
 import java.awt.Color;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -12,11 +11,11 @@ public class Experimento {
 	private AgenteEpistemico pivo;
 	private ParEpistemico crenca;
 	private double maxDiff=0.3;
-	private Map<ParEpistemico,Color> crencas;
+	private Set<ParEpistemico> crencas;
 	
 	
 	public Experimento(){
-		crencas = new HashMap<ParEpistemico,Color>();
+		crencas = new HashSet<ParEpistemico>();
 	}
 	
 	public AgenteEpistemico getPivo() {
@@ -26,17 +25,15 @@ public class Experimento {
 		this.pivo = pivo;
 	}
 		
-	public void addCrenca(ParEpistemico crenca, Color cor){
-		crencas.put(crenca, cor);
+	public void addCrenca(ParEpistemico crenca){
+		crencas.add(crenca);
+		
 	}
 	
 	public Set<ParEpistemico> getSetCrencas(){
-		return crencas.keySet();
+		return crencas;
 	}
-	
-	public Color getColor(ParEpistemico crenca){
-		return crencas.get(crenca);
-	}
+		
 	public double getMaxDiff() {
 		return maxDiff;
 	}
