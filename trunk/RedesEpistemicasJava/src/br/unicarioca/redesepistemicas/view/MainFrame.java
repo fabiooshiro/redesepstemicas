@@ -284,11 +284,10 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		int i = redeEpistemica.getListAgenteEpistemico().size();
 		logger.debug("chkSomenteUltimaTeoria = " + chkSomenteUltimaTeoria);
 		int x = 0,y = 0;
-		if(distribuicaoAleatoria){
+		if(distribuicaoAleatoria){//distr aleatoria
 			x = (int)(w*NumeroAleatorio.gerarNumero());
 			y = (int)(h*NumeroAleatorio.gerarNumero());
-		}else{
-			//TODO criar distribuicao organizada
+		}else{//distribuicao organizada
 			double d = Math.sqrt(qtd);
 			int linhas = (int)Math.floor(d);
 			int colunas = (int)Math.ceil(d);
