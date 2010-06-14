@@ -123,10 +123,10 @@ public class AgenteEpistemico{
 	 */
 	private Double maxDiff = 0.2;
 	
-	public AgenteEpistemico() {
-		//int[] neuralNetworkStructure = new int[] { 3, 4, 2 };
-		int[] neuralNetworkStructure = new int[] { 5, 4, 1 };
-		// create new neural network with the defined structure
+	private int[] neuralNetworkStructure;
+	
+	public AgenteEpistemico(int[] neuralNetworkStructure) {
+		this.neuralNetworkStructure = neuralNetworkStructure;
 		neuralNetwork = new NeuralNetwork(neuralNetworkStructure);
 		neuralNetwork.initWeights();
 		foco = FocoFactory.criarFoco();
@@ -211,7 +211,7 @@ public class AgenteEpistemico{
 	 */
 	private ParEpistemico criarNovoPar(){
 		ParEpistemico parEpistemico;
-		if(false){
+		if(neuralNetworkStructure[0]==3 && neuralNetworkStructure[2]==2){
 			ParEpistemico3x2 parEpistemico2 = ParEpistemicoFactory.criar(foco);
 			//atualizar o consequente
 			Consequente consequente = new Consequente();
@@ -219,7 +219,7 @@ public class AgenteEpistemico{
 			parEpistemico2.setConsequente(consequente);
 			return parEpistemico2;
 		}else{
-			parEpistemico = ParEpistemicoFactory.criar(5,1);
+			parEpistemico = ParEpistemicoFactory.criar(neuralNetworkStructure[0],neuralNetworkStructure[2]);
 			parEpistemico = interpretar(parEpistemico);
 		}
 		return parEpistemico;
@@ -318,14 +318,6 @@ public class AgenteEpistemico{
 			e.printStackTrace();
 		}
 		return retorno;
-	}
-	
-	private ArrayList<Double> getInputs(ParEpistemico3x2 parEpistemico){
-		ArrayList<Double> in = new ArrayList<Double>();
-		in.add(parEpistemico.getAntecedente().getX());
-		in.add(parEpistemico.getAntecedente().getY());
-		in.add(parEpistemico.getAntecedente().getZ());
-		return in;
 	}
 	
 	/**
