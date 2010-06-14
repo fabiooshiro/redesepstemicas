@@ -1,1 +1,0 @@
-java -jar RedesEpistemicas.jar -server -Xms256m -Xmx512m -XX:UseParallelOldGC
