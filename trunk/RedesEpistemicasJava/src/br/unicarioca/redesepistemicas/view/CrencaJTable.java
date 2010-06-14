@@ -103,34 +103,23 @@ public class CrencaJTable extends JTable{
 	public void addRow(ParEpistemico parR, Color color, Boolean boolean1) {
 		Object objects[] = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
 		logger.info("Criando uma linha com "+objects.length+" colunas");
-		int j=0;
 		objects[MONITORA_COLUMN] = boolean1;
 		objects[COLOR_COLUMN]=color;
 		objects[PAR_COLUMN]=parR;
-		for(int i = shiftCol2Right;i<objects.length;i++){
-			if(i<parR.getSizeAntecedente()+shiftCol2Right){
-				objects[i] = parR.getDoubleAntecedentes().get(j); 
-			}else{
-				objects[i] = parR.getDoubleConsequentes().get(shiftCol2Right+1+j-objects.length); 
-			}
-			j++;
+		int i=0;
+		for(int j=0;j<parR.getSizeAntecedente();j++){
+			objects[i+shiftCol2Right] = parR.getDoubleAntecedentes().get(j);
+			i++;
+		}
+		for(int j=0;j<parR.getSizeConsequente();j++){
+			objects[i+shiftCol2Right] = parR.getDoubleAntecedentes().get(j);
+			i++;
 		}
 		crencaTableModel.addRow(objects);
 	}
 	
 	public void addRow(ParEpistemico parR) {
-		Object obs[] = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
-		logger.info("Criando uma linha com "+obs.length+" colunas");
-		int j=0;
-		for(int i = shiftCol2Right;i<obs.length;i++){
-			if(i<parR.getSizeAntecedente()+shiftCol2Right){
-				obs[i] = parR.getDoubleAntecedentes().get(j); 
-			}else{
-				obs[i] = parR.getDoubleConsequentes().get(shiftCol2Right+1+j-obs.length); 
-			}
-			j++;
-		}
-		crencaTableModel.addRow(obs);
+		addRow(parR, Color.WHITE, false);
 	}
 	
 	public void removeRow(int row) {
@@ -230,8 +219,19 @@ public class CrencaJTable extends JTable{
 
 	}
 	
-	public Class getColumnClass(int c) {
-		return getValueAt(0, c).getClass();
+	public Class<?> getColumnClass(int c) {
+		Object obj = getValueAt(0, c);
+		if(obj==null){
+			logger.warn("Colum class == null " + c);
+			if(COLOR_COLUMN==c){
+				return Color.class;
+			}else if(MONITORA_COLUMN==c){
+				return Boolean.class;
+			}else{
+				return String.class;
+			}
+		}
+		return obj.getClass();
     }	
 	
 }
