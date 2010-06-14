@@ -155,6 +155,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		tabela.add(txtQtdAgentes);
 		tabela.add(lblSnapShot);
 		tabela.add(txtSnapShot);
+		tabela.add(lblEstruturaRede);
+		tabela.add(txtEstruturaRede);
 		
 		JPanel sul = new JPanel(new FlowLayout());
 		sul.add(btnOk);

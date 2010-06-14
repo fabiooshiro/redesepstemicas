@@ -33,6 +33,7 @@ public class CrencaView extends JPanel{
 	private Experimento experimento;
 		
 	public CrencaView(Set<ParEpistemico> crencas){
+		logger.info("CrencaView abrindo monitor...");
 		experimento = new Experimento();
 		jTable = new CrencaJTable(crencas.iterator().next());
 		

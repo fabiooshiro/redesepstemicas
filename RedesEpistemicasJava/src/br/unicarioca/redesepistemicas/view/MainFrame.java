@@ -228,8 +228,9 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		agenteListPanel.reiniciar();
 		redeEpistemicaView.pause();
 		redeEpistemicaView.setSnapshot(Integer.valueOf(configuracoesPanel.getTxtSnapShot().getText()));
-		
-		
+		redeEpistemicaView.setPassoMax(Integer.valueOf(configuracoesPanel.getSpnPassoMax().getValue().toString()));
+		int estr[] = configuracoesPanel.getEstruturaRede();
+		parModelo = ParEpistemicoFactory.criar(estr[0], estr[2]);
 		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
 		for(int i=0;i<qtd;i++){
 			criarAgente();
@@ -312,7 +313,8 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 			y = lin * (w/linhas);
 		}
 		double freq = Double.valueOf(configuracoesPanel.getTxtFrequencia().getText());
-		AgenteEpistemico agente = new AgenteEpistemico();
+		int estr[] = configuracoesPanel.getEstruturaRede();
+		AgenteEpistemico agente = new AgenteEpistemico(estr);
 		agente.setVontadeDePublicar(freq);
 		redeEpistemica.inserirAgente(agente,pesoAleatorio);
 		redeEpistemicaView.addAgente(agente, x, y);
