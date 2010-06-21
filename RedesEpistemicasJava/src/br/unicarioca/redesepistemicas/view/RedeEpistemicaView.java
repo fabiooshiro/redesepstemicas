@@ -24,6 +24,7 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.ComunicacaoListener;
 import br.unicarioca.redesepistemicas.modelo.NumeroAleatorio;
+import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 /**
@@ -103,13 +104,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 
 	public void refresh(){
 		initDesenho();
-		graphics.setColor(Color.BLACK);
-		synchronized (redeEpistemica.getListAgenteEpistemico()) {
-			logger.debug("desenharAgentes()");
-			for (AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()) {
-				desenharAgente(agente,true);
-			}
-		}
+		desenharAgentes();
 		drawSelection();
 		setIcon(new ImageIcon(bi));
 	}
@@ -169,9 +164,29 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		float x = (agente.getX() - agente.getRaio()) * escala;
 		float y = (agente.getY() - agente.getRaio()) * escala;
 		int dim = Math.round(agente.getRaio() * 2 * escala);
+		int raio = Math.round(agente.getRaio() * escala);
+		//desenhar o que ele acredita
+		if(agente.crencaMonitorada.size()>0){
+			int parte = 360/(agente.crencaMonitorada.size()/2);
+			int startAngle=0;
+			Color old = graphics.getColor();
+			int i=0;
+			for(ParEpistemico par: agente.crencaMonitorada){
+				graphics.setColor(par.getCor());
+				if(i%2==0){
+					graphics.fillArc(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim, startAngle, parte);
+				}else{
+					graphics.fillArc(arrastarX + Math.round(x+(raio/2)), arrastarY + Math.round(y+(raio/2)), raio, raio, startAngle, parte);
+					startAngle+=parte;
+				}
+				i++;
+			}
+			graphics.setColor(old);
+		}
 		if(fill){
 			graphics.fillOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
 		}else if(agente.getColor()!=null){
+			logger.info("Color = " + agente.getColor());
 			Color old = graphics.getColor();
 			graphics.setColor(agente.getColor());
 			graphics.fillOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
@@ -180,6 +195,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		}else{
 			graphics.drawOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
 		}
+		
 		return agente;
 	}
 	

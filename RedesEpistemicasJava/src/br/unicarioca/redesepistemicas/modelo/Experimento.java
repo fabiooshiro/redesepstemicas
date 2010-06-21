@@ -1,6 +1,5 @@
 package br.unicarioca.redesepistemicas.modelo;
 
-import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,10 +8,9 @@ import java.util.Set;
  */
 public class Experimento {
 	private AgenteEpistemico pivo;
-	private ParEpistemico crenca;
-	private double maxDiff=0.3;
+	private double maxDiff=0.002;
 	private Set<ParEpistemico> crencas;
-	
+	private double minDiff=0.007;
 	
 	public Experimento(){
 		crencas = new HashSet<ParEpistemico>();
@@ -38,5 +36,13 @@ public class Experimento {
 	}
 	public void setMaxDiff(double maxDiff) {
 		this.maxDiff = maxDiff;
+	}
+
+	public void setMinDiff(double minDiff) {
+		this.minDiff = minDiff;
+	}
+	
+	public double getMinDiff() {
+		return minDiff;
 	}
 }
