@@ -103,7 +103,14 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 
 	public void refresh(){
 		initDesenho();
-		desenharAgentes();
+		graphics.setColor(Color.BLACK);
+		synchronized (redeEpistemica.getListAgenteEpistemico()) {
+			logger.debug("desenharAgentes()");
+			for (AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()) {
+				desenharAgente(agente,true);
+			}
+		}
+		drawSelection();
 		setIcon(new ImageIcon(bi));
 	}
 	

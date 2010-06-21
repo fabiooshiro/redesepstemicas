@@ -11,6 +11,9 @@ import java.util.List;
 public class ParEpistemico3x2 implements ParEpistemico {
 	protected Antecedente antecedente;
 	protected Consequente consequente;
+	private Color cor;
+	private String nome = "";
+	
 	public ParEpistemico3x2() {
 	}
 	/**
@@ -111,17 +114,15 @@ public class ParEpistemico3x2 implements ParEpistemico {
 	}
 	@Override
 	public void setCor(Color colorInRow) {
-		// TODO Auto-generated method stub
+		this.cor = colorInRow;
 		
 	}
 	@Override
 	public void setNome(String nomeInRow) {
-		// TODO Auto-generated method stub
-		
+		this.nome = nomeInRow;
 	}
 	@Override
 	public Color getCor() {
-		// TODO Auto-generated method stub
-		return null;
+		return cor;
 	}
 }
