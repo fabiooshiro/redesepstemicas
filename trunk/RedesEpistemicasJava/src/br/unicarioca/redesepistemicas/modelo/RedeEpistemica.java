@@ -1,5 +1,6 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -120,14 +121,31 @@ public class RedeEpistemica {
 		if(experimento!=null){
 			Set<ParEpistemico> p = experimento.getSetCrencas();
 			for(AgenteEpistemico agente: listAgenteEpistemico){
+				agente.crencaMonitorada.clear();
 				for(ParEpistemico crenca:p){
 					ParEpistemico opiniao = agente.interpretar(crenca);
 					double diff = opiniao.calcularDiferencaConsequente(crenca);
-					if(diff <= 0.5){//Criar variavel para 0.6
-						logger.info("cor " + crenca.getCor().getRed() + ","  + crenca.getCor().getGreen() + ","+crenca.getCor().getBlue());
-						agente.setColor(crenca.getCor());//criar variavel para cor
-					}else{
-						agente.setColor(null);
+					if(diff <= experimento.getMaxDiff()){//acredita
+						agente.crencaMonitorada.add(crenca);
+						agente.crencaMonitorada.add(crenca);
+					}else if(diff <= experimento.getMinDiff()){//quase acredita
+						try {
+							ParEpistemico par2 = (ParEpistemico)crenca.clone();
+							par2.setCor(new Color(0xEEEEEE));
+							agente.crencaMonitorada.add(par2);
+							agente.crencaMonitorada.add(crenca);
+						} catch (CloneNotSupportedException e) {
+							e.printStackTrace();
+						}
+					}else{//Nao acredita
+						try {
+							ParEpistemico par2 = (ParEpistemico)crenca.clone();
+							par2.setCor(new Color(0xEEEEEE));
+							agente.crencaMonitorada.add(par2);
+							agente.crencaMonitorada.add(par2);
+						} catch (CloneNotSupportedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}

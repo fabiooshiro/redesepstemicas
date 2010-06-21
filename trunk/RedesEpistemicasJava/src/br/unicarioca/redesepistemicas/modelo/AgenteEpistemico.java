@@ -124,6 +124,7 @@ public class AgenteEpistemico{
 	private Double maxDiff = 0.2;
 	
 	private int[] neuralNetworkStructure;
+	public ArrayList<ParEpistemico> crencaMonitorada = new ArrayList<ParEpistemico>();
 	
 	public AgenteEpistemico(int[] neuralNetworkStructure) {
 		this.neuralNetworkStructure = neuralNetworkStructure;

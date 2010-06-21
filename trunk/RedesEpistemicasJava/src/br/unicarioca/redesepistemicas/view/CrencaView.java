@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
 
@@ -34,6 +35,8 @@ public class CrencaView extends JPanel{
 	private Experimento experimento;
 	private RedeEpistemica redeEpistemica;
 		
+	private JTextField txtMaxDiff;
+	private JTextField txtMinDiff;
 	private RedeEpistemicaView redeEpistemicaView;
 	public CrencaView(Set<ParEpistemico> crencas, RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView){
 		logger.info("CrencaView abrindo monitor...");
@@ -41,6 +44,9 @@ public class CrencaView extends JPanel{
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemicaView = redeEpistemicaView;
 		jTable = new CrencaJTable(crencas.iterator().next());
+		
+		txtMaxDiff = new JTextField("0.002");
+		txtMinDiff = new JTextField("0.007");
 		
 		btnMonitorarCrencas = new JButton("Monitorar");
 		
@@ -52,6 +58,8 @@ public class CrencaView extends JPanel{
 		});
 		
 		JPanel sul = new JPanel(new FlowLayout());
+		sul.add(txtMaxDiff);
+		sul.add(txtMinDiff);
 		sul.add(btnMonitorarCrencas);
 		
 		this.setLayout(new BorderLayout());
@@ -89,7 +97,12 @@ public class CrencaView extends JPanel{
 		this.add(sul,BorderLayout.SOUTH);
 	}
 	
-	private void monitorar(){//troquei para o infinitivo, sou meio chato :-)		
+	private void monitorar(){//troquei para o infinitivo, sou meio chato :-)	
+		experimento = new Experimento();
+		double maxDiff = Double.parseDouble(txtMaxDiff.getText());
+		double minDiff = Double.parseDouble(txtMinDiff.getText());
+		experimento.setMaxDiff(maxDiff);
+		experimento.setMinDiff(minDiff);
 		for(int row= 0; row < jTable.getRowCount(); row++){
 			if(jTable.isChecked(row)){
 				ParEpistemico par =(ParEpistemico) jTable.getParInRow(row);
