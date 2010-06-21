@@ -101,6 +101,12 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		
 	}
 
+	public void refresh(){
+		initDesenho();
+		desenharAgentes();
+		setIcon(new ImageIcon(bi));
+	}
+	
 	/**
 	 * redeEpistemica.fazUmaEtapa();
 	 */
@@ -174,7 +180,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * Desenha um agente com a cor corrente
 	 * 
 	 * @param agente
-	 * @param color 
 	 */
 	private AgenteEpistemico desenharAgente(AgenteEpistemico agente) {
 		return desenharAgente(agente,false);

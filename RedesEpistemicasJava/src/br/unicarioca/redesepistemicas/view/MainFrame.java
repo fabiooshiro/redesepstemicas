@@ -140,8 +140,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 				}else{
 					JFrame jFrame = new JFrame("Crenças ");
 					jFrame.setLayout(new BorderLayout());
-					crencaView = new CrencaView(crencas);
-					redeEpistemica.setExperimento(crencaView.getExperimento());
+					crencaView = new CrencaView(crencas, redeEpistemica, redeEpistemicaView);
 					jFrame.add(crencaView);
 					jFrame.pack();
 					jFrame.setVisible(true);

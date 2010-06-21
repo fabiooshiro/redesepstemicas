@@ -19,6 +19,7 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.Experimento;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut;
+import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 /**
  * Visualiza a Crenca
@@ -31,10 +32,14 @@ public class CrencaView extends JPanel{
 	private AgenteEpistemico agente;
 	private JButton btnMonitorarCrencas;
 	private Experimento experimento;
+	private RedeEpistemica redeEpistemica;
 		
-	public CrencaView(Set<ParEpistemico> crencas){
+	private RedeEpistemicaView redeEpistemicaView;
+	public CrencaView(Set<ParEpistemico> crencas, RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView){
 		logger.info("CrencaView abrindo monitor...");
 		experimento = new Experimento();
+		this.redeEpistemica = redeEpistemica;
+		this.redeEpistemicaView = redeEpistemicaView;
 		jTable = new CrencaJTable(crencas.iterator().next());
 		
 		btnMonitorarCrencas = new JButton("Monitorar");
@@ -84,16 +89,18 @@ public class CrencaView extends JPanel{
 		this.add(sul,BorderLayout.SOUTH);
 	}
 	
-	private void monitorar(){//troquei para o infinitivo, sou meio chato :-)
-		
+	private void monitorar(){//troquei para o infinitivo, sou meio chato :-)		
 		for(int row= 0; row < jTable.getRowCount(); row++){
 			if(jTable.isChecked(row)){
-				ParEpistemicoOrkut par =(ParEpistemicoOrkut) jTable.getParInRow(row);
+				ParEpistemico par =(ParEpistemico) jTable.getParInRow(row);
 				par.setNome(jTable.getNomeInRow(row));
 				par.setCor(jTable.getColorInRow(row));
 				experimento.addCrenca(par);
 			}
 		}
+		redeEpistemica.setExperimento(experimento);
+		redeEpistemica.colorirAgentesDoExperimento(experimento);
+		redeEpistemicaView.refresh();
 	}
 	
 	private void popularTabela(){

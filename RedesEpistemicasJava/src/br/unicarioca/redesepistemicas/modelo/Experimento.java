@@ -11,11 +11,11 @@ public class Experimento {
 	private AgenteEpistemico pivo;
 	private ParEpistemico crenca;
 	private double maxDiff=0.3;
-	private Set<ParEpistemicoOrkut> crencas;
+	private Set<ParEpistemico> crencas;
 	
 	
 	public Experimento(){
-		crencas = new HashSet<ParEpistemicoOrkut>();
+		crencas = new HashSet<ParEpistemico>();
 	}
 	
 	public AgenteEpistemico getPivo() {
@@ -25,12 +25,11 @@ public class Experimento {
 		this.pivo = pivo;
 	}
 		
-	public void addCrenca(ParEpistemicoOrkut crenca){
-		crencas.add(crenca);
-		
+	public void addCrenca(ParEpistemico par){
+		crencas.add(par);
 	}
 	
-	public Set<ParEpistemicoOrkut> getSetCrencas(){
+	public Set<ParEpistemico> getSetCrencas(){
 		return crencas;
 	}
 		
