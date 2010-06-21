@@ -1,5 +1,6 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public interface ParEpistemico extends Cloneable{
@@ -12,4 +13,7 @@ public interface ParEpistemico extends Cloneable{
 	public boolean antecedenteEquals(ParEpistemico antecedente);
 	public ArrayList<Double> getDoubleAntecedentes();
 	public ArrayList<Double> getDoubleConsequentes();
+	public void setNome(String nomeInRow);
+	public void setCor(Color colorInRow);
+	public Color getCor();
 }

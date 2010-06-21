@@ -1,5 +1,6 @@
 package br.unicarioca.redesepistemicas.modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,5 +108,20 @@ public class ParEpistemico3x2 implements ParEpistemico {
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
+	}
+	@Override
+	public void setCor(Color colorInRow) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setNome(String nomeInRow) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Color getCor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

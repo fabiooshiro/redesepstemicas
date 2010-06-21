@@ -108,23 +108,27 @@ public class RedeEpistemica {
 						if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso,diff);
 					}
 					normalizarPesos();
-					//lance do experimento de cores
-					if(experimento!=null){
-						Set<ParEpistemicoOrkut> p = experimento.getSetCrencas();
-						Object[] crencas = p.toArray();
-						for(AgenteEpistemico agente: listAgenteEpistemico){
-							for(int i = 0;i < crencas.length;i++){
-								ParEpistemicoOrkut opiniao = (ParEpistemicoOrkut) agente.interpretar((ParEpistemicoOrkut)crencas[i]);
-								double diff = opiniao.calcularDiferencaConsequente((ParEpistemicoOrkut)crencas[i]);
-								if(diff <= 0.02){//Criar variavel para 0.6
-									agente.setColor(((ParEpistemicoOrkut) crencas[i]).getCor());//criar variavel para cor
-								}
-							}
-						}
-					}
+					colorirAgentesDoExperimento(experimento);
 					etapa++;
 				}
 			}//fim do if(listAgenteEpistemico.size()>1){
+		}
+	}
+	
+	public void colorirAgentesDoExperimento(Experimento experimento){
+		//lance do experimento de cores
+		if(experimento!=null){
+			Set<ParEpistemico> p = experimento.getSetCrencas();
+			Object[] crencas = p.toArray();
+			for(AgenteEpistemico agente: listAgenteEpistemico){
+				for(int i = 0;i < crencas.length;i++){
+					ParEpistemico opiniao = (ParEpistemico) agente.interpretar((ParEpistemico)crencas[i]);
+					double diff = opiniao.calcularDiferencaConsequente((ParEpistemico)crencas[i]);
+					if(diff <= 0.02){//Criar variavel para 0.6
+						agente.setColor(((ParEpistemico) crencas[i]).getCor());//criar variavel para cor
+					}
+				}
+			}
 		}
 	}
 	
