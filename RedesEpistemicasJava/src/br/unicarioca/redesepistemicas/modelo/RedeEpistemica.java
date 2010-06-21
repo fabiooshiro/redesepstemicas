@@ -119,14 +119,13 @@ public class RedeEpistemica {
 		//lance do experimento de cores
 		if(experimento!=null){
 			Set<ParEpistemico> p = experimento.getSetCrencas();
-			Object[] crencas = p.toArray();
 			for(AgenteEpistemico agente: listAgenteEpistemico){
-				for(int i = 0;i < crencas.length;i++){
-					ParEpistemico opiniao = (ParEpistemico) agente.interpretar((ParEpistemico)crencas[i]);
-					double diff = opiniao.calcularDiferencaConsequente((ParEpistemico)crencas[i]);
+				for(ParEpistemico crenca:p){
+					ParEpistemico opiniao = agente.interpretar(crenca);
+					double diff = opiniao.calcularDiferencaConsequente(crenca);
 					if(diff <= 0.5){//Criar variavel para 0.6
-						System.out.println("Colorido...");
-						agente.setColor(((ParEpistemico) crencas[i]).getCor());//criar variavel para cor
+						logger.info("cor " + crenca.getCor().getRed() + ","  + crenca.getCor().getGreen() + ","+crenca.getCor().getBlue());
+						agente.setColor(crenca.getCor());//criar variavel para cor
 					}else{
 						agente.setColor(null);
 					}

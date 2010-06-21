@@ -86,7 +86,12 @@ public class CrencaJTable extends JTable{
 	
 	public Color getColorInRow(int row) {
 		Object obj = crencaTableModel.getValueAt(row,COLOR_COLUMN);
-		if(obj==null || !(obj instanceof Color)) return Color.BLACK;
+		if(obj==null || !(obj instanceof Color)){
+			logger.info("sem cor " + row);
+			return Color.BLACK;
+		}else{
+			logger.info("com cor " + row);
+		}
 		return (Color)obj;
 	}
 	
