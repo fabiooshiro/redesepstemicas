@@ -308,8 +308,8 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 			int colunas = (int)Math.ceil(d);
 			int col = i%linhas;
 			int lin = i/colunas;
-			x = col * (w/colunas);
-			y = lin * (w/linhas);
+			x = col * (w/colunas) + (w/colunas)/2;
+			y = lin * (w/linhas) + (w/linhas)/2;
 		}
 		double freq = Double.valueOf(configuracoesPanel.getTxtFrequencia().getText());
 		int estr[] = configuracoesPanel.getEstruturaRede();
