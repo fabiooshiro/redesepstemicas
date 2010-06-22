@@ -1,6 +1,7 @@
 package br.unicarioca.redesepistemicas.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
+import br.unicarioca.redesepistemicas.modelo.ParEpistemicoFactory;
 
 public class CrencaTreinarView extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -90,7 +92,16 @@ public class CrencaTreinarView extends JPanel {
 	}
 
 	private void criarNovaLinha() {
-		jTable.addRow();
+		ParEpistemico par = ParEpistemicoFactory.criar(MainFrame.parModelo.getSizeAntecedente(), MainFrame.parModelo.getSizeConsequente());
+		par.setCor(Color.WHITE);
+		int i;
+		for(i=0;i<par.getSizeAntecedente();i++){
+			par.addAntecedente(Math.random());
+		}
+		for(i=0;i<par.getSizeConsequente();i++){
+			par.addConsequente(Math.random());
+		}
+		jTable.addRow(par);
 	}
 
 	private void treinarAgentesSelecionados() {

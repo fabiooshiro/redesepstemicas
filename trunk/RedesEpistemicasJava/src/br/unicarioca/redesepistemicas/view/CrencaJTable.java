@@ -74,22 +74,9 @@ public class CrencaJTable extends JTable{
 	public List<ParEpistemico> getPares() {
 		List<ParEpistemico> retorno = new ArrayList<ParEpistemico>();
 		try {
-			
 			int linhas = crencaTableModel.getRowCount();
-			int colunas = crencaTableModel.getColumnCount();
 			for (int i = 0; i < linhas; i++) {
-				ParEpistemico par = (ParEpistemico) parModelo.clone();
-				for (int j = shiftCol2Right; j < colunas; j++) {
-					if (j < parModelo.getSizeAntecedente()+shiftCol2Right) {
-						par.addAntecedente(Double
-								.parseDouble((crencaTableModel
-										.getValueAt(i, j).toString())));
-					} else {
-						par.addConsequente(Double
-								.parseDouble((crencaTableModel
-										.getValueAt(i, j).toString())));
-					}
-				}
+				ParEpistemico par = (ParEpistemico) crencaTableModel.getValueAt(i,PAR_COLUMN);
 				retorno.add(par);
 			}
 		} catch (Exception e) {
@@ -152,6 +139,10 @@ public class CrencaJTable extends JTable{
 		}
 		crencaTableModel.addRow(objects);
 	}
+	
+	public void addRow(ParEpistemico par) {
+		addRow(par, par.getCor(), false, null);
+	}	
 	
 	public void addRow(ParEpistemico par, ParEpistemico parR2) {
 		addRow(par, par.getCor(), false, parR2);
@@ -253,6 +244,8 @@ public class CrencaJTable extends JTable{
 			}
 		}
 		return obj.getClass();
-    }	
+    }
+
+	
 	
 }
