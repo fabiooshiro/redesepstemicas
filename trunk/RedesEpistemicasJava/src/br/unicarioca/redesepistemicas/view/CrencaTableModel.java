@@ -6,7 +6,7 @@ import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 public class CrencaTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = 1L;
-    public CrencaTableModel(ParEpistemico parModelo) {
+    public CrencaTableModel(ParEpistemico parModelo, boolean consequenteAtual) {
     	int i;
     	this.addColumn("M");
 		this.addColumn("Cor");
@@ -16,6 +16,11 @@ public class CrencaTableModel extends DefaultTableModel {
 		}
 		for (i = 0; i < parModelo.getSizeConsequente(); i++) {
 			this.addColumn("C" + i);
+		}
+		if(consequenteAtual){
+			for (i = 0; i < parModelo.getSizeConsequente(); i++) {
+				this.addColumn("C'" + i);
+			}
 		}
 	}
 	public boolean isCellEditable(int row, int col) {

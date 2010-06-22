@@ -7,7 +7,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
@@ -15,13 +14,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
+import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
 
 public class AgenteListMouseMenu extends JPopupMenu {
 	private static final long serialVersionUID = 1765661788449368756L;
 	private JMenuItem verCrencasMenuItem;
 	private JList jList;
 	private AgenteEpistemico agente;
-	public AgenteListMouseMenu(JList jList) {
+	public AgenteListMouseMenu(JList jList, final RedeEpistemica redeEpistemica, final RedeEpistemicaView redeEpistemicaView) {
 		this.jList = jList;
 		verCrencasMenuItem = new JMenuItem("Ver Crenças");
 		verCrencasMenuItem.addActionListener(new ActionListener() {
@@ -31,7 +31,7 @@ public class AgenteListMouseMenu extends JPopupMenu {
 				}else{
 					JFrame jFrame = new JFrame("Crenças " + agente.getNome());
 					jFrame.setLayout(new BorderLayout());
-					jFrame.add(new CrencaView(agente));
+					jFrame.add(new CrencaView(agente,redeEpistemica,redeEpistemicaView));
 					jFrame.pack();
 					jFrame.setVisible(true);
 				}

@@ -65,7 +65,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		if(configuracoesPanel==null){
 			configuracoesPanel = new ConfiguracoesPanel();
 		}
-		new AgenteListMouseMenu(agenteListPanel.getJList());
+		AgenteListMouseMenu agenteListMouseMenu = new AgenteListMouseMenu(agenteListPanel.getJList(),redeEpistemica,redeEpistemicaView);
 		//configuracoes
 		SalvarSnapShoot.getInstance().setConfiguracoesPanel(configuracoesPanel);
 		CrencaTreinarView crencaTreinarView = CrencaTreinarView.getInstance();

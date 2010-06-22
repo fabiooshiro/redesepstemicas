@@ -45,7 +45,7 @@ public class CrencaTreinarView extends JPanel {
 		txtQtdTreino = new JTextField("1000");
 		lblQtdTreino = new JLabel("Qtd. Treino: ");
 		btnTreinarSelecionados = new JButton("Treinar Selecionados");
-		jTable = new CrencaJTable(MainFrame.parModelo);
+		jTable = new CrencaJTable(MainFrame.parModelo, false);
 
 		jTable.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
