@@ -33,9 +33,9 @@ public class CrencaJTable extends JTable{
 	private static int shiftCol2Right = 3;
 	private CrencaTableModel crencaTableModel;
 	private ParEpistemico parModelo;
-	public CrencaJTable(ParEpistemico parModelo) {
+	public CrencaJTable(ParEpistemico parModelo, boolean consequenteAtual) {
 		this.parModelo = parModelo;
-		crencaTableModel = new CrencaTableModel(parModelo); 
+		crencaTableModel = new CrencaTableModel(parModelo, consequenteAtual); 
 		this.setModel(crencaTableModel);
 		this.getColumnModel().getColumn(COLOR_COLUMN).setCellRenderer(new ColorCellRenderer());
 		this.getColumnModel().getColumn(COLOR_COLUMN).setCellEditor(new ColorCellEditor());
@@ -45,11 +45,11 @@ public class CrencaJTable extends JTable{
 		crencaTableModel.addTableModelListener(new TableModelListener() {
 			@Override
 			public void tableChanged(TableModelEvent e) {
-				logger.info("TableChanged...");
 				if(e.getColumn()==COLOR_COLUMN){
+					logger.info("TableChanged coluna da cor");
 					ParEpistemico par = getParInRow(e.getFirstRow());
 					if(par!=null){
-						logger.info("Color set");
+						logger.info("atualizando a cor do par...");
 						par.setCor(getColorInRow(e.getFirstRow()));
 					}
 				}
@@ -124,8 +124,13 @@ public class CrencaJTable extends JTable{
 		}
 	}
 	
-	public void addRow(ParEpistemico parR, Color color, Boolean boolean1) {
-		Object objects[] = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
+	public void addRow(ParEpistemico parR, Color color, Boolean boolean1, ParEpistemico parR2) {
+		Object objects[]; 
+		if(parR2!=null){
+			objects = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()+parR2.getSizeConsequente()];
+		}else{
+			objects = new Object[shiftCol2Right+parR.getSizeAntecedente()+parR.getSizeConsequente()];
+		}
 		logger.info("Criando uma linha com "+objects.length+" colunas");
 		objects[MONITORA_COLUMN] = boolean1;
 		objects[COLOR_COLUMN]=color;
@@ -136,14 +141,20 @@ public class CrencaJTable extends JTable{
 			i++;
 		}
 		for(int j=0;j<parR.getSizeConsequente();j++){
-			objects[i+shiftCol2Right] = parR.getDoubleAntecedentes().get(j);
+			objects[i+shiftCol2Right] = parR.getDoubleConsequentes().get(j);
 			i++;
+		}
+		if(parR2!=null){
+			for(int j=0;j<parR2.getSizeConsequente();j++){
+				objects[i+shiftCol2Right] = parR2.getDoubleConsequentes().get(j);
+				i++;
+			}
 		}
 		crencaTableModel.addRow(objects);
 	}
 	
-	public void addRow(ParEpistemico parR) {
-		addRow(parR, parR.getCor(), false);
+	public void addRow(ParEpistemico par, ParEpistemico parR2) {
+		addRow(par, par.getCor(), false, parR2);
 	}
 	
 	public void removeRow(int row) {
