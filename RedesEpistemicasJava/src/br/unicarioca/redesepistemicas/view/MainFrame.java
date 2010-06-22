@@ -289,6 +289,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
 		int morrerEm = Integer.valueOf(configuracoesPanel.getTxtMorrerEmXpublicacoes().getText());
 		double maxDiff = Double.valueOf(configuracoesPanel.getTxtMaxDiff().getText());
+		double errorTolerance = Double.valueOf(configuracoesPanel.getTxtErrorTolerance().getText());
 		boolean chkSomenteUltimaTeoria = configuracoesPanel.getChkSomenteUltimaTeoria().isSelected();
 		boolean pesoAleatorio = configuracoesPanel.getChkPesoAleatorio().isSelected();
 		boolean distribuicaoAleatoria = configuracoesPanel.getChkDistribuicaoAleatoria().isSelected();
@@ -321,6 +322,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		agente.setMorrerEmXpublicacoes(morrerEm);
 		agente.setSomenteUltimaTeoria(chkSomenteUltimaTeoria);
 		agente.setCriarNovoEm(criarNovoEm);
+		agente.setErrorTolerance(errorTolerance);
 		redeEpistemicaView.setDistanciaMaximaRepulsao(distanciaMaxRepulsao);
 		return agente;
 	}

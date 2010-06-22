@@ -53,6 +53,7 @@ public class AgenteEpistemico{
 	private Foco foco;
 	private double maxAtencao = 100;
 	private RedeEpistemica redeEpistemica;
+	private double errorTolerance = 0.0; 
 	
 	/**
 	 * Rede
@@ -280,7 +281,7 @@ public class AgenteEpistemico{
 			treinar(parEpistemico,500);
 			parEpistemico = interpretar(parEpistemico);
 			crencas.add(parEpistemico);
-		}else if(qtdParComunicado%criarNovoEm==0){
+		}else if(criarNovoEm!=0 && qtdParComunicado%criarNovoEm==0){
 			//Nova teoria
 			parEpistemico = criarNovoPar();
 			treinar(parEpistemico,500);
@@ -342,7 +343,7 @@ public class AgenteEpistemico{
 			te.setOutputs(out);
 			listTraining.add(te);
 		}
-		double errorTolerance = 0.0; 
+		
 		
 		// pso specific settings
 		int numberParticles = 20; 
@@ -617,6 +618,14 @@ public class AgenteEpistemico{
 	 */
 	public boolean querPublicar() {
 		return NumeroAleatorio.gerarNumero()<vontadeDePublicar;
+	}
+	
+	/**
+	 * Usado para treinar a rede interna
+	 * @param errorTolerance double para treinar a rede
+	 */
+	public void setErrorTolerance(double errorTolerance) {
+		this.errorTolerance = errorTolerance;
 	}
 	
 }

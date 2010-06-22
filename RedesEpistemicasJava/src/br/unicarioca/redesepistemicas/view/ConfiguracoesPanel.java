@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
  *
  */
 public class ConfiguracoesPanel extends JTabbedPane {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	private JLabel lblQtdAgentes;
 	private JTextField txtQtdAgentes;
 	private JLabel lblMaxDiff;
@@ -55,6 +55,9 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JLabel lblEstruturaRede;
 	private JTextField txtEstruturaRede;
 	
+	private JLabel lblErrorTolerance;
+	private JTextField txtErrorTolerance;
+	
 	private JButton btnOk;
 
 	private void writeObject(ObjectOutputStream out) throws IOException{
@@ -67,6 +70,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	}
 	
 	public ConfiguracoesPanel() {
+		lblErrorTolerance = new JLabel("Error Tolerance:");
+		txtErrorTolerance = new JTextField("0.0001");
 		
 		lblEstruturaRede = new JLabel("Estrutura da Rede");
 		txtEstruturaRede = new JTextField("5,3,1");
@@ -157,6 +162,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		tabela.add(txtSnapShot);
 		tabela.add(lblEstruturaRede);
 		tabela.add(txtEstruturaRede);
+		tabela.add(lblErrorTolerance);
+		tabela.add(txtErrorTolerance);
 		
 		JPanel sul = new JPanel(new FlowLayout());
 		sul.add(btnOk);
@@ -494,6 +501,22 @@ public class ConfiguracoesPanel extends JTabbedPane {
 
 	public void setTxtEstruturaRede(JTextField txtEstruturaRede) {
 		this.txtEstruturaRede = txtEstruturaRede;
+	}
+	
+	public JLabel getLblErrorTolerance() {
+		return lblErrorTolerance;
+	}
+	
+	public void setLblErrorTolerance(JLabel lblErrorTolerance) {
+		this.lblErrorTolerance = lblErrorTolerance;
+	}
+	
+	public JTextField getTxtErrorTolerance() {
+		return txtErrorTolerance;
+	}
+	
+	public void setTxtErrorTolerance(JTextField txtErrorTolerance) {
+		this.txtErrorTolerance = txtErrorTolerance;
 	}
 	
 }
