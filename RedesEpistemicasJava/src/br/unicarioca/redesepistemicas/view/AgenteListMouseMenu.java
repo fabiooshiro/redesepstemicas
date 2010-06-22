@@ -11,6 +11,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
@@ -25,11 +26,15 @@ public class AgenteListMouseMenu extends JPopupMenu {
 		verCrencasMenuItem = new JMenuItem("Ver Crenças");
 		verCrencasMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame jFrame = new JFrame("Crenças " + agente.getNome());
-				jFrame.setLayout(new BorderLayout());
-				jFrame.add(new CrencaView(agente));
-				jFrame.pack();
-				jFrame.setVisible(true);
+				if(agente.getCrencas().size()==0){
+					JOptionPane.showMessageDialog(AgenteListMouseMenu.this,"Nenhuma crença");
+				}else{
+					JFrame jFrame = new JFrame("Crenças " + agente.getNome());
+					jFrame.setLayout(new BorderLayout());
+					jFrame.add(new CrencaView(agente));
+					jFrame.pack();
+					jFrame.setVisible(true);
+				}
 			}
 		});
 		this.add(verCrencasMenuItem);

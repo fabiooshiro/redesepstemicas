@@ -15,6 +15,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
@@ -40,6 +42,19 @@ public class CrencaJTable extends JTable{
 		this.getColumnModel().getColumn(COLOR_COLUMN).setMaxWidth(20);//cor
 		this.getColumnModel().getColumn(PAR_COLUMN).setMinWidth(200);//nome
 		this.getColumnModel().getColumn(MONITORA_COLUMN).setMaxWidth(20);//checkbox?
+		crencaTableModel.addTableModelListener(new TableModelListener() {
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				logger.info("TableChanged...");
+				if(e.getColumn()==COLOR_COLUMN){
+					ParEpistemico par = getParInRow(e.getFirstRow());
+					if(par!=null){
+						logger.info("Color set");
+						par.setCor(getColorInRow(e.getFirstRow()));
+					}
+				}
+			}
+		});
 	}
 	
 	public String getNomeInRow(int row) {
@@ -49,7 +64,11 @@ public class CrencaJTable extends JTable{
 	
 	public ParEpistemico getParInRow(int row) {
 		Object obj = crencaTableModel.getValueAt(row,PAR_COLUMN);
-		return (ParEpistemico)obj;
+		if(obj!=null){
+			return (ParEpistemico)obj;
+		}else{
+			return null;
+		}
 	}
 	
 	public List<ParEpistemico> getPares() {
@@ -124,7 +143,7 @@ public class CrencaJTable extends JTable{
 	}
 	
 	public void addRow(ParEpistemico parR) {
-		addRow(parR, Color.WHITE, false);
+		addRow(parR, parR.getCor(), false);
 	}
 	
 	public void removeRow(int row) {
@@ -145,24 +164,18 @@ public class CrencaJTable extends JTable{
 	
 	class ColorCellRenderer extends JLabel implements TableCellRenderer{
 		private static final long serialVersionUID = 1L;
-
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object color,
-					boolean isSelectd, boolean hasFocus, int row, int col) {
-				Color newColor =(Color) color;
-				setBackground(newColor);
-				setOpaque(true);
-				setBorder(BorderFactory.createMatteBorder(2,5,2,5,table.getBackground()));
-				table.setCellSelectionEnabled(false);
-				table.setColumnSelectionAllowed(false);
-            			
-				return this;
-			}
-			
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelectd, boolean hasFocus, int row, int col) {
+			Color newColor =(Color) color;
+			setBackground(newColor);
+			setOpaque(true);
+			setBorder(BorderFactory.createMatteBorder(2,5,2,5,table.getBackground()));
+			table.setCellSelectionEnabled(false);
+			table.setColumnSelectionAllowed(false);
+			return this;
+		}
 	}
-	class ColorCellEditor extends AbstractCellEditor
-    							 implements TableCellEditor,
-    							 		    ActionListener{
+	class ColorCellEditor extends AbstractCellEditor implements TableCellEditor, ActionListener{
 		private static final long serialVersionUID = 1L;
 		Color currentColor;
 	    JButton button;
@@ -171,17 +184,13 @@ public class CrencaJTable extends JTable{
 	    protected static final String EDIT = "edit";
 
 	    public ColorCellEditor() {
-	       
 	        button = new JButton();
 	        button.setActionCommand(EDIT);
 	        button.addActionListener(this);
 	        button.setBorderPainted(false);
-        
 	        colorChooser = new JColorChooser();
 	        colorChooser.remove(1);
-	        dialog = JColorChooser.createDialog(button,
-	                                      "Escolha uma cor para a crença",
-	                                        true,  //modal
+	        dialog = JColorChooser.createDialog(button, "Escolha uma cor para a crença", true,  //modal
 	                                        colorChooser,
 	                                        this,  //OK button handler
 	                                        null); //no CANCEL button handler
@@ -213,11 +222,7 @@ public class CrencaJTable extends JTable{
 	    }
 
 	    //Implement the one method defined by TableCellEditor.
-	    public Component getTableCellEditorComponent(JTable table,
-	                                                 Object value,
-	                                                 boolean isSelected,
-	                                                 int row,
-	                                                 int column) {
+	    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 	        currentColor = (Color)value;
 	        return button;
 	    }

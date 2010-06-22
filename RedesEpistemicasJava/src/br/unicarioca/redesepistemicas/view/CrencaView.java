@@ -128,7 +128,8 @@ public class CrencaView extends JPanel{
 		if(crencas == null) return;
 		Iterator<ParEpistemico> it = crencas.iterator();
 		while(it.hasNext()){
-			jTable.addRow(it.next(),new Color(33,23,54),new Boolean(false));
+			ParEpistemico par = it.next();
+			jTable.addRow(par,par.getCor(),new Boolean(false));
 		}
 	}
 	
