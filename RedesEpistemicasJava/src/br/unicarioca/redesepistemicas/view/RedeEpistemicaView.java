@@ -486,10 +486,18 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		this.agenteEpistemicoFactory = agenteEpistemicoFactory;
 	}
 
+	public int getDistanciaMaxRepulsao() {
+		return distanciaMaxRepulsao;
+	}
+	
 	public void setDistanciaMaximaRepulsao(int distanciaMaxRepulsao) {
 		this.distanciaMaxRepulsao = distanciaMaxRepulsao;
 	}
 
+	public int getPassoMax() {
+		return passoMax;
+	}
+	
 	public void setPassoMax(int passoMax) {
 		this.passoMax = passoMax;
 	}

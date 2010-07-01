@@ -138,6 +138,10 @@ public class AgenteEpistemico{
 		setNome("A" + id);
 	}
 	
+	public int[] getNeuralNetworkStructure() {
+		return neuralNetworkStructure;
+	}
+	
 	/**
 	 * Identificador do agente
 	 * @return Long
@@ -589,6 +593,10 @@ public class AgenteEpistemico{
 	 */
 	public void setSomenteUltimaTeoria(boolean somenteUltimaTeoria) {
 		this.somenteUltimaTeoria = somenteUltimaTeoria;
+	}
+	
+	public boolean isSomenteUltimaTeoria() {
+		return somenteUltimaTeoria;
 	}
 	
 	/**

@@ -11,6 +11,20 @@ public class ParEpistemicoOrkut implements ParEpistemico{
 	private int sizeConsequente;
 	private Color cor;
 	private String nome = "";
+	private long id=0;
+	public static long idGenerated=0;
+	
+	public ParEpistemicoOrkut() {
+		id = idGenerated++;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public ArrayList<Double> getAntecedente() {
 		return antecedente;
