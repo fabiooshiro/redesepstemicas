@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public interface ParEpistemico extends Cloneable{
+	public long getId();
+	public void setId(long id);
 	public void addAntecedente(Double d);
 	public void addConsequente(Double d);
 	public Double calcularDiferencaConsequente(ParEpistemico par);

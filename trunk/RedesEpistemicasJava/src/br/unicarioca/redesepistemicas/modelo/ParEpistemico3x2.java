@@ -13,9 +13,22 @@ public class ParEpistemico3x2 implements ParEpistemico {
 	protected Consequente consequente;
 	private Color cor;
 	private String nome = "";
+	private long id=0;
+	public static long idGenerated=0;
 	
 	public ParEpistemico3x2() {
+		id = idGenerated++;
 	}
+	
+	@Override
+	public long getId() {
+		return id;
+	}
+	@Override
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	/**
 	 * @return the antecedente
 	 */
@@ -125,4 +138,5 @@ public class ParEpistemico3x2 implements ParEpistemico {
 	public Color getCor() {
 		return cor;
 	}
+	
 }
