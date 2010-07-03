@@ -90,10 +90,9 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener, 
 	public void addListSelectionListener(ListSelectionListener l){
 		jList.addListSelectionListener(l);
 	}
+	
 	@Override
 	public void criado(AgenteEpistemico agente) {
-
-
 		boolean ok = listAgentes.add(agente);
 		if (!ok)
 			logger.error("Ja existe agente " + agente.getId());
@@ -105,8 +104,6 @@ public class AgenteListPanel extends JPanel implements CicloVidaAgenteListener, 
 		listAgentes.remove(agente);
 		listModel.removeElement(agente);
 	}
-
-	
 
 	public List<AgenteEpistemico> getSelecionados(){
 		int[] arr = jList.getSelectedIndices();
