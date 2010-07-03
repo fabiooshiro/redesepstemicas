@@ -20,11 +20,12 @@ import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
+import br.unicarioca.redesepistemicas.view.ConfiguracoesPanel;
 import br.unicarioca.redesepistemicas.view.RedeEpistemicaView;
 
 public class RedeDao {
 
-	public static void loadFromXml(RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView, File xmlFile) {
+	public static void loadFromXml(ConfiguracoesPanel configuracoesPanel, RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView, File xmlFile) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setNamespaceAware(false);
@@ -35,8 +36,9 @@ public class RedeDao {
 			String nnsStr[] = redeTag.getAttribute("neuralNetworkStructure").split(",");
 			int nns[] = new int[nnsStr.length];
 			for(int i=0;i<nns.length;i++){
-				nns[i] = Integer.parseInt(nnsStr[i]);
+				nns[i] = Integer.parseInt(nnsStr[i].trim());
 			}
+			configuracoesPanel.getTxtEstruturaRede().setText(redeTag.getAttribute("neuralNetworkStructure"));
 			redeEpistemicaView.setDistanciaMaximaRepulsao(Integer.valueOf(redeTag.getAttribute("distMaxRepulsao")));
 			redeEpistemicaView.setPassoMax(Integer.valueOf(redeTag.getAttribute("passoAgente")));
 			NodeList crencas = redeTag.getElementsByTagName("crenca");

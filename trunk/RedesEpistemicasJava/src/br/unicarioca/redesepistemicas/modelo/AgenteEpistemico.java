@@ -238,7 +238,7 @@ public class AgenteEpistemico{
 	 * @return valor somado de todas as arestas
 	 */
 	public double getPesoReputacao(){
-		if(pesoReputacao==null){
+		//if(pesoReputacao==null){
 			double res = 0;
 			synchronized (arestasSaida) {
 				for(Aresta aresta:arestasSaida){
@@ -246,7 +246,7 @@ public class AgenteEpistemico{
 				}
 			}
 			pesoReputacao=res;
-		}
+		//}
 		return pesoReputacao;
 	}
 	
@@ -416,7 +416,7 @@ public class AgenteEpistemico{
 		if(emissor!=null){
 			double delta = 0.2 * (1.0/(deltaErro+1.0)) * peso; /*regra de Hebb*/
 			aresta.setPeso(peso + delta);
-			emissor.addPesoReputacao(delta);
+			//emissor.addPesoReputacao(delta);
 			//retirar o delta dos outros agentes
 			//retirarDelta(delta,emissor,peso);
 			distribuirAtencao();
