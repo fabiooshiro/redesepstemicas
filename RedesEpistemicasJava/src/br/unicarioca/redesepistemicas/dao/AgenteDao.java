@@ -5,15 +5,18 @@ import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 public class AgenteDao {
-	public static final String TEMPLATE = "<agente aid=\"{aid}\" maxDif=\"{maxDif}\" morrerEm=\"{morrerEm}\" somenteUltimo=\"{somenteUltimo}\" criarNovoEm=\"{criarNovoEm}\" freq=\"{freq}\" >"; 
+	public static final String TEMPLATE = "<agente aid=\"{aid}\" y=\"{y}\" x=\"{x}\" maxDif=\"{maxDif}\" morrerEm=\"{morrerEm}\" somenteUltimo=\"{somenteUltimo}\" criarNovoEm=\"{criarNovoEm}\" freq=\"{freq}\" >"; 
 	public static String getXml(AgenteEpistemico agente){
 		String header = TEMPLATE
 			.replace("{aid}", agente.getId()+"")
+			.replace("{x}", agente.getX()+"")
+			.replace("{y}", agente.getY()+"")
 			.replace("{maxDif}", agente.getMaxDiff()+"")
 			.replace("{morrerEm}", agente.getMorrerEmXpublicacoes()+"")
 			.replace("{somenteUltimo}", agente.isSomenteUltimaTeoria()? "1" : "0")
 			.replace("{criarNovoEm}", agente.getCriarNovoEm()+ "0")
 			.replace("{freq}", agente.getVontadeDePublicar()+"");
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append(header);
 		for(ParEpistemico par:agente.getCrencas()){

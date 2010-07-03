@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,11 +24,13 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import br.unicarioca.redesepistemicas.bo.GenericDao;
 import br.unicarioca.redesepistemicas.bo.InfoListener;
 import br.unicarioca.redesepistemicas.bo.SalvarSnapShoot;
+import br.unicarioca.redesepistemicas.dao.RedeDao;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemicoFactory;
 import br.unicarioca.redesepistemicas.modelo.CicloVidaAgenteListener;
@@ -82,7 +85,10 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 			public void actionPerformed(ActionEvent ev) {
 				try{
 					configuracoesPanelDao.salvar(configuracoesPanel, "Nome");
+					String xml = RedeDao.getXml(redeEpistemica, redeEpistemicaView);
+					FileUtils.writeStringToFile(new File("experimentos/rede.xml"), xml, "utf-8");
 				}catch(Exception e){
+					e.printStackTrace();
 					JOptionPane.showMessageDialog(MainFrame.this,"Erro ao salvar configurações: " + e.getMessage());
 				}
 			}

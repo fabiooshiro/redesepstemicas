@@ -17,7 +17,8 @@ public class RedeDao {
 		String template = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rede neuralNetworkStructure=\"{nns}\" " +
 			"distMaxRepulsao=\"{distMaxRepulsao}\" " +
 			"passoAgente=\"{passoAgente}\" " +
-			"distrAleatoria=\"{distrAleatoria}\">"
+			"distrAleatoria=\"{distrAleatoria}\">";
+		template = template
 			.replace("{nns}", nns)
 			.replace("{distMaxRepulsao}", redeEpistemicaView.getDistanciaMaxRepulsao()+"")
 			.replace("{passoAgente}", redeEpistemicaView.getPassoMax()+"")
@@ -32,6 +33,7 @@ public class RedeDao {
 				sb.append(CrencaDao.getXml(crenca));
 			}
 		}
+		sb.append("</rede>");
 		return sb.toString();
 	}
 }
