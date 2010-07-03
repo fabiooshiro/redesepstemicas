@@ -96,12 +96,15 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			public void componentMoved(ComponentEvent e) {}
 			public void componentResized(ComponentEvent e) {
 				reiniciarBi = true;
+				refresh();
 			}
 			public void componentShown(ComponentEvent e) {}
 		});
-		
 	}
 
+	/**
+	 * Redesenha os agentes
+	 */
 	public void refresh(){
 		initDesenho();
 		desenharAgentes();
@@ -380,8 +383,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		}
 		logger.debug(message);
 		if(pause){
-			initDesenho();
-			desenharAgentes();
+			refresh();
 		}
 	}
 	public void zoomMais(){
@@ -420,8 +422,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			arrastarX += e.getX() - startDragX;
 			arrastarY += e.getY() - startDragY;
-			initDesenho();
-			desenharAgentes();
+			refresh();
 		}else if(e.getButton()== MouseEvent.BUTTON1){
 			endSelection = e.getPoint();
 			initDesenho();

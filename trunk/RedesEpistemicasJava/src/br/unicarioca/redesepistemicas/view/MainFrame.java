@@ -3,6 +3,8 @@ package br.unicarioca.redesepistemicas.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -87,11 +89,16 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		menuPrincipal.getSalvar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				try{
-					configuracoesPanelDao.salvar(configuracoesPanel, "Nome");
-					String xml = RedeDao.getXml(redeEpistemica, redeEpistemicaView);
-					FileUtils.writeStringToFile(new File("experimentos/rede.xml"), xml, "utf-8");
+					redeEpistemicaView.pause();
+					JFileChooser fileChooser = new JFileChooser(new File("experimentos"));
+					int choose = fileChooser.showOpenDialog(MainFrame.this);
+					if(choose==JFileChooser.APPROVE_OPTION){
+						File file = fileChooser.getSelectedFile();
+						String xml = RedeDao.getXml(redeEpistemica, redeEpistemicaView);
+						FileUtils.writeStringToFile(file, xml, "utf-8");
+					}
 				}catch(Exception e){
-					e.printStackTrace();
+					logger.error("Erro ao salvar configurações: ",e);
 					JOptionPane.showMessageDialog(MainFrame.this,"Erro ao salvar configurações: " + e.getMessage());
 				}
 			}
