@@ -14,15 +14,15 @@ public class AgenteDao {
 			.replace("{maxDif}", agente.getMaxDiff()+"")
 			.replace("{morrerEm}", agente.getMorrerEmXpublicacoes()+"")
 			.replace("{somenteUltimo}", agente.isSomenteUltimaTeoria()? "1" : "0")
-			.replace("{criarNovoEm}", agente.getCriarNovoEm()+ "0")
+			.replace("{criarNovoEm}", agente.getCriarNovoEm()+ "")
 			.replace("{freq}", agente.getVontadeDePublicar()+"");
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(header);
 		for(ParEpistemico par:agente.getCrencas()){
-			sb.append("<crenca ref=\"");
+			sb.append("<crencaref ref=\"");
 			sb.append(par.getId());
-			sb.append("\" />");
+			sb.append("\" qtd=\"1000\" />");
 		}
 		for(Aresta aresta: agente.getArestas()){
 			sb.append("<aresta aid=\"");

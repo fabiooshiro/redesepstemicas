@@ -93,6 +93,11 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 				}
 			}
 		});
+		menuPrincipal.getAbrir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				RedeDao.loadFromXml(redeEpistemica, redeEpistemicaView, new File("experimentos/rede.xml"));
+			}
+		});
 		menuPrincipal.getNovo().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				novo();

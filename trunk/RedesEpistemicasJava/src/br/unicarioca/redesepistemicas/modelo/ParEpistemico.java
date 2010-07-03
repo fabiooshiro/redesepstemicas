@@ -18,4 +18,6 @@ public interface ParEpistemico extends Cloneable{
 	public void setNome(String nomeInRow);
 	public void setCor(Color colorInRow);
 	public Color getCor();
+	public void setSizeAntecedente(int length);
+	public void setSizeConsequente(int length);
 }

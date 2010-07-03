@@ -2,7 +2,6 @@ package br.unicarioca.redesepistemicas.modelo;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Representa um par epistemico composto por um antecedente e um consequente
@@ -137,6 +136,16 @@ public class ParEpistemico3x2 implements ParEpistemico {
 	@Override
 	public Color getCor() {
 		return cor;
+	}
+
+	@Override
+	public void setSizeAntecedente(int length) {
+	}
+
+	@Override
+	public void setSizeConsequente(int length) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -16,10 +16,16 @@ public class CrencaDao {
 		if(a.length()==0) a.append(";");
 		System.out.println("a " + a.toString());
 		System.out.println("c " + c.toString());
-		return "<crenca a=\"{a}\" c=\"{c}\" cid=\"{cid}\" nome=\"{nome}\" />"
+		String color = "FFFFFF";
+		if(parEpistemico.getCor()!=null){
+			color = Integer.toHexString(parEpistemico.getCor().getRGB()).toUpperCase().substring(2);
+		}
+		return "<crenca a=\"{a}\" c=\"{c}\" cid=\"{cid}\" nome=\"{nome}\" color=\"{color}\" />"
 			.replace("{a}", a.toString().substring(1))
 			.replace("{c}", c.toString().substring(1))
 			.replace("{cid}", parEpistemico.getId()+"")
-			.replace("{nome}", parEpistemico.toString());
+			.replace("{nome}", parEpistemico.toString())
+			.replace("{color}", color);
+		
 	}
 }
