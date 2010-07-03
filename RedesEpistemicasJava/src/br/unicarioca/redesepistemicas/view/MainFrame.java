@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -95,16 +96,26 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 				}
 			}
 		});
+		
 		menuPrincipal.getAbrir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
-				RedeDao.loadFromXml(redeEpistemica, redeEpistemicaView, new File("experimentos/rede.xml"));
+				clean();
+				JFileChooser fileChooser = new JFileChooser(new File("experimentos"));
+				int choose = fileChooser.showOpenDialog(MainFrame.this);
+				if(choose==JFileChooser.APPROVE_OPTION){
+					File file = fileChooser.getSelectedFile();
+					RedeDao.loadFromXml(configuracoesPanel, redeEpistemica, redeEpistemicaView, file);
+				}
+				refreshConf();
 			}
 		});
+		
 		menuPrincipal.getNovo().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				novo();
 			}
 		});
+		
 		menuPrincipal.getVerLinhasVermelhas().setSelected(redeEpistemicaView.isVerLinhasVermelhas());
 		menuPrincipal.getVerLinhasVermelhas().addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent e) {
@@ -240,17 +251,25 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		jFrame.setVisible(true);
 	}
 	
-	/**
-	 * Nova simulacao
-	 */
-	public void novo(){
+	public void clean(){
 		NumeroAleatorio.restart();
 		agenteListPanel.reiniciar();
 		redeEpistemicaView.pause();
+	}
+	
+	public void refreshConf(){
 		redeEpistemicaView.setSnapshot(Integer.valueOf(configuracoesPanel.getTxtSnapShot().getText()));
 		redeEpistemicaView.setPassoMax(Integer.valueOf(configuracoesPanel.getSpnPassoMax().getValue().toString()));
 		int estr[] = configuracoesPanel.getEstruturaRede();
 		parModelo = ParEpistemicoFactory.criar(estr[0], estr[2]);
+	}
+	
+	/**
+	 * Nova simulacao
+	 */
+	public void novo(){
+		clean();
+		refreshConf();
 		int qtd = Integer.valueOf(configuracoesPanel.getTxtQtdAgentes().getText());
 		for(int i=0;i<qtd;i++){
 			criarAgente();
