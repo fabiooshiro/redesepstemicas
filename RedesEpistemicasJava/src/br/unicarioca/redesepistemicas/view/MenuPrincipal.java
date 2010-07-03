@@ -69,6 +69,9 @@ public class MenuPrincipal extends JMenuBar{
 		this.add(crencas);
 		crencas.add(colorir);
 	}
+	public JMenuItem getAbrir() {
+		return abrir;
+	}
 	public JMenuItem getSalvar() {
 		return salvar;
 	}
