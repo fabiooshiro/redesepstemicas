@@ -215,10 +215,14 @@ public class RedeEpistemica {
 		synchronized (listAgenteEpistemico) {
 			listAgenteEpistemico.add(agenteNovo);
 		}
+		fireAgenteCriadoEvent(agenteNovo);
+		return agenteNovo;
+	}
+	
+	public void fireAgenteCriadoEvent(AgenteEpistemico agenteNovo){
 		if(cicloVidaAgenteListener!=null){
 			cicloVidaAgenteListener.criado(agenteNovo);
 		}
-		return agenteNovo;
 	}
 	/**
 	 * Quem providencia um agente criado inteiramente

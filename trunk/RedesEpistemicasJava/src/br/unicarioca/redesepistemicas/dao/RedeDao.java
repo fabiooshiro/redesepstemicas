@@ -17,7 +17,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import br.unicarioca.redesepistemicas.modelo.AgenteEpistemico;
-import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut;
 import br.unicarioca.redesepistemicas.modelo.RedeEpistemica;
@@ -102,9 +101,17 @@ public class RedeDao {
 				agente.addCrencas(par2add);
 				mapAgentes.put(agente.getId(), agente);
 				agenteList.add(agente);
+				agente.setRedeEpistemica(redeEpistemica);
 			}
 			for(InsertAresta insert:inserts){
 				insert.execute();
+			}
+			//matar os antigos
+			for(AgenteEpistemico agente: redeEpistemica.getListAgenteEpistemico()){
+				redeEpistemica.matarAgente(agente);
+			}
+			for(AgenteEpistemico agente: agenteList){
+				redeEpistemica.fireAgenteCriadoEvent(agente);
 			}
 			redeEpistemica.setListAgenteEpistemico(agenteList);
 		} catch (Exception e) {

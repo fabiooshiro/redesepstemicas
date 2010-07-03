@@ -5,7 +5,7 @@ import br.unicarioca.redesepistemicas.modelo.Aresta;
 import br.unicarioca.redesepistemicas.modelo.ParEpistemico;
 
 public class AgenteDao {
-	public static final String TEMPLATE = "<agente aid=\"{aid}\" y=\"{y}\" x=\"{x}\" maxDif=\"{maxDif}\" morrerEm=\"{morrerEm}\" somenteUltimo=\"{somenteUltimo}\" criarNovoEm=\"{criarNovoEm}\" freq=\"{freq}\" >"; 
+	public static final String TEMPLATE = "<agente aid=\"{aid}\" y=\"{y}\" x=\"{x}\" maxDif=\"{maxDif}\" morrerEm=\"{morrerEm}\" somenteUltimo=\"{somenteUltimo}\" criarNovoEm=\"{criarNovoEm}\" freq=\"{freq}\" raio=\"{raio}\">"; 
 	public static String getXml(AgenteEpistemico agente){
 		String header = TEMPLATE
 			.replace("{aid}", agente.getId()+"")
@@ -15,7 +15,8 @@ public class AgenteDao {
 			.replace("{morrerEm}", agente.getMorrerEmXpublicacoes()+"")
 			.replace("{somenteUltimo}", agente.isSomenteUltimaTeoria()? "1" : "0")
 			.replace("{criarNovoEm}", agente.getCriarNovoEm()+ "")
-			.replace("{freq}", agente.getVontadeDePublicar()+"");
+			.replace("{freq}", agente.getVontadeDePublicar()+"")
+			.replace("{raio}", agente.getRaio()+"");
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(header);
