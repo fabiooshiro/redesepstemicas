@@ -116,6 +116,8 @@ public class RedeDao {
 				redeEpistemica.fireAgenteCriadoEvent(agente);
 			}
 			redeEpistemica.setListAgenteEpistemico(agenteList);
+			
+			redeEpistemicaView.refresh();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
