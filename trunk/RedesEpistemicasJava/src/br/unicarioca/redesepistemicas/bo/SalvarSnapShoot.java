@@ -61,14 +61,14 @@ public class SalvarSnapShoot {
 			//salvar o html
 			StringBuilder html=new StringBuilder();
 			String configuracao = criarHtmlConf();
-			html.append("<html><head><title>RedeEpistemica</title></head><body>");
+			html.append("<html><head><title>RedeEpistemica</title><script src=\"../auto.js\"></script></head><body>");
 			html.append("<div id=\"nav\">");
 						
 			if (snapshotN > 1)
 				html.append("<a href=\"p").append(snapshotN-1).append(".html\">Anterior</a> - ");
 			else
 				html.append("Anterior - ");
-			
+			html.append("<a href=\"p").append(snapshotN).append(".html#autoplay\">auto</a> - ");
 			html.append("<a href=\"p").append(snapshotN+1).append(".html\">Pr&oacute;xima</a>");
 			html.append("</div>");
 			html.append("<img src=\"imagens/f").append(snapshotN).append(".png\">");

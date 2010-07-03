@@ -3,6 +3,8 @@ package br.unicarioca.redesepistemicas.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -157,6 +159,14 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 					jFrame.setVisible(true);
 				}
 			}
+		});
+		configuracoesPanel.getTxtSnapShot().addFocusListener(new FocusListener() {
+			public void focusLost(FocusEvent focusEvent) {
+				try{
+					redeEpistemicaView.setSnapshot(Integer.valueOf(configuracoesPanel.getTxtSnapShot().getText()));
+				}catch(Exception e){}
+			}
+			public void focusGained(FocusEvent e) {}
 		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
