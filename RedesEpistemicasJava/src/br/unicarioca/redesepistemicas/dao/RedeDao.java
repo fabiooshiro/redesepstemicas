@@ -39,6 +39,7 @@ public class RedeDao {
 				nns[i] = Integer.parseInt(nnsStr[i].trim());
 			}
 			configuracoesPanel.getTxtEstruturaRede().setText(redeTag.getAttribute("neuralNetworkStructure"));
+			configuracoesPanel.getSpnPassoMax().setValue(Integer.valueOf(redeTag.getAttribute("passoAgente")));
 			redeEpistemicaView.setDistanciaMaximaRepulsao(Integer.valueOf(redeTag.getAttribute("distMaxRepulsao")));
 			redeEpistemicaView.setPassoMax(Integer.valueOf(redeTag.getAttribute("passoAgente")));
 			NodeList crencas = redeTag.getElementsByTagName("crenca");

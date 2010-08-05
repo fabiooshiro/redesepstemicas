@@ -1,8 +1,11 @@
 package br.unicarioca.redesepistemicas.view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Stroke;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -57,6 +60,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private AgenteListPanel agenteListPanel;
 	private int ordenarAgentesEmNEtapas = 10;
 	private int snapshot = 1000;
+	private BasicStroke comunicadorStroke = new BasicStroke(3.0f);
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
 		this.redeEpistemica.setComunicacaoListener(this);
@@ -187,7 +191,11 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			graphics.setColor(old);
 		}
 		if(fill){
-			graphics.fillOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+			Graphics2D g2d = (Graphics2D) graphics;
+			Stroke oldS = g2d.getStroke();
+			g2d.setStroke(comunicadorStroke);
+			g2d.drawOval(arrastarX + Math.round(x), arrastarY + Math.round(y), dim, dim);
+			g2d.setStroke(oldS);
 		}else if(agente.getColor()!=null){
 			logger.info("Color = " + agente.getColor());
 			Color old = graphics.getColor();
