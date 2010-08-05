@@ -270,7 +270,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			double dy = ey - ry;
 			double hip = Math.sqrt(dx * dx + dy * dy);
 			double diam = agente.getRaio() + receptor.getRaio();
-			if(hip<diam){
+			if(hip < diam){
 				return true;
 			}
 		}
