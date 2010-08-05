@@ -257,7 +257,30 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private void drawLine(int x,int y, int x2, int y2){
 		graphics.drawLine(arrastarX + Math.round(x * escala), arrastarY + Math.round(y * escala), arrastarX + Math.round(x2 * escala), arrastarY + Math.round(y2 * escala));
 	}
+
 	
+	boolean checkColisao(AgenteEpistemico agente){
+		int ex = agente.getX();
+		int ey = agente.getY();
+		for(AgenteEpistemico receptor:redeEpistemica.getListAgenteEpistemico()){
+			if(agente==receptor) continue;
+			int rx = receptor.getX();
+			int ry = receptor.getY();
+			double dx = ex - rx;
+			double dy = ey - ry;
+			double hip = Math.sqrt(dx * dx + dy * dy);
+			double diam = agente.getRaio() + receptor.getRaio();
+			if(hip<diam){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Faz o agente dar um passo
+	 * TODO calcular colisao para nao deixar sobrepor
+	 */
 	public void depoisDeComunicar(AgenteEpistemico emissor, AgenteEpistemico receptor, Double peso, Double diff) {
 
 		int ex = emissor.getX();
@@ -266,6 +289,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		int ry = receptor.getY();
 		// graphics.setColor(Color.BLUE);
 
+		boolean colidiu = checkColisao(receptor);
 		// andar
 		double ref = 1.0;
 
@@ -277,8 +301,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 		double mx = dx * relacao;
 		double my = dy * relacao;
 		if (receptor.getMaxDiff() - diff > 0) {
-			receptor.setX(rx + (int) mx);
-			receptor.setY(ry + (int) my);
+			if(!colidiu){
+				receptor.setX(rx + (int) mx);
+				receptor.setY(ry + (int) my);
+			}
 			graphics.setColor(Color.BLUE);
 			if(verLinhasAzuis){
 				drawLine(ex,ey,rx,ry);
@@ -302,15 +328,19 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 					}
 					mx *= .5f;
 					my *= .5f;
-					receptor.setX(rx - (int) mx);
-					receptor.setY(ry - (int) my);
+					if(!colidiu){
+						receptor.setX(rx - (int) mx);
+						receptor.setY(ry - (int) my);
+					}
 				}
 			}else{
 				if (hip < distanciaMaxRepulsao) {
 					mx *= hip/distanciaMaxRepulsao;
 					my *= hip/distanciaMaxRepulsao;
-					receptor.setX(rx - (int) mx);
-					receptor.setY(ry - (int) my);
+					if(!colidiu){
+						receptor.setX(rx - (int) mx);
+						receptor.setY(ry - (int) my);
+					}
 				}
 			}
 			graphics.setColor(Color.RED);
