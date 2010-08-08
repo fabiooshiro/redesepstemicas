@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -24,7 +25,7 @@ import br.unicarioca.redesepistemicas.view.ConfiguracoesPanel;
 import br.unicarioca.redesepistemicas.view.RedeEpistemicaView;
 
 public class RedeDao {
-
+	private static final Logger logger = Logger.getLogger(RedeDao.class);
 	public static void loadFromXml(ConfiguracoesPanel configuracoesPanel, RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView, File xmlFile) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -34,12 +35,14 @@ public class RedeDao {
 			Document doc = docBuilder.parse(xmlFile);
 			Element redeTag = doc.getDocumentElement();
 			String nnsStr[] = redeTag.getAttribute("neuralNetworkStructure").split(",");
+			boolean distrAleatoria = redeTag.getAttribute("distrAleatoria").equals("s");
 			int nns[] = new int[nnsStr.length];
 			for(int i=0;i<nns.length;i++){
 				nns[i] = Integer.parseInt(nnsStr[i].trim());
 			}
 			configuracoesPanel.getTxtEstruturaRede().setText(redeTag.getAttribute("neuralNetworkStructure"));
 			configuracoesPanel.getSpnPassoMax().setValue(Integer.valueOf(redeTag.getAttribute("passoAgente")));
+			configuracoesPanel.getChkDistribuicaoAleatoria().setSelected(distrAleatoria);
 			redeEpistemicaView.setDistanciaMaximaRepulsao(Integer.valueOf(redeTag.getAttribute("distMaxRepulsao")));
 			redeEpistemicaView.setPassoMax(Integer.valueOf(redeTag.getAttribute("passoAgente")));
 			NodeList crencas = redeTag.getElementsByTagName("crenca");
@@ -55,8 +58,8 @@ public class RedeDao {
 				}
 				String cStr[] = crencaTag.getAttributes().getNamedItem("c").getNodeValue().split(";");
 				par.setSizeConsequente(cStr.length);
-				for(int j=0;j<aStr.length;j++){
-					par.addConsequente(Double.valueOf(aStr[i]));
+				for(int j=0;j<cStr.length;j++){
+					par.addConsequente(Double.valueOf(cStr[j]));
 				}
 				par.setNome(crencaTag.getAttributes().getNamedItem("nome").getNodeValue());
 				par.setId(Long.valueOf(crencaTag.getAttributes().getNamedItem("cid").getNodeValue()));
@@ -100,8 +103,11 @@ public class RedeDao {
 								));
 					}
 				}
-				agente.treinar(par2add,qtd);
-				agente.addCrencas(par2add);
+				if(qtd>0){
+					logger.info("treinando agente " + agente.getId() + " qtd = " + qtd);
+					agente.treinar(par2add,qtd);
+					agente.addCrencas(par2add);
+				}
 				mapAgentes.put(agente.getId(), agente);
 				agenteList.add(agente);
 				agente.setRedeEpistemica(redeEpistemica);
@@ -124,7 +130,7 @@ public class RedeDao {
 		}
 	}
 	
-	public static String getXml(RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView){
+	public static String getXml(RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView, ConfiguracoesPanel configuracoesPanel){
 		String parType = ParEpistemicoOrkut.class.getCanonicalName();
 		StringBuilder crencaSb = new StringBuilder();
 		for(AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()){
@@ -146,7 +152,7 @@ public class RedeDao {
 			.replace("{nns}", nns)
 			.replace("{distMaxRepulsao}", redeEpistemicaView.getDistanciaMaxRepulsao()+"")
 			.replace("{passoAgente}", redeEpistemicaView.getPassoMax()+"")
-			.replace("{distrAleatoria}", nns)
+			.replace("{distrAleatoria}", configuracoesPanel.getChkDistribuicaoAleatoria().isSelected()? "s":"n")
 			.replace("{parType}", parType);
 		sb.append(template);
 		sb.append(crencaSb.toString());

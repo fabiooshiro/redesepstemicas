@@ -94,7 +94,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 					int choose = fileChooser.showOpenDialog(MainFrame.this);
 					if(choose==JFileChooser.APPROVE_OPTION){
 						File file = fileChooser.getSelectedFile();
-						String xml = RedeDao.getXml(redeEpistemica, redeEpistemicaView);
+						String xml = RedeDao.getXml(redeEpistemica, redeEpistemicaView, configuracoesPanel);
 						FileUtils.writeStringToFile(file, xml, "utf-8");
 					}
 				}catch(Exception e){
