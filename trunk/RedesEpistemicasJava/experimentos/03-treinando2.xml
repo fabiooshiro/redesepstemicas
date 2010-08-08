@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rede neuralNetworkStructure="5,4,1" distMaxRepulsao="1000"
-	passoAgente="0" distrAleatoria="n"
+<rede neuralNetworkStructure="5,3,1" distMaxRepulsao="1000"
+	passoAgente="15" distrAleatoria="s"
 	parEpistemicoType="br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut">
 	<crenca
-		a="0.7682155237627969;0.24079142941208698;0.013752524868355653;0.714154583897305;0.6608269670555904"
-		c="0.1067476103852516" cid="2" nome="" color="CC0000" />
+		a="0.99;0.99;0.99;0.99;0.99"
+		c="1.0" cid="1" nome="Vermelho" color="CC0000" />
 	<crenca
-		a="0.17012682725642891;0.5452439872385495;0.7862577605469387;0.8168399114507732;0.8590802473377956"
-		c="0.1843097586107474" cid="3" nome="" color="00CC00" />
-	<crenca
-		a="0.9911542707785559;0.5124597016243911;0.06819124562537826;0.34290568349567474;0.026079656915763083"
-		c="0.7879777223767911" cid="4" nome="" color="3333FF" />
-	<agente aid="0" y="180" x="180" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+		a="0.99;0.99;0.99;0.99;0.99"
+		c="0.0" cid="2" nome="Verde" color="00CC00" />
+	<agente aid="0" y="504" x="1440" maxDif="0.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="1.0" raio="50">
+		<crencaref ref="1" qtd="5000" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
 		<aresta aid="3" peso="1.0" />
@@ -49,9 +47,23 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="1" y="180" x="544" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="1" y="1404" x="1688" maxDif="0.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="1.0" raio="50">
+		<crencaref ref="2" qtd="5000" />
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
 		<aresta aid="3" peso="1.0" />
@@ -88,9 +100,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="2" y="180" x="908" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="2" y="1812" x="60" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="3" peso="1.0" />
@@ -127,9 +152,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="3" y="180" x="1272" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="3" y="1876" x="424" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -166,9 +204,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="4" y="180" x="1636" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="4" y="1288" x="744" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -205,9 +256,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="5" y="180" x="2000" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="5" y="972" x="1668" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -244,9 +308,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="6" y="544" x="180" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="6" y="1432" x="956" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -283,9 +360,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="7" y="544" x="544" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="7" y="656" x="544" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -322,9 +412,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="8" y="544" x="908" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="8" y="1328" x="96" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -361,9 +464,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="9" y="544" x="1272" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="9" y="1420" x="104" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -400,9 +516,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="10" y="544" x="1636" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="10" y="444" x="1500" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -439,9 +568,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="11" y="544" x="2000" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="11" y="1616" x="56" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -478,9 +620,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="12" y="908" x="180" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="12" y="1024" x="336" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -517,9 +672,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="13" y="908" x="544" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="13" y="1072" x="928" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -556,9 +724,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="14" y="908" x="908" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="14" y="1780" x="932" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -595,9 +776,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="15" y="908" x="1272" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="15" y="696" x="688" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -634,9 +828,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="16" y="908" x="1636" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="16" y="124" x="1844" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -673,9 +880,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="17" y="908" x="2000" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="17" y="948" x="204" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -712,9 +932,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="18" y="1272" x="180" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="18" y="1164" x="572" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -751,9 +984,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="19" y="1272" x="544" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="19" y="504" x="1572" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -790,9 +1036,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="20" y="1272" x="908" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="20" y="572" x="408" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -829,9 +1088,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="21" y="1272" x="1272" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="21" y="1204" x="1464" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -868,9 +1140,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="22" y="1272" x="1636" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="22" y="864" x="1584" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -907,9 +1192,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="23" y="1272" x="2000" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="23" y="1424" x="876" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -946,9 +1244,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="24" y="1636" x="180" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="24" y="444" x="184" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -985,9 +1296,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="25" y="1636" x="544" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="25" y="1684" x="212" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1024,9 +1348,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="26" y="1636" x="908" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="26" y="336" x="656" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1063,9 +1400,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="27" y="1636" x="1272" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="27" y="1912" x="1744" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1102,9 +1452,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="28" y="1636" x="1636" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="28" y="1848" x="636" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1141,9 +1504,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="29" y="1636" x="2000" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="29" y="1136" x="1164" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1180,9 +1556,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="30" y="2000" x="180" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="30" y="688" x="1960" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1219,9 +1608,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="31" y="2000" x="544" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="31" y="736" x="1608" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1258,9 +1660,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="32" y="2000" x="908" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="32" y="1120" x="1740" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1297,9 +1712,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="33" y="2000" x="1272" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="33" y="1772" x="88" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1336,9 +1764,22 @@
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="34" y="2000" x="1636" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="34" y="1304" x="1100" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1375,9 +1816,22 @@
 		<aresta aid="33" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="35" y="2000" x="2000" maxDif="1.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="0.0" raio="50">
+	<agente aid="35" y="328" x="1488" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1414,12 +1868,22 @@
 		<aresta aid="33" peso="1.0" />
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
 	</agente>
-	<agente aid="36" y="1104" x="1116" maxDif="0.0" morrerEm="0"
-		somenteUltimo="0" criarNovoEm="0" freq="1.0" raio="50">
-		<crencaref ref="2" qtd="1000" />
-		<crencaref ref="3" qtd="1000" />
-		<crencaref ref="4" qtd="1000" />
+	<agente aid="36" y="880" x="1076" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
@@ -1456,5 +1920,694 @@
 		<aresta aid="33" peso="1.0" />
 		<aresta aid="34" peso="1.0" />
 		<aresta aid="35" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="37" y="1020" x="812" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="38" y="1000" x="1760" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="39" y="1120" x="1536" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="40" y="1484" x="480" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="41" y="1716" x="200" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="42" y="720" x="88" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="43" y="672" x="764" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="44" y="624" x="832" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="45" y="1840" x="800" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="46" y="1456" x="448" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="47" y="296" x="1604" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="48" y="876" x="1608" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="49" peso="1.0" />
+	</agente>
+	<agente aid="49" y="100" x="780" maxDif="2.0" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.0" raio="50">
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+		<aresta aid="4" peso="1.0" />
+		<aresta aid="5" peso="1.0" />
+		<aresta aid="6" peso="1.0" />
+		<aresta aid="7" peso="1.0" />
+		<aresta aid="8" peso="1.0" />
+		<aresta aid="9" peso="1.0" />
+		<aresta aid="10" peso="1.0" />
+		<aresta aid="11" peso="1.0" />
+		<aresta aid="12" peso="1.0" />
+		<aresta aid="13" peso="1.0" />
+		<aresta aid="14" peso="1.0" />
+		<aresta aid="15" peso="1.0" />
+		<aresta aid="16" peso="1.0" />
+		<aresta aid="17" peso="1.0" />
+		<aresta aid="18" peso="1.0" />
+		<aresta aid="19" peso="1.0" />
+		<aresta aid="20" peso="1.0" />
+		<aresta aid="21" peso="1.0" />
+		<aresta aid="22" peso="1.0" />
+		<aresta aid="23" peso="1.0" />
+		<aresta aid="24" peso="1.0" />
+		<aresta aid="25" peso="1.0" />
+		<aresta aid="26" peso="1.0" />
+		<aresta aid="27" peso="1.0" />
+		<aresta aid="28" peso="1.0" />
+		<aresta aid="29" peso="1.0" />
+		<aresta aid="30" peso="1.0" />
+		<aresta aid="31" peso="1.0" />
+		<aresta aid="32" peso="1.0" />
+		<aresta aid="33" peso="1.0" />
+		<aresta aid="34" peso="1.0" />
+		<aresta aid="35" peso="1.0" />
+		<aresta aid="36" peso="1.0" />
+		<aresta aid="37" peso="1.0" />
+		<aresta aid="38" peso="1.0" />
+		<aresta aid="39" peso="1.0" />
+		<aresta aid="40" peso="1.0" />
+		<aresta aid="41" peso="1.0" />
+		<aresta aid="42" peso="1.0" />
+		<aresta aid="43" peso="1.0" />
+		<aresta aid="44" peso="1.0" />
+		<aresta aid="45" peso="1.0" />
+		<aresta aid="46" peso="1.0" />
+		<aresta aid="47" peso="1.0" />
+		<aresta aid="48" peso="1.0" />
 	</agente>
 </rede>

@@ -270,7 +270,12 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			double dy = ey - ry;
 			double hip = Math.sqrt(dx * dx + dy * dy);
 			double diam = agente.getRaio() + receptor.getRaio();
-			if(hip < diam){
+			if(hip < diam){//colidiu
+				double relacao = diam/hip + 0.05;
+				double mx = dx * relacao;
+				double my = dy * relacao;
+				agente.setX(rx + (int) mx);
+				agente.setY(ry + (int) my);
 				return true;
 			}
 		}
@@ -304,6 +309,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			if(!colidiu){
 				receptor.setX(rx + (int) mx);
 				receptor.setY(ry + (int) my);
+			}else{
+				//receptor.setX(rx - (int) mx);
+				//receptor.setY(ry - (int) my);
 			}
 			graphics.setColor(Color.BLUE);
 			if(verLinhasAzuis){
@@ -340,6 +348,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 					if(!colidiu){
 						receptor.setX(rx - (int) mx);
 						receptor.setY(ry - (int) my);
+					}else{
+						//receptor.setX(rx + (int) mx);
+						//receptor.setY(ry + (int) my);
 					}
 				}
 			}
