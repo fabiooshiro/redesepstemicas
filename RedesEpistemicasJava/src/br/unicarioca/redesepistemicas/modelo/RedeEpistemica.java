@@ -103,6 +103,7 @@ public class RedeEpistemica {
 					for(int i=0;i<agenteEmissor.getArestas().size();i++){
 						Aresta aresta = agenteEmissor.getArestas().get(i);
 						AgenteEpistemico receptor = aresta.getReceptor();
+						if(receptor == agenteEmissor) continue;
 						Double peso = aresta.getPeso();
 						Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEmissor);
 						logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
