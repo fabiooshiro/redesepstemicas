@@ -615,7 +615,10 @@ public class AgenteEpistemico{
 		for(ParEpistemico par:pares){
 			ParEpistemico procurado = procurar(par);
 			if(procurado==null){
+				logger.info("adicionando crenca " + par.getId() + " no agente " + this.getId());
 				crencas.add(par);
+			}else{
+				logger.info("ja existe a crenca " + par.getId() + " no agente " + this.getId());
 			}
 		}
 	}

@@ -4,13 +4,26 @@
 	parEpistemicoType="br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut">
 	<crenca
 		a="0.99;0.99;0.99;0.99;0.99"
-		c="0.8" cid="1" nome="Vermelho" color="CC0000" />
+		c="0.9999" cid="1" nome="Vermelho" color="CC0000" />
 	<crenca
-		a="0.99;0.99;0.99;0.99;0.99"
-		c="0.0" cid="2" nome="Verde" color="00CC00" />
+		a="0.99;0.0;0.99;0.99;0.99"
+		c="0.2" cid="2" nome="Verde 1" color="00CC00" />
+	<crenca
+		a="0.99;0.99;0.0;0.99;0.99"
+		c="0.2" cid="3" nome="Verde 2" color="00CC00" />
+	<crenca
+		a="0.99;0.99;0.99;0.0;0.99"
+		c="0.2" cid="4" nome="Verde 3" color="00CC00" />
+	<crenca
+		a="0.99;0.99;0.99;0.99;0.0"
+		c="0.2" cid="5" nome="Verde 4" color="00CC00" />
 	<agente aid="0" y="504" x="1440" maxDif="0.0" morrerEm="0"
 		somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
 		<crencaref ref="1" qtd="5000" />
+		<crencaref ref="2" qtd="5000" />
+		<crencaref ref="3" qtd="5000" />
+		<crencaref ref="4" qtd="5000" />
+		<crencaref ref="5" qtd="5000" />
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
 		<aresta aid="3" peso="1.0" />

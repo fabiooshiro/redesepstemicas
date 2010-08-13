@@ -28,6 +28,7 @@ public class RedeDao {
 	private static final Logger logger = Logger.getLogger(RedeDao.class);
 	public static void loadFromXml(ConfiguracoesPanel configuracoesPanel, RedeEpistemica redeEpistemica, RedeEpistemicaView redeEpistemicaView, File xmlFile) {
 		try {
+			logger.info("Abrindo xml " + xmlFile.getAbsolutePath());
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setNamespaceAware(false);
 			DocumentBuilder docBuilder;
@@ -54,7 +55,7 @@ public class RedeDao {
 				String aStr[] = crencaTag.getAttributes().getNamedItem("a").getNodeValue().split(";");
 				par.setSizeAntecedente(aStr.length);
 				for(int j=0;j<aStr.length;j++){
-					par.addAntecedente(Double.valueOf(aStr[i]));
+					par.addAntecedente(Double.valueOf(aStr[j]));
 				}
 				String cStr[] = crencaTag.getAttributes().getNamedItem("c").getNodeValue().split(";");
 				par.setSizeConsequente(cStr.length);
@@ -104,7 +105,7 @@ public class RedeDao {
 					}
 				}
 				if(qtd>0){
-					logger.info("treinando agente " + agente.getId() + " qtd = " + qtd);
+					logger.info("treinando agente " + agente.getId() + " qtd = " + qtd + " crencas " + par2add.size());
 					agente.treinar(par2add,qtd);
 					agente.addCrencas(par2add);
 				}
