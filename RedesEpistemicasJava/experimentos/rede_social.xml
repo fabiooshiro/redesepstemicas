@@ -12,34 +12,34 @@
 	<crenca a="0.99;0.99;0.99;0.99;0.99" c="0.9" cid="9" nome="Jogos de Nave" color="00CC45" />
 	<crenca a="0.99;0.99;0.99;0.99;0.90" c="0.8" cid="10" nome="Gears of War" color="C05678" />
 	<crenca a="0.99;0.99;0.99;0.99;0.91" c="0.0" cid="11" nome="God of War" color="00CF00" />
-	<crenca a="0.39;0.99;0.99;0.99;0.92" c="1.2" cid="12" nome="Penso logo desisto" color="AFCC00" />
-	<crenca a="0.99;0.99;0.99;0.99;0.93" c="2.8" cid="13" nome="Eu confio em Deus" color="CC0BD1" />
-	<crenca a="0.99;0.99;0.99;0.69;0.39" c="3.2" cid="14" nome="Salgueiro" color="00CCFA" />
-	<crenca a="0.31;0.99;0.99;0.99;0.94" c="1.4" cid="15" nome="Save Galvão Birds" color="60CC0E" />
-	<crenca a="0.99;0.99;0.99;0.99;0.95" c="5.8" cid="16" nome="Lost Experience" color="CC0870" />
-	<crenca a="0.99;0.99;0.59;0.99;0.69" c="2.6" cid="17" nome="John Lock é meu pai" color="00CD40" />
-	<crenca a="0.99;0.99;0.99;0.99;0.96" c="2.1" cid="18" nome="Festas Infantis e Afins" color="AECC34" />
-	<crenca a="0.99;0.99;0.99;0.99;0.97" c="1.6" cid="19" nome="Simpsons" color="CC0305" />
-	<crenca a="0.39;0.99;0.99;0.99;0.98" c="6.2" cid="20" nome="Caverna do Dragão" color="00AAD0" />
-	<crenca a="0.99;0.99;0.99;0.99;0.19" c="3.8" cid="21" nome="Elite Photoshop" color="CC0111" />
-	<crenca a="0.99;0.99;0.99;0.99;0.29" c="2.0" cid="22" nome="Fotografia" color="02CC11" />
-	<crenca a="0.99;0.99;0.99;0.99;0.39" c="1.0" cid="23" nome="Milkshake do Bobs" color="00CC31" />
-	<crenca a="0.99;0.99;0.99;0.69;0.49" c="9.8" cid="24" nome="Dá Hadouken Ryu" color="CC0051" />
-	<crenca a="0.99;0.99;0.99;0.99;0.89" c="8.1" cid="25" nome="O Curioso Caso de Benjamin Button" color="00C611" />
-	<crenca a="0.39;0.99;0.99;0.99;0.59" c="7.2" cid="26" nome="Quero ser presidente do Brasil" color="07CC11" />
-	<crenca a="0.99;0.99;0.99;0.99;0.69" c="6.8" cid="27" nome="Clarice Lispector" color="CC0811" />
-	<crenca a="0.31;0.99;0.59;0.99;0.39" c="5.3" cid="28" nome="Receitas Fáceis" color="41FF1A" />
-	<crenca a="0.99;0.99;0.99;0.99;0.79" c="4.4" cid="29" nome="Filmes Antigos" color="11CC45" />
-	<crenca a="0.99;0.99;0.99;0.99;0.89" c="5.8" cid="30" nome="Game Retrô" color="C15678" />
-	<crenca a="0.99;0.99;0.99;0.99;0.99" c="4.5" cid="31" nome="Seu Madruga Merece uma Estátua" color="11CF11" />
-	<crenca a="0.99;0.99;0.99;0.99;0.29" c="3.6" cid="32" nome="Diga não as drogas" color="AFCC11" />
-	<crenca a="0.99;0.99;0.99;0.99;0.59" c="2.8" cid="33" nome="Livros" color="CC1BD1" />
-	<crenca a="0.99;0.99;0.99;0.99;0.89" c="1.7" cid="34" nome="Anos 80" color="11CCFA" />
-	<crenca a="0.99;0.99;0.99;0.99;0.29" c="1.8" cid="35" nome="Fotografias Noturnas" color="61CC0E" />
-	<crenca a="0.31;0.99;0.99;0.99;0.59" c="2.8" cid="36" nome="Jim Carrey" color="CC1871" />
-	<crenca a="0.99;0.99;0.99;0.69;0.99" c="3.4" cid="37" nome="Silvio Santos é um robô" color="11CD40" />
-	<crenca a="0.99;0.99;0.99;0.99;0.99" c="4.5" cid="38" nome="Cazuza" color="AECC66" />
-	<crenca a="0.99;0.99;0.99;0.99;0.99" c="3.8" cid="39" nome="Novelas da Globo" color="CC1315" />
+	<crenca a="0.39;0.99;0.99;0.99;0.92" c="0.2" cid="12" nome="Penso logo desisto" color="AFCC00" />
+	<crenca a="0.99;0.99;0.99;0.99;0.93" c="0.8" cid="13" nome="Eu confio em Deus" color="CC0BD1" />
+	<crenca a="0.99;0.99;0.99;0.69;0.39" c="0.2" cid="14" nome="Salgueiro" color="00CCFA" />
+	<crenca a="0.31;0.99;0.99;0.99;0.94" c="0.4" cid="15" nome="Save Galvão Birds" color="60CC0E" />
+	<crenca a="0.99;0.99;0.99;0.99;0.95" c="0.8" cid="16" nome="Lost Experience" color="CC0870" />
+	<crenca a="0.99;0.99;0.59;0.99;0.69" c="0.6" cid="17" nome="John Lock é meu pai" color="00CD40" />
+	<crenca a="0.99;0.99;0.99;0.99;0.96" c="0.1" cid="18" nome="Festas Infantis e Afins" color="AECC34" />
+	<crenca a="0.99;0.99;0.99;0.99;0.97" c="0.6" cid="19" nome="Simpsons" color="CC0305" />
+	<crenca a="0.39;0.99;0.99;0.99;0.98" c="0.2" cid="20" nome="Caverna do Dragão" color="00AAD0" />
+	<crenca a="0.99;0.99;0.99;0.99;0.19" c="0.8" cid="21" nome="Elite Photoshop" color="CC0111" />
+	<crenca a="0.99;0.99;0.99;0.99;0.29" c="0.0" cid="22" nome="Fotografia" color="02CC11" />
+	<crenca a="0.99;0.99;0.99;0.99;0.39" c="0.0" cid="23" nome="Milkshake do Bobs" color="00CC31" />
+	<crenca a="0.99;0.99;0.99;0.69;0.49" c="0.8" cid="24" nome="Dá Hadouken Ryu" color="CC0051" />
+	<crenca a="0.99;0.99;0.99;0.99;0.89" c="0.1" cid="25" nome="O Curioso Caso de Benjamin Button" color="00C611" />
+	<crenca a="0.39;0.99;0.99;0.99;0.59" c="0.2" cid="26" nome="Quero ser presidente do Brasil" color="07CC11" />
+	<crenca a="0.99;0.99;0.99;0.99;0.69" c="0.8" cid="27" nome="Clarice Lispector" color="CC0811" />
+	<crenca a="0.31;0.99;0.59;0.99;0.39" c="0.3" cid="28" nome="Receitas Fáceis" color="41FF1A" />
+	<crenca a="0.99;0.99;0.99;0.99;0.79" c="0.4" cid="29" nome="Filmes Antigos" color="11CC45" />
+	<crenca a="0.99;0.99;0.99;0.99;0.89" c="0.8" cid="30" nome="Game Retrô" color="C15678" />
+	<crenca a="0.99;0.99;0.99;0.99;0.99" c="0.5" cid="31" nome="Seu Madruga Merece uma Estátua" color="11CF11" />
+	<crenca a="0.99;0.99;0.99;0.99;0.29" c="0.6" cid="32" nome="Diga não as drogas" color="AFCC11" />
+	<crenca a="0.99;0.99;0.99;0.99;0.59" c="0.8" cid="33" nome="Livros" color="CC1BD1" />
+	<crenca a="0.99;0.99;0.99;0.99;0.89" c="0.7" cid="34" nome="Anos 80" color="11CCFA" />
+	<crenca a="0.99;0.99;0.99;0.99;0.29" c="0.8" cid="35" nome="Fotografias Noturnas" color="61CC0E" />
+	<crenca a="0.31;0.99;0.99;0.99;0.59" c="0.8" cid="36" nome="Jim Carrey" color="CC1871" />
+	<crenca a="0.99;0.99;0.99;0.69;0.99" c="0.4" cid="37" nome="Silvio Santos é um robô" color="11CD40" />
+	<crenca a="0.99;0.99;0.99;0.99;0.99" c="0.5" cid="38" nome="Cazuza" color="AECC66" />
+	<crenca a="0.99;0.99;0.99;0.99;0.99" c="0.8" cid="39" nome="Novelas da Globo" color="CC1315" />
 	<crenca a="0.99;0.99;0.59;0.69;0.99" c="0.3" cid="40" nome="Sou Fã do Silvio Santos" color="11AAD1" />
 	<crenca a="0.31;0.99;0.99;0.99;0.69" c="0.3" cid="41" nome="1 1 2 3 5 8 13" color="11AAD1" />
 		
