@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rede neuralNetworkStructure="5,3,1" distMaxRepulsao="1000"
+	passoAgente="15" distrAleatoria="s"
+	parEpistemicoType="br.unicarioca.redesepistemicas.modelo.ParEpistemicoOrkut">
+	<crenca
+		a="0.99;0.99;0.99;0.99;0.0"
+		c="0.8" cid="1" nome="Conceito 1" color="CC0000" />
+	<crenca
+		a="0.99;0.0;0.99;0.99;0.99"
+		c="0.6" cid="2" nome="Conceito 2" color="00CC00" />
+	<crenca
+		a="0.0;0.99;0.0;0.99;0.99"
+		c="0.4" cid="3" nome="Conceito 3" color="00CCCC" />
+	<crenca
+		a="0.99;0.99;0.99;0.0;0.99"
+		c="0.2" cid="4" nome="Conceito 4" color="CC00CC" />
+	<agente aid="0" y="504" x="1440" maxDif="0.7" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
+		<crencaref ref="1" qtd="5000" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+	</agente>
+	<agente aid="1" y="504" x="200" maxDif="0.7" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
+		<crencaref ref="2" qtd="5000" />
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+	</agente>
+	<agente aid="2" y="1812" x="200" maxDif="0.7" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
+		<crencaref ref="3" qtd="5000" />
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="3" peso="1.0" />
+	</agente>
+	<agente aid="3" y="1812" x="1440" maxDif="0.7" morrerEm="0"
+		somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
+		<crencaref ref="4" qtd="5000" />
+		<aresta aid="0" peso="1.0" />
+		<aresta aid="1" peso="1.0" />
+		<aresta aid="2" peso="1.0" />
+	</agente>
+</rede>

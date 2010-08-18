@@ -5,7 +5,7 @@
 	<crenca
 		a="0.7682155237627969;0.24079142941208698;0.013752524868355653;0.714154583897305;0.6608269670555904"
 		c="0.1067476103852516" cid="2" nome="" color="CC0000" />
-	<agente aid="0" y="504" x="1440" maxDif="2.0" morrerEm="0"
+	<agente aid="0" y="804" x="1140" maxDif="2.0" morrerEm="0"
 		somenteUltimo="1" criarNovoEm="0" freq="1.0" raio="50">
 		<crencaref ref="2" qtd="5000" />
 		<aresta aid="1" peso="1.0" />

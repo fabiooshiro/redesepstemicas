@@ -39,7 +39,7 @@ public class AgenteEpistemico{
 	private NeuralNetwork neuralNetwork;
 	private int x,y;
 	private int raio;
-	private int numberEvaluations = 100;
+	private int numberEvaluations = 50;
 	private String nome;
 	private static long lastId=0;
 	private long id;

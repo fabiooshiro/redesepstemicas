@@ -86,6 +86,15 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		agenteListPanel.setRedeEpistemica(redeEpistemica);
 		controlePanel.addControlado(redeEpistemicaView);
 		controlePanel.addControlado(agenteListPanel);
+		controlePanel.addControlado(new ControladoListener() {
+			public void setVelocidade(int i) {}
+			public void reiniciar() {
+				clean();
+			}
+			public void pause() {}
+			public void criarFotografia() {}
+			public void continuar() {}
+		});
 		menuPrincipal.getSalvar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				try{
@@ -259,7 +268,22 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	}
 	
 	public void clean(){
+		File dir = new File("screenshots/automatica");
+		File files[] = dir.listFiles();
+		for(File f: files){
+			if(f.getName().endsWith(".html")){
+				f.delete();
+			}
+		}
+		dir = new File("screenshots/automatica/imagens");
+		files = dir.listFiles();
+		for(File f: files){
+			if(f.getName().endsWith(".png")){
+				f.delete();
+			}
+		}
 		NumeroAleatorio.restart();
+		RedeEpistemica.setEtapa(0);
 		agenteListPanel.reiniciar();
 		redeEpistemicaView.pause();
 	}
