@@ -22,7 +22,7 @@ public class RedeEpistemica {
 	private boolean ligado = false;
 	private Experimento experimento;
 	private Thread t;
-	private int etapa;
+	private static int etapa;
 	
 	public Experimento getExperimento() {
 		return experimento;
@@ -282,5 +282,9 @@ public class RedeEpistemica {
 	 */
 	public int getEtapa() {
 		return etapa;
+	}
+	
+	public static void setEtapa(int etapa) {
+		RedeEpistemica.etapa = etapa;
 	}
 }
