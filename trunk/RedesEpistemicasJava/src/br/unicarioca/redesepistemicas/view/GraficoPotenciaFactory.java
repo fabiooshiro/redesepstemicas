@@ -47,7 +47,7 @@ public class GraficoPotenciaFactory{
 		}
 		
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-		intervalo = (w-20)/totFaixas;
+		intervalo = w/(float)totFaixas;
 		float uy = (h-20)/(float)maxTotal;
 		Graphics gra = bi.getGraphics();
 		gra.setColor(new Color(200,200,200));
