@@ -198,13 +198,19 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 			}
 			public void focusGained(FocusEvent e) {}
 		});
+		configuracoesPanel.getSpnTheta().addChangeListener(new ChangeListener(){
+			public void stateChanged(ChangeEvent e) {
+				try{
+					redeEpistemica.setTheta(Double.valueOf(configuracoesPanel.getSpnTheta().getValue().toString()));
+				}catch(Exception ex){}
+			}
+		});
 		configuracoesPanel.getBtnOk().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				novo();
 			}
 		});
 		configuracoesPanel.getSpnPassoMax().addChangeListener(new ChangeListener(){
-			@Override
 			public void stateChanged(ChangeEvent e) {
 				int passoMax = Integer.valueOf(configuracoesPanel.getSpnPassoMax().getValue().toString());
 				logger.info("Passo Máximo = " + passoMax);
@@ -294,6 +300,9 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	public void refreshConf(){
 		redeEpistemicaView.setSnapshot(Integer.valueOf(configuracoesPanel.getTxtSnapShot().getText()));
 		redeEpistemicaView.setPassoMax(Integer.valueOf(configuracoesPanel.getSpnPassoMax().getValue().toString()));
+		try{
+			redeEpistemica.setTheta(Double.valueOf(configuracoesPanel.getSpnTheta().getValue().toString()));
+		}catch(Throwable e){}
 		int estr[] = configuracoesPanel.getEstruturaRede();
 		parModelo = ParEpistemicoFactory.criar(estr[0], estr[2]);
 	}

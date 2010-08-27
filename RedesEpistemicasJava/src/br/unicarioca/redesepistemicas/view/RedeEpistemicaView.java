@@ -128,7 +128,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			// pede para fazer uma etapa
 			redeEpistemica.fazUmaEtapa();
 			
-			if(etapa%snapshot==0){
+			if(snapshot!=0 && etapa%snapshot==0){
 				//salvar o estado do programa
 				SalvarSnapShoot.getInstance().salvar(bi, etapa);
 			}
@@ -172,10 +172,13 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	 * @param color 
 	 */
 	private AgenteEpistemico desenharAgente(AgenteEpistemico agente, boolean fill) {
-		float x = (agente.getX() - agente.getRaio()) * escala;
-		float y = (agente.getY() - agente.getRaio()) * escala;
-		int dim = Math.round(agente.getRaio() * 2 * escala);
-		int raio = Math.round(agente.getRaio() * escala);
+		int raioCalc;// = (int) agente.getPesoReputacao();//
+		raioCalc = agente.getRaio();
+		float x = (agente.getX() - raioCalc) * escala;
+		float y = (agente.getY() - raioCalc) * escala;
+		int dim = Math.round(raioCalc * 2 * escala);
+		int raio = Math.round(raioCalc * escala);
+		//int raio = Math.round((int)agente.getPesoReputacao() * escala);
 		//desenhar o que ele acredita
 		if(agente.crencaMonitorada.size()>0){
 			int parte = 360/(agente.crencaMonitorada.size()/2);
