@@ -15,6 +15,7 @@ public class MenuPrincipal extends JMenuBar{
 	private JMenu visualizar;
 	private JMenu treinar;
 	private JMenu crencas;
+	private JMenuItem graficoPotencia;
 	private JCheckBoxMenuItem verLinhasVermelhas;
 	private JCheckBoxMenuItem verLinhasAzuis;
 	private JCheckBoxMenuItem verPesosDoSelecionado;
@@ -37,7 +38,7 @@ public class MenuPrincipal extends JMenuBar{
 		verPesosDoSelecionado = new JCheckBoxMenuItem("Ver Pesos do(s) Selecionado(s)");
 		zoomMais = new JMenuItem("Zoom +");
 		zoomMenos = new JMenuItem("Zoom -");
-		
+		graficoPotencia = new JMenuItem("Grafico Potencia");
 		treinar = new JMenu("Treinamento");
 		treinametoPrevio = new JMenuItem("Treinamento Prévio");
 		
@@ -57,6 +58,7 @@ public class MenuPrincipal extends JMenuBar{
 		arquivo.add(novo);
 		
 		this.add(visualizar);
+		visualizar.add(graficoPotencia);
 		visualizar.add(verLinhasVermelhas);
 		visualizar.add(verLinhasAzuis);
 		visualizar.add(verPesosDoSelecionado);
@@ -69,6 +71,11 @@ public class MenuPrincipal extends JMenuBar{
 		this.add(crencas);
 		crencas.add(colorir);
 	}
+	
+	public JMenuItem getGraficoPotencia() {
+		return graficoPotencia;
+	}
+	
 	public JMenuItem getAbrir() {
 		return abrir;
 	}

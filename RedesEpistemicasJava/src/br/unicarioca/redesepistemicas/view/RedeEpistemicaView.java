@@ -48,6 +48,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private int arrastarX = 0;
 	private int arrastarY = 0;
 	private boolean reiniciarBi = false;
+	private boolean showGraficoPotencia = false;
 	private AgenteEpistemicoFactory agenteEpistemicoFactory;
 	private int startDragX = 0;
 	private int startDragY = 0;
@@ -63,7 +64,7 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 	private BasicStroke comunicadorStroke = new BasicStroke(3.0f);
 	public RedeEpistemicaView(RedeEpistemica redeEpistemica) {
 		this.redeEpistemica = redeEpistemica;
-		this.redeEpistemica.setComunicacaoListener(this);
+		this.redeEpistemica.addComunicacaoListener(this);
 		this.redeEpistemica.ligarLoop(false);
 		t = new Thread() {
 			@Override
@@ -76,7 +77,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 							desenharAgentes();
 							atualizar();
 							logger.debug("Atualizando imagem delay " + delay*10);
-							
 							setIcon(new ImageIcon(bi));
 							
 							//30 is a magic number, just to not flick the image
@@ -156,6 +156,10 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			logger.debug("desenharAgentes()");
 			for (AgenteEpistemico agente : redeEpistemica.getListAgenteEpistemico()) {
 				desenharAgente(agente);
+			}
+			if(showGraficoPotencia){
+				BufferedImage bi = GraficoPotenciaFactory.create(redeEpistemica, 7, 300, 100);
+				graphics.drawImage(bi, 5, 5,null);
 			}
 		}
 		drawSelection();
@@ -309,9 +313,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			if(!colidiu){
 				receptor.setX(rx + (int) mx);
 				receptor.setY(ry + (int) my);
-			}else{
-				//receptor.setX(rx - (int) mx);
-				//receptor.setY(ry - (int) my);
 			}
 			graphics.setColor(Color.BLUE);
 			if(verLinhasAzuis){
@@ -348,9 +349,6 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 					if(!colidiu){
 						receptor.setX(rx - (int) mx);
 						receptor.setY(ry - (int) my);
-					}else{
-						//receptor.setX(rx + (int) mx);
-						//receptor.setY(ry + (int) my);
 					}
 				}
 			}
@@ -638,5 +636,9 @@ public class RedeEpistemicaView extends JButton implements ComunicacaoListener, 
 			SalvarSnapShoot.getInstance().salvar(bi);
 			if(!estavaPausado) continuar();
 		}
+	}
+
+	public void ligaDesligaGraficoPotencia() {
+		showGraficoPotencia=!showGraficoPotencia;		
 	}
 }

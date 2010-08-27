@@ -2,6 +2,7 @@ package br.unicarioca.redesepistemicas.modelo;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 public class RedeEpistemica {
 	private static Logger logger = Logger.getLogger(RedeEpistemica.class);
 	private List<AgenteEpistemico> listAgenteEpistemico = new ArrayList<AgenteEpistemico>();
-	private ComunicacaoListener comunicacaoListener = null;
+	private Set<ComunicacaoListener> listComunicacaoListeners = new HashSet<ComunicacaoListener>();
 	private CicloVidaAgenteListener cicloVidaAgenteListener;
 	private AgenteEpistemicoFactory agenteEpistemicoFactory;
 	private boolean normalizarPesos = false;
@@ -53,8 +54,12 @@ public class RedeEpistemica {
 	 * Listener de comunicacao
 	 * @param comunicacaoListener ComunicacaoListener
 	 */
-	public void setComunicacaoListener(ComunicacaoListener comunicacaoListener) {
-		this.comunicacaoListener = comunicacaoListener;
+	public void addComunicacaoListener(ComunicacaoListener comunicacaoListener) {
+		listComunicacaoListeners.add(comunicacaoListener);
+	}
+	
+	public void removeComunicacaoListener(ComunicacaoListener comunicacaoListener){
+		listComunicacaoListeners.remove(comunicacaoListener);
 	}
 	
 	/**
@@ -99,7 +104,9 @@ public class RedeEpistemica {
 					//comunicar o par para todos os agentes
 					ParEpistemico parEpistemico = agenteEmissor.gerarPar();
 					logger.info("Agente " + agenteEmissor.getId() + " comunicando...");
-					if(comunicacaoListener!=null) comunicacaoListener.comunicadorEscolhido(agenteEmissor);
+					for(ComunicacaoListener comunicacaoListener: listComunicacaoListeners){
+						comunicacaoListener.comunicadorEscolhido(agenteEmissor);
+					}
 					for(int i=0;i<agenteEmissor.getArestas().size();i++){
 						Aresta aresta = agenteEmissor.getArestas().get(i);
 						AgenteEpistemico receptor = aresta.getReceptor();
@@ -107,7 +114,9 @@ public class RedeEpistemica {
 						Double peso = aresta.getPeso();
 						Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEmissor);
 						logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
-						if(comunicacaoListener!=null) comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso,diff);
+						for(ComunicacaoListener comunicacaoListener: listComunicacaoListeners){
+							comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso,diff);
+						}
 					}
 					normalizarPesos();
 					colorirAgentesDoExperimento(experimento);
