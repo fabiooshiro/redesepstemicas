@@ -58,6 +58,9 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	private JLabel lblErrorTolerance;
 	private JTextField txtErrorTolerance;
 	
+	private JLabel lblTheta;
+	private JSpinner txtTheta;
+	
 	private JButton btnOk;
 
 	private void writeObject(ObjectOutputStream out) throws IOException{
@@ -70,7 +73,13 @@ public class ConfiguracoesPanel extends JTabbedPane {
 	}
 	
 	public ConfiguracoesPanel() {
+		
+		lblTheta = new JLabel("\u0398:");
+		lblTheta.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtTheta = new JSpinner(new SpinnerNumberModel(1.0, 0.0, 5.0, 0.005));
+		
 		lblErrorTolerance = new JLabel("Error Tolerance:");
+		lblErrorTolerance.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtErrorTolerance = new JTextField("0.0001");
 		
 		lblEstruturaRede = new JLabel("Estrutura da Rede");
@@ -82,9 +91,9 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		
 		lblSnapShot = new JLabel("PrintScreen:");
 		lblSnapShot.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSnapShot.setToolTipText("Print a cada x publicações");
+		lblSnapShot.setToolTipText("Print a cada x etapas");
 		
-		txtSnapShot = new JTextField("10");
+		txtSnapShot = new JTextField("0");
 
 		lblQtdAgentes = new JLabel("Qtd. Agentes:");
 		lblQtdAgentes.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -93,13 +102,13 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblMaxDiff.setToolTipText("Tolerância");
 		lblMaxDiff.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		txtQtdAgentes = new JTextField("500");
+		txtQtdAgentes = new JTextField("256");
 		txtMaxDiff = new JTextField("2.0");
 
 		lblMorrerEmXpublicacoes = new JLabel("Morrer em:");
 		lblMorrerEmXpublicacoes.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMorrerEmXpublicacoes.setToolTipText("Morre ao comunicar X vezes");
-		txtMorrerEmXpublicacoes = new JTextField("10");
+		txtMorrerEmXpublicacoes = new JTextField("0");
 
 		lblSomenteUltimaTeoria = new JLabel("Somente último:");
 		lblSomenteUltimaTeoria.setToolTipText("Publica somente o último par gerado");
@@ -127,7 +136,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		lblPesoAleatorio = new JLabel("Peso aleatório:");
 		lblPesoAleatorio.setHorizontalAlignment(SwingConstants.RIGHT);
 		chkPesoAleatorio = new JCheckBox();
-		chkPesoAleatorio.setSelected(false);
+		chkPesoAleatorio.setSelected(true);
 		
 		lblFrequencia = new JLabel("Freq.:");
 		lblFrequencia.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -164,6 +173,8 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		tabela.add(txtEstruturaRede);
 		tabela.add(lblErrorTolerance);
 		tabela.add(txtErrorTolerance);
+		tabela.add(lblTheta);
+		tabela.add(txtTheta);
 		
 		JPanel sul = new JPanel(new FlowLayout());
 		sul.add(btnOk);
@@ -519,4 +530,19 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		this.txtErrorTolerance = txtErrorTolerance;
 	}
 	
+	public void setSpnTheta(JSpinner txtTheta) {
+		this.txtTheta = txtTheta;
+	}
+	
+	public JSpinner getSpnTheta() {
+		return txtTheta;
+	}
+	
+	public JLabel getLblTheta() {
+		return lblTheta;
+	}
+	
+	public void setLblTheta(JLabel lblTheta) {
+		this.lblTheta = lblTheta;
+	}
 }

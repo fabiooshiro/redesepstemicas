@@ -24,6 +24,7 @@ public class RedeEpistemica {
 	private Experimento experimento;
 	private Thread t;
 	private static int etapa;
+	private double theta = 0.95;
 	
 	public Experimento getExperimento() {
 		return experimento;
@@ -83,6 +84,7 @@ public class RedeEpistemica {
 	public void fazUmaEtapa(){
 		synchronized (listAgenteEpistemico) {
 			if(listAgenteEpistemico.size()>1){
+				int thetaSkipped = 0;
 				AgenteEpistemico agenteEmissor;
 				int tentativa=0;
 				while(true){
@@ -103,25 +105,31 @@ public class RedeEpistemica {
 				}else{
 					//comunicar o par para todos os agentes
 					ParEpistemico parEpistemico = agenteEmissor.gerarPar();
-					logger.info("Agente " + agenteEmissor.getId() + " comunicando...");
+					logger.debug("Agente " + agenteEmissor.getId() + " comunicando...");
 					for(ComunicacaoListener comunicacaoListener: listComunicacaoListeners){
 						comunicacaoListener.comunicadorEscolhido(agenteEmissor);
 					}
-					for(int i=0;i<agenteEmissor.getArestas().size();i++){
+					int totAresta = agenteEmissor.getArestas().size(); 
+					double lim = (agenteEmissor.getPesoReputacao()/(double)totAresta) * theta;
+					for(int i=0;i<totAresta;i++){
 						Aresta aresta = agenteEmissor.getArestas().get(i);
 						AgenteEpistemico receptor = aresta.getReceptor();
 						if(receptor == agenteEmissor) continue;
 						Double peso = aresta.getPeso();
-						Double diff = receptor.receberComunicado(parEpistemico, aresta,agenteEmissor);
+						if(peso<lim){
+							thetaSkipped++;
+							continue;
+						}
+						Double diff = receptor.receberComunicado(parEpistemico, aresta, agenteEmissor);
 						logger.debug("diff = "  + diff + " peso " + aresta.getPeso());
 						for(ComunicacaoListener comunicacaoListener: listComunicacaoListeners){
-							comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso,diff);
+							comunicacaoListener.depoisDeComunicar(agenteEmissor, receptor, peso, diff);
 						}
 					}
 					normalizarPesos();
 					colorirAgentesDoExperimento(experimento);
 					etapa++;
-					logger.info("Etapa " + etapa);
+					logger.info("Etapa " + etapa + ": menor que \u0398 (" + theta + ") = " + thetaSkipped);
 				}
 			}//fim do if(listAgenteEpistemico.size()>1){
 		}
@@ -186,6 +194,9 @@ public class RedeEpistemica {
 		
 	}
 	
+	public void setTheta(double theta) {
+		this.theta = theta;
+	}
 	/**
 	 * Inicio da morte,
 	 * o processo de morte inicia por este metodo

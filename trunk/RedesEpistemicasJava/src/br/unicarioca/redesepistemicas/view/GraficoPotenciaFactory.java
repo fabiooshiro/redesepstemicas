@@ -16,13 +16,13 @@ public class GraficoPotenciaFactory{
 		double max, min;
 		max = min=listAgenteEpistemicos.get(0).getPesoReputacao();
 		for(AgenteEpistemico agente: listAgenteEpistemicos){
-			max = Math.max(max, agente.getPesoReputacao()+0.005);
+			max = Math.max(max, agente.getPesoReputacao()+0.00001);
 			min = Math.min(min, agente.getPesoReputacao());
 		}
 		double intervalo = (max-min) / (double)totFaixas;
 		double last = min;
 		List<Faixa> faixas = new ArrayList<Faixa>();
-		System.out.println("intervalo " + intervalo);
+		//System.out.println("intervalo " + intervalo);
 		for(int i=0;i<totFaixas;i++){
 			Faixa faixa = new Faixa();
 			faixa.min = last;
@@ -32,17 +32,12 @@ public class GraficoPotenciaFactory{
 		}
 		int maxTotal = 0;
 		for(AgenteEpistemico agente: listAgenteEpistemicos){// O(a*f)
-			boolean enfaixado = false;
 			for(Faixa faixa: faixas){
 				if(faixa.min<=agente.getPesoReputacao() && agente.getPesoReputacao() < faixa.max){
 					faixa.total++;
 					maxTotal = Math.max(maxTotal, faixa.total);
-					enfaixado = true;
 					break;
 				}
-			}
-			if(!enfaixado){
-				System.out.println("not " + agente.getPesoReputacao() + " min " + min + " max " + max);
 			}
 		}
 		
@@ -55,9 +50,9 @@ public class GraficoPotenciaFactory{
 		int x1 = 0;
 		int x2 = (int)intervalo/2;
 		int y1 = (int)(faixas.get(0).total * uy);
-		System.out.println("uy = " + uy);
+		//System.out.println("uy = " + uy);
 		for(Faixa faixa:faixas){
-			System.out.println( faixa.total + "\t"  + maxTotal + " faixa [" + faixa.min + " " + faixa.max + "]");
+			//System.out.println( faixa.total + "\t"  + maxTotal + " faixa [" + faixa.min + " " + faixa.max + "]");
 			int y2 = (int)(faixa.total * uy);
 			gra.setColor(Color.BLACK);
 			if(x1!=0)

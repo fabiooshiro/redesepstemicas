@@ -13,7 +13,9 @@ public class Aresta {
 	public void setEmissor(AgenteEpistemico emissor) {
 		this.emissor = emissor;
 	}
+	
 	/**
+	 * Peso que o receptor dá ao emissor
 	 * @return the peso
 	 */
 	public Double getPeso() {
