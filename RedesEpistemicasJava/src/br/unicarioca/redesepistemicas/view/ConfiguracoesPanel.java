@@ -76,7 +76,7 @@ public class ConfiguracoesPanel extends JTabbedPane {
 		
 		lblTheta = new JLabel("\u0398:");
 		lblTheta.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtTheta = new JSpinner(new SpinnerNumberModel(1.0, 0.0, 5.0, 0.005));
+		txtTheta = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 5.0, 0.005));
 		
 		lblErrorTolerance = new JLabel("Error Tolerance:");
 		lblErrorTolerance.setHorizontalAlignment(SwingConstants.RIGHT);
