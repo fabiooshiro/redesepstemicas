@@ -121,6 +121,7 @@ public class RedeEpistemica {
 					normalizarPesos();
 					colorirAgentesDoExperimento(experimento);
 					etapa++;
+					logger.info("Etapa " + etapa);
 				}
 			}//fim do if(listAgenteEpistemico.size()>1){
 		}
