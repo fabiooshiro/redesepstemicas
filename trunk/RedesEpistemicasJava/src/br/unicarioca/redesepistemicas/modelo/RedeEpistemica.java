@@ -24,7 +24,7 @@ public class RedeEpistemica {
 	private Experimento experimento;
 	private Thread t;
 	private static int etapa;
-	private double theta = 0.95;
+	private double theta = 0.0;
 	
 	public Experimento getExperimento() {
 		return experimento;
