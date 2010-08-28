@@ -60,7 +60,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 	public static ParEpistemico parModelo = ParEpistemicoFactory.criar(5,1);
 	private CrencaView crencaView;
 	public MainFrame() {
-		this.setTitle("IndraNet 1.1 - Simulador de Redes Epistêmicas");
+		this.setTitle("IndraNet 1.2 - Simulador de Redes Epistêmicas");
 		//instancias
 		redeEpistemica = new RedeEpistemica();
 		redeEpistemicaView = new RedeEpistemicaView(redeEpistemica);
