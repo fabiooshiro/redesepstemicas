@@ -45,7 +45,7 @@ public class GraficoPotenciaFactory{
 		intervalo = w/(float)totFaixas;
 		float uy = (h-20)/(float)maxTotal;
 		Graphics gra = bi.getGraphics();
-		gra.setColor(new Color(200,200,200));
+		gra.setColor(new Color(0xEEEEEE));
 		gra.fillRect(0, 0, w, h);
 		int x1 = 0;
 		int x2 = (int)intervalo/2;
@@ -56,12 +56,15 @@ public class GraficoPotenciaFactory{
 			int y2 = (int)(faixa.total * uy);
 			gra.setColor(Color.BLACK);
 			if(x1!=0)
-			gra.drawLine(x1, h - y1 - 10, x2, h - y2 - 10);
+			gra.drawLine(x1, h - y1 - 8, x2, h - y2 - 8);
 			y1 = y2;
 			x1 = x2;
 			x2+=(int)intervalo;
 			gra.setColor(Color.LIGHT_GRAY);
 			gra.drawLine(x1, 0, x1, h);
+			gra.setColor(Color.BLACK);
+			gra.drawString("" + (int)faixa.min, x1, h);
+			gra.drawString("" + (int)faixa.total, x1-8, h - y1 - 10);
 		}
 		return bi;
 	}
