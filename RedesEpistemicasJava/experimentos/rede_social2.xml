@@ -42,6 +42,49 @@
 	<crenca a="0.99;0.00;0.00;0.99;0.99;0.0" c="0.9999" cid="39" nome="Novelas da Globo" color="CC1315" />
 	<crenca a="0.99;0.00;0.00;0.99;0.69;1.0" c="0.9999" cid="40" nome="Sou Fã do Silvio Santos" color="11AAD1" />
 	<crenca a="0.99;0.00;0.99;0.00;0.00;0.0" c="0.9999" cid="41" nome="1 1 2 3 5 8 13" color="11AAD1" />
+	
+	<!-- crenças negativas -->
+	<crenca a="0.0;0.00;0.00;0.00;0.00;0.0" c="0.0000" cid="01" nome="!Recomeçar é preciso" color="CC0100" />
+	<crenca a="0.0;0.00;0.00;0.00;0.00;1.0" c="0.0000" cid="02" nome="!Java" color="02CC00" />
+	<crenca a="0.0;0.00;0.00;0.00;0.99;0.0" c="0.0000" cid="03" nome="!Unicarioca" color="00CC30" />
+	<crenca a="0.0;0.00;0.00;0.00;0.99;1.0" c="0.0000" cid="04" nome="!PSP Brasil" color="CC0050" />
+	<crenca a="0.0;0.00;0.00;0.99;0.00;0.0" c="0.0000" cid="05" nome="!C/C++" color="00C600" />
+	<crenca a="0.0;0.00;0.00;0.99;0.00;1.0" c="0.0000" cid="06" nome="!Só bebo skol" color="07CC00" />
+	<crenca a="0.0;0.00;0.00;0.99;0.99;0.0" c="0.0000" cid="07" nome="!O Livreiro" color="CC0800" />
+	<crenca a="0.0;0.00;0.00;0.99;0.99;1.0" c="0.0000" cid="08" nome="!Eu amo minha mãe" color="40FF0A" />
+	<crenca a="0.0;0.00;0.99;0.00;0.00;0.0" c="0.0000" cid="09" nome="!Jogos de Nave" color="00CC45" />
+	<crenca a="0.0;0.00;0.99;0.00;0.00;1.0" c="0.0000" cid="110" nome="!Gears of War" color="C05678" />
+	<crenca a="0.0;0.00;0.99;0.00;0.99;0.0" c="0.0000" cid="111" nome="!God of War" color="00CF00" />
+	<crenca a="0.0;0.00;0.99;0.00;0.99;1.0" c="0.0000" cid="112" nome="!Game Development" color="AFCC00" />
+	<crenca a="0.0;0.00;0.99;0.99;0.00;0.0" c="0.0000" cid="113" nome="!Eu confio em Deus" color="CC0BD1" />
+	<crenca a="0.0;0.00;0.99;0.99;0.00;1.0" c="0.0000" cid="114" nome="!Salgueiro" color="00CCFA" />
+	<crenca a="0.0;0.00;0.99;0.99;0.99;0.0" c="0.0000" cid="115" nome="!Save Galvão Birds" color="60CC0E" />
+	<crenca a="0.0;0.00;0.99;0.99;0.99;1.0" c="0.0000" cid="116" nome="!Lost Experience" color="CC0870" />
+	<crenca a="0.0;0.99;0.00;0.00;0.00;0.0" c="0.0000" cid="117" nome="!John Lock é meu pai" color="00CD40" />
+	<crenca a="0.0;0.99;0.00;0.00;0.00;1.0" c="0.0000" cid="118" nome="!Festas Infantis e Afins" color="AECC34" />
+	<crenca a="0.0;0.99;0.00;0.00;0.99;0.0" c="0.0000" cid="119" nome="!Simpsons" color="CC0305" />
+	<crenca a="0.0;0.99;0.00;0.00;0.99;1.0" c="0.0000" cid="220" nome="!Caverna do Dragão" color="00AAD0" />
+	<crenca a="0.0;0.99;0.00;0.99;0.00;0.0" c="0.0000" cid="221" nome="!Elite Photoshop" color="CC0111" />
+	<crenca a="0.0;0.99;0.00;0.99;0.00;1.0" c="0.0000" cid="222" nome="!Fotografia" color="02CC11" />
+	<crenca a="0.0;0.99;0.00;0.99;0.99;0.0" c="0.0000" cid="223" nome="!Milkshake do Bobs" color="00CC31" />
+	<crenca a="0.0;0.99;0.00;0.99;0.69;1.0" c="0.0000" cid="224" nome="!Dá Hadouken Ryu" color="CC0051" />
+	<crenca a="0.0;0.99;0.99;0.00;0.00;0.0" c="0.0000" cid="225" nome="!O Curioso Caso de Benjamin Button" color="00C611" />
+	<crenca a="0.0;0.99;0.99;0.00;0.00;1.0" c="0.0000" cid="226" nome="!Quero ser presidente do Brasil" color="07CC11" />
+	<crenca a="0.0;0.99;0.99;0.00;0.99;0.0" c="0.0000" cid="227" nome="!Clarice Lispector" color="CC0811" />
+	<crenca a="0.0;0.99;0.99;0.00;0.99;1.0" c="0.0000" cid="228" nome="!Receitas Fáceis" color="41FF1A" />
+	<crenca a="0.0;0.99;0.99;0.99;0.00;0.0" c="0.0000" cid="229" nome="!Filmes Antigos" color="11CC45" />
+	<crenca a="0.0;0.99;0.99;0.99;0.00;1.0" c="0.0000" cid="330" nome="!Game Retrô" color="C15678" />
+	<crenca a="0.0;0.99;0.99;0.99;0.99;0.0" c="0.0000" cid="331" nome="!Seu Madruga Merece uma Estátua" color="11CF11" />
+	<crenca a="0.0;0.99;0.99;0.99;0.99;1.0" c="0.0000" cid="332" nome="!Diga não as drogas" color="AFCC11" />
+	<crenca a="0.99;0.00;0.00;0.00;0.00;0.0" c="0.0000" cid="333" nome="!Livros" color="CC1BD1" />
+	<crenca a="0.99;0.00;0.00;0.00;0.00;1.0" c="0.0000" cid="334" nome="!Anos 80" color="11CCFA" />
+	<crenca a="0.99;0.00;0.00;0.00;0.99;0.0" c="0.0000" cid="335" nome="!Fotografias Noturnas" color="61CC0E" />
+	<crenca a="0.99;0.00;0.00;0.00;0.99;1.0" c="0.0000" cid="336" nome="!Jim Carrey" color="CC1871" />
+	<crenca a="0.99;0.00;0.00;0.99;0.00;0.0" c="0.0000" cid="337" nome="!Silvio Santos é um robô" color="11CD40" />
+	<crenca a="0.99;0.00;0.00;0.99;0.00;1.0" c="0.0000" cid="338" nome="!Cazuza" color="AECC66" />
+	<crenca a="0.99;0.00;0.00;0.99;0.99;0.0" c="0.0000" cid="339" nome="!Novelas da Globo" color="CC1315" />
+	<crenca a="0.99;0.00;0.00;0.99;0.69;1.0" c="0.0000" cid="440" nome="!Sou Fã do Silvio Santos" color="11AAD1" />
+	<crenca a="0.99;0.00;0.99;0.00;0.00;0.0" c="0.0000" cid="441" nome="!1 1 2 3 5 8 13" color="11AAD1" />
 		
 	<agente aid="0" y="504" x="1440" maxDif="0.0" morrerEm="0" somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
 		<crencaref ref="1" qtd="5000" />
@@ -49,6 +92,42 @@
 		<crencaref ref="3" qtd="5000" />
 		<crencaref ref="4" qtd="5000" />
 		<crencaref ref="5" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
 		<aresta aid="4" peso="1.0" />
 		<aresta aid="16" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
@@ -59,6 +138,44 @@
 		<crencaref ref="8" qtd="5000" />
 		<crencaref ref="9" qtd="5000" />
 		<crencaref ref="10" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="9" peso="1.0" />
 		<aresta aid="28" peso="1.0" />
 	</agente>
@@ -67,6 +184,45 @@
 		<crencaref ref="12" qtd="5000" />
 		<crencaref ref="13" qtd="5000" />
 		<crencaref ref="14" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="6" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
 		<aresta aid="25" peso="1.0" />
@@ -76,6 +232,45 @@
 		<crencaref ref="16" qtd="5000" />
 		<crencaref ref="17" qtd="5000" />
 		<crencaref ref="18" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="12" peso="1.0" />
 		<aresta aid="30" peso="1.0" />
 	</agente>
@@ -84,6 +279,45 @@
 		<crencaref ref="20" qtd="5000" />
 		<crencaref ref="21" qtd="5000" />
 		<crencaref ref="22" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="12" peso="1.0" />
 		<aresta aid="16" peso="1.0" />
@@ -93,6 +327,44 @@
 		<crencaref ref="24" qtd="5000" />
 		<crencaref ref="25" qtd="5000" />
 		<crencaref ref="26" qtd="5000" />
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="12" peso="1.0" />
 	</agente>
 	<agente aid="6" y="1432" x="956" maxDif="0.5" morrerEm="0" somenteUltimo="1" criarNovoEm="0" freq="0.7" raio="50">
@@ -100,6 +372,45 @@
 		<crencaref ref="28" qtd="5000" />
 		<crencaref ref="29" qtd="5000" />
 		<crencaref ref="30" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="2" peso="1.0" />
 		<aresta aid="8" peso="1.0" />
 		<aresta aid="9" peso="1.0" />
@@ -111,6 +422,45 @@
 		<crencaref ref="32" qtd="5000" />
 		<crencaref ref="33" qtd="5000" />
 		<crencaref ref="34" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="9" peso="1.0" />
 		<aresta aid="19" peso="1.0" />
 		<aresta aid="21" peso="1.0" />
@@ -121,6 +471,45 @@
 		<crencaref ref="36" qtd="5000" />
 		<crencaref ref="37" qtd="5000" />
 		<crencaref ref="38" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="6" peso="1.0" />
 		<aresta aid="10" peso="1.0" />
 		<aresta aid="29" peso="1.0" />
@@ -130,6 +519,45 @@
 		<crencaref ref="40" qtd="5000" />
 		<crencaref ref="1" qtd="5000" />
 		<crencaref ref="2" qtd="5000" />
+		
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="1" peso="1.0" />
 		<aresta aid="6" peso="1.0" />
 		<aresta aid="7" peso="1.0" />
@@ -143,6 +571,45 @@
 		<crencaref ref="4" qtd="5000" />
 		<crencaref ref="5" qtd="5000" />
 		<crencaref ref="6" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="8" peso="1.0" />
 		<aresta aid="13" peso="1.0" />
 		<aresta aid="15" peso="1.0" />
@@ -156,6 +623,45 @@
 		<crencaref ref="8" qtd="5000" />
 		<crencaref ref="9" qtd="5000" />
 		<crencaref ref="10" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="17" peso="1.0" />
 	</agente>
 	<agente aid="12" y="1024" x="336" maxDif="0.5" morrerEm="0" somenteUltimo="1" criarNovoEm="0" freq="0.1" raio="50">
@@ -164,6 +670,44 @@
 		<crencaref ref="13" qtd="5000" />
 		<crencaref ref="14" qtd="5000" />
 		<crencaref ref="41" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		
 		<aresta aid="3" peso="1.0" />
 		<aresta aid="4" peso="1.0" />
 		<aresta aid="5" peso="1.0" />
@@ -177,6 +721,45 @@
 		<crencaref ref="16" qtd="5000" />
 		<crencaref ref="17" qtd="5000" />
 		<crencaref ref="18" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="10" peso="1.0" />
 		<aresta aid="15" peso="1.0" />
 		<aresta aid="22" peso="1.0" />
@@ -186,6 +769,45 @@
 		<crencaref ref="20" qtd="5000" />
 		<crencaref ref="21" qtd="5000" />
 		<crencaref ref="22" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="12" peso="1.0" />
 		<aresta aid="15" peso="1.0" />
 		<aresta aid="16" peso="1.0" />
@@ -195,6 +817,45 @@
 		<crencaref ref="24" qtd="5000" />
 		<crencaref ref="25" qtd="5000" />
 		<crencaref ref="26" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="10" peso="1.0" />
 		<aresta aid="13" peso="1.0" />
 		<aresta aid="11" peso="1.0" />
@@ -205,6 +866,45 @@
 		<crencaref ref="28" qtd="5000" />
 		<crencaref ref="29" qtd="5000" />
 		<crencaref ref="30" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="4" peso="1.0" />
 		<aresta aid="12" peso="1.0" />
@@ -215,6 +915,45 @@
 		<crencaref ref="32" qtd="5000" />
 		<crencaref ref="33" qtd="5000" />
 		<crencaref ref="34" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="0" peso="1.0" />
 		<aresta aid="2" peso="1.0" />
 		<aresta aid="11" peso="1.0" />
@@ -229,6 +968,45 @@
 		<crencaref ref="36" qtd="5000" />
 		<crencaref ref="37" qtd="5000" />
 		<crencaref ref="38" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="10" peso="1.0" />
 		<aresta aid="20" peso="1.0" />
 	</agente>
@@ -237,6 +1015,45 @@
 		<crencaref ref="40" qtd="5000" />
 		<crencaref ref="1" qtd="5000" />
 		<crencaref ref="2" qtd="5000" />
+		
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="7" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
 		<aresta aid="27" peso="1.0" />
@@ -246,6 +1063,45 @@
 		<crencaref ref="4" qtd="5000" />
 		<crencaref ref="5" qtd="5000" />
 		<crencaref ref="6" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="9" peso="1.0" />
 		<aresta aid="18" peso="1.0" />
 		<aresta aid="26" peso="1.0" />
@@ -255,6 +1111,45 @@
 		<crencaref ref="8" qtd="5000" />
 		<crencaref ref="9" qtd="5000" />
 		<crencaref ref="10" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="7" peso="1.0" />
 		<aresta aid="9" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
@@ -264,6 +1159,45 @@
 		<crencaref ref="12" qtd="5000" />
 		<crencaref ref="13" qtd="5000" />
 		<crencaref ref="14" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="10" peso="1.0" />
 		<aresta aid="13" peso="1.0" />
 	</agente>
@@ -272,6 +1206,45 @@
 		<crencaref ref="16" qtd="5000" />
 		<crencaref ref="17" qtd="5000" />
 		<crencaref ref="18" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="10" peso="1.0" />
 	</agente>
 	<agente aid="24" y="444" x="184" maxDif="0.5" morrerEm="0" somenteUltimo="1" criarNovoEm="0" freq="0.3" raio="50">
@@ -279,6 +1252,45 @@
 		<crencaref ref="20" qtd="5000" />
 		<crencaref ref="21" qtd="5000" />
 		<crencaref ref="22" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="10" peso="1.0" />
 		<aresta aid="26" peso="1.0" />
 	</agente>
@@ -287,6 +1299,45 @@
 		<crencaref ref="24" qtd="5000" />
 		<crencaref ref="25" qtd="5000" />
 		<crencaref ref="26" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="2" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
 	</agente>
@@ -295,6 +1346,45 @@
 		<crencaref ref="28" qtd="5000" />
 		<crencaref ref="29" qtd="5000" />
 		<crencaref ref="30" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="9" peso="1.0" />
 		<aresta aid="20" peso="1.0" />
 		<aresta aid="24" peso="1.0" />
@@ -304,6 +1394,45 @@
 		<crencaref ref="32" qtd="5000" />
 		<crencaref ref="33" qtd="5000" />
 		<crencaref ref="34" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="7" peso="1.0" />
 		<aresta aid="9" peso="1.0" />
 		<aresta aid="19" peso="1.0" />
@@ -313,6 +1442,45 @@
 		<crencaref ref="36" qtd="5000" />
 		<crencaref ref="37" qtd="5000" />
 		<crencaref ref="38" qtd="5000" />
+		
+		<crencaref ref="01" qtd="5000" />
+		<crencaref ref="02" qtd="5000" />
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="339" qtd="5000" />
+		<crencaref ref="440" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="11" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
 	</agente>
@@ -321,6 +1489,45 @@
 		<crencaref ref="40" qtd="5000" />
 		<crencaref ref="1" qtd="5000" />
 		<crencaref ref="2" qtd="5000" />
+		
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="6" peso="1.0" />
 		<aresta aid="8" peso="1.0" />
 		<aresta aid="12" peso="1.0" />
@@ -330,6 +1537,45 @@
 		<crencaref ref="40" qtd="5000" />
 		<crencaref ref="1" qtd="5000" />
 		<crencaref ref="2" qtd="5000" />
+		
+		<crencaref ref="03" qtd="5000" />
+		<crencaref ref="04" qtd="5000" />
+		<crencaref ref="05" qtd="5000" />
+		<crencaref ref="06" qtd="5000" />
+		<crencaref ref="07" qtd="5000" />
+		<crencaref ref="08" qtd="5000" />
+		<crencaref ref="09" qtd="5000" />
+		<crencaref ref="110" qtd="5000" />
+		<crencaref ref="111" qtd="5000" />
+		<crencaref ref="112" qtd="5000" />
+		<crencaref ref="113" qtd="5000" />
+		<crencaref ref="114" qtd="5000" />
+		<crencaref ref="115" qtd="5000" />
+		<crencaref ref="116" qtd="5000" />
+		<crencaref ref="117" qtd="5000" />
+		<crencaref ref="118" qtd="5000" />
+		<crencaref ref="119" qtd="5000" />
+		<crencaref ref="220" qtd="5000" />
+		<crencaref ref="221" qtd="5000" />
+		<crencaref ref="222" qtd="5000" />
+		<crencaref ref="223" qtd="5000" />
+		<crencaref ref="224" qtd="5000" />
+		<crencaref ref="225" qtd="5000" />
+		<crencaref ref="226" qtd="5000" />
+		<crencaref ref="227" qtd="5000" />
+		<crencaref ref="228" qtd="5000" />
+		<crencaref ref="229" qtd="5000" />
+		<crencaref ref="330" qtd="5000" />
+		<crencaref ref="331" qtd="5000" />
+		<crencaref ref="332" qtd="5000" />
+		<crencaref ref="333" qtd="5000" />
+		<crencaref ref="334" qtd="5000" />
+		<crencaref ref="335" qtd="5000" />
+		<crencaref ref="336" qtd="5000" />
+		<crencaref ref="337" qtd="5000" />
+		<crencaref ref="338" qtd="5000" />
+		<crencaref ref="441" qtd="5000" />
+		
 		<aresta aid="3" peso="1.0" />
 		<aresta aid="17" peso="1.0" />
 	</agente>
