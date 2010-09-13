@@ -10,9 +10,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
@@ -171,7 +171,7 @@ public class MainFrame extends JFrame implements InfoListener,WindowListener, Ci
 		menuPrincipal.getColorir().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				List<AgenteEpistemico> agentes = redeEpistemica.getListAgenteEpistemico();
-				Set<ParEpistemico> crencas = new HashSet<ParEpistemico>();
+				SortedSet<ParEpistemico> crencas = new TreeSet<ParEpistemico>();
 				for(AgenteEpistemico agente : agentes){
 					List<ParEpistemico> crencaS = agente.getCrencas();
 					for(ParEpistemico crenca : crencaS){
