@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParEpistemicoOrkut implements ParEpistemico{
+public class ParEpistemicoOrkut implements ParEpistemico, Comparable{
 	private ArrayList<Double> antecedente = new ArrayList<Double>();
 	private ArrayList<Double> consequente = new ArrayList<Double>();
 	private int sizeAntecedente;
@@ -128,6 +128,11 @@ public class ParEpistemicoOrkut implements ParEpistemico{
 	}
 	public String toString(){
 		return nome;
+	}
+
+	@Override
+	public int compareTo(Object par) {
+		return this.nome.compareTo(((ParEpistemicoOrkut) par).getNome());
 	}
 	
 	
